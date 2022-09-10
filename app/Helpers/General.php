@@ -2,6 +2,16 @@
 
 use Illuminate\Support\Carbon;
 
+if (!function_exists('getLocaleList')) {
+    function getLocaleList()
+    {
+        return [
+            'en',
+            'tr'
+        ];
+    }
+}
+
 if (!function_exists('minutesToHours')) {
     function minutesToHours($minutes)
     {

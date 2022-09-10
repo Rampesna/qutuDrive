@@ -62,6 +62,26 @@
 
     SelectedCompany.selectpicker();
 
+    function changeLanguage(locale) {
+        $.ajax({
+            type: 'put',
+            url: '{{ route('user.web.changeLanguage') }}',
+            headers: {
+                'Accept': 'application/json',
+            },
+            data: {
+                locale: locale,
+            },
+            success: function () {
+                location.reload();
+            },
+            error: function (error) {
+                console.log(error);
+                toastr.error(error.responseJSON.message);
+            }
+        });
+    }
+
 </script>
 
 @yield('customScripts')

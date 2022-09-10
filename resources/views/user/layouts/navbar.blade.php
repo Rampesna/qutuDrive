@@ -72,8 +72,26 @@
                             <a href="#" class="menu-link px-5">Yardım</a>
                         </div>
                         <div class="separator my-2"></div>
-                        <div class="menu-item px-5">
-                            <a href="#" class="menu-link px-5">Dil Seçimi</a>
+                        <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
+                            <a href="#" class="menu-link px-5">
+                                <span class="menu-title position-relative">Dil Seçimi</span>
+                            </a>
+                            <div class="menu-sub menu-sub-dropdown w-175px py-4" style="">
+                                <div class="menu-item px-3">
+                                    <a onclick="changeLanguage('tr')" class="menu-link d-flex px-5">
+                                        <span class="symbol symbol-20px me-4">
+                                            <img class="rounded-1" src="{{ asset('assets/media/flags/turkey.svg') }}" alt="">
+                                        </span>Türkçe
+                                    </a>
+                                </div>
+                                <div class="menu-item px-3">
+                                    <a onclick="changeLanguage('en')" class="menu-link d-flex px-5">
+                                        <span class="symbol symbol-20px me-4">
+                                            <img class="rounded-1" src="{{ asset('assets/media/flags/united-states.svg') }}" alt="">
+                                        </span>English
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="separator my-2"></div>
                         <div class="menu-item px-5">

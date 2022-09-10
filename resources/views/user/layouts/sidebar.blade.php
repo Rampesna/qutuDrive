@@ -17,7 +17,7 @@
         <div class="hover-scroll-overlay-y my-5 my-lg-5" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="0">
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
 
-                <a href="#" class="menu-item {{ request()->segment(2) == 'dashboard' ? 'show' : '' }}">
+                <a href="{{ route('user.web.dashboard.index') }}" class="menu-item {{ request()->segment(2) == 'dashboard' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -27,10 +27,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Duvarım</span>
+                        <span class="menu-title">{{ __('sidebar.dashboard') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'document' ? 'show' : '' }}">
+                <a href="{{ route('user.web.document.index') }}" class="menu-item {{ request()->segment(2) == 'document' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -43,10 +43,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Belgeler</span>
+                        <span class="menu-title">{{ __('sidebar.document') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'sharedDirectory' ? 'show' : '' }}">
+                <a href="{{ route('user.web.sharedDirectory.index') }}" class="menu-item {{ request()->segment(2) == 'sharedDirectory' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -58,10 +58,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Ortak Klasörler</span>
+                        <span class="menu-title">{{ __('sidebar.sharedDirectory') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'sharedWithMe' ? 'show' : '' }}">
+                <a href="{{ route('user.web.sharedWithMe.index') }}" class="menu-item {{ request()->segment(2) == 'sharedWithMe' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -71,15 +71,15 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Benimle Paylaşılanlar</span>
+                        <span class="menu-title">{{ __('sidebar.sharedWithMe') }}</span>
                     </span>
                 </a>
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">DİĞER</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{ __('sidebar.other') }}</span>
                     </div>
                 </div>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'qutuMail' ? 'show' : '' }}">
+                <a href="{{ route('user.web.qutuMail.index') }}" class="menu-item {{ request()->segment(2) == 'qutuMail' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -89,10 +89,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Qutu Mail</span>
+                        <span class="menu-title">{{ __('sidebar.qutuMail') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'form' ? 'show' : '' }}">
+                <a href="{{ route('user.web.form.index') }}" class="menu-item {{ request()->segment(2) == 'form' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -102,10 +102,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Form</span>
+                        <span class="menu-title">{{ __('sidebar.form') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'workFollow' ? 'show' : '' }}">
+                <a href="{{ route('user.web.workFollow.index') }}" class="menu-item {{ request()->segment(2) == 'workFollow' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -115,10 +115,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">İş Takibi</span>
+                        <span class="menu-title">{{ __('sidebar.workFollow') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'calendar' ? 'show' : '' }}">
+                <a href="{{ route('user.web.calendar.index') }}" class="menu-item {{ request()->segment(2) == 'calendar' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -129,10 +129,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Takvim</span>
+                        <span class="menu-title">{{ __('sidebar.calendar') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'password' ? 'show' : '' }}">
+                <a href="{{ route('user.web.password.index') }}" class="menu-item {{ request()->segment(2) == 'password' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -142,10 +142,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Şifreler</span>
+                        <span class="menu-title">{{ __('sidebar.password') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'note' ? 'show' : '' }}">
+                <a href="{{ route('user.web.note.index') }}" class="menu-item {{ request()->segment(2) == 'note' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -155,10 +155,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Notlar</span>
+                        <span class="menu-title">{{ __('sidebar.note') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'uploadRequest' ? 'show' : '' }}">
+                <a href="{{ route('user.web.uploadRequest.index') }}" class="menu-item {{ request()->segment(2) == 'uploadRequest' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -168,15 +168,15 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Yükleme İstekleri</span>
+                        <span class="menu-title">{{ __('sidebar.uploadRequest') }}</span>
                     </span>
                 </a>
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">İŞLEMLER</span>
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{ __('sidebar.transactions') }}</span>
                     </div>
                 </div>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'share' ? 'show' : '' }}">
+                <a href="{{ route('user.web.share.index') }}" class="menu-item {{ request()->segment(2) == 'share' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -186,10 +186,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Paylaşım</span>
+                        <span class="menu-title">{{ __('sidebar.share') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'userGroup' ? 'show' : '' }}">
+                <a href="{{ route('user.web.userGroup.index') }}" class="menu-item {{ request()->segment(2) == 'userGroup' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -201,10 +201,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Kullanıcı Grupları</span>
+                        <span class="menu-title">{{ __('sidebar.userGroup') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'archiveGroup' ? 'show' : '' }}">
+                <a href="{{ route('user.web.archiveGroup.index') }}" class="menu-item {{ request()->segment(2) == 'archiveGroup' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -214,10 +214,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Arşiv Grupları</span>
+                        <span class="menu-title">{{ __('sidebar.archiveGroup') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'recycleBin' ? 'show' : '' }}">
+                <a href="{{ route('user.web.recycleBin.index') }}" class="menu-item {{ request()->segment(2) == 'recycleBin' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -228,10 +228,10 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Geri Dönüşüm Kutusu</span>
+                        <span class="menu-title">{{ __('sidebar.recycleBin') }}</span>
                     </span>
                 </a>
-                <a href="#" class="menu-item {{ request()->segment(2) == 'hisyory' ? 'show' : '' }}">
+                <a href="{{ route('user.web.history.index') }}" class="menu-item {{ request()->segment(2) == 'history' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -241,7 +241,7 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Geçmiş</span>
+                        <span class="menu-title">{{ __('sidebar.history') }}</span>
                     </span>
                 </a>
 
