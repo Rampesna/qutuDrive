@@ -12,6 +12,8 @@ Route::middleware([
     'auth:user_api',
 ])->group(function () {
 
-
+    Route::prefix('project')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Api\User\ProjectController::class, 'index'])->name('user.api.project.index');
+    });
 
 });

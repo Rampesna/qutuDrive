@@ -3,34 +3,9 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Core\Controller;
-use App\Http\Requests\Api\User\UserController\GetCompaniesRequest;
-use App\Http\Requests\Api\User\UserController\ResetPasswordRequest;
-use App\Http\Requests\Api\User\UserController\SendPasswordResetEmailRequest;
-use App\Http\Requests\Api\User\UserController\SetCompaniesRequest;
-use App\Http\Requests\Api\User\UserController\SetUserCompaniesRequest;
-use App\Http\Requests\Api\User\UserController\SetSingleCompanyRequest;
-use App\Http\Requests\Api\User\UserController\GetSelectedCompaniesRequest;
-use App\Http\Requests\Api\User\UserController\SetSelectedCompaniesRequest;
 use App\Http\Requests\Api\User\UserController\LoginRequest;
-use App\Http\Requests\Api\User\UserController\GetProfileRequest;
-use App\Http\Requests\Api\User\UserController\SwapThemeRequest;
-use App\Http\Requests\Api\User\UserController\UpdatePasswordRequest;
-use App\Http\Requests\Api\User\UserController\GetAllRequest;
-use App\Http\Requests\Api\User\UserController\GetByIdRequest;
-use App\Http\Requests\Api\User\UserController\GetByEmailRequest;
-use App\Http\Requests\Api\User\UserController\CreateRequest;
-use App\Http\Requests\Api\User\UserController\UpdateRequest;
-use App\Http\Requests\Api\User\UserController\SetSuspendRequest;
-use App\Http\Requests\Api\User\UserController\DeleteRequest;
-use App\Interfaces\Eloquent\IPasswordResetService;
 use App\Interfaces\Eloquent\IUserService;
-use App\Mail\User\ForgotPasswordEmail;
-use App\Models\Eloquent\Kullanicilar;
 use App\Core\Response;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
 class UserController extends Controller
 {

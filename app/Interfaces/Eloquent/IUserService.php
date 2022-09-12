@@ -80,4 +80,13 @@ interface IUserService extends IEloquentService
     public function generateSanctumToken(
         int $userId
     ): ServiceResponse;
+
+    /**
+     * @param int $userId
+     *
+     * @return ServiceResponse
+     */
+    public function getProjects(
+        int $userId
+    ): ServiceResponse;
 }
