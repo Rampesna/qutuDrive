@@ -28,6 +28,7 @@ class CreateKullanicilarTable extends Migration
             $table->dateTime('KAYITTARIHI')->nullable();
             $table->dateTime('TOKENTARIHI')->nullable();
             $table->string('api_token')->nullable();
+            $table->unsignedBigInteger('selected_company_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

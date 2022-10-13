@@ -72,6 +72,11 @@ class Kullanicilar extends Authenticatable
         return $this->api_token;
     }
 
+    public function selectedCompanyId()
+    {
+        return $this->selected_company_id;
+    }
+
     public function name()
     {
         return $this->AD;
@@ -80,5 +85,20 @@ class Kullanicilar extends Authenticatable
     public function email()
     {
         return $this->username;
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_user', 'user_id', 'project_id', 'ID', 'id');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'user_id', 'ID');
+    }
+
+    public function companies()
+    {
+        return $this->belongsToMany(Firmalar::class, 'firmakullanicibaglanti', 'KULLANICIID', 'FIRMAID', 'ID', 'ID');
     }
 }

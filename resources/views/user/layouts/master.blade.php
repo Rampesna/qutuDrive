@@ -56,11 +56,47 @@
 
     var authUserId = parseInt(`{{ auth()->id() }}`);
     var authUserToken = 'Bearer {{ auth()->user()->apiToken() }}';
+    var authUserSelectedCompanyId = parseInt(`{{ auth()->user()->selectedCompanyId() }}`);
+    var userCompanies = [];
     var SelectedCompany = $('#SelectedCompany');
     var jqxGridGlobalTheme = 'metro';
     var baseAssetUrl = '{{ asset('') }}';
 
-    SelectedCompany.selectpicker();
+    function getCompanies() {
+        $.ajax({
+            async: false,
+            type: 'get',
+            url: '{{ route('user.api.getCompanies') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {},
+            success: function (response) {
+                userCompanies = response.response;
+                SelectedCompany.empty();
+                $.each(response.response, function (i, company) {
+                    SelectedCompany.append($('<option>', {
+                        value: company.ID,
+                        text: company.FIRMAUNVAN
+                    }));
+                });
+                SelectedCompany.val(authUserSelectedCompanyId);
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+    }
+
+    getCompanies();
 
     function changeLanguage(locale) {
         $.ajax({

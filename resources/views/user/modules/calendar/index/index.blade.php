@@ -14,7 +14,19 @@
 
 @section('content')
 
+    @include('user.modules.calendar.index.modals.createNote')
+    @include('user.modules.calendar.index.modals.updateNote')
+    @include('user.modules.calendar.index.modals.deleteNote')
 
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 

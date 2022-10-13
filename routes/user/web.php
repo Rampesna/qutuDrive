@@ -43,6 +43,8 @@ Route::middleware([
 
     Route::prefix('workFollow')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\WorkFollowController::class, 'index'])->name('user.web.workFollow.index');
+        Route::get('overview/{id?}', [\App\Http\Controllers\Web\User\WorkFollowController::class, 'overview'])->name('user.web.workFollow.overview');
+        Route::get('board/{id?}', [\App\Http\Controllers\Web\User\WorkFollowController::class, 'board'])->name('user.web.workFollow.board');
     });
 
     Route::prefix('calendar')->group(function () {
@@ -79,5 +81,11 @@ Route::middleware([
 
     Route::prefix('history')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\HistoryController::class, 'index'])->name('user.web.history.index');
+    });
+
+    Route::prefix('file')->group(function () {
+        Route::get('download/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'download'])->name('user.web.file.download');
+        Route::get('downloadByKey', [\App\Http\Controllers\Web\User\FileController::class, 'downloadByKey'])->name('user.web.file.downloadByKey');
+        Route::get('createPdf/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'createPdf'])->name('user.web.file.createPdf');
     });
 });
