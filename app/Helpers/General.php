@@ -91,3 +91,51 @@ if (!function_exists('clearPhoneNumber')) {
         return $phoneNumber;
     }
 }
+
+if (!function_exists('getFileTypeId')) {
+    function getFileTypeId(
+        $fileMimeType
+    )
+    {
+        if (
+            $fileMimeType == 'application/pdf' ||
+            $fileMimeType == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+            $fileMimeType == 'application/msword' ||
+            $fileMimeType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+            $fileMimeType == 'application/vnd.ms-excel' ||
+            $fileMimeType == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' ||
+            $fileMimeType == 'application/vnd.ms-powerpoint'
+        ) {
+            return 3;
+        } else if (
+            $fileMimeType == 'application/sql'
+        ) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+}
+
+if (!function_exists('checkFileTypeTest')) {
+    function checkFileTypeTest($file)
+    {
+        $fileType = $file->getMimeType();
+
+        if ($fileType == 'image/jpeg' || $fileType == 'image/png' || $fileType == 'image/gif') {
+            return 'image';
+        } else if ($fileType == 'application/pdf') {
+            return 'pdf';
+        } else if ($fileType == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || $fileType == 'application/msword') {
+            return 'word';
+        } else if ($fileType == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || $fileType == 'application/vnd.ms-excel') {
+            return 'excel';
+        } else if ($fileType == 'application/vnd.openxmlformats-officedocument.presentationml.presentation' || $fileType == 'application/vnd.ms-powerpoint') {
+            return 'powerpoint';
+        } else if ($fileType == 'application/zip' || $fileType == 'application/x-rar-compressed') {
+            return 'zip';
+        } else {
+            return 'other';
+        }
+    }
+}

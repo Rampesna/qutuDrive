@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Interfaces\AwsS3\IStorageService;
 use App\Interfaces\Eloquent\IBoardService;
+use App\Interfaces\Eloquent\IFileService;
 use App\Interfaces\Eloquent\INoteService;
 use App\Interfaces\Eloquent\IPasswordResetService;
 use App\Interfaces\Eloquent\IPersonalAccessTokenService;
@@ -12,7 +14,9 @@ use App\Interfaces\Eloquent\ISubTaskService;
 use App\Interfaces\Eloquent\ITaskPriorityService;
 use App\Interfaces\Eloquent\ITaskService;
 use App\Interfaces\Eloquent\IUserService;
+use App\Services\AwsS3\StorageService;
 use App\Services\Eloquent\BoardService;
+use App\Services\Eloquent\FileService;
 use App\Services\Eloquent\PasswordResetService;
 use App\Services\Eloquent\PersonalAccessTokenService;
 use App\Services\Eloquent\ProjectService;
@@ -44,6 +48,10 @@ class InterfaceServiceProvider extends ServiceProvider
         $this->app->bind(ITaskPriorityService::class, TaskPriorityService::class);
         $this->app->bind(ISubTaskService::class, SubTaskService::class);
         $this->app->bind(INoteService::class, NoteService::class);
+        $this->app->bind(IFileService::class, FileService::class);
+
+        // Aws Services
+        $this->app->bind(IStorageService::class, StorageService::class);
     }
 
     /**

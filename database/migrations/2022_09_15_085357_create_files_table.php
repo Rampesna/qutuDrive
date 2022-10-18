@@ -17,7 +17,11 @@ return new class extends Migration {
             $table->string('relation_type');
             $table->unsignedBigInteger('relation_id');
             $table->string('name')->nullable();
+            $table->string('mime_type')->nullable();
+            $table->string('icon')->nullable();
+            $table->unsignedBigInteger('type_id');
             $table->string('full_path')->nullable();
+            $table->double('file_size')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

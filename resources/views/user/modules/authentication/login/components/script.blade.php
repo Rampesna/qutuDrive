@@ -7,16 +7,16 @@
         $('#loader').hide();
     });
 
-    var emailInput = $('#email');
+    var usernameInput = $('#username');
     var passwordInput = $('#password');
     var LoginButton = $('#LoginButton');
 
     function login() {
-        var email = emailInput.val();
+        var username = usernameInput.val();
         var password = passwordInput.val();
         var remember = $('#remember').is(':checked') ? 1 : 0;
 
-        if (!email || !password) {
+        if (!username || !password) {
             toastr.warning('Lütfen Bilgilerinizi Girin.');
         } else {
             LoginButton.attr('disabled', true);
@@ -27,10 +27,11 @@
                     'Accept': 'application/json',
                 },
                 data: {
-                    email: email,
+                    username: username,
                     password: password,
                 },
                 success: function (response) {
+                    console.log(response);
                     window.location.href = `{{ route('user.web.authentication.oAuth') }}?token=${response.response.token}&remember=${remember}`;
                 },
                 error: function (error) {

@@ -32,7 +32,7 @@ class UserController extends Controller
     {
         $user = $this->userService->getByUsername($request->username);
         if ($user->isSuccess()) {
-            if (!checkPassword($request->password, $user->getData()->KULLANICISIFRE)) {
+            if ($request->password != $user->getData()->KULLANICISIFRE) {
                 return $this->httpResponse('Password is incorrect', 401);
             }
 

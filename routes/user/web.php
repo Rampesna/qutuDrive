@@ -37,6 +37,18 @@ Route::middleware([
         Route::get('index', [\App\Http\Controllers\Web\User\QutuMailController::class, 'index'])->name('user.web.qutuMail.index');
     });
 
+    Route::prefix('databaseBackup')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Web\User\DatabaseBackupController::class, 'index'])->name('user.web.databaseBackup.index');
+    });
+
+    Route::prefix('eLedgerBackup')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Web\User\ELedgerBackupController::class, 'index'])->name('user.web.eLedgerBackup.index');
+    });
+
+    Route::prefix('eLedgerSecondBackup')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Web\User\ELedgerSecondBackupController::class, 'index'])->name('user.web.eLedgerSecondBackup.index');
+    });
+
     Route::prefix('form')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\FormController::class, 'index'])->name('user.web.form.index');
     });
