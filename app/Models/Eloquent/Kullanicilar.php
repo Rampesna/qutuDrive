@@ -101,4 +101,9 @@ class Kullanicilar extends Authenticatable
     {
         return $this->belongsToMany(Firmalar::class, 'firmakullanicibaglanti', 'KULLANICIID', 'FIRMAID', 'ID', 'ID');
     }
+
+    public function directories()
+    {
+        return $this->hasMany(Directory::class, 'user_id', 'ID');
+    }
 }

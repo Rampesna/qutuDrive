@@ -83,6 +83,10 @@ Route::middleware([
         Route::get('getDatabaseBackups', [\App\Http\Controllers\Api\User\FileController::class, 'getDatabaseBackups'])->name('user.api.file.getDatabaseBackups');
     });
 
+    Route::prefix('directory')->group(function () {
+        Route::get('getByParentId', [\App\Http\Controllers\Api\User\DirectoryController::class, 'getByParentId'])->name('user.api.directory.getByParentId');
+    });
+
     Route::prefix('comment')->group(function () {
         Route::get('getByRelation', [\App\Http\Controllers\Api\User\CommentController::class, 'getByRelation'])->name('user.api.comment.getByRelation');
         Route::post('create', [\App\Http\Controllers\Api\User\CommentController::class, 'create'])->name('user.api.comment.create');

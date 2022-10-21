@@ -30,12 +30,14 @@ interface IFileService extends IEloquentService
     ): ServiceResponse;
 
     /**
+     * @param int|null $directoryId
      * @param int $relationId
      * @param string $relationType
      *
      * @return ServiceResponse
      */
     public function getByRelation(
+        ?int   $directoryId,
         int    $relationId,
         string $relationType
     ): ServiceResponse;

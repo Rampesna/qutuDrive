@@ -113,12 +113,14 @@ class FileService implements IFileService
     }
 
     /**
+     * @param int|null $directoryId
      * @param int $relationId
      * @param string $relationType
      *
      * @return ServiceResponse
      */
     public function getByRelation(
+        ?int   $directoryId,
         int    $relationId,
         string $relationType
     ): ServiceResponse
@@ -127,7 +129,7 @@ class FileService implements IFileService
             true,
             'Files',
             200,
-            File::where('relation_id', $relationId)->where('relation_type', $relationType)->get()
+            File::where('directory_id', $directoryId)->where('relation_id', $relationId)->where('relation_type', $relationType)->get()
         );
     }
 

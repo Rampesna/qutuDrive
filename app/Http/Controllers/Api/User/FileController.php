@@ -85,6 +85,7 @@ class FileController extends Controller
     public function getByRelation(GetByRelationRequest $request)
     {
         $response = $this->fileService->getByRelation(
+            $request->directoryId,
             $request->relationId,
             $request->relationType
         );

@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('relation_type');
             $table->unsignedBigInteger('relation_id');
+            $table->unsignedBigInteger('directory_id')->nullable();
             $table->string('name')->nullable();
             $table->string('mime_type')->nullable();
             $table->string('icon')->nullable();

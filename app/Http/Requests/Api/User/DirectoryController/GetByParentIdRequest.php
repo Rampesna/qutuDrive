@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\User\FileController;
+namespace App\Http\Requests\Api\User\DirectoryController;
 
 use App\Http\Requests\Api\BaseApiRequest;
 
-class GetByRelationRequest extends BaseApiRequest
+class GetByParentIdRequest extends BaseApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class GetByRelationRequest extends BaseApiRequest
     public function rules()
     {
         return [
-            'directoryId' => 'nullable|integer',
-            'relationId' => 'required|integer',
-            'relationType' => 'required|string',
+            'companyId' => 'required|integer',
+            'parentId' => 'nullable|integer',
         ];
     }
 }
