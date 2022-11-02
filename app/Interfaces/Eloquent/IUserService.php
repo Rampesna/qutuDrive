@@ -37,6 +37,17 @@ interface IUserService extends IEloquentService
 
     /**
      * @param int $userId
+     * @param string $password
+     *
+     * @return ServiceResponse
+     */
+    public function checkPassword(
+        int    $userId,
+        string $password
+    ): ServiceResponse;
+
+    /**
+     * @param int $userId
      * @param array $companyIds
      *
      * @return ServiceResponse

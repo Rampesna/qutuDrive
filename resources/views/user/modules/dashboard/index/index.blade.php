@@ -14,13 +14,23 @@
 
 @section('content')
 
+    @include('user.modules.dashboard.index.components.contextMenu')
+
+    @include('user.modules.dashboard.index.modals.createDirectory')
+    @include('user.modules.dashboard.index.modals.renameDirectory')
+    @include('user.modules.dashboard.index.modals.deleteDirectory')
+
+    @include('user.modules.dashboard.index.modals.renameFile')
+
     <div id="driveMain" class="container-fluid" style="padding:0 10px;margin:10px 0">
         <div class="card">
             <div class="card-header">
                 <div class="card-title" style="margin:0;">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-light btn-sm" id="backDirectoryButton" disabled><i class="fa fa-arrow-left"></i></button>
-                        <button type="button" class="btn btn-light btn-sm" id="homeDirectoryButton"><i class="fa fa-home"></i></button>
+                        <button type="button" class="btn btn-light btn-sm" id="backDirectoryButton" disabled><i
+                                class="fa fa-arrow-left"></i></button>
+                        <button type="button" class="btn btn-light btn-sm" id="homeDirectoryButton"><i
+                                class="fa fa-home"></i></button>
                     </div>
                     <div id="historyRow"></div>
                 </div>
@@ -46,22 +56,7 @@
                     </div>
                 </div>
                 <div class="row" id="filesRow">
-                    <div class="col-xl-2 mb-5">
-                        <div class="card h-100 flex-center text-center py-4 px-0 cursor-pointer border border-secondary bg-hover-light-dark" style="border-radius: 10px">
-                            <i class="fas fa-file fa-lg mt-2 mb-5"></i>
-                            <span class="font-weight-bolder text-dark-75 mb-1">Dosya 1</span>
-                            <div class="fs-7 fw-bold text-gray-400 mt-auto mb-1">Dosya Boyutu</div>
-                            <span class="fs-7 fw-bold text-gray-600 mt-auto mb-1">Yüklenme Tarihi</span>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 mb-5">
-                        <div class="card h-100 flex-center text-center py-4 px-0 cursor-pointer border border-secondary bg-hover-light-dark" style="border-radius: 10px">
-                            <i class="fas fa-file fa-lg mt-2 mb-5"></i>
-                            <span class="font-weight-bolder text-dark-75 mb-1">Dosya 2</span>
-                            <div class="fs-7 fw-bold text-gray-400 mt-auto mb-1">Dosya Boyutu</div>
-                            <span class="fs-7 fw-bold text-gray-600 mt-auto mb-1">Yüklenme Tarihi</span>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="card-footer" id="panelPortletFooter">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Core\Controller;
 use App\Http\Requests\Api\User\UserController\GetCompaniesRequest;
+use App\Http\Requests\Api\User\UserController\CheckPasswordRequest;
 use App\Http\Requests\Api\User\UserController\LoginRequest;
 use App\Interfaces\Eloquent\IUserService;
 use App\Core\HttpResponse;
@@ -54,6 +55,24 @@ class UserController extends Controller
     {
         $response = $this->userService->getCompanies(
             $request->user()->ID
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
+     * @param CheckPasswordRequest $request
+     */
+    public function checkPassword(CheckPasswordRequest $request)
+    {
+        $response = $this->userService->checkPassword(
+            $request->user()->ID,
+            $request->password
         );
 
         return $this->httpResponse(

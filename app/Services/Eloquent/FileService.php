@@ -149,4 +149,27 @@ class FileService implements IFileService
             File::where('relation_id', $userId)->where('relation_type', 'App\\Models\\Eloquent\\Kullanicilar')->where('type_id', 2)->get()
         );
     }
+
+    /**
+     * @param int|null $directoryId
+     * @param array $fileIds
+     *
+     * @return ServiceResponse
+     */
+    public function updateDirectoryId(
+        ?int  $directoryId,
+        array $fileIds
+    ): ServiceResponse
+    {
+        $files = File::whereIn('id', $fileIds)->update([
+            'directory_id' => $directoryId
+        ]);
+
+        return new ServiceResponse(
+            true,
+            'Files updated',
+            200,
+            $files
+        );
+    }
 }

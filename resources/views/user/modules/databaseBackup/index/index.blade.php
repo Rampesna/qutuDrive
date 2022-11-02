@@ -16,6 +16,30 @@
 
     <input type="file" id="fileSelector" style="display: none">
 
+    <div class="row">
+        <div class="col-xl-12 mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-10 mb-5">
+                            <div class="form-group">
+                                <input id="keyword" type="text" class="form-control form-control-solid filterInput" placeholder="Arayın..." aria-label="Arayın...">
+                            </div>
+                        </div>
+                        <div class="col-xl-2 mb-5">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="form-group d-grid">
+                                        <button class="btn btn-primary" id="FilterButton">Ara</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row" id="filesRow"></div>
 
 @endsection

@@ -50,4 +50,15 @@ interface IFileService extends IEloquentService
     public function getDatabaseBackups(
         int $userId
     ): ServiceResponse;
+
+    /**
+     * @param int|null $directoryId
+     * @param array $fileIds
+     *
+     * @return ServiceResponse
+     */
+    public function updateDirectoryId(
+        ?int  $directoryId,
+        array $fileIds
+    ): ServiceResponse;
 }

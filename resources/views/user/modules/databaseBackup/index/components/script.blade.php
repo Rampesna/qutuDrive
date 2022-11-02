@@ -7,18 +7,22 @@
     var filesRow = $('#filesRow');
     var fileUploader = $('#fileUploadArea');
     var fileSelector = $('#fileSelector');
+    var keywordInput = $('#keyword');
 
-    function getFilesByRelation() {
+    var FilterButton = $('#FilterButton');
+
+    function getBackupDosyalarByCompanyId() {
+        var keyword = keywordInput.val();
         $.ajax({
             type: 'get',
             headers: {
                 'Accept': 'application/json',
                 'Authorization': authUserToken
             },
-            url: '{{ route('user.api.file.getDatabaseBackups') }}',
+            url: '{{ route('user.api.backupdosyalar.getByCompanyId') }}',
             data: {
-                relationId: authUserId,
-                relationType: 'App\\Models\\Eloquent\\User'
+                companyId: SelectedCompany.val(),
+                keyword: keyword,
             },
             success: function (response) {
                 var fileUploadSvg = `{{ asset('assets/media/svg/files/upload.svg') }}`;
@@ -32,14 +36,14 @@
                     </div>
                 </div>
                 `);
-                $.each(response.response, function (i, file) {
+                $.each(response.response, function (i, backupDosya) {
                     filesRow.append(`
                     <div class="col-xl-2 mb-5">
-                        <div class="card h-100 flex-center text-center border-dashed p-8 cursor-pointer" onclick="showFile(${file.id})" data-id="${file.id}" id="file_${file.id}">
+                        <div class="card h-100 flex-center text-center border-dashed p-8 cursor-pointer backupDosya" data-id="${backupDosya.ID}" id="backupDosya_${backupDosya.ID}">
                             <i class="fas fa-database fa-4x mb-12"></i>
-                            <a class="font-weight-bolder text-dark-75 mb-1">${file.name}</a>
-                            <div class="fs-7 fw-bold text-gray-400 mt-auto mb-1">${formatBytes(file.file_size)}</div>
-                            <span class="fs-7 fw-bold text-gray-600 mt-auto mb-1">${reformatDatetimeToDatetimeForHuman(file.created_at)}</span>
+                            <a class="font-weight-bolder text-dark-75 mb-1">${backupDosya.DOSYAADI.length > 21 ? `${backupDosya.DOSYAADI.substring(0,18)}...` : backupDosya.DOSYAADI}</a>
+                            <div class="fs-7 fw-bold text-gray-400 mt-auto mb-1">${backupDosya.DOSYABOYUTU} MB</div>
+                            <span class="fs-7 fw-bold text-gray-600 mt-auto mb-1">${reformatDatetimeToDatetimeForHuman(backupDosya.BACKUPOLUSMATARIHI)}</span>
                         </div>
                     </div>
                     `);
@@ -47,12 +51,18 @@
             },
             error: function (error) {
                 console.log(error);
-                toastr.error('Dosyalar Alınırken Serviste Bir Sorun Oluştu.');
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
             }
         });
     }
 
-    getFilesByRelation();
+    getBackupDosyalarByCompanyId();
 
     function uploadFile(data) {
         toastr.info('Dosya Yükleniyor...');
@@ -68,7 +78,7 @@
             data: data,
             success: function () {
                 toastr.success('Dosya Yüklendi');
-                getFilesByRelation();
+                getBackupDosyalarByCompanyId();
             },
             error: function (error) {
                 console.log(error);
@@ -93,6 +103,16 @@
         data.append('file', fileSelector[0].files[0]);
         data.append('filePath', `qutuDrive/uploads/user/${authUserId}/files/`);
         uploadFile(data);
+    });
+
+    FilterButton.click(function () {
+        getBackupDosyalarByCompanyId();
+    });
+
+    keywordInput.keyup(function (e) {
+        if (parseInt(e.keyCode) === 13) {
+            getBackupDosyalarByCompanyId();
+        }
     });
 
 </script>

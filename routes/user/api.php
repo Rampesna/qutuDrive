@@ -13,6 +13,7 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('getCompanies', [\App\Http\Controllers\Api\User\UserController::class, 'getCompanies'])->name('user.api.getCompanies');
+    Route::post('checkPassword', [\App\Http\Controllers\Api\User\UserController::class, 'checkPassword'])->name('user.api.checkPassword');
 
     Route::prefix('project')->group(function () {
         Route::get('index', [\App\Http\Controllers\Api\User\ProjectController::class, 'index'])->name('user.api.project.index');
@@ -71,6 +72,30 @@ Route::middleware([
         Route::delete('delete', [\App\Http\Controllers\Api\User\NoteController::class, 'delete'])->name('user.api.note.delete');
     });
 
+    Route::prefix('generalNote')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Api\User\GeneralNoteController::class, 'index'])->name('user.api.generalNote.index');
+        Route::get('getById', [\App\Http\Controllers\Api\User\GeneralNoteController::class, 'getById'])->name('user.api.generalNote.getById');
+        Route::post('create', [\App\Http\Controllers\Api\User\GeneralNoteController::class, 'create'])->name('user.api.generalNote.create');
+        Route::put('update', [\App\Http\Controllers\Api\User\GeneralNoteController::class, 'update'])->name('user.api.generalNote.update');
+        Route::delete('delete', [\App\Http\Controllers\Api\User\GeneralNoteController::class, 'delete'])->name('user.api.generalNote.delete');
+    });
+
+    Route::prefix('form')->group(function () {
+        Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\FormController::class, 'getByCompanyId'])->name('user.api.form.getByCompanyId');
+        Route::get('getById', [\App\Http\Controllers\Api\User\FormController::class, 'getById'])->name('user.api.form.getById');
+        Route::post('create', [\App\Http\Controllers\Api\User\FormController::class, 'create'])->name('user.api.form.create');
+        Route::put('update', [\App\Http\Controllers\Api\User\FormController::class, 'update'])->name('user.api.form.update');
+        Route::delete('delete', [\App\Http\Controllers\Api\User\FormController::class, 'delete'])->name('user.api.form.delete');
+    });
+
+    Route::prefix('password')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Api\User\PasswordController::class, 'index'])->name('user.api.password.index');
+        Route::get('getById', [\App\Http\Controllers\Api\User\PasswordController::class, 'getById'])->name('user.api.password.getById');
+        Route::post('create', [\App\Http\Controllers\Api\User\PasswordController::class, 'create'])->name('user.api.password.create');
+        Route::put('update', [\App\Http\Controllers\Api\User\PasswordController::class, 'update'])->name('user.api.password.update');
+        Route::delete('delete', [\App\Http\Controllers\Api\User\PasswordController::class, 'delete'])->name('user.api.password.delete');
+    });
+
     Route::prefix('file')->group(function () {
         Route::get('getAll', [\App\Http\Controllers\Api\User\FileController::class, 'getAll'])->name('user.api.file.getAll');
         Route::get('getById', [\App\Http\Controllers\Api\User\FileController::class, 'getById'])->name('user.api.file.getById');
@@ -78,6 +103,7 @@ Route::middleware([
         Route::post('upload', [\App\Http\Controllers\Api\User\FileController::class, 'upload'])->name('user.api.file.upload');
         Route::post('uploadBatch', [\App\Http\Controllers\Api\User\FileController::class, 'uploadBatch'])->name('user.api.file.uploadBatch');
         Route::get('download', [\App\Http\Controllers\Api\User\FileController::class, 'download'])->name('user.api.file.download');
+        Route::put('updateDirectoryId', [\App\Http\Controllers\Api\User\FileController::class, 'updateDirectoryId'])->name('user.api.file.updateDirectoryId');
         Route::delete('delete', [\App\Http\Controllers\Api\User\FileController::class, 'delete'])->name('user.api.file.delete');
 
         Route::get('getDatabaseBackups', [\App\Http\Controllers\Api\User\FileController::class, 'getDatabaseBackups'])->name('user.api.file.getDatabaseBackups');
@@ -85,10 +111,34 @@ Route::middleware([
 
     Route::prefix('directory')->group(function () {
         Route::get('getByParentId', [\App\Http\Controllers\Api\User\DirectoryController::class, 'getByParentId'])->name('user.api.directory.getByParentId');
+        Route::post('create', [\App\Http\Controllers\Api\User\DirectoryController::class, 'create'])->name('user.api.directory.create');
+        Route::put('rename', [\App\Http\Controllers\Api\User\DirectoryController::class, 'rename'])->name('user.api.directory.rename');
+        Route::put('updateParentId', [\App\Http\Controllers\Api\User\DirectoryController::class, 'updateParentId'])->name('user.api.directory.updateParentId');
+        Route::delete('delete', [\App\Http\Controllers\Api\User\DirectoryController::class, 'delete'])->name('user.api.directory.delete');
     });
 
     Route::prefix('comment')->group(function () {
         Route::get('getByRelation', [\App\Http\Controllers\Api\User\CommentController::class, 'getByRelation'])->name('user.api.comment.getByRelation');
         Route::post('create', [\App\Http\Controllers\Api\User\CommentController::class, 'create'])->name('user.api.comment.create');
+    });
+
+    Route::prefix('syncklasorler')->group(function () {
+        Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\SyncKlasorlerController::class, 'getByCompanyId'])->name('user.api.syncklasorler.getByCompanyId');
+    });
+
+    Route::prefix('syncdosyahareket')->group(function () {
+        Route::get('getBySunucuKlasorId', [\App\Http\Controllers\Api\User\SyncDosyaHareketController::class, 'getBySunucuKlasorId'])->name('user.api.syncdosyahareket.getBySunucuKlasorId');
+    });
+
+    Route::prefix('edefterdonemler')->group(function () {
+        Route::get('getEDefterDonem', [\App\Http\Controllers\Api\User\EDefterDonemlerController::class, 'getEDefterDonem'])->name('user.api.edefterdonemler.getEDefterDonem');
+    });
+
+    Route::prefix('edefterdosyalar')->group(function () {
+        Route::get('getByDonemId', [\App\Http\Controllers\Api\User\EDefterDosyalarController::class, 'getByDonemId'])->name('user.api.edefterdosyalar.getByDonemId');
+    });
+
+    Route::prefix('backupdosyalar')->group(function () {
+        Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\BackupDosyalarController::class, 'getByCompanyId'])->name('user.api.backupdosyalar.getByCompanyId');
     });
 });

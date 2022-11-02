@@ -11,6 +11,7 @@ use App\Http\Requests\Api\User\FileController\UploadBatchRequest;
 use App\Http\Requests\Api\User\FileController\DownloadRequest;
 use App\Http\Requests\Api\User\FileController\GetByIdRequest;
 use App\Http\Requests\Api\User\FileController\GetByRelationRequest;
+use App\Http\Requests\Api\User\FileController\UpdateDirectoryIdRequest;
 use App\Http\Requests\Api\User\FileController\DeleteRequest;
 use App\Core\HttpResponse;
 
@@ -213,6 +214,23 @@ class FileController extends Controller
                 $file->getStatusCode()
             );
         }
+    }
+
+    /**
+     * @param UpdateDirectoryIdRequest $request
+     */
+    public function updateDirectoryId(UpdateDirectoryIdRequest $request)
+    {
+        $response = $this->fileService->updateDirectoryId(
+            $request->directoryId,
+            $request->fileIds
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData()
+        );
     }
 
     /**

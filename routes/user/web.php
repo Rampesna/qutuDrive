@@ -21,6 +21,10 @@ Route::middleware([
         Route::get('index', [\App\Http\Controllers\Web\User\DashboardController::class, 'index'])->name('user.web.dashboard.index');
     });
 
+    Route::prefix('syncklasor')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Web\User\SyncklasorController::class, 'index'])->name('user.web.syncklasor.index');
+    });
+
     Route::prefix('document')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\DocumentController::class, 'index'])->name('user.web.document.index');
     });
@@ -45,12 +49,9 @@ Route::middleware([
         Route::get('index', [\App\Http\Controllers\Web\User\ELedgerBackupController::class, 'index'])->name('user.web.eLedgerBackup.index');
     });
 
-    Route::prefix('eLedgerSecondBackup')->group(function () {
-        Route::get('index', [\App\Http\Controllers\Web\User\ELedgerSecondBackupController::class, 'index'])->name('user.web.eLedgerSecondBackup.index');
-    });
-
     Route::prefix('form')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\FormController::class, 'index'])->name('user.web.form.index');
+        Route::get('update/{id?}', [\App\Http\Controllers\Web\User\FormController::class, 'update'])->name('user.web.form.update');
     });
 
     Route::prefix('workFollow')->group(function () {

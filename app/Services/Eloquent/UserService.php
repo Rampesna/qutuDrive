@@ -135,6 +135,39 @@ class UserService implements IUserService
 
     /**
      * @param int $userId
+     * @param string $password
+     *
+     * @return ServiceResponse
+     */
+    public function checkPassword(
+        int    $userId,
+        string $password
+    ): ServiceResponse
+    {
+        $user = $this->getById($userId);
+        if ($user->isSuccess()) {
+            if ($user->getData()->KULLANICISIFRE == $password) {
+                return new ServiceResponse(
+                    true,
+                    'Password is correct',
+                    200,
+                    null
+                );
+            } else {
+                return new ServiceResponse(
+                    false,
+                    'Password is incorrect',
+                    400,
+                    null
+                );
+            }
+        } else {
+            return $user;
+        }
+    }
+
+    /**
+     * @param int $userId
      * @param array $companyIds
      *
      * @return ServiceResponse
