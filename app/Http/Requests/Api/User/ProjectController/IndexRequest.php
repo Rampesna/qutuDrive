@@ -2,8 +2,7 @@
 
 namespace App\Http\Requests\Api\User\ProjectController;
 
-use App\Http\Requests\Api\BaseApiRequest;
-use Illuminate\Http\Request;
+use App\Core\BaseApiRequest;
 
 class IndexRequest extends BaseApiRequest
 {

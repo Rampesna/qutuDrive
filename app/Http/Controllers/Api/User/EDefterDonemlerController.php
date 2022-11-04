@@ -30,7 +30,7 @@ class EDefterDonemlerController extends Controller
             $request->companyId,
             $request->year,
             $request->month,
-            $request->typeId
+            $request->typeIds
         );
 
         return $this->httpResponse(

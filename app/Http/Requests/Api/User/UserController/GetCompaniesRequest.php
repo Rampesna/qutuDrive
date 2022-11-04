@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Api\User\UserController;
 
-use App\Http\Requests\Api\BaseApiRequest;
+use App\Core\BaseApiRequest;
 
 class GetCompaniesRequest extends BaseApiRequest
 {

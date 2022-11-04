@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Api\User\TaskPriorityController;
 
-use App\Http\Requests\Api\BaseApiRequest;
+use App\Core\BaseApiRequest;
 
 class GetAllRequest extends BaseApiRequest
 {

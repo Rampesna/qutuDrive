@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Api\User\FileController;
 
-use App\Http\Requests\Api\BaseApiRequest;
+use App\Core\BaseApiRequest;
 
 class GetByRelationRequest extends BaseApiRequest
 {

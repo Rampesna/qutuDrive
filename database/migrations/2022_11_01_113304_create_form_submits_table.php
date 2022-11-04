@@ -14,6 +14,7 @@ return new class extends Migration {
     {
         Schema::create('form_submits', function (Blueprint $table) {
             $table->id();
+            $table->string('guid')->unique();
             $table->unsignedBigInteger('form_id');
             $table->unsignedBigInteger('question_id');
             $table->string('short_answer')->nullable();

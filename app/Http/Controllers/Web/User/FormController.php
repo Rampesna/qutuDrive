@@ -22,4 +22,15 @@ class FormController extends Controller
             'id' => $request->id
         ]);
     }
+
+    public function report(Request $request)
+    {
+        if (!$request->id) {
+            abort(404);
+        }
+
+        return view('user.modules.form.report.index', [
+            'id' => $request->id
+        ]);
+    }
 }

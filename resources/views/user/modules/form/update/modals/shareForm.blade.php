@@ -1,4 +1,4 @@
-<div class="modal fade show" id="CreateFormModal" tabindex="-1" aria-modal="true" role="dialog" data-bs-backdrop="static">
+<div class="modal fade show" id="ShareFormModal" tabindex="-1" aria-modal="true" role="dialog" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered mw-800px">
         <div class="modal-content rounded">
             <div class="modal-header pb-0 border-0 justify-content-end">
@@ -14,23 +14,31 @@
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Form Oluştur</h1>
+                        <h1 class="mb-3">Formu Paylaş</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <div class="row mb-5">
-                            <div class="col-xl-3 mt-3">
-                                <label for="create_form_name" class="font-weight-bolder">Başlık</label>
+                            <div class="col-xl-12 mb-5">
+                                <label for="share_form_link" class="font-weight-bolder">Bağlantı Adresi</label>
+                                <div class="input-group">
+                                    <input id="share_form_link" type="text" class="form-control form-control-solid" placeholder="Bağlantı Adresi" disabled>
+                                    <button class="btn btn-icon btn-secondary" id="CopyShareLinkButton">
+                                        <i class="fa fa-copy"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col-xl-9">
-                                <div class="form-group">
-                                    <input id="create_form_name" type="text" class="form-control form-control-solid" placeholder="Form Başlığı">
+                            <div class="col-xl-12">
+                                <div class="form-check form-switch form-check-success form-check-solid">
+                                    <input class="form-check-input" type="checkbox" id="form_accessibility_switcher" />
+                                    <label class="form-check-label" for="form_accessibility_switcher">
+                                        Erişim Durumu
+                                    </label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
-                        <button type="button" class="btn btn-success" id="CreateFormButton">Oluştur</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Kapat</button>
                     </div>
                 </div>
             </div>

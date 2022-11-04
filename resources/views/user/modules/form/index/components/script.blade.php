@@ -28,6 +28,10 @@
         window.open(`{{ route('user.web.form.update') }}/${btoa(id)}`, '_blank');
     }
 
+    function reportForm(id) {
+        window.open(`{{ route('user.web.form.report') }}/${btoa(id)}`, '_blank');
+    }
+
     function updateForm(id) {
         $('#loader').show();
         $('#update_form_id').val(id);
@@ -100,6 +104,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="${form.id}_Dropdown" style="width: 175px">
                                     <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="openForm(${form.id})" title="Aç"><i class="fas fa-eye me-2 text-info"></i> <span class="text-dark">Aç</span></a>
+                                    <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="reportForm(${form.id})" title="Sonuçlar"><i class="fas fa-chart-line me-2 text-success"></i> <span class="text-dark">Sonuçlar</span></a>
                                     <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="updateForm(${form.id})" title="Yeniden Adlandır"><i class="fas fa-edit me-2 text-primary"></i> <span class="text-dark">Yeniden Adlandır</span></a>
                                     <hr class="text-muted">
                                     <a class="dropdown-item cursor-pointer py-3 ps-6" onclick="deleteForm(${form.id})" title="Sil"><i class="fas fa-trash-alt me-3 text-danger"></i> <span class="text-dark">Sil</span></a>

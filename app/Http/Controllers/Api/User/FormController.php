@@ -8,7 +8,10 @@ use App\Http\Requests\Api\User\FormController\GetByCompanyIdRequest;
 use App\Http\Requests\Api\User\FormController\GetByIdRequest;
 use App\Http\Requests\Api\User\FormController\CreateRequest;
 use App\Http\Requests\Api\User\FormController\UpdateRequest;
+use App\Http\Requests\Api\User\FormController\UpdateAccessibleRequest;
+use App\Http\Requests\Api\User\FormController\CreateFormQuestionsRequest;
 use App\Http\Requests\Api\User\FormController\DeleteRequest;
+use App\Http\Requests\Api\User\FormController\GetShareLinkRequest;
 use App\Interfaces\Eloquent\IFormService;
 
 class FormController extends Controller
@@ -103,11 +106,64 @@ class FormController extends Controller
     }
 
     /**
+     * @param UpdateAccessibleRequest $request
+     */
+    public function updateAccessible(UpdateAccessibleRequest $request)
+    {
+        $response = $this->formService->updateAccessible(
+            $request->id,
+            $request->accessible
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
+     * @param CreateFormQuestionsRequest $request
+     */
+    public function createFormQuestions(CreateFormQuestionsRequest $request)
+    {
+        $response = $this->formService->createFormQuestions(
+            $request->formId,
+            $request->formQuestions
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
      * @param DeleteRequest $request
      */
     public function delete(DeleteRequest $request)
     {
         $response = $this->formService->delete(
+            $request->id
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
+     * @param GetShareLinkRequest $request
+     */
+    public function getShareLink(GetShareLinkRequest $request)
+    {
+        $response = $this->formService->getShareLink(
             $request->id
         );
 

@@ -36,15 +36,7 @@
                                 <select class="form-select form-select-solid select2Input" data-control="select2" id="monthSelector" data-placeholder="Ay Seçimi"></select>
                             </div>
                         </div>
-                        <div class="col-xl-4 mb-5">
-                            <div class="form-group">
-                                <label for="statusSelector">Durum Seçimi</label>
-                                <select class="form-select form-select-solid select2Input" data-control="select2" id="statusSelector" data-placeholder="Durum Seçimi" multiple>
-                                    <option value="1">Aktif</option>
-                                    <option value="0">Pasif</option>
-                                </select>
-                            </div>
-                        </div>
+                        <div class="col-xl-4 mb-5"></div>
                         <div class="col-xl-2 mb-5">
                             <div class="row">
                                 <div class="col-xl-12">
@@ -97,7 +89,7 @@
                             <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="7">Defter Raporu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer">İkincil Saklama</a>
+                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="0">İkincil Saklama</a>
                         </li>
                     </ul>
                 </div>

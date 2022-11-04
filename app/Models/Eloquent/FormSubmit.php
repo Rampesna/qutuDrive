@@ -9,4 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class FormSubmit extends Model
 {
     use HasFactory, SoftDeletes;
+
+    function form()
+    {
+        return $this->belongsTo(Form::class, 'form_id', 'id');
+    }
+
+    function question()
+    {
+        return $this->belongsTo(FormQuestion::class, 'question_id', 'id');
+    }
 }

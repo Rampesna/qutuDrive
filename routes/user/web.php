@@ -52,6 +52,7 @@ Route::middleware([
     Route::prefix('form')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\FormController::class, 'index'])->name('user.web.form.index');
         Route::get('update/{id?}', [\App\Http\Controllers\Web\User\FormController::class, 'update'])->name('user.web.form.update');
+        Route::get('report/{id?}', [\App\Http\Controllers\Web\User\FormController::class, 'report'])->name('user.web.form.report');
     });
 
     Route::prefix('workFollow')->group(function () {

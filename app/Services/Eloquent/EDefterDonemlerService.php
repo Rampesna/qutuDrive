@@ -75,7 +75,7 @@ class EDefterDonemlerService implements IEDefterDonemlerService
      * @param int $companyId
      * @param string $year
      * @param string $month
-     * @param int $typeId
+     * @param array $typeIds
      *
      * @return ServiceResponse
      */
@@ -83,7 +83,7 @@ class EDefterDonemlerService implements IEDefterDonemlerService
         int    $companyId,
         string $year,
         string $month,
-        int    $typeId
+        array  $typeIds
     ): ServiceResponse
     {
         $company = Firmalar::find($companyId);
@@ -91,7 +91,7 @@ class EDefterDonemlerService implements IEDefterDonemlerService
             $eDefterDonem = Edefterdonemler::where('FIRMAAPIKEY', $company->APIKEY)
                 ->where('YIL', $year)
                 ->where('AY', $month)
-                ->where('DEFTERTURKODU', $typeId)
+                ->whereIn('DEFTERTURKODU', $typeIds)
                 ->first();
             if ($eDefterDonem) {
                 return new ServiceResponse(

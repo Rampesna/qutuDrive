@@ -44,50 +44,50 @@
                         <span class="menu-title">{{ __('sidebar.syncklasor') }}</span>
                     </span>
                 </a>
-                <a href="{{ route('user.web.document.index') }}" class="menu-item {{ request()->segment(2) == 'document' ? 'show' : '' }}">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM12.5 18C12.5 17.4 12.6 17.5 12 17.5H8.5C7.9 17.5 8 17.4 8 18C8 18.6 7.9 18.5 8.5 18.5L12 18C12.6 18 12.5 18.6 12.5 18ZM16.5 13C16.5 12.4 16.6 12.5 16 12.5H8.5C7.9 12.5 8 12.4 8 13C8 13.6 7.9 13.5 8.5 13.5H15.5C16.1 13.5 16.5 13.6 16.5 13ZM12.5 8C12.5 7.4 12.6 7.5 12 7.5H8C7.4 7.5 7.5 7.4 7.5 8C7.5 8.6 7.4 8.5 8 8.5H12C12.6 8.5 12.5 8.6 12.5 8Z" fill="black"/>
-                                    <rect x="7" y="17" width="6" height="2" rx="1" fill="black"/>
-                                    <rect x="7" y="12" width="10" height="2" rx="1" fill="black"/>
-                                    <rect x="7" y="7" width="6" height="2" rx="1" fill="black"/>
-                                    <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black"/>
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">{{ __('sidebar.document') }}</span>
-                    </span>
-                </a>
-                <a href="{{ route('user.web.sharedDirectory.index') }}" class="menu-item {{ request()->segment(2) == 'sharedDirectory' ? 'show' : '' }}">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="black"/>
-                                    <path d="M10.4 3.60001L12 6H21C21.6 6 22 6.4 22 7V19C22 19.6 21.6 20 21 20H3C2.4 20 2 19.6 2 19V4C2 3.4 2.4 3 3 3H9.20001C9.70001 3 10.2 3.20001 10.4 3.60001ZM12 16.8C11 16.8 10.2 16.4 9.5 15.8C8.8 15.1 8.5 14.3 8.5 13.3C8.5 12.8 8.59999 12.3 8.79999 11.9L10 13.1V10.1C10 9.50001 9.6 9.10001 9 9.10001H6L7.29999 10.4C6.79999 11.3 6.5 12.2 6.5 13.3C6.5 14.8 7.10001 16.2 8.10001 17.2C9.10001 18.2 10.5 18.8 12 18.8C12.6 18.8 13 18.3 13 17.8C13 17.2 12.6 16.8 12 16.8ZM16.7 16.2C17.2 15.3 17.5 14.4 17.5 13.3C17.5 11.8 16.9 10.4 15.9 9.39999C14.9 8.39999 13.5 7.79999 12 7.79999C11.4 7.79999 11 8.19999 11 8.79999C11 9.39999 11.4 9.79999 12 9.79999C12.9 9.79999 13.8 10.2 14.5 10.8C15.2 11.5 15.5 12.3 15.5 13.3C15.5 13.8 15.4 14.3 15.2 14.7L14 13.5V16.5C14 17.1 14.4 17.5 15 17.5H18L16.7 16.2Z" fill="black"/>
-                                    <path opacity="0.3" d="M12 16.8C11 16.8 10.2 16.4 9.5 15.8C8.8 15.1 8.5 14.3 8.5 13.3C8.5 12.8 8.59999 12.3 8.79999 11.9L7.29999 10.4C6.79999 11.3 6.5 12.2 6.5 13.3C6.5 14.8 7.10001 16.2 8.10001 17.2C9.10001 18.2 10.5 18.8 12 18.8C12.6 18.8 13 18.3 13 17.8C13 17.2 12.6 16.8 12 16.8Z" fill="black"/>
-                                    <path opacity="0.3" d="M15.5 13.3C15.5 13.8 15.4 14.3 15.2 14.7L16.7 16.2C17.2 15.3 17.5 14.4 17.5 13.3C17.5 11.8 16.9 10.4 15.9 9.39999C14.9 8.39999 13.5 7.79999 12 7.79999C11.4 7.79999 11 8.19999 11 8.79999C11 9.39999 11.4 9.79999 12 9.79999C12.9 9.79999 13.8 10.2 14.5 10.8C15.1 11.5 15.5 12.4 15.5 13.3Z" fill="black"/>
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">{{ __('sidebar.sharedDirectory') }}</span>
-                    </span>
-                </a>
-                <a href="{{ route('user.web.sharedWithMe.index') }}" class="menu-item {{ request()->segment(2) == 'sharedWithMe' ? 'show' : '' }}">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path opacity="0.3" d="M4.425 20.525C2.525 18.625 2.525 15.525 4.425 13.525L14.825 3.125C16.325 1.625 18.825 1.625 20.425 3.125C20.825 3.525 20.825 4.12502 20.425 4.52502C20.025 4.92502 19.425 4.92502 19.025 4.52502C18.225 3.72502 17.025 3.72502 16.225 4.52502L5.82499 14.925C4.62499 16.125 4.62499 17.925 5.82499 19.125C7.02499 20.325 8.82501 20.325 10.025 19.125L18.425 10.725C18.825 10.325 19.425 10.325 19.825 10.725C20.225 11.125 20.225 11.725 19.825 12.125L11.425 20.525C9.525 22.425 6.425 22.425 4.425 20.525Z" fill="black"/>
-                                    <path d="M9.32499 15.625C8.12499 14.425 8.12499 12.625 9.32499 11.425L14.225 6.52498C14.625 6.12498 15.225 6.12498 15.625 6.52498C16.025 6.92498 16.025 7.525 15.625 7.925L10.725 12.8249C10.325 13.2249 10.325 13.8249 10.725 14.2249C11.125 14.6249 11.725 14.6249 12.125 14.2249L19.125 7.22493C19.525 6.82493 19.725 6.425 19.725 5.925C19.725 5.325 19.525 4.825 19.125 4.425C18.725 4.025 18.725 3.42498 19.125 3.02498C19.525 2.62498 20.125 2.62498 20.525 3.02498C21.325 3.82498 21.725 4.825 21.725 5.925C21.725 6.925 21.325 7.82498 20.525 8.52498L13.525 15.525C12.325 16.725 10.525 16.725 9.32499 15.625Z" fill="black"/>
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">{{ __('sidebar.sharedWithMe') }}</span>
-                    </span>
-                </a>
+{{--                <a href="{{ route('user.web.document.index') }}" class="menu-item {{ request()->segment(2) == 'document' ? 'show' : '' }}">--}}
+{{--                    <span class="menu-link">--}}
+{{--                        <span class="menu-icon">--}}
+{{--                            <span class="svg-icon svg-icon-1">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--                                    <path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM12.5 18C12.5 17.4 12.6 17.5 12 17.5H8.5C7.9 17.5 8 17.4 8 18C8 18.6 7.9 18.5 8.5 18.5L12 18C12.6 18 12.5 18.6 12.5 18ZM16.5 13C16.5 12.4 16.6 12.5 16 12.5H8.5C7.9 12.5 8 12.4 8 13C8 13.6 7.9 13.5 8.5 13.5H15.5C16.1 13.5 16.5 13.6 16.5 13ZM12.5 8C12.5 7.4 12.6 7.5 12 7.5H8C7.4 7.5 7.5 7.4 7.5 8C7.5 8.6 7.4 8.5 8 8.5H12C12.6 8.5 12.5 8.6 12.5 8Z" fill="black"/>--}}
+{{--                                    <rect x="7" y="17" width="6" height="2" rx="1" fill="black"/>--}}
+{{--                                    <rect x="7" y="12" width="10" height="2" rx="1" fill="black"/>--}}
+{{--                                    <rect x="7" y="7" width="6" height="2" rx="1" fill="black"/>--}}
+{{--                                    <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black"/>--}}
+{{--                                </svg>--}}
+{{--                            </span>--}}
+{{--                        </span>--}}
+{{--                        <span class="menu-title">{{ __('sidebar.document') }}</span>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
+{{--                <a href="{{ route('user.web.sharedDirectory.index') }}" class="menu-item {{ request()->segment(2) == 'sharedDirectory' ? 'show' : '' }}">--}}
+{{--                    <span class="menu-link">--}}
+{{--                        <span class="menu-icon">--}}
+{{--                            <span class="svg-icon svg-icon-1">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--                                    <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="black"/>--}}
+{{--                                    <path d="M10.4 3.60001L12 6H21C21.6 6 22 6.4 22 7V19C22 19.6 21.6 20 21 20H3C2.4 20 2 19.6 2 19V4C2 3.4 2.4 3 3 3H9.20001C9.70001 3 10.2 3.20001 10.4 3.60001ZM12 16.8C11 16.8 10.2 16.4 9.5 15.8C8.8 15.1 8.5 14.3 8.5 13.3C8.5 12.8 8.59999 12.3 8.79999 11.9L10 13.1V10.1C10 9.50001 9.6 9.10001 9 9.10001H6L7.29999 10.4C6.79999 11.3 6.5 12.2 6.5 13.3C6.5 14.8 7.10001 16.2 8.10001 17.2C9.10001 18.2 10.5 18.8 12 18.8C12.6 18.8 13 18.3 13 17.8C13 17.2 12.6 16.8 12 16.8ZM16.7 16.2C17.2 15.3 17.5 14.4 17.5 13.3C17.5 11.8 16.9 10.4 15.9 9.39999C14.9 8.39999 13.5 7.79999 12 7.79999C11.4 7.79999 11 8.19999 11 8.79999C11 9.39999 11.4 9.79999 12 9.79999C12.9 9.79999 13.8 10.2 14.5 10.8C15.2 11.5 15.5 12.3 15.5 13.3C15.5 13.8 15.4 14.3 15.2 14.7L14 13.5V16.5C14 17.1 14.4 17.5 15 17.5H18L16.7 16.2Z" fill="black"/>--}}
+{{--                                    <path opacity="0.3" d="M12 16.8C11 16.8 10.2 16.4 9.5 15.8C8.8 15.1 8.5 14.3 8.5 13.3C8.5 12.8 8.59999 12.3 8.79999 11.9L7.29999 10.4C6.79999 11.3 6.5 12.2 6.5 13.3C6.5 14.8 7.10001 16.2 8.10001 17.2C9.10001 18.2 10.5 18.8 12 18.8C12.6 18.8 13 18.3 13 17.8C13 17.2 12.6 16.8 12 16.8Z" fill="black"/>--}}
+{{--                                    <path opacity="0.3" d="M15.5 13.3C15.5 13.8 15.4 14.3 15.2 14.7L16.7 16.2C17.2 15.3 17.5 14.4 17.5 13.3C17.5 11.8 16.9 10.4 15.9 9.39999C14.9 8.39999 13.5 7.79999 12 7.79999C11.4 7.79999 11 8.19999 11 8.79999C11 9.39999 11.4 9.79999 12 9.79999C12.9 9.79999 13.8 10.2 14.5 10.8C15.1 11.5 15.5 12.4 15.5 13.3Z" fill="black"/>--}}
+{{--                                </svg>--}}
+{{--                            </span>--}}
+{{--                        </span>--}}
+{{--                        <span class="menu-title">{{ __('sidebar.sharedDirectory') }}</span>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
+{{--                <a href="{{ route('user.web.sharedWithMe.index') }}" class="menu-item {{ request()->segment(2) == 'sharedWithMe' ? 'show' : '' }}">--}}
+{{--                    <span class="menu-link">--}}
+{{--                        <span class="menu-icon">--}}
+{{--                            <span class="svg-icon svg-icon-1">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--                                    <path opacity="0.3" d="M4.425 20.525C2.525 18.625 2.525 15.525 4.425 13.525L14.825 3.125C16.325 1.625 18.825 1.625 20.425 3.125C20.825 3.525 20.825 4.12502 20.425 4.52502C20.025 4.92502 19.425 4.92502 19.025 4.52502C18.225 3.72502 17.025 3.72502 16.225 4.52502L5.82499 14.925C4.62499 16.125 4.62499 17.925 5.82499 19.125C7.02499 20.325 8.82501 20.325 10.025 19.125L18.425 10.725C18.825 10.325 19.425 10.325 19.825 10.725C20.225 11.125 20.225 11.725 19.825 12.125L11.425 20.525C9.525 22.425 6.425 22.425 4.425 20.525Z" fill="black"/>--}}
+{{--                                    <path d="M9.32499 15.625C8.12499 14.425 8.12499 12.625 9.32499 11.425L14.225 6.52498C14.625 6.12498 15.225 6.12498 15.625 6.52498C16.025 6.92498 16.025 7.525 15.625 7.925L10.725 12.8249C10.325 13.2249 10.325 13.8249 10.725 14.2249C11.125 14.6249 11.725 14.6249 12.125 14.2249L19.125 7.22493C19.525 6.82493 19.725 6.425 19.725 5.925C19.725 5.325 19.525 4.825 19.125 4.425C18.725 4.025 18.725 3.42498 19.125 3.02498C19.525 2.62498 20.125 2.62498 20.525 3.02498C21.325 3.82498 21.725 4.825 21.725 5.925C21.725 6.925 21.325 7.82498 20.525 8.52498L13.525 15.525C12.325 16.725 10.525 16.725 9.32499 15.625Z" fill="black"/>--}}
+{{--                                </svg>--}}
+{{--                            </span>--}}
+{{--                        </span>--}}
+{{--                        <span class="menu-title">{{ __('sidebar.sharedWithMe') }}</span>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{ __('sidebar.backup') }}</span>
@@ -125,19 +125,19 @@
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{ __('sidebar.other') }}</span>
                     </div>
                 </div>
-                <a href="{{ route('user.web.qutuMail.index') }}" class="menu-item {{ request()->segment(2) == 'qutuMail' ? 'show' : '' }}">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M6 8.725C6 8.125 6.4 7.725 7 7.725H14L18 11.725V12.925L22 9.725L12.6 2.225C12.2 1.925 11.7 1.925 11.4 2.225L2 9.725L6 12.925V8.725Z" fill="black"/>
-                                    <path opacity="0.3" d="M22 9.72498V20.725C22 21.325 21.6 21.725 21 21.725H3C2.4 21.725 2 21.325 2 20.725V9.72498L11.4 17.225C11.8 17.525 12.3 17.525 12.6 17.225L22 9.72498ZM15 11.725H18L14 7.72498V10.725C14 11.325 14.4 11.725 15 11.725Z" fill="black"/>
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">{{ __('sidebar.qutuMail') }}</span>
-                    </span>
-                </a>
+{{--                <a href="{{ route('user.web.qutuMail.index') }}" class="menu-item {{ request()->segment(2) == 'qutuMail' ? 'show' : '' }}">--}}
+{{--                    <span class="menu-link">--}}
+{{--                        <span class="menu-icon">--}}
+{{--                            <span class="svg-icon svg-icon-1">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--                                    <path d="M6 8.725C6 8.125 6.4 7.725 7 7.725H14L18 11.725V12.925L22 9.725L12.6 2.225C12.2 1.925 11.7 1.925 11.4 2.225L2 9.725L6 12.925V8.725Z" fill="black"/>--}}
+{{--                                    <path opacity="0.3" d="M22 9.72498V20.725C22 21.325 21.6 21.725 21 21.725H3C2.4 21.725 2 21.325 2 20.725V9.72498L11.4 17.225C11.8 17.525 12.3 17.525 12.6 17.225L22 9.72498ZM15 11.725H18L14 7.72498V10.725C14 11.325 14.4 11.725 15 11.725Z" fill="black"/>--}}
+{{--                                </svg>--}}
+{{--                            </span>--}}
+{{--                        </span>--}}
+{{--                        <span class="menu-title">{{ __('sidebar.qutuMail') }}</span>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
                 <a href="{{ route('user.web.form.index') }}" class="menu-item {{ request()->segment(2) == 'form' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -204,65 +204,65 @@
                         <span class="menu-title">{{ __('sidebar.note') }}</span>
                     </span>
                 </a>
-                <a href="{{ route('user.web.uploadRequest.index') }}" class="menu-item {{ request()->segment(2) == 'uploadRequest' ? 'show' : '' }}">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path opacity="0.3" d="M5 16C3.3 16 2 14.7 2 13C2 11.3 3.3 10 5 10H5.1C5 9.7 5 9.3 5 9C5 6.2 7.2 4 10 4C11.9 4 13.5 5 14.3 6.5C14.8 6.2 15.4 6 16 6C17.7 6 19 7.3 19 9C19 9.4 18.9 9.7 18.8 10C18.9 10 18.9 10 19 10C20.7 10 22 11.3 22 13C22 14.7 20.7 16 19 16H5ZM8 13.6H16L12.7 10.3C12.3 9.89999 11.7 9.89999 11.3 10.3L8 13.6Z" fill="black"/>
-                                    <path d="M11 13.6V19C11 19.6 11.4 20 12 20C12.6 20 13 19.6 13 19V13.6H11Z" fill="black"/>
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">{{ __('sidebar.uploadRequest') }}</span>
-                    </span>
-                </a>
+{{--                <a href="{{ route('user.web.uploadRequest.index') }}" class="menu-item {{ request()->segment(2) == 'uploadRequest' ? 'show' : '' }}">--}}
+{{--                    <span class="menu-link">--}}
+{{--                        <span class="menu-icon">--}}
+{{--                            <span class="svg-icon svg-icon-1">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--                                    <path opacity="0.3" d="M5 16C3.3 16 2 14.7 2 13C2 11.3 3.3 10 5 10H5.1C5 9.7 5 9.3 5 9C5 6.2 7.2 4 10 4C11.9 4 13.5 5 14.3 6.5C14.8 6.2 15.4 6 16 6C17.7 6 19 7.3 19 9C19 9.4 18.9 9.7 18.8 10C18.9 10 18.9 10 19 10C20.7 10 22 11.3 22 13C22 14.7 20.7 16 19 16H5ZM8 13.6H16L12.7 10.3C12.3 9.89999 11.7 9.89999 11.3 10.3L8 13.6Z" fill="black"/>--}}
+{{--                                    <path d="M11 13.6V19C11 19.6 11.4 20 12 20C12.6 20 13 19.6 13 19V13.6H11Z" fill="black"/>--}}
+{{--                                </svg>--}}
+{{--                            </span>--}}
+{{--                        </span>--}}
+{{--                        <span class="menu-title">{{ __('sidebar.uploadRequest') }}</span>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
                 <div class="menu-item">
                     <div class="menu-content pt-8 pb-2">
                         <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{ __('sidebar.transactions') }}</span>
                     </div>
                 </div>
-                <a href="{{ route('user.web.share.index') }}" class="menu-item {{ request()->segment(2) == 'share' ? 'show' : '' }}">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M11.7 8L7.49998 15.3L4.59999 20.3C3.49999 18.4 3.1 17.7 2.3 16.3C1.9 15.7 1.9 14.9 2.3 14.3L8.8 3L11.7 8Z" fill="black"/>
-                                    <path opacity="0.3" d="M11.7 8L8.79999 3H13.4C14.1 3 14.8 3.4 15.2 4L20.6 13.3H14.8L11.7 8ZM7.49997 15.2L4.59998 20.2H17.6C18.3 20.2 19 19.8 19.4 19.2C20.2 17.7 20.6 17 21.7 15.2H7.49997Z" fill="black"/>
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">{{ __('sidebar.share') }}</span>
-                    </span>
-                </a>
-                <a href="{{ route('user.web.userGroup.index') }}" class="menu-item {{ request()->segment(2) == 'userGroup' ? 'show' : '' }}">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M16.0173 9H15.3945C14.2833 9 13.263 9.61425 12.7431 10.5963L12.154 11.7091C12.0645 11.8781 12.1072 12.0868 12.2559 12.2071L12.6402 12.5183C13.2631 13.0225 13.7556 13.6691 14.0764 14.4035L14.2321 14.7601C14.2957 14.9058 14.4396 15 14.5987 15H18.6747C19.7297 15 20.4057 13.8774 19.912 12.945L18.6686 10.5963C18.1487 9.61425 17.1285 9 16.0173 9Z" fill="black"/>
-                                    <rect opacity="0.3" x="14" y="4" width="4" height="4" rx="2" fill="black"/>
-                                    <path d="M4.65486 14.8559C5.40389 13.1224 7.11161 12 9 12C10.8884 12 12.5961 13.1224 13.3451 14.8559L14.793 18.2067C15.3636 19.5271 14.3955 21 12.9571 21H5.04292C3.60453 21 2.63644 19.5271 3.20698 18.2067L4.65486 14.8559Z" fill="black"/>
-                                    <rect opacity="0.3" x="6" y="5" width="6" height="6" rx="3" fill="black"/>
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">{{ __('sidebar.userGroup') }}</span>
-                    </span>
-                </a>
-                <a href="{{ route('user.web.archiveGroup.index') }}" class="menu-item {{ request()->segment(2) == 'archiveGroup' ? 'show' : '' }}">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="black"/>
-                                    <path d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z" fill="black"/>
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">{{ __('sidebar.archiveGroup') }}</span>
-                    </span>
-                </a>
+{{--                <a href="{{ route('user.web.share.index') }}" class="menu-item {{ request()->segment(2) == 'share' ? 'show' : '' }}">--}}
+{{--                    <span class="menu-link">--}}
+{{--                        <span class="menu-icon">--}}
+{{--                            <span class="svg-icon svg-icon-1">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--                                    <path d="M11.7 8L7.49998 15.3L4.59999 20.3C3.49999 18.4 3.1 17.7 2.3 16.3C1.9 15.7 1.9 14.9 2.3 14.3L8.8 3L11.7 8Z" fill="black"/>--}}
+{{--                                    <path opacity="0.3" d="M11.7 8L8.79999 3H13.4C14.1 3 14.8 3.4 15.2 4L20.6 13.3H14.8L11.7 8ZM7.49997 15.2L4.59998 20.2H17.6C18.3 20.2 19 19.8 19.4 19.2C20.2 17.7 20.6 17 21.7 15.2H7.49997Z" fill="black"/>--}}
+{{--                                </svg>--}}
+{{--                            </span>--}}
+{{--                        </span>--}}
+{{--                        <span class="menu-title">{{ __('sidebar.share') }}</span>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
+{{--                <a href="{{ route('user.web.userGroup.index') }}" class="menu-item {{ request()->segment(2) == 'userGroup' ? 'show' : '' }}">--}}
+{{--                    <span class="menu-link">--}}
+{{--                        <span class="menu-icon">--}}
+{{--                            <span class="svg-icon svg-icon-1">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--                                    <path d="M16.0173 9H15.3945C14.2833 9 13.263 9.61425 12.7431 10.5963L12.154 11.7091C12.0645 11.8781 12.1072 12.0868 12.2559 12.2071L12.6402 12.5183C13.2631 13.0225 13.7556 13.6691 14.0764 14.4035L14.2321 14.7601C14.2957 14.9058 14.4396 15 14.5987 15H18.6747C19.7297 15 20.4057 13.8774 19.912 12.945L18.6686 10.5963C18.1487 9.61425 17.1285 9 16.0173 9Z" fill="black"/>--}}
+{{--                                    <rect opacity="0.3" x="14" y="4" width="4" height="4" rx="2" fill="black"/>--}}
+{{--                                    <path d="M4.65486 14.8559C5.40389 13.1224 7.11161 12 9 12C10.8884 12 12.5961 13.1224 13.3451 14.8559L14.793 18.2067C15.3636 19.5271 14.3955 21 12.9571 21H5.04292C3.60453 21 2.63644 19.5271 3.20698 18.2067L4.65486 14.8559Z" fill="black"/>--}}
+{{--                                    <rect opacity="0.3" x="6" y="5" width="6" height="6" rx="3" fill="black"/>--}}
+{{--                                </svg>--}}
+{{--                            </span>--}}
+{{--                        </span>--}}
+{{--                        <span class="menu-title">{{ __('sidebar.userGroup') }}</span>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
+{{--                <a href="{{ route('user.web.archiveGroup.index') }}" class="menu-item {{ request()->segment(2) == 'archiveGroup' ? 'show' : '' }}">--}}
+{{--                    <span class="menu-link">--}}
+{{--                        <span class="menu-icon">--}}
+{{--                            <span class="svg-icon svg-icon-1">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--}}
+{{--                                    <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="black"/>--}}
+{{--                                    <path d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z" fill="black"/>--}}
+{{--                                </svg>--}}
+{{--                            </span>--}}
+{{--                        </span>--}}
+{{--                        <span class="menu-title">{{ __('sidebar.archiveGroup') }}</span>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
                 <a href="{{ route('user.web.recycleBin.index') }}" class="menu-item {{ request()->segment(2) == 'recycleBin' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">

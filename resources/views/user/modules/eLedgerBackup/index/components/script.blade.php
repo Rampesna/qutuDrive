@@ -47,7 +47,7 @@
                     companyId: SelectedCompany.val(),
                     year: year,
                     month: month,
-                    typeId: typeId,
+                    typeIds: parseInt(typeId) === 0 ? [1,2,5,6] : [typeId],
                 },
                 success: function (response) {
                     filesRowBody.show();

@@ -14,7 +14,35 @@
 
 @section('content')
 
+    <div id="driveMain" class="container-fluid" style="padding:0 10px;margin:10px 0">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-5">
+                    <div class="col-xl-12">
+                        <span class="fw-bolder text-gray-700">Silinen Klasörler</span>
+                    </div>
+                </div>
+                <div class="row" id="directoriesRow">
 
+                </div>
+                <hr class="text-muted">
+                <div class="row mb-5">
+                    <div class="col-xl-12">
+                        <span class="fw-bolder text-gray-700">Silinen Dosyalar</span>
+                    </div>
+                </div>
+                <div class="row" id="filesRow">
+
+                </div>
+            </div>
+            <div class="card-footer" id="panelPortletFooter">
+                <span id="countOfDirectories" class="fw-bolder text-gray-700">0</span>
+                <span class="fw-bolder text-gray-600">Klasör</span>,
+                <span id="countOfFiles" class="fw-bolder text-gray-700">0</span>
+                <span class="fw-bolder text-gray-600">Dosya</span>
+            </div>
+        </div>
+    </div>
 
 @endsection
 

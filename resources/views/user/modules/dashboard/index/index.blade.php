@@ -27,10 +27,8 @@
             <div class="card-header">
                 <div class="card-title" style="margin:0;">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-light btn-sm" id="backDirectoryButton" disabled><i
-                                class="fa fa-arrow-left"></i></button>
-                        <button type="button" class="btn btn-light btn-sm" id="homeDirectoryButton"><i
-                                class="fa fa-home"></i></button>
+                        <button type="button" class="btn btn-light btn-sm" id="backDirectoryButton" disabled><i class="fa fa-arrow-left"></i></button>
+                        <button type="button" class="btn btn-light btn-sm" id="homeDirectoryButton"><i class="fa fa-home"></i></button>
                     </div>
                     <div id="historyRow"></div>
                 </div>

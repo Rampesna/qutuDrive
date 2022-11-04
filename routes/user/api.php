@@ -85,7 +85,18 @@ Route::middleware([
         Route::get('getById', [\App\Http\Controllers\Api\User\FormController::class, 'getById'])->name('user.api.form.getById');
         Route::post('create', [\App\Http\Controllers\Api\User\FormController::class, 'create'])->name('user.api.form.create');
         Route::put('update', [\App\Http\Controllers\Api\User\FormController::class, 'update'])->name('user.api.form.update');
+        Route::put('updateAccessible', [\App\Http\Controllers\Api\User\FormController::class, 'updateAccessible'])->name('user.api.form.updateAccessible');
+        Route::post('createFormQuestions', [\App\Http\Controllers\Api\User\FormController::class, 'createFormQuestions'])->name('user.api.form.createFormQuestions');
         Route::delete('delete', [\App\Http\Controllers\Api\User\FormController::class, 'delete'])->name('user.api.form.delete');
+        Route::get('getShareLink', [\App\Http\Controllers\Api\User\FormController::class, 'getShareLink'])->name('user.api.form.getShareLink');
+    });
+
+    Route::prefix('formQuestion')->group(function () {
+        Route::get('getByFormIdWithAnswers', [\App\Http\Controllers\Api\User\FormQuestionController::class, 'getByFormIdWithAnswers'])->name('user.api.formQuestion.getByFormIdWithAnswers');
+    });
+
+    Route::prefix('formSubmit')->group(function () {
+        Route::get('getByFormId', [\App\Http\Controllers\Api\User\FormSubmitController::class, 'getByFormId'])->name('user.api.formSubmit.getByFormId');
     });
 
     Route::prefix('password')->group(function () {

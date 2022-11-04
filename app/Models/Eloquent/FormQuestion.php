@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class FormQuestion extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function answers()
+    {
+        return $this->hasMany(FormQuestionAnswer::class);
+    }
 }

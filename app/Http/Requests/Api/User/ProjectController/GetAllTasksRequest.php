@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Api\User\ProjectController;
 
-use App\Http\Requests\Api\BaseApiRequest;
+use App\Core\BaseApiRequest;
 
 class GetAllTasksRequest extends BaseApiRequest
 {

@@ -50,4 +50,35 @@ interface IFormService extends IEloquentService
         string|null $title = null,
         string|null $description = null
     ): ServiceResponse;
+
+    /**
+     * @param int $id
+     * @param bool $accessible
+     *
+     * @return ServiceResponse
+     */
+    public function updateAccessible(
+        int  $id,
+        bool $accessible
+    ): ServiceResponse;
+
+    /**
+     * @param int $formId
+     * @param array|null $formQuestions
+     *
+     * @return ServiceResponse
+     */
+    public function createFormQuestions(
+        int    $formId,
+        ?array $formQuestions
+    ): ServiceResponse;
+
+    /**
+     * @param int $formId
+     *
+     * @return ServiceResponse
+     */
+    public function getShareLink(
+        int $formId
+    ): ServiceResponse;
 }

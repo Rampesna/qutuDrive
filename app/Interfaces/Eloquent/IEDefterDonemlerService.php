@@ -10,7 +10,7 @@ interface IEDefterDonemlerService
      * @param int $companyId
      * @param string $year
      * @param string $month
-     * @param int $typeId
+     * @param array $typeIds
      *
      * @return ServiceResponse
      */
@@ -18,6 +18,6 @@ interface IEDefterDonemlerService
         int    $companyId,
         string $year,
         string $month,
-        int    $typeId
+        array  $typeIds
     ): ServiceResponse;
 }

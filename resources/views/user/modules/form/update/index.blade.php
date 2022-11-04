@@ -14,6 +14,8 @@
 
 @section('content')
 
+    @include('user.modules.form.update.modals.shareForm')
+
     <div class="container">
         <div class="row mb-5">
             <div class="col-xl-11">
@@ -21,10 +23,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-xl-12 mb-5">
-                                <input type="text" class="form-control form-control-lg nonBorder fs-2qx" id="update_form_title" placeholder="Form Başlığı" aria-label="Form Başlığı">
+                                <input id="update_form_name" type="hidden">
+                                <input id="update_form_title" type="text" class="form-control form-control-lg nonBorder fs-2qx" placeholder="Form Başlığı" aria-label="Form Başlığı">
                             </div>
                             <div class="col-xl-12">
-                                <textarea class="form-control form-control-lg nonBorder" placeholder="Açıklama (İsteğe Bağlı)"></textarea>
+                                <textarea id="update_form_description" class="form-control form-control-lg nonBorder" placeholder="Açıklama (İsteğe Bağlı)" aria-label="Açıklama (İsteğe Bağlı)"></textarea>
                             </div>
                         </div>
                     </div>
@@ -39,8 +42,11 @@
                 <button id="AddNewQuestionButton" class="btn btn-icon btn-white me-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="Soru Ekle">
                     <i class="fa fa-plus-circle"></i>
                 </button>
-                <button id="SaveFormButton" class="btn btn-icon btn-success" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="Kaydet">
+                <button id="SaveFormButton" class="btn btn-icon btn-success me-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="Kaydet">
                     <i class="fa fa-save"></i>
+                </button>
+                <button id="ShareFormButton" class="btn btn-icon btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="Paylaş">
+                    <i class="fas fa-share-alt"></i>
                 </button>
             </div>
         </div>

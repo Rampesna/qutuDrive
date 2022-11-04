@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('accessible')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
