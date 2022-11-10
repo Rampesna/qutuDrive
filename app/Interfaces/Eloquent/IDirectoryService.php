@@ -18,6 +18,24 @@ interface IDirectoryService extends IEloquentService
     ): ServiceResponse;
 
     /**
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
+    public function getTrashed(
+        int $companyId
+    ): ServiceResponse;
+
+    /**
+     * @param array $directoryIds
+     *
+     * @return ServiceResponse
+     */
+    public function recoverTrashed(
+        array $directoryIds
+    ): ServiceResponse;
+
+    /**
      * @param int|null $parentId
      * @param int $companyId
      * @param string $name
@@ -49,6 +67,24 @@ interface IDirectoryService extends IEloquentService
      */
     public function updateParentId(
         ?int  $parentId,
+        array $directoryIds
+    ): ServiceResponse;
+
+    /**
+     * @param array $directoryIds
+     *
+     * @return ServiceResponse
+     */
+    public function deleteBatch(
+        array $directoryIds
+    ): ServiceResponse;
+
+    /**
+     * @param array $directoryIds
+     *
+     * @return ServiceResponse
+     */
+    public function recover(
         array $directoryIds
     ): ServiceResponse;
 }

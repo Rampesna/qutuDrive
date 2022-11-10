@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Api\User;
 use App\Core\Controller;
 use App\Interfaces\Eloquent\IDirectoryService;
 use App\Http\Requests\Api\User\DirectoryController\GetByParentIdRequest;
+use App\Http\Requests\Api\User\DirectoryController\GetTrashedRequest;
+use App\Http\Requests\Api\User\DirectoryController\RecoverTrashedRequest;
 use App\Http\Requests\Api\User\DirectoryController\CreateRequest;
 use App\Http\Requests\Api\User\DirectoryController\RenameRequest;
 use App\Http\Requests\Api\User\DirectoryController\UpdateParentIdRequest;
 use App\Http\Requests\Api\User\DirectoryController\DeleteRequest;
+use App\Http\Requests\Api\User\DirectoryController\DeleteBatchRequest;
+use App\Http\Requests\Api\User\DirectoryController\RecoverRequest;
 use App\Core\HttpResponse;
 
 class DirectoryController extends Controller
@@ -36,6 +40,38 @@ class DirectoryController extends Controller
         $response = $this->directoryService->getByParentId(
             $request->companyId,
             $request->parentId
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData()
+        );
+    }
+
+    /**
+     * @param GetTrashedRequest $request
+     */
+    public function getTrashed(GetTrashedRequest $request)
+    {
+        $response = $this->directoryService->getTrashed(
+            $request->companyId
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData()
+        );
+    }
+
+    /**
+     * @param RecoverTrashedRequest $request
+     */
+    public function recoverTrashed(RecoverTrashedRequest $request)
+    {
+        $response = $this->directoryService->recoverTrashed(
+            $request->directoryIds,
         );
 
         return $this->httpResponse(
@@ -104,6 +140,38 @@ class DirectoryController extends Controller
     {
         $response = $this->directoryService->delete(
             $request->id
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData()
+        );
+    }
+
+    /**
+     * @param DeleteBatchRequest $request
+     */
+    public function deleteBatch(DeleteBatchRequest $request)
+    {
+        $response = $this->directoryService->deleteBatch(
+            $request->directoryIds
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData()
+        );
+    }
+
+    /**
+     * @param RecoverRequest $request
+     */
+    public function recover(RecoverRequest $request)
+    {
+        $response = $this->directoryService->recover(
+            $request->directoryIds
         );
 
         return $this->httpResponse(

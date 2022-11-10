@@ -43,6 +43,17 @@ interface IFileService extends IEloquentService
     ): ServiceResponse;
 
     /**
+     * @param int $relationId
+     * @param string $relationType
+     *
+     * @return ServiceResponse
+     */
+    public function getTrashedByRelation(
+        int    $relationId,
+        string $relationType
+    ): ServiceResponse;
+
+    /**
      * @param int $userId
      *
      * @return ServiceResponse
@@ -59,6 +70,24 @@ interface IFileService extends IEloquentService
      */
     public function updateDirectoryId(
         ?int  $directoryId,
+        array $fileIds
+    ): ServiceResponse;
+
+    /**
+     * @param array $fileIds
+     *
+     * @return ServiceResponse
+     */
+    public function deleteBatch(
+        array $fileIds
+    ): ServiceResponse;
+
+    /**
+     * @param array $fileIds
+     *
+     * @return ServiceResponse
+     */
+    public function recover(
         array $fileIds
     ): ServiceResponse;
 }

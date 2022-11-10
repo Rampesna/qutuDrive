@@ -19,6 +19,7 @@
     @include('user.modules.dashboard.index.modals.createDirectory')
     @include('user.modules.dashboard.index.modals.renameDirectory')
     @include('user.modules.dashboard.index.modals.deleteDirectory')
+    @include('user.modules.dashboard.index.modals.deleteFile')
 
     @include('user.modules.dashboard.index.modals.renameFile')
 

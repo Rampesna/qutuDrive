@@ -111,21 +111,28 @@ Route::middleware([
         Route::get('getAll', [\App\Http\Controllers\Api\User\FileController::class, 'getAll'])->name('user.api.file.getAll');
         Route::get('getById', [\App\Http\Controllers\Api\User\FileController::class, 'getById'])->name('user.api.file.getById');
         Route::get('getByRelation', [\App\Http\Controllers\Api\User\FileController::class, 'getByRelation'])->name('user.api.file.getByRelation');
+        Route::get('getTrashedByRelation', [\App\Http\Controllers\Api\User\FileController::class, 'getTrashedByRelation'])->name('user.api.file.getTrashedByRelation');
         Route::post('upload', [\App\Http\Controllers\Api\User\FileController::class, 'upload'])->name('user.api.file.upload');
         Route::post('uploadBatch', [\App\Http\Controllers\Api\User\FileController::class, 'uploadBatch'])->name('user.api.file.uploadBatch');
         Route::get('download', [\App\Http\Controllers\Api\User\FileController::class, 'download'])->name('user.api.file.download');
         Route::put('updateDirectoryId', [\App\Http\Controllers\Api\User\FileController::class, 'updateDirectoryId'])->name('user.api.file.updateDirectoryId');
         Route::delete('delete', [\App\Http\Controllers\Api\User\FileController::class, 'delete'])->name('user.api.file.delete');
+        Route::delete('deleteBatch', [\App\Http\Controllers\Api\User\FileController::class, 'deleteBatch'])->name('user.api.file.deleteBatch');
+        Route::post('recover', [\App\Http\Controllers\Api\User\FileController::class, 'recover'])->name('user.api.file.recover');
 
         Route::get('getDatabaseBackups', [\App\Http\Controllers\Api\User\FileController::class, 'getDatabaseBackups'])->name('user.api.file.getDatabaseBackups');
     });
 
     Route::prefix('directory')->group(function () {
         Route::get('getByParentId', [\App\Http\Controllers\Api\User\DirectoryController::class, 'getByParentId'])->name('user.api.directory.getByParentId');
+        Route::get('getTrashed', [\App\Http\Controllers\Api\User\DirectoryController::class, 'getTrashed'])->name('user.api.directory.getTrashed');
+        Route::post('recoverTrashed', [\App\Http\Controllers\Api\User\DirectoryController::class, 'recoverTrashed'])->name('user.api.directory.recoverTrashed');
         Route::post('create', [\App\Http\Controllers\Api\User\DirectoryController::class, 'create'])->name('user.api.directory.create');
         Route::put('rename', [\App\Http\Controllers\Api\User\DirectoryController::class, 'rename'])->name('user.api.directory.rename');
         Route::put('updateParentId', [\App\Http\Controllers\Api\User\DirectoryController::class, 'updateParentId'])->name('user.api.directory.updateParentId');
         Route::delete('delete', [\App\Http\Controllers\Api\User\DirectoryController::class, 'delete'])->name('user.api.directory.delete');
+        Route::delete('deleteBatch', [\App\Http\Controllers\Api\User\DirectoryController::class, 'deleteBatch'])->name('user.api.directory.deleteBatch');
+        Route::post('recover', [\App\Http\Controllers\Api\User\DirectoryController::class, 'recover'])->name('user.api.directory.recover');
     });
 
     Route::prefix('comment')->group(function () {

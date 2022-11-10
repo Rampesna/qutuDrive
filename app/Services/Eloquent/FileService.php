@@ -134,6 +134,25 @@ class FileService implements IFileService
     }
 
     /**
+     * @param int $relationId
+     * @param string $relationType
+     *
+     * @return ServiceResponse
+     */
+    public function getTrashedByRelation(
+        int    $relationId,
+        string $relationType
+    ): ServiceResponse
+    {
+        return new ServiceResponse(
+            true,
+            'Files',
+            200,
+            File::onlyTrashed()->where('relation_id', $relationId)->where('relation_type', $relationType)->get()
+        );
+    }
+
+    /**
      * @param int $userId
      *
      * @return ServiceResponse
@@ -170,6 +189,40 @@ class FileService implements IFileService
             'Files updated',
             200,
             $files
+        );
+    }
+
+    /**
+     * @param array $fileIds
+     *
+     * @return ServiceResponse
+     */
+    public function deleteBatch(
+        array $fileIds
+    ): ServiceResponse
+    {
+        return new ServiceResponse(
+            true,
+            'Files deleted',
+            200,
+            File::whereIn('id', $fileIds)->delete()
+        );
+    }
+
+    /**
+     * @param array $fileIds
+     *
+     * @return ServiceResponse
+     */
+    public function recover(
+        array $fileIds
+    ): ServiceResponse
+    {
+        return new ServiceResponse(
+            true,
+            'Files recovered',
+            200,
+            File::onlyTrashed()->whereIn('id', $fileIds)->restore()
         );
     }
 }

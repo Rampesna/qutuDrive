@@ -14,6 +14,11 @@
 
 @section('content')
 
+    @include('user.modules.recycleBin.index.components.contextMenu')
+
+    @include('user.modules.recycleBin.index.modals.recoverDirectory')
+    @include('user.modules.recycleBin.index.modals.recoverFile')
+
     <div id="driveMain" class="container-fluid" style="padding:0 10px;margin:10px 0">
         <div class="card">
             <div class="card-body">

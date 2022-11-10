@@ -90,6 +90,40 @@ class DirectoryService implements IDirectoryService
     }
 
     /**
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
+    public function getTrashed(
+        int $companyId
+    ): ServiceResponse
+    {
+        return new ServiceResponse(
+            true,
+            'Trashed directories',
+            200,
+            Directory::onlyTrashed()->where('company_id', $companyId)->get()
+        );
+    }
+
+    /**
+     * @param array $directoryIds
+     *
+     * @return ServiceResponse
+     */
+    public function recoverTrashed(
+        array $directoryIds
+    ): ServiceResponse
+    {
+        return new ServiceResponse(
+            true,
+            'Directories recovered successfully',
+            200,
+            Directory::onlyTrashed()->whereIn('id', $directoryIds)->restore()
+        );
+    }
+
+    /**
      * @param int|null $parentId
      * @param int $companyId
      * @param string $name
@@ -162,6 +196,40 @@ class DirectoryService implements IDirectoryService
             'Directories updated successfully',
             200,
             $directories
+        );
+    }
+
+    /**
+     * @param array $directoryIds
+     *
+     * @return ServiceResponse
+     */
+    public function deleteBatch(
+        array $directoryIds
+    ): ServiceResponse
+    {
+        return new ServiceResponse(
+            true,
+            'Directories deleted successfully',
+            200,
+            Directory::whereIn('id', $directoryIds)->delete()
+        );
+    }
+
+    /**
+     * @param array $directoryIds
+     *
+     * @return ServiceResponse
+     */
+    public function recover(
+        array $directoryIds
+    ): ServiceResponse
+    {
+        return new ServiceResponse(
+            true,
+            'Directories deleted successfully',
+            200,
+            Directory::onlyTrashed()->whereIn('id', $directoryIds)->restore()
         );
     }
 }

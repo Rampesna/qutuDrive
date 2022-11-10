@@ -20,6 +20,7 @@
     var CreateDirectoryButton = $('#CreateDirectoryButton');
     var RenameDirectoryButton = $('#RenameDirectoryButton');
     var DeleteDirectoryButton = $('#DeleteDirectoryButton');
+    var DeleteFileButton = $('#DeleteFileButton');
 
     var RenameFileButton = $('#RenameFileButton');
 
@@ -560,22 +561,54 @@
         DeleteDirectoryButton.attr('disabled', true).html('<i class="fa fa-spinner fa-spin"></i>');
         $.ajax({
             type: 'delete',
-            url: '{{ route('user.api.directory.delete') }}',
+            url: '{{ route('user.api.directory.deleteBatch') }}',
             headers: {
                 'Accept': 'application/json',
                 'Authorization': authUserToken
             },
             data: {
-                id: selectedDirectories[0].id
+                directoryIds: selectedDirectories.map(directory => directory.id)
             },
             success: function () {
                 DeleteDirectoryButton.attr('disabled', false).html('Sil');
                 $('#DeleteDirectoryModal').modal('hide');
-                toastr.success('Klasör Başarıyla Silindi.');
+                toastr.success('Klasörler Başarıyla Silindi.');
                 getDirectoriesByParentId();
             },
             error: function (error) {
                 DeleteDirectoryButton.attr('disabled', false).html('Sil');
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+    });
+
+    DeleteFileButton.click(function () {
+        DeleteFileButton.attr('disabled', true).html('<i class="fa fa-spinner fa-spin"></i>');
+        $.ajax({
+            type: 'delete',
+            url: '{{ route('user.api.file.deleteBatch') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {
+                fileIds: selectedFiles.map(file => file.id)
+            },
+            success: function () {
+                DeleteFileButton.attr('disabled', false).html('Sil');
+                $('#DeleteFileModal').modal('hide');
+                toastr.success('Dosyalar Başarıyla Silindi.');
+                getFilesByDirectoryId();
+            },
+            error: function (error) {
+                DeleteFileButton.attr('disabled', false).html('Sil');
                 console.log(error);
                 if (parseInt(error.status) === 422) {
                     $.each(error.responseJSON.response, function (i, error) {

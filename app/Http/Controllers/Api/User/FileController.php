@@ -11,8 +11,11 @@ use App\Http\Requests\Api\User\FileController\UploadBatchRequest;
 use App\Http\Requests\Api\User\FileController\DownloadRequest;
 use App\Http\Requests\Api\User\FileController\GetByIdRequest;
 use App\Http\Requests\Api\User\FileController\GetByRelationRequest;
+use App\Http\Requests\Api\User\FileController\GetTrashedByRelationRequest;
 use App\Http\Requests\Api\User\FileController\UpdateDirectoryIdRequest;
 use App\Http\Requests\Api\User\FileController\DeleteRequest;
+use App\Http\Requests\Api\User\FileController\DeleteBatchRequest;
+use App\Http\Requests\Api\User\FileController\RecoverRequest;
 use App\Core\HttpResponse;
 
 class FileController extends Controller
@@ -87,6 +90,23 @@ class FileController extends Controller
     {
         $response = $this->fileService->getByRelation(
             $request->directoryId,
+            $request->relationId,
+            $request->relationType
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData()
+        );
+    }
+
+    /**
+     * @param GetTrashedByRelationRequest $request
+     */
+    public function getTrashedByRelation(GetTrashedByRelationRequest $request)
+    {
+        $response = $this->fileService->getTrashedByRelation(
             $request->relationId,
             $request->relationType
         );
@@ -238,20 +258,46 @@ class FileController extends Controller
      */
     public function delete(DeleteRequest $request)
     {
-        $deleteResponse = $this->fileService->delete(
+        $response = $this->fileService->delete(
             $request->id
         );
-        if ($deleteResponse->isSuccess()) {
-            return $this->success(
-                $deleteResponse->getMessage(),
-                $deleteResponse->getData(),
-                $deleteResponse->getStatusCode()
-            );
-        } else {
-            return $this->error(
-                $deleteResponse->getMessage(),
-                $deleteResponse->getStatusCode()
-            );
-        }
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData()
+        );
+    }
+
+    /**
+     * @param DeleteBatchRequest $request
+     */
+    public function deleteBatch(DeleteBatchRequest $request)
+    {
+        $response = $this->fileService->deleteBatch(
+            $request->fileIds
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData()
+        );
+    }
+
+    /**
+     * @param RecoverRequest $request
+     */
+    public function recover(RecoverRequest $request)
+    {
+        $response = $this->fileService->recover(
+            $request->fileIds
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData()
+        );
     }
 }
