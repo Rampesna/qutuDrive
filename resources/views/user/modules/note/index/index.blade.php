@@ -14,6 +14,10 @@
 
 @section('content')
 
+    @include('user.modules.note.index.modals.createGeneralNote')
+    @include('user.modules.note.index.modals.updateGeneralNote')
+    @include('user.modules.note.index.modals.deleteGeneralNote')
+
     <div class="row">
         <div class="col-xl-9 mb-5">
             <div class="card">

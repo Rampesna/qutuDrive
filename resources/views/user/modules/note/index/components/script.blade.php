@@ -39,8 +39,8 @@
                 id: id,
             },
             success: function (response) {
-                $('#update_general_note_title').val(reformatDatetimeForInput(response.response.title));
-                $('#update_general_note_note').val(reformatDatetimeForInput(response.response.note));
+                $('#update_general_note_title').val(response.response.title);
+                $('#update_general_note_note').val(response.response.note);
                 $('#UpdateGeneralNoteModal').modal('show');
                 $('#loader').hide();
             },
@@ -170,6 +170,119 @@
     ClearFilterButton.click(function () {
         keywordFilter.val('');
         changePage(1);
+    });
+
+    CreateGeneralNoteButton.click(function () {
+        var title = $('#create_general_note_title').val();
+        var note = $('#create_general_note_note').val();
+
+        if (!title) {
+            toastr.warning('Lütfen not başlığı giriniz.');
+        } else {
+            CreateGeneralNoteButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
+            $.ajax({
+                type: 'post',
+                url: '{{ route('user.api.generalNote.create') }}',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': authUserToken
+                },
+                data: {
+                    companyId: SelectedCompany.val(),
+                    title: title,
+                    note: note,
+                },
+                success: function () {
+                    CreateGeneralNoteButton.attr('disabled', false).html(`Oluştur`);
+                    $('#CreateGeneralNoteModal').modal('hide');
+                    toastr.success('Not başarıyla eklendi.');
+                    changePage(1);
+                },
+                error: function (error) {
+                    console.log(error);
+                    if (parseInt(error.status) === 422) {
+                        $.each(error.responseJSON.response, function (i, error) {
+                            toastr.error(error[0]);
+                        });
+                    } else {
+                        toastr.error(error.responseJSON.message);
+                    }
+                }
+            });
+        }
+    });
+
+    UpdateGeneralNoteButton.click(function () {
+        var id = $('#update_general_note_id').val();
+        var title = $('#update_general_note_title').val();
+        var note = $('#update_general_note_note').val();
+
+        if (!title) {
+            toastr.warning('Lütfen not başlığı giriniz.');
+        } else {
+            UpdateGeneralNoteButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
+            $.ajax({
+                type: 'put',
+                url: '{{ route('user.api.generalNote.update') }}',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': authUserToken
+                },
+                data: {
+                    id: id,
+                    title: title,
+                    note: note,
+                },
+                success: function () {
+                    UpdateGeneralNoteButton.attr('disabled', false).html(`Güncelle`);
+                    $('#UpdateGeneralNoteModal').modal('hide');
+                    toastr.success('Not başarıyla güncellendi.');
+                    changePage(page.html());
+                },
+                error: function (error) {
+                    console.log(error);
+                    if (parseInt(error.status) === 422) {
+                        $.each(error.responseJSON.response, function (i, error) {
+                            toastr.error(error[0]);
+                        });
+                    } else {
+                        toastr.error(error.responseJSON.message);
+                    }
+                }
+            });
+        }
+    });
+
+    DeleteGeneralNoteButton.click(function () {
+        var id = $('#delete_general_note_id').val();
+        DeleteGeneralNoteButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
+        $.ajax({
+            type: 'delete',
+            url: '{{ route('user.api.generalNote.delete') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {
+                id: id,
+            },
+            success: function () {
+                DeleteGeneralNoteButton.attr('disabled', false).html(`Sil`);
+                $('#DeleteGeneralNoteModal').modal('hide');
+                toastr.success('Not başarıyla silindi.');
+                changePage(page.html());
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
     });
 
 </script>
