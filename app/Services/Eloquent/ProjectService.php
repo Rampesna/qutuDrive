@@ -330,79 +330,109 @@ class ProjectService implements IProjectService
     }
 
     /**
+     * @param int $userId
      * @param int $companyId
+     * @param int $statusId
      * @param string $name
-     * @param string|null $code
+     * @param string|null $description
      * @param string|null $startDate
      * @param string|null $endDate
-     * @param string|null $description
      *
      * @return ServiceResponse
      */
     public function create(
+        int     $userId,
         int     $companyId,
+        int     $statusId,
         string  $name,
-        ?string $code = null,
+        ?string $description = null,
         ?string $startDate = null,
-        ?string $endDate = null,
-        ?string $description = null
+        ?string $endDate = null
     ): ServiceResponse
     {
         $project = new Project;
         $project->company_id = $companyId;
-        $project->status_id = 1;
+        $project->status_id = $statusId;
         $project->name = $name;
-        $project->code = $code;
+        $project->description = $description;
         $project->start_date = $startDate;
         $project->end_date = $endDate;
-        $project->description = $description;
+        $project->created_by = $userId;
+        $project->last_updated_by = $userId;
         $project->save();
+
         return new ServiceResponse(
             true,
             'Project created',
-            201,
+            200,
             $project
         );
     }
 
     /**
      * @param int $id
-     * @param int $companyId
+     * @param int $userId
      * @param int $statusId
      * @param string $name
-     * @param string|null $code
+     * @param string|null $description
      * @param string|null $startDate
      * @param string|null $endDate
-     * @param string|null $description
      *
      * @return ServiceResponse
      */
     public function update(
         int     $id,
-        int     $companyId,
+        int     $userId,
         int     $statusId,
         string  $name,
-        ?string $code = null,
+        ?string $description = null,
         ?string $startDate = null,
-        ?string $endDate = null,
-        ?string $description = null
+        ?string $endDate = null
     ): ServiceResponse
     {
         $project = $this->getById($id);
         if ($project->isSuccess()) {
-            $project->getData()->company_id = $companyId;
             $project->getData()->status_id = $statusId;
             $project->getData()->name = $name;
-            $project->getData()->code = $code;
+            $project->getData()->description = $description;
             $project->getData()->start_date = $startDate;
             $project->getData()->end_date = $endDate;
-            $project->getData()->description = $description;
+            $project->getData()->last_updated_by = $userId;
             $project->getData()->save();
+
             return new ServiceResponse(
                 true,
                 'Project updated',
                 200,
                 $project->getData()
+            );
+        } else {
+            return $project;
+        }
+    }
+
+    /**
+     * @param int $id
+     * @param int $userId
+     *
+     * @return ServiceResponse
+     */
+    public function deleteByUser(
+        int $id,
+        int $userId
+    ): ServiceResponse
+    {
+        $project = $this->getById($id);
+        if ($project->isSuccess()) {
+            $project->getData()->deleted_by = $userId;
+            $project->getData()->save();
+            $project->getData()->delete();
+
+            return new ServiceResponse(
+                true,
+                'Project deleted',
+                200,
+                null
             );
         } else {
             return $project;

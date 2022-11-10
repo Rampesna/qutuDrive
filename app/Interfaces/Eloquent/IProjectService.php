@@ -112,44 +112,55 @@ interface IProjectService extends IEloquentService
     ): ServiceResponse;
 
     /**
+     * @param int $userId
      * @param int $companyId
+     * @param int $statusId
      * @param string $name
-     * @param string|null $code
+     * @param string|null $description
      * @param string|null $startDate
      * @param string|null $endDate
-     * @param string|null $description
      *
      * @return ServiceResponse
      */
     public function create(
+        int     $userId,
         int     $companyId,
+        int     $statusId,
         string  $name,
-        ?string $code = null,
+        ?string $description = null,
         ?string $startDate = null,
-        ?string $endDate = null,
-        ?string $description = null
+        ?string $endDate = null
     ): ServiceResponse;
 
     /**
      * @param int $id
-     * @param int $companyId
+     * @param int $userId
      * @param int $statusId
      * @param string $name
-     * @param string|null $code
+     * @param string|null $description
      * @param string|null $startDate
      * @param string|null $endDate
-     * @param string|null $description
      *
      * @return ServiceResponse
      */
     public function update(
         int     $id,
-        int     $companyId,
+        int     $userId,
         int     $statusId,
         string  $name,
-        ?string $code = null,
+        ?string $description = null,
         ?string $startDate = null,
-        ?string $endDate = null,
-        ?string $description = null
+        ?string $endDate = null
+    ): ServiceResponse;
+
+    /**
+     * @param int $id
+     * @param int $userId
+     *
+     * @return ServiceResponse
+     */
+    public function deleteByUser(
+        int $id,
+        int $userId
     ): ServiceResponse;
 }

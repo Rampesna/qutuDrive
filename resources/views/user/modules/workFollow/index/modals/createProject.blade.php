@@ -49,16 +49,6 @@
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_project_code" class="font-weight-bolder">Proje Kodu</label>
-                            </div>
-                            <div class="col-xl-9">
-                                <div class="form-group">
-                                    <input id="create_project_code" type="text" class="form-control form-control-solid" placeholder="Proje Kodu">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-5">
-                            <div class="col-xl-3 mt-3">
                                 <label for="create_project_start_date" class="font-weight-bolder">Başlangıç Tarihi</label>
                             </div>
                             <div class="col-xl-9">

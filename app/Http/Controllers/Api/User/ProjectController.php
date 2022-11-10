@@ -171,7 +171,7 @@ class ProjectController extends Controller
     {
         $response = $this->projectService->setUsersByProjectId(
             $request->projectId,
-            $request->userIds
+            array_unique(array_merge($request->userIds ?? [], [$request->user()->ID]))
         );
 
         return $this->httpResponse(
@@ -188,12 +188,13 @@ class ProjectController extends Controller
     public function create(CreateRequest $request)
     {
         $response = $this->projectService->create(
+            $request->user()->ID,
             $request->companyId,
+            1,
             $request->name,
-            $request->code,
+            $request->description,
             $request->startDate,
-            $request->endDate,
-            $request->description
+            $request->endDate
         );
 
         return $this->httpResponse(
@@ -211,13 +212,12 @@ class ProjectController extends Controller
     {
         $response = $this->projectService->update(
             $request->id,
-            $request->companyId,
+            $request->user()->ID,
             $request->statusId,
             $request->name,
-            $request->code,
+            $request->description,
             $request->startDate,
-            $request->endDate,
-            $request->description
+            $request->endDate
         );
 
         return $this->httpResponse(

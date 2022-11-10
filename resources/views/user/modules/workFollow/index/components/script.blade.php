@@ -33,11 +33,12 @@
             },
             data: {},
             success: function (response) {
+                console.log(response);
                 createProjectCompanyId.empty();
                 $.each(response.response, function (i, company) {
                     createProjectCompanyId.append($('<option>', {
-                        value: company.id,
-                        text: company.title
+                        value: company.ID,
+                        text: company.FIRMAUNVAN
                     }));
                 });
             },
@@ -98,6 +99,7 @@
 
     function getProjects() {
         $('#loader').show();
+        var companyId = SelectedCompany.val();
         var keyword = keywordFilter.val();
         var statusIds = statusIdsFilter.val();
 
@@ -109,6 +111,7 @@
                 'Authorization': authUserToken
             },
             data: {
+                companyId: companyId,
                 pageIndex: 0,
                 pageSize: -1,
                 orderBy: 'id',
@@ -188,7 +191,6 @@
     CreateProjectButton.click(function () {
         var companyId = createProjectCompanyId.val();
         var name = $('#create_project_name').val();
-        var code = $('#create_project_code').val();
         var startDate = $('#create_project_start_date').val();
         var endDate = $('#create_project_end_date').val();
         var description = $('#create_project_description').val();
@@ -209,12 +211,12 @@
                 data: {
                     companyId: companyId,
                     name: name,
-                    code: code,
                     startDate: startDate,
                     endDate: endDate,
                     description: description,
                 },
                 success: function (response) {
+                    console.log(response);
                     $.ajax({
                         type: 'post',
                         url: '{{ route('user.api.project.setUsersByProjectId') }}',

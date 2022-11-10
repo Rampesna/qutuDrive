@@ -25,8 +25,7 @@ class SetUsersByProjectIdRequest extends BaseApiRequest
     {
         return [
             'projectId' => 'required',
-            'userIds' => 'required|array',
-            'userIds.*' => 'required|integer',
+            'userIds' => 'nullable|array',
         ];
     }
 }
