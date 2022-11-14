@@ -290,6 +290,109 @@
                         <span class="menu-title">{{ __('sidebar.history') }}</span>
                     </span>
                 </a>
+                <div class="menu-item">
+                    <div class="menu-content pt-8 pb-2">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">{{ __('sidebar.system') }}</span>
+                    </div>
+                </div>
+                <div data-kt-menu-trigger="click" class="menu-item here menu-accordion {{ request()->segment(3) == 'settings' ? 'show' : '' }}">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path opacity="0.3" d="M22.1 11.5V12.6C22.1 13.2 21.7 13.6 21.2 13.7L19.9 13.9C19.7 14.7 19.4 15.5 18.9 16.2L19.7 17.2999C20 17.6999 20 18.3999 19.6 18.7999L18.8 19.6C18.4 20 17.8 20 17.3 19.7L16.2 18.9C15.5 19.3 14.7 19.7 13.9 19.9L13.7 21.2C13.6 21.7 13.1 22.1 12.6 22.1H11.5C10.9 22.1 10.5 21.7 10.4 21.2L10.2 19.9C9.4 19.7 8.6 19.4 7.9 18.9L6.8 19.7C6.4 20 5.7 20 5.3 19.6L4.5 18.7999C4.1 18.3999 4.1 17.7999 4.4 17.2999L5.2 16.2C4.8 15.5 4.4 14.7 4.2 13.9L2.9 13.7C2.4 13.6 2 13.1 2 12.6V11.5C2 10.9 2.4 10.5 2.9 10.4L4.2 10.2C4.4 9.39995 4.7 8.60002 5.2 7.90002L4.4 6.79993C4.1 6.39993 4.1 5.69993 4.5 5.29993L5.3 4.5C5.7 4.1 6.3 4.10002 6.8 4.40002L7.9 5.19995C8.6 4.79995 9.4 4.39995 10.2 4.19995L10.4 2.90002C10.5 2.40002 11 2 11.5 2H12.6C13.2 2 13.6 2.40002 13.7 2.90002L13.9 4.19995C14.7 4.39995 15.5 4.69995 16.2 5.19995L17.3 4.40002C17.7 4.10002 18.4 4.1 18.8 4.5L19.6 5.29993C20 5.69993 20 6.29993 19.7 6.79993L18.9 7.90002C19.3 8.60002 19.7 9.39995 19.9 10.2L21.2 10.4C21.7 10.5 22.1 11 22.1 11.5ZM12.1 8.59998C10.2 8.59998 8.6 10.2 8.6 12.1C8.6 14 10.2 15.6 12.1 15.6C14 15.6 15.6 14 15.6 12.1C15.6 10.2 14 8.59998 12.1 8.59998Z" fill="black"/>
+                                    <path d="M17.1 12.1C17.1 14.9 14.9 17.1 12.1 17.1C9.30001 17.1 7.10001 14.9 7.10001 12.1C7.10001 9.29998 9.30001 7.09998 12.1 7.09998C14.9 7.09998 17.1 9.29998 17.1 12.1ZM12.1 10.1C11 10.1 10.1 11 10.1 12.1C10.1 13.2 11 14.1 12.1 14.1C13.2 14.1 14.1 13.2 14.1 12.1C14.1 11 13.2 10.1 12.1 10.1Z" fill="black"/>
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="menu-title">{{ __('sidebar.settings.title') }}</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion">
+                        <div class="menu-item {{ request()->segment(3) == 'settings' && request()->segment(4) == 'user' ? 'show' : '' }}">
+                            <a class="menu-link" href="{{ route('user.web.system.settings.user.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">{{ __('sidebar.settings.users') }}</span>
+                            </a>
+                        </div>
+                        <div class="menu-item {{ request()->segment(3) == 'settings' && request()->segment(4) == 'package' ? 'show' : '' }}">
+                            <a class="menu-link" href="{{ route('user.web.system.settings.package.index') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">{{ __('sidebar.settings.packages') }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @if(auth()->user()->getType() == 2)
+                    <div data-kt-menu-trigger="click" class="menu-item here menu-accordion {{ request()->segment(3) == 'management' ? 'show' : '' }}">
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M6.5 11C8.98528 11 11 8.98528 11 6.5C11 4.01472 8.98528 2 6.5 2C4.01472 2 2 4.01472 2 6.5C2 8.98528 4.01472 11 6.5 11Z" fill="black"/>
+                                        <path opacity="0.3" d="M13 6.5C13 4 15 2 17.5 2C20 2 22 4 22 6.5C22 9 20 11 17.5 11C15 11 13 9 13 6.5ZM6.5 22C9 22 11 20 11 17.5C11 15 9 13 6.5 13C4 13 2 15 2 17.5C2 20 4 22 6.5 22ZM17.5 22C20 22 22 20 22 17.5C22 15 20 13 17.5 13C15 13 13 15 13 17.5C13 20 15 22 17.5 22Z" fill="black"/>
+                                    </svg>
+                                </span>
+                            </span>
+                            <span class="menu-title">{{ __('sidebar.management.title') }}</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <div class="menu-sub menu-sub-accordion">
+                            <div class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'user' ? 'show' : '' }}">
+                                <a class="menu-link" href="{{ route('user.web.system.management.user.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('sidebar.management.users') }}</span>
+                                </a>
+                            </div>
+                            <div class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'company' ? 'show' : '' }}">
+                                <a class="menu-link" href="{{ route('user.web.system.management.company.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('sidebar.management.companies') }}</span>
+                                </a>
+                            </div>
+                            <div class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'userCompanyConnection' ? 'show' : '' }}">
+                                <a class="menu-link" href="{{ route('user.web.system.management.userCompanyConnection.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('sidebar.management.userCompanyConnections') }}</span>
+                                </a>
+                            </div>
+                            <div class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'packageConnection' ? 'show' : '' }}">
+                                <a class="menu-link" href="{{ route('user.web.system.management.packageConnection.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('sidebar.management.packageConnections') }}</span>
+                                </a>
+                            </div>
+                            <div class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'report' ? 'show' : '' }}">
+                                <a class="menu-link" href="{{ route('user.web.system.management.report.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('sidebar.management.reports') }}</span>
+                                </a>
+                            </div>
+                            <div class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'gibELedger' ? 'show' : '' }}">
+                                <a class="menu-link" href="{{ route('user.web.system.management.gibELedger.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('sidebar.management.gibELedger') }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
             </div>
         </div>

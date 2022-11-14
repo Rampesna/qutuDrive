@@ -31,7 +31,6 @@
                     password: password,
                 },
                 success: function (response) {
-                    console.log(response);
                     window.location.href = `{{ route('user.web.authentication.oAuth') }}?token=${response.response.token}&remember=${remember}`;
                 },
                 error: function (error) {

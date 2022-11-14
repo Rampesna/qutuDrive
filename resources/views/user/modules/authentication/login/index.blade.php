@@ -9,6 +9,12 @@
         </a>
         <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
             <div class="form w-100">
+                <div class="text-center mb-10">
+                    <h1 class="text-dark mb-3">Giriş Yapın</h1>
+                    <div class="text-gray-400 fw-bold fs-4">Hala Kayıt Olmadın mı?
+                        <a href="{{ route('user.web.authentication.register.index') }}" class="link-primary fw-bolder">Kayıt Ol</a>
+                    </div>
+                </div>
                 <div class="fv-row mb-10">
                     <label for="username" class="form-label fs-6 fw-bolder text-dark">Kullanıcı Adınız</label>
                     <input id="username" type="text" class="form-control form-control-lg form-control-solid" autocomplete="off" />

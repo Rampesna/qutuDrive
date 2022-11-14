@@ -18,6 +18,17 @@ interface IUserService extends IEloquentService
     ): ServiceResponse;
 
     /**
+     * @param string $email
+     * @param int|null $exceptId
+     *
+     * @return ServiceResponse
+     */
+    public function getByEmail(
+        string $email,
+        ?int   $exceptId = null
+    ): ServiceResponse;
+
+    /**
      * @param int $id
      *
      * @return ServiceResponse
@@ -33,6 +44,28 @@ interface IUserService extends IEloquentService
      */
     public function getCompanies(
         int $userId
+    ): ServiceResponse;
+
+    /**
+     * @param int $userId
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
+    public function attachUserCompany(
+        int $userId,
+        int $companyId
+    ): ServiceResponse;
+
+    /**
+     * @param int $userId
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
+    public function detachUserCompany(
+        int $userId,
+        int $companyId
     ): ServiceResponse;
 
     /**
@@ -58,18 +91,53 @@ interface IUserService extends IEloquentService
     ): ServiceResponse;
 
     /**
+     * @param string $username
+     * @param string $password
+     * @param string $name
+     * @param string $surname
+     * @param string|null $phone
+     * @param string $email
+     * @param string|null $taxNumber
+     * @param string $userType
+     * @param int|null $selectedCompanyId
      *
      * @return ServiceResponse
      */
-    public function create(): ServiceResponse;
+    public function create(
+        string  $username,
+        string  $password,
+        string  $name,
+        string  $surname,
+        ?string $phone,
+        string  $email,
+        ?string $taxNumber,
+        string  $userType,
+        ?int    $selectedCompanyId
+    ): ServiceResponse;
 
     /**
      * @param int $id
+     * @param string $username
+     * @param string $email
+     * @param string $name
+     * @param string $surname
+     * @param string|null $phone
+     * @param string|null $taxNumber
+     * @param string|null $password
+     * @param int $status
      *
      * @return ServiceResponse
      */
     public function update(
-        int $id,
+        int     $id,
+        string  $username,
+        string  $email,
+        string  $name,
+        string  $surname,
+        ?string $phone,
+        ?string $taxNumber,
+        ?string $password,
+        int     $status
     ): ServiceResponse;
 
     /**
@@ -90,5 +158,20 @@ interface IUserService extends IEloquentService
      */
     public function generateSanctumToken(
         int $userId
+    ): ServiceResponse;
+
+    /**
+     * @param int $companyId
+     * @param int $pageIndex
+     * @param int $pageSize
+     * @param string|null $keyword
+     *
+     * @return ServiceResponse
+     */
+    public function getByCompanyId(
+        int     $companyId,
+        int     $pageIndex,
+        int     $pageSize,
+        ?string $keyword = null
     ): ServiceResponse;
 }

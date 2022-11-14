@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('authentication')->group(function () {
     Route::post('login', [\App\Http\Controllers\Api\User\UserController::class, 'login'])->name('user.api.login');
+    Route::post('register', [\App\Http\Controllers\Api\User\UserController::class, 'register'])->name('user.api.register');
 //    Route::post('sendPasswordResetEmail', [\App\Http\Controllers\Api\User\UserController::class, 'sendPasswordResetEmail'])->name('api.user.sendPasswordResetEmail');
 //    Route::post('resetPassword', [\App\Http\Controllers\Api\User\UserController::class, 'resetPassword'])->name('api.user.resetPassword');
 });
@@ -14,6 +15,32 @@ Route::middleware([
 
     Route::get('getCompanies', [\App\Http\Controllers\Api\User\UserController::class, 'getCompanies'])->name('user.api.getCompanies');
     Route::post('checkPassword', [\App\Http\Controllers\Api\User\UserController::class, 'checkPassword'])->name('user.api.checkPassword');
+
+    Route::prefix('user')->group(function () {
+        Route::get('getAll', [\App\Http\Controllers\Api\User\UserController::class, 'getAll'])->name('user.api.user.getAll');
+        Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\UserController::class, 'getByCompanyId'])->name('user.api.user.getByCompanyId');
+        Route::get('getByEmail', [\App\Http\Controllers\Api\User\UserController::class, 'getByEmail'])->name('user.api.user.getByEmail');
+        Route::get('getByUsername', [\App\Http\Controllers\Api\User\UserController::class, 'getByUsername'])->name('user.api.user.getByUsername');
+        Route::get('getById', [\App\Http\Controllers\Api\User\UserController::class, 'getById'])->name('user.api.user.getById');
+        Route::post('create', [\App\Http\Controllers\Api\User\UserController::class, 'create'])->name('user.api.user.create');
+        Route::put('update', [\App\Http\Controllers\Api\User\UserController::class, 'update'])->name('user.api.user.update');
+        Route::delete('delete', [\App\Http\Controllers\Api\User\UserController::class, 'delete'])->name('user.api.user.delete');
+    });
+
+    Route::prefix('company')->group(function () {
+        Route::get('getAll', [\App\Http\Controllers\Api\User\CompanyController::class, 'getAll'])->name('user.api.company.getAll');
+    });
+
+    Route::prefix('userCompanyConnection')->group(function () {
+        Route::get('getUserCompanies', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'getUserCompanies'])->name('user.api.userCompanyConnection.getUserCompanies');
+        Route::post('attachUserCompany', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'attachUserCompany'])->name('user.api.userCompanyConnection.attachUserCompany');
+        Route::post('detachUserCompany', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'detachUserCompany'])->name('user.api.userCompanyConnection.detachUserCompany');
+        Route::post('syncUserCompany', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'syncUserCompanies'])->name('user.api.userCompanyConnection.syncUserCompanies');
+        Route::get('getCompanyUsers', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'getCompanyUsers'])->name('user.api.userCompanyConnection.getCompanyUsers');
+        Route::post('attachCompanyUser', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'attachCompanyUser'])->name('user.api.userCompanyConnection.attachCompanyUser');
+        Route::post('detachCompanyUser', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'detachCompanyUser'])->name('user.api.userCompanyConnection.detachCompanyUser');
+        Route::post('syncCompanyUser', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'syncCompanyUsers'])->name('user.api.userCompanyConnection.syncCompanyUsers');
+    });
 
     Route::prefix('project')->group(function () {
         Route::get('index', [\App\Http\Controllers\Api\User\ProjectController::class, 'index'])->name('user.api.project.index');

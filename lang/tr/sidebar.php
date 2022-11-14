@@ -24,4 +24,19 @@ return [
     'archiveGroup' => 'Arşiv Grupları',
     'recycleBin' => 'Geri Dönüşüm Kutusu',
     'history' => 'Geçmiş',
+    'system' => 'SİSTEM',
+    'settings' => [
+        'title' => 'Ayarlar',
+        'users' => 'Kullanıcılar',
+        'packages' => 'Paketler',
+    ],
+    'management' => [
+        'title' => 'Yönetim',
+        'users' => 'Kullanıcılar',
+        'companies' => 'Firmalar',
+        'userCompanyConnections' => 'Kullanıcı-Firma Bağlantıları',
+        'packageConnections' => 'Paket Bağlantıları',
+        'reports' => 'Raporlar',
+        'gibELedger' => 'GİB e-Defter İşlemleri',
+    ],
 ];

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('authentication')->group(function () {
     Route::get('login', [\App\Http\Controllers\Web\User\AuthenticationController::class, 'login'])->name('user.web.authentication.login.index');
+    Route::get('register', [\App\Http\Controllers\Web\User\AuthenticationController::class, 'register'])->name('user.web.authentication.register.index');
     Route::get('oAuth', [\App\Http\Controllers\Web\User\AuthenticationController::class, 'oAuth'])->name('user.web.authentication.oAuth');
     Route::get('forgotPassword', [\App\Http\Controllers\Web\User\AuthenticationController::class, 'forgotPassword'])->name('user.web.authentication.forgotPassword');
     Route::get('resetPassword/{token?}', [\App\Http\Controllers\Web\User\AuthenticationController::class, 'resetPassword'])->name('user.web.authentication.resetPassword');
@@ -97,9 +98,60 @@ Route::middleware([
         Route::get('index', [\App\Http\Controllers\Web\User\HistoryController::class, 'index'])->name('user.web.history.index');
     });
 
-    Route::prefix('file')->group(function () {
-        Route::get('download/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'download'])->name('user.web.file.download');
-        Route::get('downloadByKey', [\App\Http\Controllers\Web\User\FileController::class, 'downloadByKey'])->name('user.web.file.downloadByKey');
-        Route::get('createPdf/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'createPdf'])->name('user.web.file.createPdf');
+    Route::prefix('system')->group(function () {
+        Route::prefix('settings')->group(function () {
+            Route::prefix('user')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Settings\UserController::class, 'index'])->name('user.web.system.settings.user.index');
+            });
+
+            Route::prefix('package')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Settings\PackageController::class, 'index'])->name('user.web.system.settings.package.index');
+            });
+        });
+
+        Route::prefix('management')->group(function () {
+            Route::prefix('user')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Management\UserController::class, 'index'])->name('user.web.system.management.user.index');
+
+                Route::prefix('detail')->group(function () {
+                    Route::get('index/{id?}', [\App\Http\Controllers\Web\User\System\Management\UserDetailController::class, 'index'])->name('user.web.system.management.user.detail.index');
+                    Route::get('company/{id?}', [\App\Http\Controllers\Web\User\System\Management\UserDetailController::class, 'company'])->name('user.web.system.management.user.detail.company');
+                });
+            });
+
+            Route::prefix('company')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Management\CompanyController::class, 'index'])->name('user.web.system.management.company.index');
+
+                Route::prefix('detail')->group(function () {
+                    Route::get('index/{id?}', [\App\Http\Controllers\Web\User\System\Management\CompanyDetailController::class, 'index'])->name('user.web.system.management.company.detail.index');
+                    Route::get('package/{id?}', [\App\Http\Controllers\Web\User\System\Management\CompanyDetailController::class, 'package'])->name('user.web.system.management.company.detail.package');
+                    Route::get('backupStatus/{id?}', [\App\Http\Controllers\Web\User\System\Management\CompanyDetailController::class, 'backupStatus'])->name('user.web.system.management.company.detail.backupStatus');
+                    Route::get('eLedgerBackupStatus/{id?}', [\App\Http\Controllers\Web\User\System\Management\CompanyDetailController::class, 'eLedgerBackupStatus'])->name('user.web.system.management.company.detail.eLedgerBackupStatus');
+                    Route::get('user/{id?}', [\App\Http\Controllers\Web\User\System\Management\CompanyDetailController::class, 'user'])->name('user.web.system.management.company.detail.user');
+                });
+            });
+
+            Route::prefix('userCompanyConnection')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Management\UserCompanyConnectionController::class, 'index'])->name('user.web.system.management.userCompanyConnection.index');
+            });
+
+            Route::prefix('packageConnection')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Management\PackageConnectionController::class, 'index'])->name('user.web.system.management.packageConnection.index');
+            });
+
+            Route::prefix('report')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Management\ReportController::class, 'index'])->name('user.web.system.management.report.index');
+            });
+
+            Route::prefix('gibELedger')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Management\GibELedgerController::class, 'index'])->name('user.web.system.management.gibELedger.index');
+            });
+        });
     });
+});
+
+Route::prefix('file')->group(function () {
+    Route::get('download/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'download'])->name('user.web.file.download');
+    Route::get('downloadByKey', [\App\Http\Controllers\Web\User\FileController::class, 'downloadByKey'])->name('user.web.file.downloadByKey');
+    Route::get('createPdf/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'createPdf'])->name('user.web.file.createPdf');
 });

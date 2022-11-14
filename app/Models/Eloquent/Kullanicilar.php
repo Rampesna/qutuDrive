@@ -87,6 +87,11 @@ class Kullanicilar extends Authenticatable
         return $this->username;
     }
 
+    public function getType()
+    {
+        return $this->KULLANICITIPI;
+    }
+
     public function projects()
     {
         return $this->belongsToMany(Project::class, 'project_user', 'user_id', 'project_id', 'ID', 'id');
@@ -99,7 +104,10 @@ class Kullanicilar extends Authenticatable
 
     public function companies()
     {
-        return $this->belongsToMany(Firmalar::class, 'firmakullanicibaglanti', 'KULLANICIID', 'FIRMAID', 'ID', 'ID');
+        return $this->belongsToMany(Firmalar::class, 'firmakullanicibaglanti', 'KULLANICIID', 'FIRMAID', 'ID', 'ID')->withPivot([
+            'FIRMAUNVAN',
+            'DURUM'
+        ]);
     }
 
     public function directories()

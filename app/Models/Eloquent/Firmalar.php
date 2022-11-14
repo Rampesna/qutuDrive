@@ -36,34 +36,42 @@ class Firmalar extends Model
 {
     use SoftDeletes;
 
-	protected $table = 'firmalar';
-	protected $primaryKey = 'ID';
-	public $timestamps = false;
+    protected $table = 'firmalar';
+    protected $primaryKey = 'ID';
+    public $timestamps = false;
 
-	protected $casts = [
-		'DURUM' => 'int',
-		'EDEFTERKAYNAKTURU' => 'int'
-	];
+    protected $casts = [
+        'DURUM' => 'int',
+        'EDEFTERKAYNAKTURU' => 'int'
+    ];
 
-	protected $dates = [
-		'KAYITTARIHI'
-	];
+    protected $dates = [
+        'KAYITTARIHI'
+    ];
 
-	protected $fillable = [
-		'APIKEY',
-		'FIRMAUNVAN',
-		'VKNTCKN',
-		'AD',
-		'SOYAD',
-		'VERGIDAIRESI',
-		'ADRES',
-		'TELEFON',
-		'MAIL',
-		'BAYIKODU',
-		'DURUM',
-		'EDEFTERKAYNAKTURU',
-		'KAYITTARIHI',
-		'BASLANGICYILI',
-		'ISLEMDURUMU'
-	];
+    protected $fillable = [
+        'APIKEY',
+        'FIRMAUNVAN',
+        'VKNTCKN',
+        'AD',
+        'SOYAD',
+        'VERGIDAIRESI',
+        'ADRES',
+        'TELEFON',
+        'MAIL',
+        'BAYIKODU',
+        'DURUM',
+        'EDEFTERKAYNAKTURU',
+        'KAYITTARIHI',
+        'BASLANGICYILI',
+        'ISLEMDURUMU'
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(Kullanicilar::class, 'firmakullanicibaglanti', 'FIRMAID', 'KULLANICIID', 'ID', 'ID')->withPivot([
+            'FIRMAUNVAN',
+            'DURUM'
+        ]);
+    }
 }

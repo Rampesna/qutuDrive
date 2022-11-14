@@ -26,6 +26,11 @@ class AuthenticationController extends Controller
         return view('user.modules.authentication.login.index');
     }
 
+    public function register()
+    {
+        return view('user.modules.authentication.register.index');
+    }
+
     public function oAuth(OAuthRequest $request)
     {
         $token = $this->personelAccessTokenService->findToken($request->token);

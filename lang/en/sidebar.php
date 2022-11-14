@@ -24,4 +24,19 @@ return [
     'archiveGroup' => 'Archive Groups',
     'recycleBin' => 'Recycle Bin',
     'history' => 'History',
+    'system' => 'SYSTEM',
+    'settings' => [
+        'title' => 'Settings',
+        'users' => 'Users',
+        'packages' => 'Packages',
+    ],
+    'management' => [
+        'title' => 'Managemet',
+        'users' => 'Users',
+        'companies' => 'Companies',
+        'userCompanyConnections' => 'User-Company Connections',
+        'packageConnections' => 'Package Connections',
+        'reports' => 'Reports',
+        'gibELedger' => 'GIB e-Ledger Transactions',
+    ],
 ];
