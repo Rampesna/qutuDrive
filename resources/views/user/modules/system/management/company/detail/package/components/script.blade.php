@@ -8,6 +8,33 @@
 
     var companyId = parseInt(base64regex.test(`{{ $id }}`) ? atob(`{{ $id }}`) : 0);
 
-    console.log(companyId);
+    function getCompanyPackages() {
+        $.ajax({
+            type: 'get',
+            url: '{{ route('user.api.firmapaketleri.getByCompanyId') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {
+                companyId: companyId,
+            },
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+    }
+
+    getCompanyPackages();
 
 </script>

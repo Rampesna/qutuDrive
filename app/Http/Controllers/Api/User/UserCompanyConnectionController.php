@@ -119,7 +119,7 @@ class UserCompanyConnectionController extends Controller
     public function getCompanyUsers(GetCompanyUsersRequest $request)
     {
         $response = $this->firmalarService->getCompanyUsers(
-            $request->user()->ID
+            $request->companyId
         );
 
         return $this->httpResponse(
@@ -136,7 +136,8 @@ class UserCompanyConnectionController extends Controller
     public function attachCompanyUser(AttachCompanyUserRequest $request)
     {
         $response = $this->firmalarService->attachCompanyUser(
-            $request->user()->ID
+            $request->companyId,
+            $request->userId
         );
 
         return $this->httpResponse(
@@ -153,7 +154,8 @@ class UserCompanyConnectionController extends Controller
     public function detachCompanyUser(DetachCompanyUserRequest $request)
     {
         $response = $this->firmalarService->detachCompanyUser(
-            $request->user()->ID
+            $request->companyId,
+            $request->userId
         );
 
         return $this->httpResponse(
@@ -170,7 +172,8 @@ class UserCompanyConnectionController extends Controller
     public function syncCompanyUsers(SyncCompanyUsersRequest $request)
     {
         $response = $this->firmalarService->syncCompanyUsers(
-            $request->user()->ID
+            $request->companyId,
+            $request->userIds
         );
 
         return $this->httpResponse(

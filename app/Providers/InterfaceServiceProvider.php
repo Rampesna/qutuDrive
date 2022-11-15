@@ -10,6 +10,7 @@ use App\Interfaces\Eloquent\IEDefterDonemlerService;
 use App\Interfaces\Eloquent\IEDefterDosyalarService;
 use App\Interfaces\Eloquent\IFileService;
 use App\Interfaces\Eloquent\IFirmalarService;
+use App\Interfaces\Eloquent\IFirmaPaketleriService;
 use App\Interfaces\Eloquent\IFormQuestionService;
 use App\Interfaces\Eloquent\IFormService;
 use App\Interfaces\Eloquent\IFormSubmitService;
@@ -34,6 +35,7 @@ use App\Services\Eloquent\EDefterDonemlerService;
 use App\Services\Eloquent\EDefterDosyalarService;
 use App\Services\Eloquent\FileService;
 use App\Services\Eloquent\FirmalarService;
+use App\Services\Eloquent\FirmaPaketleriService;
 use App\Services\Eloquent\FormQuestionService;
 use App\Services\Eloquent\FormService;
 use App\Services\Eloquent\FormSubmitService;
@@ -85,6 +87,7 @@ class InterfaceServiceProvider extends ServiceProvider
         $this->app->bind(IEDefterDosyalarService::class, EDefterDosyalarService::class);
         $this->app->bind(IBackupDosyalarService::class, BackupDosyalarService::class);
         $this->app->bind(IFirmalarService::class, FirmalarService::class);
+        $this->app->bind(IFirmaPaketleriService::class, FirmaPaketleriService::class);
 
         // Aws Services
         $this->app->bind(IStorageService::class, StorageService::class);

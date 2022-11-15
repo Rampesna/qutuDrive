@@ -68,20 +68,19 @@
                         }
                     }),
                     datatype: "array",
-                    datafields:
-                        [
-                            {name: 'ID', type: 'integer'},
-                            {name: 'KULLANICIADI', type: 'string'},
-                            {name: 'APIKEY', type: 'string'},
-                            {name: 'AD', type: 'string'},
-                            {name: 'SOYAD', type: 'string'},
-                            {name: 'TELEFON', type: 'string'},
-                            {name: 'MAIL', type: 'string'},
-                            {name: 'TCNO', type: 'string'},
-                            {name: 'KULLANICITIPI', type: 'string'},
-                            {name: 'KAYITTARIHI', type: 'string'},
-                            {name: 'DURUM', type: 'string'},
-                        ]
+                    datafields: [
+                        {name: 'ID', type: 'integer'},
+                        {name: 'KULLANICIADI', type: 'string'},
+                        {name: 'APIKEY', type: 'string'},
+                        {name: 'AD', type: 'string'},
+                        {name: 'SOYAD', type: 'string'},
+                        {name: 'TELEFON', type: 'string'},
+                        {name: 'MAIL', type: 'string'},
+                        {name: 'TCNO', type: 'string'},
+                        {name: 'KULLANICITIPI', type: 'string'},
+                        {name: 'KAYITTARIHI', type: 'string'},
+                        {name: 'DURUM', type: 'string'},
+                    ]
                 };
                 var dataAdapter = new $.jqx.dataAdapter(source);
                 usersDiv.on('contextmenu', function (e) {

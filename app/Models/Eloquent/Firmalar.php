@@ -74,4 +74,9 @@ class Firmalar extends Model
             'DURUM'
         ]);
     }
+
+    public function packages()
+    {
+        return $this->hasMany(Firmapaketleri::class, 'FIRMAAPIKEY', 'APIKEY');
+    }
 }

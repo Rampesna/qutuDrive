@@ -16,6 +16,18 @@
 
     @include('user.modules.system.management.company.layouts.overview')
 
+    @include('user.modules.system.management.company.detail.user.components.contextMenu')
+
+    @include('user.modules.system.management.company.detail.user.modals.cancelConnection')
+
+    <input type="hidden" id="selected_user_row_index">
+    <input type="hidden" id="selected_user_id">
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="users"></div>
+        </div>
+    </div>
+
 @endsection
 
 @section('customStyles')

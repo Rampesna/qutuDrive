@@ -23,15 +23,73 @@ class FirmalarService implements IFirmalarService
     }
 
     /**
+     * @param int $id
+     *
+     * @return ServiceResponse
+     */
+    public function getById(
+        int $id
+    ): ServiceResponse
+    {
+        $company = Firmalar::find($id);
+        if ($company) {
+            return new ServiceResponse(
+                true,
+                'Company',
+                200,
+                $company
+            );
+        } else {
+            return new ServiceResponse(
+                false,
+                'Company not found',
+                404,
+                null
+            );
+        }
+    }
+
+    /**
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
+    public function getCompanyUsers(
+        int $companyId
+    ): ServiceResponse
+    {
+        $company = $this->getById($companyId);
+        if ($company->isSuccess()) {
+            return new ServiceResponse(
+                true,
+                'Company users',
+                200,
+                $company->getData()->users
+            );
+        } else {
+            return $company;
+        }
+    }
+
+    /**
      * @param string $taxNumber
+     * @param int|null $exceptId
      *
      * @return ServiceResponse
      */
     public function getByTaxNumber(
-        string $taxNumber
+        string $taxNumber,
+        int    $exceptId = null
     ): ServiceResponse
     {
-        $company = Firmalar::where('VKNTCKN', $taxNumber)->first();
+        $company = Firmalar::where('VKNTCKN', $taxNumber);
+
+        if ($exceptId) {
+            $company->where('ID', '!=', $exceptId);
+        }
+
+        $company = $company->first();
+
         if ($company) {
             return new ServiceResponse(
                 false,
@@ -98,5 +156,85 @@ class FirmalarService implements IFirmalarService
             201,
             $company
         );
+    }
+
+    /**
+     * @param int $id
+     * @param string $title
+     * @param string $taxNumber
+     * @param string|null $name
+     * @param string|null $surname
+     * @param string|null $taxOffice
+     * @param string|null $address
+     * @param string|null $phone
+     * @param string $email
+     * @param string|null $dealerCode
+     * @param int|null $eLedgerSourceType
+     *
+     * @return ServiceResponse
+     */
+    public function update(
+        int     $id,
+        string  $title,
+        string  $taxNumber,
+        ?string $name,
+        ?string $surname,
+        ?string $taxOffice,
+        ?string $address,
+        ?string $phone,
+        string  $email,
+        ?string $dealerCode,
+        ?int    $eLedgerSourceType
+    ): ServiceResponse
+    {
+        $company = $this->getById($id);
+        if ($company->isSuccess()) {
+            $company->getData()->FIRMAUNVAN = $title;
+            $company->getData()->VKNTCKN = $taxNumber;
+            if ($name) $company->getData()->AD = $name;
+            if ($surname) $company->getData()->SOYAD = $surname;
+            if ($taxOffice) $company->getData()->VERGIDAIRESI = $taxOffice;
+            if ($address) $company->getData()->ADRES = $address;
+            if ($phone) $company->getData()->TELEFON = $phone;
+            $company->getData()->MAIL = $email;
+            $company->getData()->BAYIKODU = $dealerCode;
+            $company->getData()->DURUM = 1;
+            if ($eLedgerSourceType) $company->getData()->EDEFTERKAYNAKTURU = $eLedgerSourceType;
+            $company->getData()->save();
+
+            return new ServiceResponse(
+                true,
+                'Company updated',
+                200,
+                $company->getData()
+            );
+        } else {
+            return $company;
+        }
+    }
+
+    /**
+     * @param int $companyId
+     * @param int $userId
+     *
+     * @return ServiceResponse
+     */
+    public function detachCompanyUser(
+        int $companyId,
+        int $userId
+    ): ServiceResponse
+    {
+        $company = $this->getById($companyId);
+        if ($company->isSuccess()) {
+            $company->getData()->users()->detach($userId);
+            return new ServiceResponse(
+                true,
+                'Company user detached',
+                200,
+                null
+            );
+        } else {
+            return $company;
+        }
     }
 }

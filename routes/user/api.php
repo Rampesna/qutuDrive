@@ -29,6 +29,11 @@ Route::middleware([
 
     Route::prefix('company')->group(function () {
         Route::get('getAll', [\App\Http\Controllers\Api\User\CompanyController::class, 'getAll'])->name('user.api.company.getAll');
+        Route::get('getById', [\App\Http\Controllers\Api\User\CompanyController::class, 'getById'])->name('user.api.company.getById');
+        Route::get('getByTaxNumber', [\App\Http\Controllers\Api\User\CompanyController::class, 'getByTaxNumber'])->name('user.api.company.getByTaxNumber');
+        Route::post('create', [\App\Http\Controllers\Api\User\CompanyController::class, 'create'])->name('user.api.company.create');
+        Route::put('update', [\App\Http\Controllers\Api\User\CompanyController::class, 'update'])->name('user.api.company.update');
+        Route::delete('delete', [\App\Http\Controllers\Api\User\CompanyController::class, 'delete'])->name('user.api.company.delete');
     });
 
     Route::prefix('userCompanyConnection')->group(function () {
@@ -185,5 +190,9 @@ Route::middleware([
 
     Route::prefix('backupdosyalar')->group(function () {
         Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\BackupDosyalarController::class, 'getByCompanyId'])->name('user.api.backupdosyalar.getByCompanyId');
+    });
+
+    Route::prefix('firmapaketleri')->group(function () {
+        Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'getByCompanyId'])->name('user.api.firmapaketleri.getByCompanyId');
     });
 });
