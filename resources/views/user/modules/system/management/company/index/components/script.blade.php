@@ -71,20 +71,19 @@
                         }
                     }),
                     datatype: "array",
-                    datafields:
-                        [
-                            {name: 'ID', type: 'integer'},
-                            {name: 'FIRMAUNVAN', type: 'string'},
-                            {name: 'APIKEY', type: 'string'},
-                            {name: 'AD', type: 'string'},
-                            {name: 'SOYAD', type: 'string'},
-                            {name: 'TELEFON', type: 'string'},
-                            {name: 'MAIL', type: 'string'},
-                            {name: 'VKNTCKN', type: 'string'},
-                            {name: 'EDEFTERKAYNAKTURU', type: 'string'},
-                            {name: 'KAYITTARIHI', type: 'string'},
-                            {name: 'DURUM', type: 'string'},
-                        ]
+                    datafields: [
+                        {name: 'ID', type: 'integer'},
+                        {name: 'FIRMAUNVAN', type: 'string'},
+                        {name: 'APIKEY', type: 'string'},
+                        {name: 'AD', type: 'string'},
+                        {name: 'SOYAD', type: 'string'},
+                        {name: 'TELEFON', type: 'string'},
+                        {name: 'MAIL', type: 'string'},
+                        {name: 'VKNTCKN', type: 'string'},
+                        {name: 'EDEFTERKAYNAKTURU', type: 'string'},
+                        {name: 'KAYITTARIHI', type: 'string'},
+                        {name: 'DURUM', type: 'string'},
+                    ]
                 };
                 var dataAdapter = new $.jqx.dataAdapter(source);
                 companiesDiv.on('contextmenu', function (e) {

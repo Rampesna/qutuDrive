@@ -14,7 +14,18 @@
 
 @section('content')
 
-
+    <div class="row">
+        <div class="col-xl-6">
+            <div id="users" class="text-center">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div id="companies" class="text-center">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
