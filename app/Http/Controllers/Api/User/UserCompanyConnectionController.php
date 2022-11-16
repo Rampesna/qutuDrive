@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Core\Controller;
 use App\Http\Requests\Api\User\UserCompanyConnectionController\GetUserCompaniesRequest;
+use App\Http\Requests\Api\User\UserCompanyConnectionController\CheckUserCompanyRequest;
 use App\Http\Requests\Api\User\UserCompanyConnectionController\AttachUserCompanyRequest;
 use App\Http\Requests\Api\User\UserCompanyConnectionController\DetachUserCompanyRequest;
 use App\Http\Requests\Api\User\UserCompanyConnectionController\SyncUserCompaniesRequest;
@@ -49,6 +50,24 @@ class UserCompanyConnectionController extends Controller
     {
         $response = $this->userService->getCompanies(
             $request->userId
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
+     * @param CheckUserCompanyRequest $request
+     */
+    public function checkUserCompany(CheckUserCompanyRequest $request)
+    {
+        $response = $this->userService->checkUserCompany(
+            $request->userId,
+            $request->companyId
         );
 
         return $this->httpResponse(

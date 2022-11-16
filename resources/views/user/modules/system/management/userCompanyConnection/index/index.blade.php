@@ -14,7 +14,13 @@
 
 @section('content')
 
-    <div class="row">
+    <input type="hidden" id="selected_user_row_index">
+    <input type="hidden" id="selected_user_id">
+
+    <input type="hidden" id="selected_company_row_index">
+    <input type="hidden" id="selected_company_id">
+
+    <div class="row mb-5">
         <div class="col-xl-6">
             <div id="users" class="text-center">
                 <i class="fa fa-spinner fa-spin"></i>
@@ -24,6 +30,11 @@
             <div id="companies" class="text-center">
                 <i class="fa fa-spinner fa-spin"></i>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <button class="btn btn-success" id="ConnectButton">Yeni Bağlantı Ekle</button>
         </div>
     </div>
 

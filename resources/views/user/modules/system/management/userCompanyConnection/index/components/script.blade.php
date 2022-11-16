@@ -31,6 +31,8 @@
     var usersDiv = $('#users');
     var companiesDiv = $('#companies');
 
+    var ConnectButton = $('#ConnectButton');
+
     function getAllUsers() {
         $.ajax({
             type: 'get',
@@ -84,17 +86,11 @@
                     return false;
                 });
                 usersDiv.on('rowclick', function (event) {
-                    if (event.args.rightclick) {
-                        usersDiv.jqxGrid('selectrow', event.args.rowindex);
-                        var rowindex = usersDiv.jqxGrid('getselectedrowindex');
-                        $('#selected_user_row_index').val(rowindex);
-                        var dataRecord = usersDiv.jqxGrid('getrowdata', rowindex);
-                        $('#selected_user_id').val(dataRecord.ID);
-                        return false;
-                    } else {
-                        $("#contextMenu").hide();
-                    }
-
+                    usersDiv.jqxGrid('selectrow', event.args.rowindex);
+                    var rowindex = usersDiv.jqxGrid('getselectedrowindex');
+                    $('#selected_user_row_index').val(rowindex);
+                    var dataRecord = usersDiv.jqxGrid('getrowdata', rowindex);
+                    $('#selected_user_id').val(dataRecord.ID);
                     return false;
                 });
                 usersDiv.jqxGrid({
@@ -247,17 +243,11 @@
                     return false;
                 });
                 companiesDiv.on('rowclick', function (event) {
-                    if (event.args.rightclick) {
-                        companiesDiv.jqxGrid('selectrow', event.args.rowindex);
-                        var rowindex = companiesDiv.jqxGrid('getselectedrowindex');
-                        $('#selected_company_row_index').val(rowindex);
-                        var dataRecord = companiesDiv.jqxGrid('getrowdata', rowindex);
-                        $('#selected_company_id').val(dataRecord.ID);
-                        return false;
-                    } else {
-                        $("#contextMenu").hide();
-                    }
-
+                    companiesDiv.jqxGrid('selectrow', event.args.rowindex);
+                    var rowindex = companiesDiv.jqxGrid('getselectedrowindex');
+                    $('#selected_company_row_index').val(rowindex);
+                    var dataRecord = companiesDiv.jqxGrid('getrowdata', rowindex);
+                    $('#selected_company_id').val(dataRecord.ID);
                     return false;
                 });
                 companiesDiv.jqxGrid({
@@ -359,5 +349,75 @@
 
     getAllUsers();
     getAllCompanies();
+
+    ConnectButton.click(function () {
+        var userId = $('#selected_user_id').val();
+        var companyId = $('#selected_company_id').val();
+
+        if (!userId) {
+            toastr.warning('Lütfen bir kullanıcı seçiniz.');
+        } else if (!companyId) {
+            toastr.warning('Lütfen bir firma seçiniz.');
+        } else {
+            ConnectButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
+            $.ajax({
+                type: 'get',
+                url: '{{ route('user.api.userCompanyConnection.checkUserCompany') }}',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': authUserToken
+                },
+                data: {
+                    userId: userId,
+                    companyId: companyId
+                },
+                success: function (response) {
+                    if (response.response === true) {
+                        toastr.error('Bu kullanıcı ile firma arasında zaten bir bağlantı bulunmaktadır.');
+                        ConnectButton.attr('disabled', false).html('Yeni Bağlantı Ekle');
+                    } else {
+                        $.ajax({
+                            type: 'post',
+                            url: '{{ route('user.api.userCompanyConnection.attachUserCompany') }}',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Authorization': authUserToken
+                            },
+                            data: {
+                                userId: userId,
+                                companyId: companyId
+                            },
+                            success: function () {
+                                toastr.success('Kullanıcı ile firma arasında bağlantı kuruldu.');
+                                ConnectButton.attr('disabled', false).html('Yeni Bağlantı Ekle');
+                            },
+                            error: function (error) {
+                                console.log(error);
+                                ConnectButton.attr('disabled', false).html('Yeni Bağlantı Ekle');
+                                if (parseInt(error.status) === 422) {
+                                    $.each(error.responseJSON.response, function (i, error) {
+                                        toastr.error(error[0]);
+                                    });
+                                } else {
+                                    toastr.error(error.responseJSON.message);
+                                }
+                            }
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                    ConnectButton.attr('disabled', false).html('Yeni Bağlantı Ekle');
+                    if (parseInt(error.status) === 422) {
+                        $.each(error.responseJSON.response, function (i, error) {
+                            toastr.error(error[0]);
+                        });
+                    } else {
+                        toastr.error(error.responseJSON.message);
+                    }
+                }
+            });
+        }
+    });
 
 </script>

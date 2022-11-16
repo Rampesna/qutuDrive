@@ -38,6 +38,7 @@ Route::middleware([
 
     Route::prefix('userCompanyConnection')->group(function () {
         Route::get('getUserCompanies', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'getUserCompanies'])->name('user.api.userCompanyConnection.getUserCompanies');
+        Route::get('checkUserCompany', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'checkUserCompany'])->name('user.api.userCompanyConnection.checkUserCompany');
         Route::post('attachUserCompany', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'attachUserCompany'])->name('user.api.userCompanyConnection.attachUserCompany');
         Route::post('detachUserCompany', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'detachUserCompany'])->name('user.api.userCompanyConnection.detachUserCompany');
         Route::post('syncUserCompany', [\App\Http\Controllers\Api\User\UserCompanyConnectionController::class, 'syncUserCompanies'])->name('user.api.userCompanyConnection.syncUserCompanies');

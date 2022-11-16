@@ -52,6 +52,17 @@ interface IUserService extends IEloquentService
      *
      * @return ServiceResponse
      */
+    public function checkUserCompany(
+        int $userId,
+        int $companyId
+    ): ServiceResponse;
+
+    /**
+     * @param int $userId
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
     public function attachUserCompany(
         int $userId,
         int $companyId

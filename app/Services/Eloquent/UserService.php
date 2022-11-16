@@ -177,6 +177,30 @@ class UserService implements IUserService
      *
      * @return ServiceResponse
      */
+    public function checkUserCompany(
+        int $userId,
+        int $companyId
+    ): ServiceResponse
+    {
+        $user = $this->getById($userId);
+        if ($user->isSuccess()) {
+            return new ServiceResponse(
+                true,
+                'User company',
+                200,
+                $user->getData()->companies->contains($companyId)
+            );
+        } else {
+            return $user;
+        }
+    }
+
+    /**
+     * @param int $userId
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
     public function attachUserCompany(
         int $userId,
         int $companyId
