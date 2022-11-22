@@ -28,7 +28,7 @@ return [
     'settings' => [
         'title' => 'Ayarlar',
         'users' => 'Kullanıcılar',
-        'packages' => 'Paketler',
+        'packages' => 'Paketlerim',
     ],
     'management' => [
         'title' => 'Yönetim',

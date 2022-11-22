@@ -14,7 +14,15 @@
 
 @section('content')
 
-
+    <input type="hidden" id="selected_package_row_index">
+    <input type="hidden" id="selected_package_id">
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="packages" class="text-center">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
