@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Core\Controller;
 use App\Core\HttpResponse;
 use App\Http\Requests\Api\User\FirmaPaketleriController\GetByCompanyIdRequest;
+use App\Http\Requests\Api\User\FirmaPaketleriController\CreateRequest;
 use App\Interfaces\Eloquent\IFirmaPaketleriService;
 
 class FirmaPaketleriController extends Controller
@@ -28,6 +29,31 @@ class FirmaPaketleriController extends Controller
     {
         $response = $this->firmaPaketleriService->getByCompanyId(
             $request->companyId
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
+     * @param CreateRequest $request
+     */
+    public function create(CreateRequest $request)
+    {
+        $response = $this->firmaPaketleriService->create(
+            $request->companyId,
+            $request->packageCode,
+            $request->packageName,
+            $request->packageSize,
+            $request->packagePrice,
+            $request->startDate,
+            $request->endDate,
+            $request->status,
+            $request->paymentType
         );
 
         return $this->httpResponse(

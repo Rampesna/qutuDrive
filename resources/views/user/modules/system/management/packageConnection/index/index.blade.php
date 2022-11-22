@@ -14,7 +14,19 @@
 
 @section('content')
 
+    @include('user.modules.system.management.packageConnection.index.components.contextMenu')
 
+    @include('user.modules.system.management.packageConnection.index.modals.addNewPackage')
+
+    <input type="hidden" id="selected_company_row_index">
+    <input type="hidden" id="selected_company_id">
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="companies" class="text-center">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
