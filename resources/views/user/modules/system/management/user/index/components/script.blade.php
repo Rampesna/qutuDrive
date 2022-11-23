@@ -11,6 +11,7 @@
 <script src="{{ asset('assets/jqwidgets/jqxgrid.filter.js') }}"></script>
 <script src="{{ asset('assets/jqwidgets/jqxgrid.sort.js') }}"></script>
 <script src="{{ asset('assets/jqwidgets/jqxdata.js') }}"></script>
+<script src="{{ asset('assets/jqwidgets/jqxloader.js') }}"></script>
 <script src="{{ asset('assets/jqwidgets/jqxgrid.pager.js') }}"></script>
 <script src="{{ asset('assets/jqwidgets/jqxnumberinput.js') }}"></script>
 <script src="{{ asset('assets/jqwidgets/jqxwindow.js') }}"></script>
@@ -24,10 +25,6 @@
 
 <script>
 
-    $(document).ready(function () {
-        $('#loader').hide();
-    });
-
     var usersDiv = $('#users');
 
     var CreateUserButton = $('#CreateUserButton');
@@ -35,6 +32,136 @@
     var DeleteUserButton = $('#DeleteUserButton');
 
     var DownloadExcelButton = $('#DownloadExcelButton');
+
+    $(document).ready(function () {
+        var source = {
+            localdata: [],
+            datatype: "array",
+            datafields: [
+                {name: 'ID', type: 'integer'},
+                {name: 'KULLANICIADI', type: 'string'},
+                {name: 'APIKEY', type: 'string'},
+                {name: 'AD', type: 'string'},
+                {name: 'SOYAD', type: 'string'},
+                {name: 'TELEFON', type: 'string'},
+                {name: 'MAIL', type: 'string'},
+                {name: 'TCNO', type: 'string'},
+                {name: 'KULLANICITIPI', type: 'string'},
+                {name: 'KAYITTARIHI', type: 'string'},
+                {name: 'DURUM', type: 'string'},
+            ]
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        usersDiv.on('contextmenu', function (e) {
+            var top = e.pageY - 10;
+            var left = e.pageX - 10;
+            $("#contextMenu").css({
+                display: "block",
+                top: top,
+                left: left
+            });
+            return false;
+        });
+        usersDiv.on('rowclick', function (event) {
+            if (event.args.rightclick) {
+                usersDiv.jqxGrid('selectrow', event.args.rowindex);
+                var rowindex = usersDiv.jqxGrid('getselectedrowindex');
+                $('#selected_user_row_index').val(rowindex);
+                var dataRecord = usersDiv.jqxGrid('getrowdata', rowindex);
+                $('#selected_user_id').val(dataRecord.ID);
+                return false;
+            } else {
+                $("#contextMenu").hide();
+            }
+
+            return false;
+        });
+        usersDiv.jqxGrid({
+            width: '100%',
+            height: '600',
+            source: dataAdapter,
+            columnsresize: true,
+            groupable: true,
+            theme: jqxGridGlobalTheme,
+            filterable: true,
+            showfilterrow: true,
+            pageable: false,
+            sortable: true,
+            pagesizeoptions: ['10', '20', '50', '1000'],
+            localization: getLocalization('tr'),
+            columns: [
+                {
+                    text: '#',
+                    dataField: 'ID',
+                    columntype: 'textbox',
+                    width: '4%',
+                },
+                {
+                    text: 'Kullanıcı Adı',
+                    dataField: 'KULLANICIADI',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'API Key',
+                    dataField: 'APIKEY',
+                    columntype: 'textbox',
+                    width: '18%',
+                },
+                {
+                    text: 'Ad',
+                    dataField: 'AD',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Soyad',
+                    dataField: 'SOYAD',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Telefon',
+                    dataField: 'TELEFON',
+                    columntype: 'textbox',
+                    width: '10%',
+                },
+                {
+                    text: 'E-posta',
+                    dataField: 'MAIL',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'TC No',
+                    dataField: 'TCNO',
+                    columntype: 'textbox',
+                    width: '8%',
+                },
+                {
+                    text: 'Kullanıcı Tipi',
+                    dataField: 'KULLANICITIPI',
+                    columntype: 'textbox',
+                    width: '8%',
+                },
+                {
+                    text: 'Kayıt Tarihi',
+                    dataField: 'KAYITTARIHI',
+                    columntype: 'textbox',
+                    width: '10%',
+                },
+                {
+                    text: 'Durum',
+                    dataField: 'DURUM',
+                    columntype: 'textbox',
+                    width: '8%',
+                }
+            ],
+        });
+        usersDiv.jqxGrid('sortby', 'id', 'desc');
+        $('#loader').hide();
+    });
+
 
     function createUser() {
         $('#create_user_username').val('');
@@ -244,6 +371,7 @@
                     ],
                 });
                 usersDiv.jqxGrid('sortby', 'id', 'desc');
+                usersDiv.jqxLoader('open');
             },
             error: function (error) {
                 console.log(error);
@@ -388,9 +516,11 @@
 
         if (!username) {
             toastr.warning('Lütfen kullanıcı adı giriniz.');
-        }if (!email) {
+        }
+        if (!email) {
             toastr.warning('Lütfen e-posta adresi giriniz.');
-        }if (!name) {
+        }
+        if (!name) {
             toastr.warning('Lütfen ad giriniz.');
         } else if (!surname) {
             toastr.warning('Lütfen soyad giriniz.');

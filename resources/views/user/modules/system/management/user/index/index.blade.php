@@ -29,6 +29,11 @@
     </div>
     <div class="row">
         <div class="col-xl-12">
+            <div id="jqxLoader"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
             <div id="users" class="text-center">
                 <i class="fa fa-spinner fa-spin"></i>
             </div>

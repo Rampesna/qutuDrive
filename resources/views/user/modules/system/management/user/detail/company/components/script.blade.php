@@ -24,10 +24,6 @@
 
 <script>
 
-    $(document).ready(function () {
-        $('#loader').hide();
-    });
-
     var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
 
     var userId = parseInt(base64regex.test(`{{ $id }}`) ? atob(`{{ $id }}`) : 0);
@@ -35,6 +31,129 @@
     var companiesDiv = $('#companies');
 
     var CancelConnectionButton = $('#CancelConnectionButton');
+
+    $(document).ready(function () {
+        var source = {
+            localdata: [],
+            datatype: "array",
+            datafields:
+                [
+                    {name: 'ID', type: 'integer'},
+                    {name: 'FIRMAUNVAN', type: 'string'},
+                    {name: 'APIKEY', type: 'string'},
+                    {name: 'AD', type: 'string'},
+                    {name: 'SOYAD', type: 'string'},
+                    {name: 'TELEFON', type: 'string'},
+                    {name: 'MAIL', type: 'string'},
+                    {name: 'VKNTCKN', type: 'string'},
+                    {name: 'KAYITTARIHI', type: 'string'},
+                    {name: 'DURUM', type: 'string'},
+                ]
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        companiesDiv.on('contextmenu', function (e) {
+            var top = e.pageY - 10;
+            var left = e.pageX - 10;
+            $("#contextMenu").css({
+                display: "block",
+                top: top,
+                left: left
+            });
+            return false;
+        });
+        companiesDiv.on('rowclick', function (event) {
+            if (event.args.rightclick) {
+                companiesDiv.jqxGrid('selectrow', event.args.rowindex);
+                var rowindex = companiesDiv.jqxGrid('getselectedrowindex');
+                $('#selected_company_row_index').val(rowindex);
+                var dataRecord = companiesDiv.jqxGrid('getrowdata', rowindex);
+                $('#selected_company_id').val(dataRecord.ID);
+                return false;
+            } else {
+                $("#contextMenu").hide();
+            }
+
+            return false;
+        });
+        companiesDiv.jqxGrid({
+            width: '100%',
+            height: '600',
+            source: dataAdapter,
+            columnsresize: true,
+            groupable: true,
+            theme: jqxGridGlobalTheme,
+            filterable: true,
+            showfilterrow: true,
+            pageable: false,
+            sortable: true,
+            pagesizeoptions: ['10', '20', '50', '1000'],
+            localization: getLocalization('tr'),
+            columns: [
+                {
+                    text: '#',
+                    dataField: 'ID',
+                    columntype: 'textbox',
+                    width: '4%',
+                },
+                {
+                    text: 'Firma Ünvan',
+                    dataField: 'FIRMAUNVAN',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'API Key',
+                    dataField: 'APIKEY',
+                    columntype: 'textbox',
+                    width: '18%',
+                },
+                {
+                    text: 'Ad',
+                    dataField: 'AD',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Soyad',
+                    dataField: 'SOYAD',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Telefon',
+                    dataField: 'TELEFON',
+                    columntype: 'textbox',
+                    width: '10%',
+                },
+                {
+                    text: 'E-posta',
+                    dataField: 'MAIL',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Vergi No',
+                    dataField: 'VKNTCKN',
+                    columntype: 'textbox',
+                    width: '8%',
+                },
+                {
+                    text: 'Kayıt Tarihi',
+                    dataField: 'KAYITTARIHI',
+                    columntype: 'textbox',
+                    width: '10%',
+                },
+                {
+                    text: 'Durum',
+                    dataField: 'DURUM',
+                    columntype: 'textbox',
+                    width: '8%',
+                }
+            ],
+        });
+        companiesDiv.jqxGrid('sortby', 'id', 'desc');
+        $('#loader').hide();
+    });
 
     function cancelConnection() {
         $('#CancelConnectionModal').modal('show');

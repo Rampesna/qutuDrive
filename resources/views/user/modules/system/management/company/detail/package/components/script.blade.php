@@ -24,15 +24,119 @@
 
 <script>
 
-    $(document).ready(function () {
-        $('#loader').hide();
-    });
-
     var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
 
     var companyId = parseInt(base64regex.test(`{{ $id }}`) ? atob(`{{ $id }}`) : 0);
 
     var packagesDiv = $('#packages');
+
+    $(document).ready(function () {
+        var source = {
+            localdata: [],
+            datatype: "array",
+            datafields: [
+                {name: 'ID', type: 'integer'},
+                {name: 'PAKETKODU', type: 'string'},
+                {name: 'PAKETADI', type: 'string'},
+                {name: 'PAKETBOYUTU', type: 'string'},
+                {name: 'PAKETFIYATI', type: 'string'},
+                {name: 'BASLANGICTARIHI', type: 'string'},
+                {name: 'BITISTARIHI', type: 'string'},
+                {name: 'DURUM', type: 'string'},
+            ]
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+        packagesDiv.on('contextmenu', function (e) {
+            var top = e.pageY - 10;
+            var left = e.pageX - 10;
+            $("#contextMenu").css({
+                display: "block",
+                top: top,
+                left: left
+            });
+            return false;
+        });
+        packagesDiv.on('rowclick', function (event) {
+            if (event.args.rightclick) {
+                packagesDiv.jqxGrid('selectrow', event.args.rowindex);
+                var rowindex = packagesDiv.jqxGrid('getselectedrowindex');
+                $('#selected_package_row_index').val(rowindex);
+                var dataRecord = packagesDiv.jqxGrid('getrowdata', rowindex);
+                $('#selected_package_id').val(dataRecord.ID);
+                return false;
+            } else {
+                $("#contextMenu").hide();
+            }
+
+            return false;
+        });
+        packagesDiv.jqxGrid({
+            width: '100%',
+            height: '600',
+            source: dataAdapter,
+            columnsresize: true,
+            groupable: true,
+            theme: jqxGridGlobalTheme,
+            filterable: true,
+            showfilterrow: true,
+            pageable: false,
+            sortable: true,
+            pagesizeoptions: ['10', '20', '50', '1000'],
+            localization: getLocalization('tr'),
+            columns: [
+                {
+                    text: '#',
+                    dataField: 'ID',
+                    columntype: 'textbox',
+                    width: '4%',
+                },
+                {
+                    text: 'Paket Kodu',
+                    dataField: 'PAKETKODU',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Paket Adı',
+                    dataField: 'PAKETADI',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Paket Boyutu',
+                    dataField: 'PAKETBOYUTU',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Paket Fiyatı',
+                    dataField: 'PAKETFIYATI',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Başlangıç Tarihi',
+                    dataField: 'BASLANGICTARIHI',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Bitiş Tarihi',
+                    dataField: 'BITISTARIHI',
+                    columntype: 'textbox',
+                    width: '15%',
+                },
+                {
+                    text: 'Durum',
+                    dataField: 'DURUM',
+                    columntype: 'textbox',
+                    width: '8%',
+                }
+            ],
+        });
+        packagesDiv.jqxGrid('sortby', 'id', 'desc');
+        $('#loader').hide();
+    });
 
     function getCompanyPackages() {
         $.ajax({
