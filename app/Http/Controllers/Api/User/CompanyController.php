@@ -94,7 +94,7 @@ class CompanyController extends Controller
             $request->phone,
             $request->email,
             $request->dealerCode,
-            $request->eLedgerSourceType
+            $request->eLedgerSourceType ?? 1
         );
 
         return $this->httpResponse(

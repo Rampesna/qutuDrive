@@ -11,6 +11,7 @@
     var DeleteUserButton = $('#DeleteUserButton');
 
     function createUser() {
+        $('#create_user_username').val('');
         $('#create_user_email').val('');
         $('#create_user_name').val('');
         $('#create_user_surname').val('');

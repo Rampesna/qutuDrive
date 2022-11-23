@@ -30,6 +30,17 @@
 
     var companiesDiv = $('#companies');
 
+    var CreateCompanyButton = $('#CreateCompanyButton');
+    var DeleteCompanyButton = $('#DeleteCompanyButton');
+
+    function createCompany() {
+        $('#CreateCompanyModal').modal('show');
+    }
+
+    function deleteCompany() {
+        $('#DeleteCompanyModal').modal('show');
+    }
+
     function detailsCompany() {
         var id = $('#selected_company_id').val();
         window.open(`{{ route('user.web.system.management.company.detail.index') }}/${btoa(id)}`, '_blank');
@@ -209,6 +220,105 @@
 
     $('body').click(function () {
         $('#contextMenu').hide();
+    });
+
+    CreateCompanyButton.click(function () {
+        var name = $('#create_company_name').val();
+        var surname = $('#create_company_surname').val();
+        var companyType = $('#create_company_type').val();
+        var companyTaxNumber = $('#create_company_tax_number').val();
+        var companyTaxOffice = $('#create_company_tax_office').val();
+        var companyTitle = $('#create_company_title').val();
+        var companyPhone = $('#create_company_phone').val();
+        var companyEmail = $('#create_company_email').val();
+        var companyAddress = $('#create_company_address').val();
+
+        if (!name) {
+            toastr.warning('Ad alanı boş bırakılamaz.');
+        } else if (!surname) {
+            toastr.warning('Soyad alanı boş bırakılamaz.');
+        } else if (!companyType) {
+            toastr.warning('Lütfen firma tipini seçiniz.');
+        } else if (!companyTaxNumber) {
+            toastr.warning('Vergi numarası alanı boş bırakılamaz.');
+        } else if (!companyTaxOffice) {
+            toastr.warning('Vergi dairesi alanı boş bırakılamaz.');
+        } else if (!companyTitle) {
+            toastr.warning('Firma ünvanı alanı boş bırakılamaz.');
+        } else if (!companyEmail) {
+            toastr.warning('E-posta alanı boş bırakılamaz.');
+        } else {
+            CreateCompanyButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
+            $.ajax({
+                type: 'post',
+                url: '{{ route('user.api.company.create') }}',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': authUserToken,
+                },
+                data: {
+                    title: companyTitle,
+                    taxNumber: companyTaxNumber,
+                    name: name,
+                    surname: surname,
+                    taxOffice: companyTaxOffice,
+                    address: companyAddress,
+                    phone: companyPhone,
+                    email: companyEmail,
+                    eLedgerSourceType: companyType,
+                },
+                success: function () {
+                    toastr.success('Firma başarıyla oluşturuldu.');
+                    CreateCompanyButton.attr('disabled', false).html('Oluştur');
+                    $('#CreateCompanyModal').modal('hide');
+                    getAllCompanies();
+                },
+                error: function (error) {
+                    console.log(error);
+                    CreateCompanyButton.attr('disabled', false).html('Oluştur');
+                    if (parseInt(error.status) === 422) {
+                        $.each(error.responseJSON.response, function (i, error) {
+                            toastr.error(error[0]);
+                        });
+                    } else {
+                        toastr.error(error.responseJSON.message);
+                    }
+                }
+            });
+        }
+    });
+
+    DeleteCompanyButton.click(function () {
+        var companyId = $('#selected_company_id').val();
+        DeleteCompanyButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
+        $.ajax({
+            type: 'delete',
+            url: '{{ route('user.api.company.delete') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {
+                id: companyId,
+            },
+            success: function () {
+                toastr.success('Firma başarıyla silindi.');
+                DeleteCompanyButton.attr('disabled', false).html('Sil');
+                $('#DeleteCompanyModal').modal('hide');
+                getAllCompanies();
+            },
+            error: function (error) {
+                console.log(error);
+                DeleteCompanyButton.attr('disabled', false).html('Sil');
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
     });
 
 </script>

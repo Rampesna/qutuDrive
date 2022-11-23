@@ -16,8 +16,17 @@
 
     @include('user.modules.system.management.user.index.components.contextMenu')
 
+    @include('user.modules.system.management.user.index.modals.createUser')
+    @include('user.modules.system.management.user.index.modals.updateUser')
+    @include('user.modules.system.management.user.index.modals.deleteUser')
+
     <input type="hidden" id="selected_user_row_index">
     <input type="hidden" id="selected_user_id">
+    <div class="row mb-3">
+        <div class="col-xl-12">
+            <button class="btn btn-primary" onclick="createUser()">Yeni Kullanıcı</button>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xl-12">
             <div id="users" class="text-center">

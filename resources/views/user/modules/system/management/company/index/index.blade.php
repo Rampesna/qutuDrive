@@ -16,8 +16,16 @@
 
     @include('user.modules.system.management.company.index.components.contextMenu')
 
+    @include('user.modules.system.management.company.index.modals.createCompany')
+    @include('user.modules.system.management.company.index.modals.deleteCompany')
+
     <input type="hidden" id="selected_company_row_index">
     <input type="hidden" id="selected_company_id">
+    <div class="row mb-3">
+        <div class="col-xl-12">
+            <button class="btn btn-primary" onclick="createCompany()">Yeni Firma</button>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xl-12">
             <div id="companies"></div>

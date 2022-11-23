@@ -30,6 +30,8 @@
 
     var companiesDiv = $('#companies');
 
+    var AddNewPackageButton = $('#AddNewPackageButton');
+
     function addNewPackage() {
         $('#AddNewPackageModal').modal('show');
     }
@@ -201,6 +203,34 @@
 
     $('body').click(function () {
         $('#contextMenu').hide();
+    });
+
+    AddNewPackageButton.click(function () {
+        var companyId = $('#selected_company_id').val();
+        var packageId = $('#add_new_package_package_id').val();
+        var packagePrice = $('#add_new_package_price').val();
+        var startDate = $('#add_new_package_start_date').val();
+        var endDate = $('#add_new_package_end_date').val();
+
+        if (!companyId) {
+            toastr.warning('Lütfen bir firma seçiniz.');
+        } else if (!packageId) {
+            toastr.warning('Lütfen paket seçiniz.');
+        } else if (!packagePrice) {
+            toastr.warning('Lütfen paket fiyatını giriniz.');
+        } else if (!startDate) {
+            toastr.warning('Lütfen başlangıç tarihini giriniz.');
+        } else if (!endDate) {
+            toastr.warning('Lütfen bitiş tarihini giriniz.');
+        } else {
+            toastr.info('İşlem yapılıyor...');
+            console.log({
+                packageId: packageId,
+                packagePrice: packagePrice,
+                startDate: startDate,
+                endDate: endDate,
+            });
+        }
     });
 
 </script>

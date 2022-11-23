@@ -195,5 +195,6 @@ Route::middleware([
 
     Route::prefix('firmapaketleri')->group(function () {
         Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'getByCompanyId'])->name('user.api.firmapaketleri.getByCompanyId');
+        Route::post('create', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'create'])->name('user.api.firmapaketleri.create');
     });
 });

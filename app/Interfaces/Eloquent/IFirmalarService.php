@@ -41,6 +41,17 @@ interface IFirmalarService
     ): ServiceResponse;
 
     /**
+     * @param string $email
+     * @param int|null $exceptId
+     *
+     * @return ServiceResponse
+     */
+    public function getByEmail(
+        string $email,
+        int    $exceptId = null
+    ): ServiceResponse;
+
+    /**
      * @param string $title
      * @param string $taxNumber
      * @param string|null $name
@@ -105,5 +116,14 @@ interface IFirmalarService
     public function detachCompanyUser(
         int $companyId,
         int $userId
+    ): ServiceResponse;
+
+    /**
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
+    public function delete(
+        int $companyId
     ): ServiceResponse;
 }

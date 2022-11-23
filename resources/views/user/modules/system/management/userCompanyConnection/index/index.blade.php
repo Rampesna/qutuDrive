@@ -20,6 +20,11 @@
     <input type="hidden" id="selected_company_row_index">
     <input type="hidden" id="selected_company_id">
 
+    <div class="row mb-3">
+        <div class="col-xl-12">
+            <button class="btn btn-success" id="ConnectButton">Yeni Bağlantı Ekle</button>
+        </div>
+    </div>
     <div class="row mb-5">
         <div class="col-xl-6">
             <div id="users" class="text-center">
@@ -32,11 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-12">
-            <button class="btn btn-success" id="ConnectButton">Yeni Bağlantı Ekle</button>
-        </div>
-    </div>
+
 
 @endsection
 

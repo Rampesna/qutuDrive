@@ -42,7 +42,6 @@
                 companyId: SelectedCompany.val(),
             },
             success: function (response) {
-                console.log(response);
                 var source = {
                     localdata: response.response.map(function (companyPackage) {
                         return {

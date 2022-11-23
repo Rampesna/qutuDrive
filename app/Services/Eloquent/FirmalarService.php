@@ -92,7 +92,43 @@ class FirmalarService implements IFirmalarService
 
         if ($company) {
             return new ServiceResponse(
+                true,
+                'Company',
+                200,
+                $company
+            );
+        } else {
+            return new ServiceResponse(
                 false,
+                'Company not found',
+                404,
+                null
+            );
+        }
+    }
+
+    /**
+     * @param string $email
+     * @param int|null $exceptId
+     *
+     * @return ServiceResponse
+     */
+    public function getByEmail(
+        string $email,
+        int    $exceptId = null
+    ): ServiceResponse
+    {
+        $company = Firmalar::where('MAIL', $email);
+
+        if ($exceptId) {
+            $company->where('ID', '!=', $exceptId);
+        }
+
+        $company = $company->first();
+
+        if ($company) {
+            return new ServiceResponse(
+                true,
                 'Company',
                 200,
                 $company
@@ -134,6 +170,26 @@ class FirmalarService implements IFirmalarService
         int     $eLedgerSourceType
     ): ServiceResponse
     {
+        $checkCompanyByTaxNumber = $this->getByTaxNumber($taxNumber);
+        if ($checkCompanyByTaxNumber->isSuccess()) {
+            return new ServiceResponse(
+                false,
+                'This tax number is already registered',
+                400,
+                null
+            );
+        }
+
+        $checkCompanyByEmail = $this->getByEmail($email);
+        if ($checkCompanyByEmail->isSuccess()) {
+            return new ServiceResponse(
+                false,
+                'This email is already registered',
+                400,
+                null
+            );
+        }
+
         $company = new Firmalar;
         $company->APIKEY = Str::uuid();
         $company->FIRMAUNVAN = $title;
@@ -230,6 +286,31 @@ class FirmalarService implements IFirmalarService
             return new ServiceResponse(
                 true,
                 'Company user detached',
+                200,
+                null
+            );
+        } else {
+            return $company;
+        }
+    }
+
+    /**
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
+    public function delete(
+        int $companyId
+    ): ServiceResponse
+    {
+        $company = $this->getById($companyId);
+        if ($company->isSuccess()) {
+            $company->getData()->DURUM = 0;
+            $company->getData()->save();
+            $company->getData()->delete();
+            return new ServiceResponse(
+                true,
+                'Company deleted',
                 200,
                 null
             );
