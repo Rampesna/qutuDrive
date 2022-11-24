@@ -193,6 +193,10 @@ Route::middleware([
         Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\BackupDosyalarController::class, 'getByCompanyId'])->name('user.api.backupdosyalar.getByCompanyId');
     });
 
+    Route::prefix('paketbilgileri')->group(function () {
+        Route::get('getAll', [\App\Http\Controllers\Api\User\PaketBilgileriController::class, 'getAll'])->name('user.api.paketbilgileri.getAll');
+    });
+
     Route::prefix('firmapaketleri')->group(function () {
         Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'getByCompanyId'])->name('user.api.firmapaketleri.getByCompanyId');
         Route::post('create', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'create'])->name('user.api.firmapaketleri.create');

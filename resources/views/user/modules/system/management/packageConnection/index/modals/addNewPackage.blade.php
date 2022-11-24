@@ -23,17 +23,7 @@
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <select id="add_new_package_package_id" class="form-select form-select-solid">
-                                        <option value="1">1 GB</option>
-                                        <option value="3">3 GB</option>
-                                        <option value="5">5 GB</option>
-                                        <option value="10">10 GB</option>
-                                        <option value="20">20 GB</option>
-                                        <option value="50">50 GB</option>
-                                        <option value="100">100 GB</option>
-                                        <option value="200">200 GB</option>
-                                        <option value="500">500 GB</option>
-                                    </select>
+                                    <select id="add_new_package_package_id" class="form-select form-select-solid"></select>
                                 </div>
                             </div>
                         </div>

@@ -46,9 +46,7 @@ class FirmaPaketleriController extends Controller
     {
         $response = $this->firmaPaketleriService->create(
             $request->companyId,
-            $request->packageCode,
-            $request->packageName,
-            $request->packageSize,
+            $request->packageId,
             $request->packagePrice,
             $request->startDate,
             $request->endDate,

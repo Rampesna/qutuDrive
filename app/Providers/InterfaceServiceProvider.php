@@ -16,6 +16,7 @@ use App\Interfaces\Eloquent\IFormService;
 use App\Interfaces\Eloquent\IFormSubmitService;
 use App\Interfaces\Eloquent\IGeneralNoteService;
 use App\Interfaces\Eloquent\INoteService;
+use App\Interfaces\Eloquent\IPaketBilgileriService;
 use App\Interfaces\Eloquent\IPasswordResetService;
 use App\Interfaces\Eloquent\IPasswordService;
 use App\Interfaces\Eloquent\IPersonalAccessTokenService;
@@ -40,6 +41,7 @@ use App\Services\Eloquent\FormQuestionService;
 use App\Services\Eloquent\FormService;
 use App\Services\Eloquent\FormSubmitService;
 use App\Services\Eloquent\GeneralNoteService;
+use App\Services\Eloquent\PaketBilgileriService;
 use App\Services\Eloquent\PasswordResetService;
 use App\Services\Eloquent\PasswordService;
 use App\Services\Eloquent\PersonalAccessTokenService;
@@ -88,6 +90,7 @@ class InterfaceServiceProvider extends ServiceProvider
         $this->app->bind(IBackupDosyalarService::class, BackupDosyalarService::class);
         $this->app->bind(IFirmalarService::class, FirmalarService::class);
         $this->app->bind(IFirmaPaketleriService::class, FirmaPaketleriService::class);
+        $this->app->bind(IPaketBilgileriService::class, PaketBilgileriService::class);
 
         // Aws Services
         $this->app->bind(IStorageService::class, StorageService::class);

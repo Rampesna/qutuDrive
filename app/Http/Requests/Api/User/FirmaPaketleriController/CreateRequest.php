@@ -25,10 +25,8 @@ class CreateRequest extends BaseApiRequest
     {
         return [
             'companyId' => 'required|integer',
-            'packageCode' => 'required|string',
-            'packageName' => 'required|string',
-            'packageSize' => 'required|string',
-            'packagePrice' => 'required|string',
+            'packageId' => 'required|integer',
+            'packagePrice' => 'required|numeric',
             'startDate' => 'required|string',
             'endDate' => 'required|string',
             'status' => 'required|integer',

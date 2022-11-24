@@ -26,10 +26,8 @@ interface IFirmaPaketleriService
 
     /**
      * @param int $companyId
-     * @param string $packageCode
-     * @param string $packageName
-     * @param string $packageSize
-     * @param string $packagePrice
+     * @param int $packageId
+     * @param float $packagePrice
      * @param string $startDate
      * @param string $endDate
      * @param int $status
@@ -39,10 +37,8 @@ interface IFirmaPaketleriService
      */
     public function create(
         int    $companyId,
-        string $packageCode,
-        string $packageName,
-        string $packageSize,
-        string $packagePrice,
+        int    $packageId,
+        float  $packagePrice,
         string $startDate,
         string $endDate,
         int    $status,
