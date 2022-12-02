@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\User\GeneralNoteController;
+namespace App\Http\Requests\Api\User\UserController;
 
 use App\Core\BaseApiRequest;
 
-class IndexRequest extends BaseApiRequest
+class GetProfileRequest extends BaseApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class IndexRequest extends BaseApiRequest
     public function rules()
     {
         return [
-            'companyId' => 'required|integer',
-            'pageIndex' => 'required|integer',
-            'pageSize' => 'required|integer',
+            //
         ];
     }
 }

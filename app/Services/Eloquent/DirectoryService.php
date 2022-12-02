@@ -15,7 +15,7 @@ class DirectoryService implements IDirectoryService
     {
         return new ServiceResponse(
             true,
-            'All directories',
+            __('ServiceResponse/Eloquent/DirectoryService.getAll.success'),
             200,
             Directory::all()
         );
@@ -34,14 +34,14 @@ class DirectoryService implements IDirectoryService
         if ($directory) {
             return new ServiceResponse(
                 true,
-                'Directory',
+                __('ServiceResponse/Eloquent/DirectoryService.getById.exists'),
                 200,
                 $directory
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Directory not found',
+                __('ServiceResponse/Eloquent/DirectoryService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class DirectoryService implements IDirectoryService
         if ($directory->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Directory deleted successfully',
+                __('ServiceResponse/Eloquent/DirectoryService.delete.success'),
                 200,
                 $directory->getData()->delete()
             );
@@ -83,7 +83,7 @@ class DirectoryService implements IDirectoryService
     {
         return new ServiceResponse(
             true,
-            'Directories',
+            __('ServiceResponse/Eloquent/DirectoryService.getByParentId.success'),
             200,
             Directory::where('company_id', $companyId)->where('parent_id', $parentId)->get()
         );
@@ -100,7 +100,7 @@ class DirectoryService implements IDirectoryService
     {
         return new ServiceResponse(
             true,
-            'Trashed directories',
+            __('ServiceResponse/Eloquent/DirectoryService.getTrashed.success'),
             200,
             Directory::onlyTrashed()->where('company_id', $companyId)->get()
         );
@@ -117,7 +117,7 @@ class DirectoryService implements IDirectoryService
     {
         return new ServiceResponse(
             true,
-            'Directories recovered successfully',
+            __('ServiceResponse/Eloquent/DirectoryService.recoverTrashed.success'),
             200,
             Directory::onlyTrashed()->whereIn('id', $directoryIds)->restore()
         );
@@ -144,7 +144,7 @@ class DirectoryService implements IDirectoryService
 
         return new ServiceResponse(
             true,
-            'Directory created successfully',
+            __('ServiceResponse/Eloquent/DirectoryService.create.success'),
             201,
             $directory
         );
@@ -167,7 +167,7 @@ class DirectoryService implements IDirectoryService
             $directory->getData()->save();
             return new ServiceResponse(
                 true,
-                'Directory renamed successfully',
+                __('ServiceResponse/Eloquent/DirectoryService.rename.success'),
                 200,
                 $directory->getData()
             );
@@ -193,7 +193,7 @@ class DirectoryService implements IDirectoryService
 
         return new ServiceResponse(
             true,
-            'Directories updated successfully',
+            __('ServiceResponse/Eloquent/DirectoryService.updateParentId.success'),
             200,
             $directories
         );
@@ -210,7 +210,7 @@ class DirectoryService implements IDirectoryService
     {
         return new ServiceResponse(
             true,
-            'Directories deleted successfully',
+            __('ServiceResponse/Eloquent/DirectoryService.deleteBatch.success'),
             200,
             Directory::whereIn('id', $directoryIds)->delete()
         );
@@ -227,7 +227,7 @@ class DirectoryService implements IDirectoryService
     {
         return new ServiceResponse(
             true,
-            'Directories deleted successfully',
+            __('ServiceResponse/Eloquent/DirectoryService.recover.success'),
             200,
             Directory::onlyTrashed()->whereIn('id', $directoryIds)->restore()
         );

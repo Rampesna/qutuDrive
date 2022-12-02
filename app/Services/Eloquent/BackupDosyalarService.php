@@ -24,7 +24,7 @@ class BackupDosyalarService implements IBackupDosyalarService
         if ($company) {
             return new ServiceResponse(
                 true,
-                'Backupdosyalar',
+                __('ServiceResponse/Eloquent/BackupDosyalarService.getByCompanyId.company.exists'),
                 200,
                 Backupdosyalar::where('FIRMAAPIKEY', $company->APIKEY)->when($keyword, function ($query) use ($keyword) {
                     return $query->where('VERITABANIADI', 'like', '%' . $keyword . '%')->orWhere('DOSYAADI', 'like', '%' . $keyword . '%');
@@ -33,7 +33,7 @@ class BackupDosyalarService implements IBackupDosyalarService
         } else {
             return new ServiceResponse(
                 false,
-                'Company not found',
+                __('ServiceResponse/Eloquent/BackupDosyalarService.getByCompanyId.company.notFound'),
                 404,
                 null
             );

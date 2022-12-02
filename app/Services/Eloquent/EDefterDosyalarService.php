@@ -15,7 +15,7 @@ class EDefterDosyalarService implements IEDefterDosyalarService
     {
         return new ServiceResponse(
             true,
-            'Edefterdosyalar',
+            __('ServiceResponse/Eloquent/EDefterDosyalarService.getAll.success'),
             200,
             Edefterdosyalar::all()
         );
@@ -34,14 +34,14 @@ class EDefterDosyalarService implements IEDefterDosyalarService
         if ($eDefterDosyalar) {
             return new ServiceResponse(
                 true,
-                'Edefterdosya',
+                __('ServiceResponse/Eloquent/EDefterDosyalarService.getById.exists'),
                 200,
                 $eDefterDosyalar
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Edefterdosya not found',
+                __('ServiceResponse/Eloquent/EDefterDosyalarService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class EDefterDosyalarService implements IEDefterDosyalarService
         if ($eDefterDosyalar->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Edefterdosya deleted',
+                __('ServiceResponse/Eloquent/EDefterDosyalarService.delete.success'),
                 200,
                 $eDefterDosyalar->getData()->delete()
             );
@@ -81,7 +81,7 @@ class EDefterDosyalarService implements IEDefterDosyalarService
     {
         return new ServiceResponse(
             true,
-            'Edefterdosyalar',
+            __('ServiceResponse/Eloquent/EDefterDosyalarService.getByDonemId.success'),
             200,
             Edefterdosyalar::where('DONEMLERID', $donemId)->get()
         );

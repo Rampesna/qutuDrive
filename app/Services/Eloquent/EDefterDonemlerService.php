@@ -16,7 +16,7 @@ class EDefterDonemlerService implements IEDefterDonemlerService
     {
         return new ServiceResponse(
             true,
-            'Edefterdonemler',
+            __('ServiceResponse/Eloquent/EDefterDonemlerService.getAll.success'),
             200,
             Edefterdonemler::all()
         );
@@ -35,14 +35,14 @@ class EDefterDonemlerService implements IEDefterDonemlerService
         if ($eDefterDonemler) {
             return new ServiceResponse(
                 true,
-                'Edefterdonem',
+                __('ServiceResponse/Eloquent/EDefterDonemlerService.getById.exists'),
                 200,
                 $eDefterDonemler
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Edefterdonem not found',
+                __('ServiceResponse/Eloquent/EDefterDonemlerService.getById.notFound'),
                 404,
                 null
             );
@@ -62,7 +62,7 @@ class EDefterDonemlerService implements IEDefterDonemlerService
         if ($eDefterDonemler->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Edefterdonemler deleted',
+                __('ServiceResponse/Eloquent/EDefterDonemlerService.delete.success'),
                 200,
                 $eDefterDonemler->getData()->delete()
             );
@@ -96,14 +96,14 @@ class EDefterDonemlerService implements IEDefterDonemlerService
             if ($eDefterDonem) {
                 return new ServiceResponse(
                     true,
-                    'Edefterdonem',
+                    __('ServiceResponse/Eloquent/EDefterDonemlerService.getEDefterDonem.success'),
                     200,
                     $eDefterDonem
                 );
             } else {
                 return new ServiceResponse(
                     false,
-                    'Edefterdonem not found',
+                    __('ServiceResponse/Eloquent/EDefterDonemlerService.getEDefterDonem.notFound'),
                     404,
                     null
                 );
@@ -111,7 +111,7 @@ class EDefterDonemlerService implements IEDefterDonemlerService
         } else {
             return new ServiceResponse(
                 false,
-                'Company not found',
+                __('ServiceResponse/Eloquent/EDefterDonemlerService.getEDefterDonem.companyNotFound'),
                 404,
                 null
             );

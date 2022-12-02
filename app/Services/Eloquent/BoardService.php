@@ -15,7 +15,7 @@ class BoardService implements IBoardService
     {
         return new ServiceResponse(
             true,
-            'All boards',
+            __('ServiceResponse/Eloquent/BoardService.getAll.success'),
             200,
             Board::all()
         );
@@ -34,14 +34,14 @@ class BoardService implements IBoardService
         if ($board) {
             return new ServiceResponse(
                 true,
-                'Board',
+                __('ServiceResponse/Eloquent/BoardService.getById.exists'),
                 200,
                 $board
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Board not found',
+                __('ServiceResponse/Eloquent/BoardService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class BoardService implements IBoardService
         if ($board->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Board deleted',
+                __('ServiceResponse/Eloquent/BoardService.delete.success'),
                 200,
                 $board->getData()->delete()
             );
@@ -92,7 +92,7 @@ class BoardService implements IBoardService
 
         return new ServiceResponse(
             true,
-            'Board orders updated',
+            __('ServiceResponse/Eloquent/BoardService.updateOrder.success'),
             200,
             null
         );
@@ -118,7 +118,7 @@ class BoardService implements IBoardService
 
         return new ServiceResponse(
             true,
-            'Board created',
+            __('ServiceResponse/Eloquent/BoardService.create.success'),
             201,
             $board
         );
@@ -142,7 +142,7 @@ class BoardService implements IBoardService
 
             return new ServiceResponse(
                 true,
-                'Board name updated',
+                __('ServiceResponse/Eloquent/BoardService.updateName.success'),
                 200,
                 $board->getData()
             );

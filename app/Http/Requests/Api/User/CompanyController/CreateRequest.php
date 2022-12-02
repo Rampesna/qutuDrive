@@ -25,7 +25,7 @@ class CreateRequest extends BaseApiRequest
     {
         return [
             'title' => 'required',
-            'taxNumber' => 'required',
+            'taxNumber' => 'required|min:10|max:11',
             'name' => 'nullable',
             'surname' => 'nullable',
             'taxOffice' => 'nullable',

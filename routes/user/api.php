@@ -13,6 +13,7 @@ Route::middleware([
     'auth:user_api',
 ])->group(function () {
 
+    Route::get('getProfile', [\App\Http\Controllers\Api\User\UserController::class, 'getProfile'])->name('user.api.getProfile');
     Route::get('getCompanies', [\App\Http\Controllers\Api\User\UserController::class, 'getCompanies'])->name('user.api.getCompanies');
     Route::post('checkPassword', [\App\Http\Controllers\Api\User\UserController::class, 'checkPassword'])->name('user.api.checkPassword');
 
@@ -200,5 +201,9 @@ Route::middleware([
     Route::prefix('firmapaketleri')->group(function () {
         Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'getByCompanyId'])->name('user.api.firmapaketleri.getByCompanyId');
         Route::post('create', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'create'])->name('user.api.firmapaketleri.create');
+    });
+
+    Route::prefix('gibsaklamaozelliste')->group(function () {
+        Route::get('getAll', [\App\Http\Controllers\Api\User\GibSaklamaOzelListeController::class, 'getAll'])->name('user.api.gibsaklamaozelliste.getAll');
     });
 });

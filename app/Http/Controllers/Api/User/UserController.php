@@ -12,6 +12,7 @@ use App\Http\Requests\Api\User\UserController\GetByCompanyIdRequest;
 use App\Http\Requests\Api\User\UserController\GetByEmailRequest;
 use App\Http\Requests\Api\User\UserController\GetByUsernameRequest;
 use App\Http\Requests\Api\User\UserController\GetByIdRequest;
+use App\Http\Requests\Api\User\UserController\GetProfileRequest;
 use App\Http\Requests\Api\User\UserController\CreateRequest;
 use App\Http\Requests\Api\User\UserController\UpdateRequest;
 use App\Http\Requests\Api\User\UserController\DeleteRequest;
@@ -59,7 +60,7 @@ class UserController extends Controller
 
             return $this->httpResponse('User logged in successfully', 200, [
                 'token' => $this->userService->generateSanctumToken($user->getData()->ID)->getData()
-            ]);
+            ], true);
         } else {
             return $this->httpResponse(
                 $user->getMessage(),
@@ -135,7 +136,8 @@ class UserController extends Controller
                                 200,
                                 [
                                     'token' => $this->userService->generateSanctumToken($newUser->getData()->ID)->getData()
-                                ]
+                                ],
+                                true
                             );
                         } else {
                             return $this->httpResponse(
@@ -152,6 +154,23 @@ class UserController extends Controller
                 }
             }
         }
+    }
+
+    /**
+     * @param GetProfileRequest $request
+     */
+    public function getProfile(GetProfileRequest $request)
+    {
+        $response = $this->userService->getProfile(
+            $request->user()->ID
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
     }
 
     /**

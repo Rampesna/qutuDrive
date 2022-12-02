@@ -14,7 +14,18 @@
 
 @section('content')
 
-
+    <input type="hidden" id="selected_gib_saklama_ozel_liste_row_index">
+    <input type="hidden" id="selected_gib_saklama_ozel_liste_id">
+    <div class="row mb-3">
+        <div class="col-xl-12">
+            <button class="btn btn-primary" onclick="createGibSaklamaOzelListe()">Yeni Firma</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="gibSaklamaOzelListe"></div>
+        </div>
+    </div>
 
 @endsection
 
