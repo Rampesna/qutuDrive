@@ -15,7 +15,7 @@ class FormQuestionService implements IFormQuestionService
     {
         return new ServiceResponse(
             true,
-            'All form questions',
+            __('ServiceResponse/Eloquent/FormQuestionService.getAll.success'),
             200,
             FormQuestion::all()
         );
@@ -34,14 +34,14 @@ class FormQuestionService implements IFormQuestionService
         if ($formQuestion) {
             return new ServiceResponse(
                 true,
-                'Form question',
+                __('ServiceResponse/Eloquent/FormQuestionService.getById.exists'),
                 200,
                 $formQuestion
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Form question not found',
+                __('ServiceResponse/Eloquent/FormQuestionService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class FormQuestionService implements IFormQuestionService
         if ($formQuestion->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Form question deleted',
+                __('ServiceResponse/Eloquent/FormQuestionService.delete.success'),
                 200,
                 $formQuestion->getData()->delete()
             );
@@ -81,7 +81,7 @@ class FormQuestionService implements IFormQuestionService
     {
         return new ServiceResponse(
             true,
-            'Form questions with answers',
+            __('ServiceResponse/Eloquent/FormQuestionService.getByFormIdWithAnswers.success'),
             200,
             FormQuestion::with([
                 'answers'

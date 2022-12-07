@@ -15,7 +15,7 @@ class GeneralNoteService implements IGeneralNoteService
     {
         return new ServiceResponse(
             true,
-            'All general notes',
+            __('ServiceResponse/Eloquent/GeneralNoteService.getAll.success'),
             200,
             GeneralNote::all()
         );
@@ -34,14 +34,14 @@ class GeneralNoteService implements IGeneralNoteService
         if ($generalNote) {
             return new ServiceResponse(
                 true,
-                'General note',
+                __('ServiceResponse/Eloquent/GeneralNoteService.getById.exists'),
                 200,
                 $generalNote
             );
         } else {
             return new ServiceResponse(
                 false,
-                'General note not found',
+                __('ServiceResponse/Eloquent/GeneralNoteService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class GeneralNoteService implements IGeneralNoteService
         if ($generalNote->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'General note deleted',
+                __('ServiceResponse/Eloquent/GeneralNoteService.delete.success'),
                 200,
                 $generalNote->getData()->delete()
             );
@@ -96,7 +96,7 @@ class GeneralNoteService implements IGeneralNoteService
 
         return new ServiceResponse(
             true,
-            'General notes',
+            __('ServiceResponse/Eloquent/GeneralNoteService.index.success'),
             200,
             [
                 'totalCount' => $generalNotes->count(),
@@ -130,7 +130,7 @@ class GeneralNoteService implements IGeneralNoteService
 
         return new ServiceResponse(
             true,
-            'General note created',
+            __('ServiceResponse/Eloquent/GeneralNoteService.create.success'),
             200,
             $generalNote
         );
@@ -158,7 +158,7 @@ class GeneralNoteService implements IGeneralNoteService
 
             return new ServiceResponse(
                 true,
-                'General note updated',
+                __('ServiceResponse/Eloquent/GeneralNoteService.update.success'),
                 200,
                 $generalNote
             );

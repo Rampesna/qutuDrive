@@ -23,14 +23,14 @@ class FirmaPaketleriService implements IFirmaPaketleriService
         if ($company) {
             return new ServiceResponse(
                 true,
-                'Company packages',
+                __('ServiceResponse/Eloquent/FirmaPaketleriService.getByCompanyId.success'),
                 200,
                 $company->packages
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Company not found',
+                __('ServiceResponse/Eloquent/FirmaPaketleriService.getByCompanyId.companyNotFound'),
                 404,
                 null
             );
@@ -50,14 +50,14 @@ class FirmaPaketleriService implements IFirmaPaketleriService
         if ($companyPackage) {
             return new ServiceResponse(
                 true,
-                'Company package',
+                __('ServiceResponse/Eloquent/FirmaPaketleriService.getById.exists'),
                 200,
                 $companyPackage
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Company package not found',
+                __('ServiceResponse/Eloquent/FirmaPaketleriService.getById.notFound'),
                 404,
                 null
             );
@@ -103,14 +103,14 @@ class FirmaPaketleriService implements IFirmaPaketleriService
 
                 return new ServiceResponse(
                     true,
-                    'Company package created',
+                    __('ServiceResponse/Eloquent/FirmaPaketleriService.create.success'),
                     201,
                     $companyPackage
                 );
             } else {
                 return new ServiceResponse(
                     false,
-                    'Package not found',
+                    __('ServiceResponse/Eloquent/FirmaPaketleriService.create.packageNotFound'),
                     404,
                     null
                 );
@@ -118,7 +118,7 @@ class FirmaPaketleriService implements IFirmaPaketleriService
         } else {
             return new ServiceResponse(
                 false,
-                'Company not found',
+                __('ServiceResponse/Eloquent/FirmaPaketleriService.create.companyNotFound'),
                 404,
                 null
             );
@@ -138,7 +138,7 @@ class FirmaPaketleriService implements IFirmaPaketleriService
         if ($companyPackage->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Company package deleted',
+                __('ServiceResponse/Eloquent/FirmaPaketleriService.delete.success'),
                 200,
                 $companyPackage->getData()->delete()
             );

@@ -16,7 +16,7 @@ class FormSubmitService implements IFormSubmitService
     {
         return new ServiceResponse(
             true,
-            'All formSubmits',
+            __('ServiceResponse/Eloquent/FormSubmitService.getAll.success'),
             200,
             FormSubmit::all()
         );
@@ -35,14 +35,14 @@ class FormSubmitService implements IFormSubmitService
         if ($formSubmit) {
             return new ServiceResponse(
                 true,
-                'FormSubmit',
+                __('ServiceResponse/Eloquent/FormSubmitService.getById.exists'),
                 200,
                 $formSubmit
             );
         } else {
             return new ServiceResponse(
                 false,
-                'FormSubmit not found',
+                __('ServiceResponse/Eloquent/FormSubmitService.getById.notFound'),
                 404,
                 null
             );
@@ -62,7 +62,7 @@ class FormSubmitService implements IFormSubmitService
         if ($formSubmit->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'FormSubmit deleted',
+                __('ServiceResponse/Eloquent/FormSubmitService.delete.success'),
                 200,
                 $formSubmit->getData()->delete()
             );
@@ -94,7 +94,7 @@ class FormSubmitService implements IFormSubmitService
 
         return new ServiceResponse(
             true,
-            'Form submitted',
+            __('ServiceResponse/Eloquent/FormSubmitService.submit.success'),
             201,
             $formSubmit
         );
@@ -137,7 +137,7 @@ class FormSubmitService implements IFormSubmitService
 
         return new ServiceResponse(
             true,
-            'Form submits',
+            __('ServiceResponse/Eloquent/FormSubmitService.getByFormId.success'),
             200,
             [
                 'questions' => $questions,

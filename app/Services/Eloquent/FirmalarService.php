@@ -16,7 +16,7 @@ class FirmalarService implements IFirmalarService
     {
         return new ServiceResponse(
             true,
-            'All companies',
+            __('ServiceResponse/Eloquent/FirmalarService.getAll.success'),
             200,
             Firmalar::all()
         );
@@ -35,14 +35,14 @@ class FirmalarService implements IFirmalarService
         if ($company) {
             return new ServiceResponse(
                 true,
-                'Company',
+                __('ServiceResponse/Eloquent/FirmalarService.getById.exists'),
                 200,
                 $company
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Company not found',
+                __('ServiceResponse/Eloquent/FirmalarService.getById.notFound'),
                 404,
                 null
             );
@@ -62,7 +62,7 @@ class FirmalarService implements IFirmalarService
         if ($company->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Company users',
+                __('ServiceResponse/Eloquent/FirmalarService.getCompanyUsers.success'),
                 200,
                 $company->getData()->users
             );
@@ -93,14 +93,14 @@ class FirmalarService implements IFirmalarService
         if ($company) {
             return new ServiceResponse(
                 true,
-                'Company',
+                __('ServiceResponse/Eloquent/FirmalarService.getByTaxNumber.success'),
                 200,
                 $company
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Company not found',
+                __('ServiceResponse/Eloquent/FirmalarService.getByTaxNumber.notFound'),
                 404,
                 null
             );
@@ -129,14 +129,14 @@ class FirmalarService implements IFirmalarService
         if ($company) {
             return new ServiceResponse(
                 true,
-                'Company',
+                __('ServiceResponse/Eloquent/FirmalarService.getByEmail.success'),
                 200,
                 $company
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Company not found',
+                __('ServiceResponse/Eloquent/FirmalarService.getByEmail.notFound'),
                 404,
                 null
             );
@@ -174,7 +174,7 @@ class FirmalarService implements IFirmalarService
         if ($checkCompanyByTaxNumber->isSuccess()) {
             return new ServiceResponse(
                 false,
-                'This tax number is already registered',
+                __('ServiceResponse/Eloquent/FirmalarService.create.taxNumberExists'),
                 400,
                 null
             );
@@ -184,7 +184,7 @@ class FirmalarService implements IFirmalarService
         if ($checkCompanyByEmail->isSuccess()) {
             return new ServiceResponse(
                 false,
-                'This email is already registered',
+                __('ServiceResponse/Eloquent/FirmalarService.create.emailExists'),
                 400,
                 null
             );
@@ -208,7 +208,7 @@ class FirmalarService implements IFirmalarService
 
         return new ServiceResponse(
             true,
-            'Company created',
+            __('ServiceResponse/Eloquent/FirmalarService.create.success'),
             201,
             $company
         );
@@ -260,7 +260,7 @@ class FirmalarService implements IFirmalarService
 
             return new ServiceResponse(
                 true,
-                'Company updated',
+                __('ServiceResponse/Eloquent/FirmalarService.update.success'),
                 200,
                 $company->getData()
             );
@@ -285,7 +285,7 @@ class FirmalarService implements IFirmalarService
             $company->getData()->users()->detach($userId);
             return new ServiceResponse(
                 true,
-                'Company user detached',
+                __('ServiceResponse/Eloquent/FirmalarService.detachCompanyUser.success'),
                 200,
                 null
             );
@@ -310,7 +310,7 @@ class FirmalarService implements IFirmalarService
             $company->getData()->delete();
             return new ServiceResponse(
                 true,
-                'Company deleted',
+                __('ServiceResponse/Eloquent/FirmalarService.delete.success'),
                 200,
                 null
             );

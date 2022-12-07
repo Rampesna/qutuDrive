@@ -18,7 +18,7 @@ class FormService implements IFormService
     {
         return new ServiceResponse(
             true,
-            'All forms',
+            __('ServiceResponse/Eloquent/FormService.getAll.success'),
             200,
             Form::all()
         );
@@ -37,14 +37,14 @@ class FormService implements IFormService
         if ($form) {
             return new ServiceResponse(
                 true,
-                'Form',
+                __('ServiceResponse/Eloquent/FormService.getById.exists'),
                 200,
                 $form
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Form not found',
+                __('ServiceResponse/Eloquent/FormService.getById.notFound'),
                 404,
                 null
             );
@@ -64,7 +64,7 @@ class FormService implements IFormService
         if ($form->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Form deleted',
+                __('ServiceResponse/Eloquent/FormService.delete.success'),
                 200,
                 $form->getData()->delete()
             );
@@ -96,7 +96,7 @@ class FormService implements IFormService
 
         return new ServiceResponse(
             true,
-            'Projects',
+            __('ServiceResponse/Eloquent/FormService.getByCompanyId.success'),
             200,
             [
                 'totalCount' => $forms->count(),
@@ -133,7 +133,7 @@ class FormService implements IFormService
 
         return new ServiceResponse(
             true,
-            'Form created',
+            __('ServiceResponse/Eloquent/FormService.create.success'),
             201,
             $form
         );
@@ -163,7 +163,7 @@ class FormService implements IFormService
 
             return new ServiceResponse(
                 true,
-                'Form updated',
+                __('ServiceResponse/Eloquent/FormService.update.success'),
                 200,
                 $form->getData()
             );
@@ -190,7 +190,7 @@ class FormService implements IFormService
 
             return new ServiceResponse(
                 true,
-                'Form accessible updated',
+                __('ServiceResponse/Eloquent/FormService.updateAccessible.success'),
                 200,
                 $form->getData()
             );
@@ -234,7 +234,7 @@ class FormService implements IFormService
 
             return new ServiceResponse(
                 true,
-                'Form questions created',
+                __('ServiceResponse/Eloquent/FormService.createFormQuestions.success'),
                 200,
                 $formQuestions
             );
@@ -256,7 +256,7 @@ class FormService implements IFormService
         if ($form->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Share link',
+                __('ServiceResponse/Eloquent/FormService.getShareLink.success'),
                 200,
                 route('share.form') . '/' . Crypt::encrypt($form->getData()->id)
             );

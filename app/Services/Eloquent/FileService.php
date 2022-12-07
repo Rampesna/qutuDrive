@@ -15,7 +15,7 @@ class FileService implements IFileService
     {
         return new ServiceResponse(
             true,
-            'All files',
+            __('ServiceResponse/Eloquent/FileService.getAll.success'),
             200,
             File::all()
         );
@@ -34,14 +34,14 @@ class FileService implements IFileService
         if ($file) {
             return new ServiceResponse(
                 true,
-                'File',
+                __('ServiceResponse/Eloquent/FileService.getById.exists'),
                 200,
                 $file
             );
         } else {
             return new ServiceResponse(
                 false,
-                'File not found',
+                __('ServiceResponse/Eloquent/FileService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class FileService implements IFileService
         if ($fileResponse->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'File deleted',
+                __('ServiceResponse/Eloquent/FileService.delete.success'),
                 200,
                 $fileResponse->getData()->delete()
             );
@@ -106,7 +106,7 @@ class FileService implements IFileService
 
         return new ServiceResponse(
             true,
-            'File created',
+            __('ServiceResponse/Eloquent/FileService.create.success'),
             201,
             $file
         );
@@ -127,7 +127,7 @@ class FileService implements IFileService
     {
         return new ServiceResponse(
             true,
-            'Files',
+            __('ServiceResponse/Eloquent/FileService.getByRelation.success'),
             200,
             File::where('directory_id', $directoryId)->where('relation_id', $relationId)->where('relation_type', $relationType)->get()
         );
@@ -146,7 +146,7 @@ class FileService implements IFileService
     {
         return new ServiceResponse(
             true,
-            'Files',
+            __('ServiceResponse/Eloquent/FileService.getTrashedByRelation.success'),
             200,
             File::onlyTrashed()->where('relation_id', $relationId)->where('relation_type', $relationType)->get()
         );
@@ -163,7 +163,7 @@ class FileService implements IFileService
     {
         return new ServiceResponse(
             true,
-            'Database backups',
+            __('ServiceResponse/Eloquent/FileService.getDatabaseBackups.success'),
             200,
             File::where('relation_id', $userId)->where('relation_type', 'App\\Models\\Eloquent\\Kullanicilar')->where('type_id', 2)->get()
         );
@@ -186,7 +186,7 @@ class FileService implements IFileService
 
         return new ServiceResponse(
             true,
-            'Files updated',
+            __('ServiceResponse/Eloquent/FileService.updateDirectoryId.success'),
             200,
             $files
         );
@@ -203,7 +203,7 @@ class FileService implements IFileService
     {
         return new ServiceResponse(
             true,
-            'Files deleted',
+            __('ServiceResponse/Eloquent/FileService.deleteBatch.success'),
             200,
             File::whereIn('id', $fileIds)->delete()
         );
@@ -220,7 +220,7 @@ class FileService implements IFileService
     {
         return new ServiceResponse(
             true,
-            'Files recovered',
+            __('ServiceResponse/Eloquent/FileService.recover.success'),
             200,
             File::onlyTrashed()->whereIn('id', $fileIds)->restore()
         );
