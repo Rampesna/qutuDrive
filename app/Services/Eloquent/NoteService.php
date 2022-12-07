@@ -15,7 +15,7 @@ class NoteService implements INoteService
     {
         return new ServiceResponse(
             true,
-            'All notes',
+            __('ServiceResponse/Eloquent/NoteService.getAll.success'),
             200,
             Note::all()
         );
@@ -34,14 +34,14 @@ class NoteService implements INoteService
         if ($note) {
             return new ServiceResponse(
                 true,
-                'Note',
+                __('ServiceResponse/Eloquent/NoteService.getById.exists'),
                 200,
                 $note
             );
         }
         return new ServiceResponse(
             false,
-            'Note not found',
+            __('ServiceResponse/Eloquent/NoteService.getById.notFound'),
             404,
             null
         );
@@ -60,7 +60,7 @@ class NoteService implements INoteService
         if ($note->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Note deleted',
+                __('ServiceResponse/Eloquent/NoteService.delete.success'),
                 200,
                 $note->getData()->delete()
             );
@@ -84,7 +84,7 @@ class NoteService implements INoteService
     {
         return new ServiceResponse(
             true,
-            'Notes',
+            __('ServiceResponse/Eloquent/NoteService.getByDateBetween.success'),
             200,
             Note::where('user_id', $userId)->whereBetween('date', [$startDate, $endDate])->get()
         );
@@ -113,7 +113,7 @@ class NoteService implements INoteService
 
         return new ServiceResponse(
             true,
-            'Note created',
+            __('ServiceResponse/Eloquent/NoteService.create.success'),
             201,
             $note
         );
@@ -143,7 +143,7 @@ class NoteService implements INoteService
 
             return new ServiceResponse(
                 true,
-                'Note updated',
+                __('ServiceResponse/Eloquent/NoteService.update.success'),
                 200,
                 $note
             );
