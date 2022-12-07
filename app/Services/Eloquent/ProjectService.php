@@ -16,7 +16,7 @@ class ProjectService implements IProjectService
     {
         return new ServiceResponse(
             true,
-            '',
+            __('ServiceResponse/Eloquent/ProjectService.getAll.success'),
             200,
             Project::all()
         );
@@ -37,14 +37,14 @@ class ProjectService implements IProjectService
         if ($project) {
             return new ServiceResponse(
                 true,
-                'Project',
+                __('ServiceResponse/Eloquent/ProjectService.getById.exists'),
                 200,
                 $project
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Project not found',
+                __('ServiceResponse/Eloquent/ProjectService.getById.notFound'),
                 404,
                 null
             );
@@ -64,7 +64,7 @@ class ProjectService implements IProjectService
         if ($project->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Project deleted',
+                __('ServiceResponse/Eloquent/ProjectService.delete.success'),
                 200,
                 $project->getData()->delete()
             );
@@ -84,7 +84,7 @@ class ProjectService implements IProjectService
     {
         return new ServiceResponse(
             true,
-            'Projects',
+            __('ServiceResponse/Eloquent/ProjectService.getByCompanyIds.success'),
             200,
             Project::whereIn('company_id', $companyIds)->get()
         );
@@ -131,7 +131,7 @@ class ProjectService implements IProjectService
 
         return new ServiceResponse(
             true,
-            'Projects',
+            __('ServiceResponse/Eloquent/ProjectService.index.success'),
             200,
             [
                 'totalCount' => $projects->count(),
@@ -173,7 +173,7 @@ class ProjectService implements IProjectService
 
         return new ServiceResponse(
             true,
-            'Projects',
+            __('ServiceResponse/Eloquent/ProjectService.getByProjectIds.success'),
             200,
             $projects->get()
         );
@@ -192,7 +192,7 @@ class ProjectService implements IProjectService
         if ($project->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Subtasks',
+                __('ServiceResponse/Eloquent/ProjectService.getSubtasksByProjectId.success'),
                 200,
                 $project->getData()->subtasks()->get()->toArray()
             );
@@ -214,7 +214,7 @@ class ProjectService implements IProjectService
         if ($project->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Subtasks',
+                __('ServiceResponse/Eloquent/ProjectService.getBoardsByProjectId.success'),
                 200,
                 $project->getData()->boards()->with([
                     'tasks' => function ($tasks) {
@@ -245,7 +245,7 @@ class ProjectService implements IProjectService
         if ($project->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Project tasks',
+                __('ServiceResponse/Eloquent/ProjectService.getAllTasks.success'),
                 200,
                 $project->getData()->tasks()->with([
                     'priority'
@@ -269,7 +269,7 @@ class ProjectService implements IProjectService
         if ($project->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Users',
+                __('ServiceResponse/Eloquent/ProjectService.getUsersByProjectId.success'),
                 200,
                 $project->getData()->users
             );
@@ -294,7 +294,7 @@ class ProjectService implements IProjectService
             $project->getData()->users()->sync($userIds);
             return new ServiceResponse(
                 true,
-                'Users',
+                __('ServiceResponse/Eloquent/ProjectService.setUsersByProjectId.success'),
                 200,
                 $project->getData()->users
             );
@@ -323,7 +323,7 @@ class ProjectService implements IProjectService
 
         return new ServiceResponse(
             true,
-            'Subtasks',
+            __('ServiceResponse/Eloquent/ProjectService.getSubtasksByProjectIds.success'),
             200,
             $subtasks
         );
@@ -363,7 +363,7 @@ class ProjectService implements IProjectService
 
         return new ServiceResponse(
             true,
-            'Project created',
+            __('ServiceResponse/Eloquent/ProjectService.create.success'),
             200,
             $project
         );
@@ -402,7 +402,7 @@ class ProjectService implements IProjectService
 
             return new ServiceResponse(
                 true,
-                'Project updated',
+                __('ServiceResponse/Eloquent/ProjectService.update.success'),
                 200,
                 $project->getData()
             );
@@ -430,7 +430,7 @@ class ProjectService implements IProjectService
 
             return new ServiceResponse(
                 true,
-                'Project deleted',
+                __('ServiceResponse/Eloquent/ProjectService.deleteByUser.success'),
                 200,
                 null
             );
