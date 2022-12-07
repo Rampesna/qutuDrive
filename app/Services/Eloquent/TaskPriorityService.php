@@ -15,7 +15,7 @@ class TaskPriorityService implements ITaskPriorityService
     {
         return new ServiceResponse(
             true,
-            'All task priorities',
+            __('ServiceResponse/Eloquent/TaskPriorityService.getAll.success'),
             200,
             TaskPriority::all()
         );
@@ -34,14 +34,14 @@ class TaskPriorityService implements ITaskPriorityService
         if ($taskPriority) {
             return new ServiceResponse(
                 true,
-                'Task priority',
+                __('ServiceResponse/Eloquent/TaskPriorityService.getById.exists'),
                 200,
                 $taskPriority
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Task priority not found',
+                __('ServiceResponse/Eloquent/TaskPriorityService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class TaskPriorityService implements ITaskPriorityService
         if ($taskPriority->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Task priority deleted',
+                __('ServiceResponse/Eloquent/TaskPriorityService.delete.success'),
                 200,
                 $taskPriority->getData()->delete()
             );
