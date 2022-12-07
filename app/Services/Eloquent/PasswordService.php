@@ -15,7 +15,7 @@ class PasswordService implements IPasswordService
     {
         return new ServiceResponse(
             true,
-            'All passwords',
+            __('ServiceResponse/Eloquent/PasswordService.getAll.success'),
             200,
             Password::all()
         );
@@ -34,14 +34,14 @@ class PasswordService implements IPasswordService
         if ($password) {
             return new ServiceResponse(
                 true,
-                'Password',
+                __('ServiceResponse/Eloquent/PasswordService.getById.exists'),
                 200,
                 $password
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Password not found',
+                __('ServiceResponse/Eloquent/PasswordService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class PasswordService implements IPasswordService
         if ($password->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Password deleted',
+                __('ServiceResponse/Eloquent/PasswordService.delete.success'),
                 200,
                 $password->getData()->delete()
             );
@@ -98,7 +98,7 @@ class PasswordService implements IPasswordService
 
         return new ServiceResponse(
             true,
-            'Passwords',
+            __('ServiceResponse/Eloquent/PasswordService.index.success'),
             200,
             [
                 'totalCount' => $passwords->count(),
@@ -141,7 +141,7 @@ class PasswordService implements IPasswordService
 
         return new ServiceResponse(
             true,
-            'Password created',
+            __('ServiceResponse/Eloquent/PasswordService.create.success'),
             201,
             $password
         );
@@ -177,7 +177,7 @@ class PasswordService implements IPasswordService
 
             return new ServiceResponse(
                 true,
-                'Password updated',
+                __('ServiceResponse/Eloquent/PasswordService.update.success'),
                 200,
                 $password
             );
