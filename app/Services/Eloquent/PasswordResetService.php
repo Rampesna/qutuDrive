@@ -16,7 +16,7 @@ class PasswordResetService implements IPasswordResetService
     {
         return new ServiceResponse(
             true,
-            'All password resets',
+            __('ServiceResponse/Eloquent/PasswordResetService.getAll.success'),
             200,
             PasswordReset::all()
         );
@@ -35,14 +35,14 @@ class PasswordResetService implements IPasswordResetService
         if ($passwordReset) {
             return new ServiceResponse(
                 true,
-                'Password reset',
+                __('ServiceResponse/Eloquent/PasswordResetService.getById.exists'),
                 200,
                 $passwordReset
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Password reset not found',
+                __('ServiceResponse/Eloquent/PasswordResetService.getById.notFound'),
                 404,
                 null
             );
@@ -62,7 +62,7 @@ class PasswordResetService implements IPasswordResetService
         if ($passwordReset->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Password reset deleted',
+                __('ServiceResponse/Eloquent/PasswordResetService.delete.success'),
                 200,
                 $passwordReset->getData()->delete()
             );
@@ -84,14 +84,14 @@ class PasswordResetService implements IPasswordResetService
         if ($passwordReset) {
             return new ServiceResponse(
                 true,
-                'Password reset',
+                __('ServiceResponse/Eloquent/PasswordResetService.getByToken.success'),
                 200,
                 $passwordReset
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Password reset not found',
+                __('ServiceResponse/Eloquent/PasswordResetService.getByToken.notFound'),
                 404,
                 null
             );
@@ -119,14 +119,14 @@ class PasswordResetService implements IPasswordResetService
         if ($passwordReset) {
             return new ServiceResponse(
                 true,
-                'Password reset',
+                __('ServiceResponse/Eloquent/PasswordResetService.checkPasswordReset.success'),
                 200,
                 true
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Password reset not found',
+                __('ServiceResponse/Eloquent/PasswordResetService.checkPasswordReset.notFound'),
                 404,
                 false
             );
@@ -152,7 +152,7 @@ class PasswordResetService implements IPasswordResetService
 
         return new ServiceResponse(
             true,
-            'Password reset created',
+            __('ServiceResponse/Eloquent/PasswordResetService.create.success'),
             201,
             $passwordReset
         );
@@ -174,7 +174,7 @@ class PasswordResetService implements IPasswordResetService
 
             return new ServiceResponse(
                 true,
-                'Password reset used',
+                __('ServiceResponse/Eloquent/PasswordResetService.setUsed.success'),
                 200,
                 $passwordReset->getData()
             );
