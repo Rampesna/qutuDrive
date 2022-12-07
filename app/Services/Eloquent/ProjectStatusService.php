@@ -15,7 +15,7 @@ class ProjectStatusService implements IProjectStatusService
     {
         return new ServiceResponse(
             true,
-            'All project statuses',
+            __('ServiceResponse/Eloquent/ProjectStatusService.getAll.success'),
             200,
             ProjectStatus::all()
         );
@@ -34,14 +34,14 @@ class ProjectStatusService implements IProjectStatusService
         if ($projectStatus) {
             return new ServiceResponse(
                 true,
-                'Project status',
+                __('ServiceResponse/Eloquent/ProjectStatusService.getById.exists'),
                 200,
                 $projectStatus
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Project status not found',
+                __('ServiceResponse/Eloquent/ProjectStatusService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class ProjectStatusService implements IProjectStatusService
         if ($projectStatus->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Project status deleted',
+                __('ServiceResponse/Eloquent/ProjectStatusService.delete.success'),
                 200,
                 $projectStatus->getData()->delete()
             );
