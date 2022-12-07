@@ -16,7 +16,7 @@ class SyncKlasorlerService implements ISyncKlasorlerService
     {
         return new ServiceResponse(
             true,
-            'All syncklasorler',
+            __('ServiceResponse/Eloquent/SyncKlasorlerService.getAll.success'),
             200,
             Syncklasorler::all()
         );
@@ -35,14 +35,14 @@ class SyncKlasorlerService implements ISyncKlasorlerService
         if ($syncklasorler) {
             return new ServiceResponse(
                 true,
-                'Syncklasorler',
+                __('ServiceResponse/Eloquent/SyncKlasorlerService.getById.exists'),
                 200,
                 $syncklasorler
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Syncklasorler not found',
+                __('ServiceResponse/Eloquent/SyncKlasorlerService.getById.notFound'),
                 404,
                 null
             );
@@ -62,7 +62,7 @@ class SyncKlasorlerService implements ISyncKlasorlerService
         if ($syncklasorlerResponse->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Syncklasorler deleted',
+                __('ServiceResponse/Eloquent/SyncKlasorlerService.delete.success'),
                 200,
                 $syncklasorlerResponse->getData()->delete()
             );
@@ -84,14 +84,14 @@ class SyncKlasorlerService implements ISyncKlasorlerService
         if ($company) {
             return new ServiceResponse(
                 true,
-                'Syncklasorler',
+                __('ServiceResponse/Eloquent/SyncKlasorlerService.getByCompanyId.success'),
                 200,
                 Syncklasorler::where('FIRMAAPIKEY', $company->APIKEY)->get()
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Company not found',
+                __('ServiceResponse/Eloquent/SyncKlasorlerService.getByCompanyId.companyNotFound'),
                 404,
                 null
             );
