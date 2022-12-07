@@ -15,7 +15,7 @@ class PaketBilgileriService implements IPaketBilgileriService
     {
         return new ServiceResponse(
             true,
-            'All packages',
+            __('ServiceResponse/Eloquent/PaketBilgileriService.getAll.success'),
             200,
             Paketbilgileri::all()
         );
