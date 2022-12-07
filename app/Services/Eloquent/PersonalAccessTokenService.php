@@ -22,14 +22,14 @@ class PersonalAccessTokenService implements IPersonalAccessTokenService
         if ($personalAccessToken) {
             return new ServiceResponse(
                 true,
-                'Personal access token',
+                __('ServiceResponse/Eloquent/PersonalAccessTokenService.findToken.success'),
                 200,
                 $personalAccessToken
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Personal access token not found',
+                __('ServiceResponse/Eloquent/PersonalAccessTokenService.findToken.notFound'),
                 404,
                 null
             );
