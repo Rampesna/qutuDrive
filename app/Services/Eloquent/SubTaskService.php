@@ -15,7 +15,7 @@ class SubTaskService implements ISubTaskService
     {
         return new ServiceResponse(
             true,
-            'All subTasks',
+            __('ServiceResponse/Eloquent/SubTaskService.getAll.success'),
             200,
             SubTask::all()
         );
@@ -34,14 +34,14 @@ class SubTaskService implements ISubTaskService
         if ($subTask) {
             return new ServiceResponse(
                 true,
-                'SubTask',
+                __('ServiceResponse/Eloquent/SubTaskService.getById.exists'),
                 200,
                 $subTask
             );
         } else {
             return new ServiceResponse(
                 false,
-                'SubTask not found',
+                __('ServiceResponse/Eloquent/SubTaskService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class SubTaskService implements ISubTaskService
         if ($subTask->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'SubTask deleted',
+                __('ServiceResponse/Eloquent/SubTaskService.delete.success'),
                 200,
                 $subTask->getData()->delete()
             );
@@ -81,7 +81,7 @@ class SubTaskService implements ISubTaskService
     {
         return new ServiceResponse(
             true,
-            'SubTasks',
+            __('ServiceResponse/Eloquent/SubTaskService.getByProjectId.success'),
             200,
             SubTask::where('project_id', $projectId)->get()
         );
@@ -98,7 +98,7 @@ class SubTaskService implements ISubTaskService
     {
         return new ServiceResponse(
             true,
-            'SubTasks',
+            __('ServiceResponse/Eloquent/SubTaskService.getByProjectIds.success'),
             200,
             SubTask::whereIn('project_id', $projectIds)->get()
         );
@@ -124,7 +124,7 @@ class SubTaskService implements ISubTaskService
 
         return new ServiceResponse(
             true,
-            'SubTask created',
+            __('ServiceResponse/Eloquent/SubTaskService.create.success'),
             201,
             $subTask
         );
@@ -148,7 +148,7 @@ class SubTaskService implements ISubTaskService
 
             return new ServiceResponse(
                 true,
-                'SubTask updated',
+                __('ServiceResponse/Eloquent/SubTaskService.update.success'),
                 200,
                 $subTask->getData()
             );
@@ -175,7 +175,7 @@ class SubTaskService implements ISubTaskService
 
             return new ServiceResponse(
                 true,
-                'SubTask updated',
+                __('ServiceResponse/Eloquent/SubTaskService.setChecked.success'),
                 200,
                 $subTask->getData()
             );
