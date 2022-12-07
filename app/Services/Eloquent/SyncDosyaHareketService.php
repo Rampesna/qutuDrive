@@ -15,7 +15,7 @@ class SyncDosyaHareketService implements ISyncDosyaHareketService
     {
         return new ServiceResponse(
             true,
-            'All Syncdosyahareket',
+            __('ServiceResponse/Eloquent/SyncDosyaHareketService.getAll.success'),
             200,
             Syncdosyahareket::all()
         );
@@ -34,14 +34,14 @@ class SyncDosyaHareketService implements ISyncDosyaHareketService
         if ($syncklasorler) {
             return new ServiceResponse(
                 true,
-                'Syncdosyahareket',
+                __('ServiceResponse/Eloquent/SyncDosyaHareketService.getById.exists'),
                 200,
                 $syncklasorler
             );
         } else {
             return new ServiceResponse(
                 false,
-                'Syncdosyahareket not found',
+                __('ServiceResponse/Eloquent/SyncDosyaHareketService.getById.notFound'),
                 404,
                 null
             );
@@ -61,7 +61,7 @@ class SyncDosyaHareketService implements ISyncDosyaHareketService
         if ($syncklasorlerResponse->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Syncdosyahareket deleted',
+                __('ServiceResponse/Eloquent/SyncDosyaHareketService.delete.success'),
                 200,
                 $syncklasorlerResponse->getData()->delete()
             );
@@ -81,7 +81,7 @@ class SyncDosyaHareketService implements ISyncDosyaHareketService
     {
         return new ServiceResponse(
             true,
-            'Syncdosyahareket',
+            __('ServiceResponse/Eloquent/SyncDosyaHareketService.getBySunucuKlasorId.success'),
             200,
             Syncdosyahareket::where('SUNUCUKLASORLERID', $sunucuKlasorId)->get()
         );
