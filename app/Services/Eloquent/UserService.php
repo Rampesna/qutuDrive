@@ -17,7 +17,7 @@ class UserService implements IUserService
     {
         return new ServiceResponse(
             true,
-            'All users',
+            __('ServiceResponse/Eloquent/UserService.getAll.success'),
             200,
             Kullanicilar::all()
         );
@@ -36,14 +36,14 @@ class UserService implements IUserService
         if ($user) {
             return new ServiceResponse(
                 true,
-                'User',
+                __('ServiceResponse/Eloquent/UserService.getById.exists'),
                 200,
                 $user
             );
         } else {
             return new ServiceResponse(
                 false,
-                'User not found',
+                __('ServiceResponse/Eloquent/UserService.getById.notFound'),
                 404,
                 null
             );
@@ -72,14 +72,14 @@ class UserService implements IUserService
         if ($user) {
             return new ServiceResponse(
                 true,
-                'User',
+                __('ServiceResponse/Eloquent/UserService.getByUsername.success'),
                 200,
                 $user
             );
         } else {
             return new ServiceResponse(
                 false,
-                'User not found',
+                __('ServiceResponse/Eloquent/UserService.getByUsername.notFound'),
                 404,
                 null
             );
@@ -108,14 +108,14 @@ class UserService implements IUserService
         if ($user) {
             return new ServiceResponse(
                 true,
-                'User',
+                __('ServiceResponse/Eloquent/UserService.getByEmail.success'),
                 200,
                 $user
             );
         } else {
             return new ServiceResponse(
                 false,
-                'User not found',
+                __('ServiceResponse/Eloquent/UserService.getByEmail.notFound'),
                 404,
                 null
             );
@@ -135,14 +135,14 @@ class UserService implements IUserService
         if ($user) {
             return new ServiceResponse(
                 true,
-                'User',
+                __('ServiceResponse/Eloquent/UserService.getProfile.notFound'),
                 200,
                 $user
             );
         } else {
             return new ServiceResponse(
                 false,
-                'User not found',
+                __('ServiceResponse/Eloquent/UserService.getProfile.notFound'),
                 404,
                 null
             );
@@ -162,7 +162,7 @@ class UserService implements IUserService
         if ($user->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'User companies',
+                __('ServiceResponse/Eloquent/UserService.getCompanies.success'),
                 200,
                 $user->getData()->companies
             );
@@ -186,7 +186,7 @@ class UserService implements IUserService
         if ($user->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'User company',
+                __('ServiceResponse/Eloquent/UserService.checkUserCompany.success'),
                 200,
                 $user->getData()->companies->contains($companyId)
             );
@@ -213,14 +213,14 @@ class UserService implements IUserService
                 $user->getData()->companies()->attach($company);
                 return new ServiceResponse(
                     true,
-                    'User company attached',
+                    __('ServiceResponse/Eloquent/UserService.attachUserCompany.success'),
                     200,
                     $user->getData()->companies
                 );
             } else {
                 return new ServiceResponse(
                     false,
-                    'Company not found',
+                    __('ServiceResponse/Eloquent/UserService.attachUserCompany.companyNotFound'),
                     404,
                     null
                 );
@@ -248,14 +248,14 @@ class UserService implements IUserService
                 $user->getData()->companies()->detach($company);
                 return new ServiceResponse(
                     true,
-                    'User company detached',
+                    __('ServiceResponse/Eloquent/UserService.detachUserCompany.success'),
                     200,
                     $user->getData()->companies
                 );
             } else {
                 return new ServiceResponse(
                     false,
-                    'Company not found',
+                    __('ServiceResponse/Eloquent/UserService.detachUserCompany.companyNotFound'),
                     404,
                     null
                 );
@@ -281,14 +281,14 @@ class UserService implements IUserService
             if ($user->getData()->KULLANICISIFRE == $password) {
                 return new ServiceResponse(
                     true,
-                    'Password is correct',
+                    __('ServiceResponse/Eloquent/UserService.checkPassword.success'),
                     200,
                     null
                 );
             } else {
                 return new ServiceResponse(
                     false,
-                    'Password is incorrect',
+                    __('ServiceResponse/Eloquent/UserService.checkPassword.incorrect'),
                     400,
                     null
                 );
@@ -314,7 +314,7 @@ class UserService implements IUserService
             $user->getData()->companies()->sync($companyIds);
             return new ServiceResponse(
                 true,
-                'User companies set',
+                __('ServiceResponse/Eloquent/UserService.setCompanies.success'),
                 200,
                 $user->getData()
             );
@@ -365,7 +365,7 @@ class UserService implements IUserService
 
         return new ServiceResponse(
             true,
-            'User created',
+            __('ServiceResponse/Eloquent/UserService.create.success'),
             201,
             $user
         );
@@ -389,14 +389,14 @@ class UserService implements IUserService
 
             return new ServiceResponse(
                 true,
-                'User api token generated',
+                __('ServiceResponse/Eloquent/UserService.generateSanctumToken.success'),
                 200,
                 $token
             );
         } else {
             return new ServiceResponse(
                 false,
-                'User not found',
+                __('ServiceResponse/Eloquent/UserService.generateSanctumToken.notFound'),
                 404,
                 null
             );
@@ -433,7 +433,7 @@ class UserService implements IUserService
 
         return new ServiceResponse(
             true,
-            'Users',
+            __('ServiceResponse/Eloquent/UserService.getByCompanyId.success'),
             200,
             [
                 'totalCount' => $users->count(),
@@ -485,7 +485,7 @@ class UserService implements IUserService
 
             return new ServiceResponse(
                 true,
-                'User updated',
+                __('ServiceResponse/Eloquent/UserService.update.success'),
                 200,
                 $user->getData()
             );
@@ -512,7 +512,7 @@ class UserService implements IUserService
 
             return new ServiceResponse(
                 true,
-                'User password updated',
+                __('ServiceResponse/Eloquent/UserService.updatePassword.success'),
                 200,
                 $user->getData()
             );
@@ -536,7 +536,7 @@ class UserService implements IUserService
 
             return new ServiceResponse(
                 true,
-                'User deleted',
+                __('ServiceResponse/Eloquent/UserService.delete.success'),
                 200,
                 $user->getData()
             );
