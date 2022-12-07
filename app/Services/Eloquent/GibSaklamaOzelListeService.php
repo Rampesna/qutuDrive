@@ -15,7 +15,7 @@ class GibSaklamaOzelListeService implements IGibSaklamaOzelListeService
     {
         return new ServiceResponse(
             true,
-            'All gib backup special list',
+            __('ServiceResponse/Eloquent/GibSaklamaOzelListeService.getAll.success'),
             200,
             Gibsaklamaozelliste::all()
         );
