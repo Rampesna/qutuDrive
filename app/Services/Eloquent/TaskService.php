@@ -15,7 +15,7 @@ class TaskService implements ITaskService
     {
         return new ServiceResponse(
             true,
-            'All tasks',
+            __('ServiceResponse/Eloquent/TaskService.getAll.success'),
             200,
             Task::all()
         );
@@ -34,14 +34,14 @@ class TaskService implements ITaskService
         if ($task) {
             return new ServiceResponse(
                 true,
-                'Task',
+                __('ServiceResponse/Eloquent/TaskService.getById.exists'),
                 200,
                 $task
             );
         }
         return new ServiceResponse(
             false,
-            'Task not found',
+            __('ServiceResponse/Eloquent/TaskService.getById.notFound'),
             404,
             null
         );
@@ -60,7 +60,7 @@ class TaskService implements ITaskService
         if ($task->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Task deleted',
+                __('ServiceResponse/Eloquent/TaskService.delete.success'),
                 200,
                 $task->getData()->delete()
             );
@@ -89,7 +89,7 @@ class TaskService implements ITaskService
 
         return new ServiceResponse(
             true,
-            'Task created',
+            __('ServiceResponse/Eloquent/TaskService.create.success'),
             201,
             $task
         );
@@ -112,7 +112,7 @@ class TaskService implements ITaskService
             $task->getData()->save();
             return new ServiceResponse(
                 true,
-                'Task updated',
+                __('ServiceResponse/Eloquent/TaskService.updateBoard.success'),
                 200,
                 $task->getData()
             );
@@ -140,7 +140,7 @@ class TaskService implements ITaskService
 
         return new ServiceResponse(
             true,
-            'Task orders updated',
+            __('ServiceResponse/Eloquent/TaskService.updateOrder.success'),
             200,
             null
         );
@@ -165,7 +165,7 @@ class TaskService implements ITaskService
             $task->getData()->save();
             return new ServiceResponse(
                 true,
-                'Task updated',
+                __('ServiceResponse/Eloquent/TaskService.updateByParameters.success'),
                 200,
                 $task->getData()
             );
@@ -187,7 +187,7 @@ class TaskService implements ITaskService
         if ($task->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Task files',
+                __('ServiceResponse/Eloquent/TaskService.getFilesById.success'),
                 200,
                 $task->getData()->files
             );
@@ -209,7 +209,7 @@ class TaskService implements ITaskService
         if ($task->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Task sub tasks',
+                __('ServiceResponse/Eloquent/TaskService.getSubTasksById.success'),
                 200,
                 $task->getData()->subTasks
             );
@@ -231,7 +231,7 @@ class TaskService implements ITaskService
         if ($task->isSuccess()) {
             return new ServiceResponse(
                 true,
-                'Task comments',
+                __('ServiceResponse/Eloquent/TaskService.getCommentsById.success'),
                 200,
                 $task->getData()->comments()->with([
                     'creator'
