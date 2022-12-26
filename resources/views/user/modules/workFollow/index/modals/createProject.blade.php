@@ -14,42 +14,42 @@
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Proje Oluştur</h1>
+                        <h1 class="mb-3">{{ __('user/modules/workFollow.index.modals.createProject.modalTitle') }}</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_project_company_id" class="font-weight-bolder">Firma Seçimi</label>
+                                <label for="create_project_company_id" class="font-weight-bolder">{{ __('user/modules/workFollow.index.modals.createProject.companySelect') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <select id="create_project_company_id" class="form-select form-select-solid select2Input" data-control="select2" data-placeholder="Firma Seçimi"></select>
+                                    <select id="create_project_company_id" class="form-select form-select-solid select2Input" data-control="select2" data-placeholder="{{ __('user/modules/workFollow.index.modals.createProject.companySelect') }}"></select>
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_project_user_ids" class="font-weight-bolder">Proje Kullanıcıları</label>
+                                <label for="create_project_user_ids" class="font-weight-bolder">{{ __('user/modules/workFollow.index.modals.createProject.projectUsers') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <select id="create_project_user_ids" class="form-select form-select-solid select2Input" data-control="select2" data-placeholder="Proje Kullanıcıları" multiple></select>
+                                    <select id="create_project_user_ids" class="form-select form-select-solid select2Input" data-control="select2" data-placeholder="{{ __('user/modules/workFollow.index.modals.createProject.projectUsers') }}" multiple></select>
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_project_name" class="font-weight-bolder">Proje Adı</label>
+                                <label for="create_project_name" class="font-weight-bolder">{{ __('user/modules/workFollow.index.modals.createProject.projectName') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <input id="create_project_name" type="text" class="form-control form-control-solid" placeholder="Proje Adı">
+                                    <input id="create_project_name" type="text" class="form-control form-control-solid" placeholder="{{ __('user/modules/workFollow.index.modals.createProject.projectName') }}">
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_project_start_date" class="font-weight-bolder">Başlangıç Tarihi</label>
+                                <label for="create_project_start_date" class="font-weight-bolder">{{ __('user/modules/workFollow.index.modals.createProject.startDate') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
@@ -59,7 +59,7 @@
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_project_end_date" class="font-weight-bolder">Bitiş Tarihi</label>
+                                <label for="create_project_end_date" class="font-weight-bolder">{{ __('user/modules/workFollow.index.modals.createProject.endDate') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
@@ -69,18 +69,18 @@
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_project_description" class="font-weight-bolder">Açıklamalar</label>
+                                <label for="create_project_description" class="font-weight-bolder">{{ __('user/modules/workFollow.index.modals.createProject.description') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <textarea id="create_project_description" class="form-control form-control-solid" rows="4"></textarea>
+                                    <textarea id="create_project_description" class="form-control form-control-solid" rows="4" placeholder="{{ __('user/modules/workFollow.index.modals.createProject.description') }}"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
-                        <button type="button" class="btn btn-success" id="CreateProjectButton">Oluştur</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">{{ __('user/modules/workFollow.index.modals.createProject.cancelButton') }}</button>
+                        <button type="button" class="btn btn-success" id="CreateProjectButton">{{ __('user/modules/workFollow.index.modals.createProject.createButton') }}</button>
                     </div>
                 </div>
             </div>

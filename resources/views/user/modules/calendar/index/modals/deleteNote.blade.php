@@ -15,16 +15,16 @@
                 <input type="hidden" id="update_shift_clicked_date">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Notu Sil</h1>
+                        <h1 class="mb-3">{{ __('user/modules/calendar.index.modals.deleteNote.modalTitle') }}</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <p class="text-center">
-                            Bu notu silmek istediğinize emin misiniz?
+                            {{ __('user/modules/calendar.index.modals.deleteNote.modalText') }}
                         </p>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
-                        <button type="button" class="btn btn-danger" id="DeleteNoteButton">Sil</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">{{ __('user/modules/calendar.index.modals.deleteNote.cancelButton') }}</button>
+                        <button type="button" class="btn btn-danger" id="DeleteNoteButton">{{ __('user/modules/calendar.index.modals.deleteNote.deleteButton') }}</button>
                     </div>
                 </div>
             </div>

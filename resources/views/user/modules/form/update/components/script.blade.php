@@ -4,6 +4,17 @@
         $('#loader').hide();
     });
 
+    var answerTypesShortAnswer = '{{ __('user/modules/form.update.questionTypes.shortAnswer') }}';
+    var answerTypesParagraph = '{{ __('user/modules/form.update.questionTypes.paragraph') }}';
+    var answerTypesRadios = '{{ __('user/modules/form.update.questionTypes.radios') }}';
+    var answerTypesCheckboxes = '{{ __('user/modules/form.update.questionTypes.checkboxes') }}';
+    var answerTypesSelect = '{{ __('user/modules/form.update.questionTypes.select') }}';
+
+    var requiredQuestion = '{{ __('user/modules/form.update.requiredQuestion') }}';
+    var addNewOption = '{{ __('user/modules/form.update.addNewOption') }}';
+    var newQuestionTitlePlaceholder = '{{ __('user/modules/form.update.newQuestionTitlePlaceholder') }}';
+    var newOptionPlaceholder = '{{ __('user/modules/form.update.newOptionPlaceholder') }}';
+
     var SaveFormButton = $('#SaveFormButton');
     var AddNewQuestionButton = $('#AddNewQuestionButton');
     var ShareFormButton = $('#ShareFormButton');
@@ -78,11 +89,11 @@
                                             </div>
                                             <div class="col-xl-3">
                                                 <select class="form-select nonBorder select2Input oldQuestionTypeSelector" data-control="select2" data-minimum-results-for-search="Infinity" aria-label="Soru Türü" data-placeholder="Soru Türü" disabled>
-                                                    <option ${parseInt(question.type_id) === 1 ? `selected` : ``} value="1" data-type="single">Kısa Cevap</option>
-                                                    <option ${parseInt(question.type_id) === 2 ? `selected` : ``} value="2" data-type="single">Paragraf</option>
-                                                    <option ${parseInt(question.type_id) === 3 ? `selected` : ``} value="3" data-type="multi">Çoktan Seçmeli</option>
-                                                    <option ${parseInt(question.type_id) === 4 ? `selected` : ``} value="4" data-type="multi">Onay Kutuları</option>
-                                                    <option ${parseInt(question.type_id) === 5 ? `selected` : ``} value="5" data-type="multi">Açılır Menü</option>
+                                                    <option ${parseInt(question.type_id) === 1 ? `selected` : ``} value="1" data-type="single">${answerTypesShortAnswer}</option>
+                                                    <option ${parseInt(question.type_id) === 2 ? `selected` : ``} value="2" data-type="single">${answerTypesParagraph}</option>
+                                                    <option ${parseInt(question.type_id) === 3 ? `selected` : ``} value="3" data-type="multi">${answerTypesRadios}</option>
+                                                    <option ${parseInt(question.type_id) === 4 ? `selected` : ``} value="4" data-type="multi">${answerTypesCheckboxes}</option>
+                                                    <option ${parseInt(question.type_id) === 5 ? `selected` : ``} value="5" data-type="multi">${answerTypesSelect}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -98,7 +109,7 @@
                                                 <div class="form-check form-switch form-check-custom form-check-solid">
                                                     <input ${question.required === 1 ? `checked` : ``} class="form-check-input" type="checkbox" value="" id="flexSwitchDefault" disabled />
                                                     <label class="form-check-label" for="flexSwitchDefault">
-                                                        Zorunlu Alan
+                                                        ${requiredQuestion}
                                                     </label>
                                                 </div>
                                             </div>
@@ -143,16 +154,16 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-xl-9">
-                            <input type="text" class="form-control nonBorder" placeholder="Soru Başlığı" aria-label="Soru Başlığı">
+                            <input type="text" class="form-control nonBorder" placeholder="${newQuestionTitlePlaceholder}" aria-label="${newQuestionTitlePlaceholder}">
                         </div>
                         <div class="col-xl-3">
                             <select class="form-select nonBorder select2Input questionTypeSelector" data-control="select2" data-minimum-results-for-search="Infinity" aria-label="Soru Türü" data-placeholder="Soru Türü">
                                 <option value="" disabled hidden selected></option>
-                                    <option value="1" data-type="single">Kısa Cevap</option>
-                                    <option value="2" data-type="single">Paragraf</option>
-                                    <option value="3" data-type="multi">Çoktan Seçmeli</option>
-                                    <option value="4" data-type="multi">Onay Kutuları</option>
-                                    <option value="5" data-type="multi">Açılır Menü</option>
+                                    <option value="1" data-type="single">${answerTypesShortAnswer}</option>
+                                    <option value="2" data-type="single">${answerTypesParagraph}</option>
+                                    <option value="3" data-type="multi">${answerTypesRadios}</option>
+                                    <option value="4" data-type="multi">${answerTypesCheckboxes}</option>
+                                    <option value="5" data-type="multi">${answerTypesSelect}</option>
                             </select>
                         </div>
                     </div>
@@ -163,7 +174,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-12 mb-5">
-                                <button class="btn btn-sm btn-secondary addNewQuestionAnswerButton">Yeni Seçenek Ekle</button>
+                                <button class="btn btn-sm btn-secondary addNewQuestionAnswerButton">${addNewOption}</button>
                             </div>
                         </div>
                     </div>
@@ -173,7 +184,7 @@
                             <div class="form-check form-switch form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="" id="flexSwitchDefault"/>
                                 <label class="form-check-label" for="flexSwitchDefault">
-                                    Zorunlu Alan
+                                    ${requiredQuestion}
                                 </label>
                             </div>
                         </div>
@@ -209,7 +220,7 @@
             <div class="col-xl-12 questionAnswerOptionDiv">
                 <div class="row">
                     <div class="col-xl-7 mb-3">
-                        <input type="text" class="form-control nonBorder" placeholder="Seçeneği Giriniz" aria-label="Seçeneği Giriniz">
+                        <input type="text" class="form-control nonBorder" placeholder="${newOptionPlaceholder}" aria-label="${newOptionPlaceholder}">
                     </div>
                     <div class="col-xl-1 mb-3">
                         <i class="fa fa-times text-hover-danger cursor-pointer mt-6 questionAnswerDeleteIcon"></i>

@@ -23,14 +23,14 @@
                     <div class="row">
                         <div class="col-xl-10 mb-5">
                             <div class="form-group">
-                                <input id="keyword" type="text" class="form-control form-control-solid filterInput" placeholder="Arayın..." aria-label="Arayın...">
+                                <input id="keyword" type="text" class="form-control form-control-solid filterInput" placeholder="{{ __('user/modules/databaseBackup.index.search.placeholder') }}" aria-label="{{ __('user/modules/databaseBackup.index.search.placeholder') }}">
                             </div>
                         </div>
                         <div class="col-xl-2 mb-5">
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="form-group d-grid">
-                                        <button class="btn btn-primary" id="FilterButton">Ara</button>
+                                        <button class="btn btn-primary" id="FilterButton">{{ __('user/modules/databaseBackup.index.search.button') }}</button>
                                     </div>
                                 </div>
                             </div>

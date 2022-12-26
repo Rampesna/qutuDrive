@@ -4,6 +4,11 @@
         $('#loader').hide();
     });
 
+    var openFormText = '{{ __('user/modules/form.index.menu.open') }}';
+    var resultsFormText = '{{ __('user/modules/form.index.menu.results') }}';
+    var renameFormText = '{{ __('user/modules/form.index.menu.rename') }}';
+    var deleteFormText = '{{ __('user/modules/form.index.menu.delete') }}';
+
     var forms = $('#forms');
 
     var page = $('#page');
@@ -103,11 +108,11 @@
                                     <i class="fas fa-th"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="${form.id}_Dropdown" style="width: 175px">
-                                    <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="openForm(${form.id})" title="Aç"><i class="fas fa-eye me-2 text-info"></i> <span class="text-dark">Aç</span></a>
-                                    <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="reportForm(${form.id})" title="Sonuçlar"><i class="fas fa-chart-line me-2 text-success"></i> <span class="text-dark">Sonuçlar</span></a>
-                                    <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="updateForm(${form.id})" title="Yeniden Adlandır"><i class="fas fa-edit me-2 text-primary"></i> <span class="text-dark">Yeniden Adlandır</span></a>
+                                    <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="openForm(${form.id})" title="${openFormText}"><i class="fas fa-eye me-2 text-info"></i> <span class="text-dark">${openFormText}</span></a>
+                                    <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="reportForm(${form.id})" title="${resultsFormText}"><i class="fas fa-chart-line me-2 text-success"></i> <span class="text-dark">${resultsFormText}</span></a>
+                                    <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="updateForm(${form.id})" title="${renameFormText}"><i class="fas fa-edit me-2 text-primary"></i> <span class="text-dark">${renameFormText}</span></a>
                                     <hr class="text-muted">
-                                    <a class="dropdown-item cursor-pointer py-3 ps-6" onclick="deleteForm(${form.id})" title="Sil"><i class="fas fa-trash-alt me-3 text-danger"></i> <span class="text-dark">Sil</span></a>
+                                    <a class="dropdown-item cursor-pointer py-3 ps-6" onclick="deleteForm(${form.id})" title="${deleteFormText}"><i class="fas fa-trash-alt me-3 text-danger"></i> <span class="text-dark">${deleteFormText}</span></a>
                                 </div>
                             </div>
                         </td>

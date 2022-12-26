@@ -20,6 +20,7 @@
     @include('user.modules.dashboard.index.modals.renameDirectory')
     @include('user.modules.dashboard.index.modals.deleteDirectory')
     @include('user.modules.dashboard.index.modals.deleteFile')
+    @include('user.modules.dashboard.index.modals.uploadFile')
 
     @include('user.modules.dashboard.index.modals.renameFile')
 
@@ -34,15 +35,15 @@
                     <div id="historyRow"></div>
                 </div>
                 <div class="card-toolbar">
-                    <button class="btn btn-sm btn-primary">
-                        <i class="fa fa-file-upload"></i> Dosya Yükle
+                    <button onclick="uploadFileTransaction()" class="btn btn-sm btn-primary">
+                        <i class="fa fa-file-upload"></i> {{ __('user/modules/dashboard.index.fileUploadButton') }}
                     </button>
                 </div>
             </div>
             <div class="card-body">
                 <div class="row mb-5">
                     <div class="col-xl-12">
-                        <span class="fw-bolder text-gray-700">Klasörler</span>
+                        <span class="fw-bolder text-gray-700">{{ __('user/modules/dashboard.index.directories') }}</span>
                     </div>
                 </div>
                 <div class="row" id="directoriesRow">
@@ -51,7 +52,7 @@
                 <hr class="text-muted">
                 <div class="row mb-5">
                     <div class="col-xl-12">
-                        <span class="fw-bolder text-gray-700">Dosyalar</span>
+                        <span class="fw-bolder text-gray-700">{{ __('user/modules/dashboard.index.files') }}</span>
                     </div>
                 </div>
                 <div class="row" id="filesRow">
@@ -60,9 +61,9 @@
             </div>
             <div class="card-footer" id="panelPortletFooter">
                 <span id="countOfDirectories" class="fw-bolder text-gray-700">0</span>
-                <span class="fw-bolder text-gray-600">Klasör</span>,
+                <span class="fw-bolder text-gray-600">{{ __('user/modules/dashboard.index.directoryCount') }}</span>,
                 <span id="countOfFiles" class="fw-bolder text-gray-700">0</span>
-                <span class="fw-bolder text-gray-600">Dosya</span>
+                <span class="fw-bolder text-gray-600">{{ __('user/modules/dashboard.index.fileCount') }}</span>
             </div>
         </div>
     </div>

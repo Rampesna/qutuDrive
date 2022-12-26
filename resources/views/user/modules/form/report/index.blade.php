@@ -19,10 +19,9 @@
             <div id="formSubmits"></div>
         </div>
     </div>
-    <hr class="text-muted">
     <div class="row">
         <div class="col-xl-12 text-end">
-            <button type="button" class="btn btn-sm btn-primary mt-6" id="DownloadExcelButton" style="display: none">Excel İndir</button>
+            <button type="button" class="btn btn-sm btn-primary mt-6" id="DownloadExcelButton" style="display: none">{{ __('user/modules/form.report.downloadExcelButton') }}</button>
         </div>
     </div>
 

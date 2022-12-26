@@ -25,19 +25,19 @@
                     <div class="row">
                         <div class="col-xl-8 mb-5">
                             <div class="form-group">
-                                <input id="keyword" type="text" class="form-control form-control-solid filterInput" placeholder="Arayın..." aria-label="Arayın...">
+                                <input id="keyword" type="text" class="form-control form-control-solid filterInput" placeholder="{{ __('user/modules/form.index.searching.placeholder') }}" aria-label="{{ __('user/modules/form.index.searching.placeholder') }}">
                             </div>
                         </div>
                         <div class="col-xl-4 mb-5">
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="form-group d-grid">
-                                        <button class="btn btn-primary" id="FilterButton">Ara</button>
+                                        <button class="btn btn-primary" id="FilterButton">{{ __('user/modules/form.index.searching.searchButton') }}</button>
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="form-group d-grid">
-                                        <button class="btn btn-secondary" id="ClearFilterButton">Temizle</button>
+                                        <button class="btn btn-secondary" id="ClearFilterButton">{{ __('user/modules/form.index.searching.clearButton') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
         <div class="col-xl-3 mb-5 text-end">
             <div class="row">
                 <div class="col-xl-12 d-grid">
-                    <button class="btn btn-primary" onclick="createForm()">Yeni Form Oluştur</button>
+                    <button class="btn btn-primary" onclick="createForm()">{{ __('user/modules/form.index.createNewFormButton') }}</button>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
                                         <option value="10">10</option>
                                         <option value="25">25</option>
                                         <option value="50">50</option>
-                                        <option value="-1">Tümü</option>
+                                        <option value="-1">{{ __('user/modules/form.index.table.all') }}</option>
                                     </select>
                                 </label>
                             </div>
@@ -89,8 +89,8 @@
                     <table class="table align-middle table-row-dashed fs-6 gy-5">
                         <thead>
                         <tr class="text-start text-dark fw-bolder fs-7 gs-0">
-                            <th class="w-50px">#</th>
-                            <th class="">Form Adı</th>
+                            <th class="w-50px">{{ __('user/modules/form.index.table.id') }}</th>
+                            <th class="">{{ __('user/modules/form.index.table.name') }}</th>
                         </tr>
                         </thead>
                         <tbody class="fw-bold text-gray-600" id="forms"></tbody>

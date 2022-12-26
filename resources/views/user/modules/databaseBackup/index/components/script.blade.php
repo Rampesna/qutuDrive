@@ -27,12 +27,16 @@
             success: function (response) {
                 var fileUploadSvg = `{{ asset('assets/media/svg/files/upload.svg') }}`;
                 var fileSvg = `{{ asset('assets/media/icons/duotune/files/fil003.svg') }}`;
+
+                var newFileTitle = '{{ __('user/modules/databaseBackup.index.newFile.title') }}';
+                var newFileClickForUpload = '{{ __('user/modules/databaseBackup.index.newFile.clickForUpload') }}';
+
                 filesRow.empty().append(`
                 <div class="col-xl-2 mb-5">
                     <div class="card h-100 flex-center border-dashed p-8 cursor-pointer" id="fileUploadArea">
                         <img src="${fileUploadSvg}" class="mb-8" alt="" />
-                        <a class="font-weight-bolder text-dark-75 mb-2">Yeni Dosya</a>
-                        <div class="fs-7 fw-bold text-gray-400 mt-auto">Yüklemek İçin Tıklayın</div>
+                        <a class="font-weight-bolder text-dark-75 mb-2">${newFileTitle}</a>
+                        <div class="fs-7 fw-bold text-gray-400 mt-auto">${newFileClickForUpload}</div>
                     </div>
                 </div>
                 `);

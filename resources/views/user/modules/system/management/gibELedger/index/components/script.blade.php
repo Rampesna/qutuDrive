@@ -26,6 +26,10 @@
 
     var gibSaklamaOzelListeDiv = $('#gibSaklamaOzelListe');
 
+    function createGibSaklamaOzelListe() {
+
+    }
+
     $(document).ready(function () {
         var source = {
             localdata: [],

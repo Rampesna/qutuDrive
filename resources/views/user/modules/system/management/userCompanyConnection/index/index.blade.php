@@ -14,6 +14,10 @@
 
 @section('content')
 
+    @include('user.modules.system.management.userCompanyConnection.index.modals.users')
+    @include('user.modules.system.management.userCompanyConnection.index.modals.companies')
+    @include('user.modules.system.management.userCompanyConnection.index.modals.confirmConnection')
+
     <input type="hidden" id="selected_user_row_index">
     <input type="hidden" id="selected_user_id">
 
@@ -21,20 +25,28 @@
     <input type="hidden" id="selected_company_id">
 
     <div class="row mb-3">
-        <div class="col-xl-12">
-            <button class="btn btn-success" id="ConnectButton">Yeni Bağlantı Ekle</button>
+        <div class="col-xl-6">
+            <label class="ms-2 fs-3" for="userSelection">Kullanıcı Seçimi</label>
+            <div class="input-group">
+                <input id="userSelection" type="text" class="form-control" readonly>
+                <button class="btn btn-icon btn-primary" onclick="usersModal()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <label class="ms-2 fs-3" for="companySelection">Firma Seçimi</label>
+            <div class="input-group">
+                <input id="companySelection" type="text" class="form-control" readonly>
+                <button class="btn btn-icon btn-primary" onclick="companiesModal()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
         </div>
     </div>
-    <div class="row mb-5">
-        <div class="col-xl-6">
-            <div id="users" class="text-center">
-                <i class="fa fa-spinner fa-spin"></i>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <div id="companies" class="text-center">
-                <i class="fa fa-spinner fa-spin"></i>
-            </div>
+    <div class="row mb-3">
+        <div class="col-xl-12 text-end">
+            <button class="btn btn-success" id="ConnectButton">Yeni Bağlantı Ekle</button>
         </div>
     </div>
 

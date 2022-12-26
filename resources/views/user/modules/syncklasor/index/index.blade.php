@@ -25,7 +25,7 @@
                 </div>
                 <div class="card-toolbar">
                     <button class="btn btn-sm btn-primary">
-                        <i class="fa fa-file-upload"></i> Dosya Yükle
+                        <i class="fa fa-file-upload"></i> {{ __('user/modules/syncklasor.index.uploadFile') }}
                     </button>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div id="devicesArea">
                     <div class="row mb-5">
                         <div class="col-xl-12">
-                            <span class="fw-bolder text-gray-700">Cihazlarım</span>
+                            <span class="fw-bolder text-gray-700">{{ __('user/modules/syncklasor.index.myDevices') }}</span>
                         </div>
                     </div>
                     <div class="row" id="devicesRow">
@@ -43,7 +43,7 @@
                 <div id="filesArea" style="display: none">
                     <div class="row mb-5">
                         <div class="col-xl-12">
-                            <span class="fw-bolder text-gray-700">Dosyalar</span>
+                            <span class="fw-bolder text-gray-700">{{ __('user/modules/syncklasor.index.files') }}</span>
                         </div>
                     </div>
                     <div class="row" id="filesRow">

@@ -23,26 +23,26 @@
                     <div class="row">
                         <div class="col-xl-9 mb-5">
                             <div class="form-group">
-                                <label for="keyword">Proje Adı</label>
-                                <input id="keyword" type="text" class="form-control form-control-solid filterInput" placeholder="Personel Adı">
+                                <label for="keyword">{{ __('user/modules/workFollow.index.searching.projectName') }}</label>
+                                <input id="keyword" type="text" class="form-control form-control-solid filterInput" placeholder="{{ __('user/modules/workFollow.index.searching.projectName') }}">
                             </div>
                         </div>
                         <div class="col-xl-3 mb-5">
                             <div class="form-group">
-                                <label for="statusIds">Proje Durumu</label>
-                                <select id="statusIds" class="form-select form-select-solid select2Input" data-control="select2" data-placeholder="Proje Durumu" multiple></select>
+                                <label for="statusIds">{{ __('user/modules/workFollow.index.searching.projectStatus') }}</label>
+                                <select id="statusIds" class="form-select form-select-solid select2Input" data-control="select2" data-placeholder="{{ __('user/modules/workFollow.index.searching.projectStatus') }}" multiple></select>
                             </div>
                         </div>
                         <div class="col-xl-6 mb-5">
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="form-group d-grid">
-                                        <button class="btn btn-primary mt-6" id="FilterButton">Filtrele</button>
+                                        <button class="btn btn-primary mt-6" id="FilterButton">{{ __('user/modules/workFollow.index.searching.searchButton') }}</button>
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="form-group d-grid">
-                                        <button class="btn btn-secondary mt-6" id="ClearFilterButton">Temizle</button>
+                                        <button class="btn btn-secondary mt-6" id="ClearFilterButton">{{ __('user/modules/workFollow.index.searching.clearButton') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
         <div class="col-xl-4 mb-5 text-end">
             <div class="row">
                 <div class="col-xl-12 d-grid">
-                    <button class="btn btn-primary" onclick="createProject()">Yeni Proje Oluştur</button>
+                    <button class="btn btn-primary" onclick="createProject()">{{ __('user/modules/workFollow.index.searching.createNewProjectButton') }}</button>
                 </div>
             </div>
         </div>

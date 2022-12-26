@@ -144,23 +144,32 @@ class FileController extends Controller
             $request->filePath
         );
 
-        $createResponse = $this->fileService->create(
-            $request->user()->ID,
-            'App\\Models\\Eloquent\\Kullanicilar',
-            $request->file('file')->getClientOriginalName(),
-            $request->file('file')->getClientMimeType(),
-            $request->icon,
-            $request->typeId ?? getFileTypeId($request->file('file')->getClientMimeType()),
-            $storeResponse->getData(),
-            $request->file('file')->getSize()
-        );
+        if ($storeResponse->isSuccess()) {
+            $createResponse = $this->fileService->create(
+                $request->user()->ID,
+                'App\\Models\\Eloquent\\Kullanicilar',
+                $request->file('file')->getClientOriginalName(),
+                $request->file('file')->getClientMimeType(),
+                $request->icon,
+                $request->typeId ?? getFileTypeId($request->file('file')->getClientMimeType()),
+                $storeResponse->getData(),
+                $request->file('file')->getSize()
+            );
 
-        return $this->httpResponse(
-            $createResponse->getMessage(),
-            $createResponse->getStatusCode(),
-            $createResponse->getData(),
-            $createResponse->isSuccess()
-        );
+            return $this->httpResponse(
+                $createResponse->getMessage(),
+                $createResponse->getStatusCode(),
+                $createResponse->getData(),
+                $createResponse->isSuccess()
+            );
+        } else {
+            return $this->httpResponse(
+                $storeResponse->getMessage(),
+                $storeResponse->getStatusCode(),
+                $storeResponse->getData(),
+                $storeResponse->isSuccess()
+            );
+        }
     }
 
     /**

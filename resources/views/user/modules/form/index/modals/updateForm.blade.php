@@ -14,24 +14,24 @@
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Yeniden Adlandır</h1>
+                        <h1 class="mb-3">{{ __('user/modules/form.index.modals.updateForm.modalTitle') }}</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <input type="hidden" id="update_form_id">
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="update_form_name" class="font-weight-bolder">Başlık</label>
+                                <label for="update_form_name" class="font-weight-bolder">{{ __('user/modules/form.index.modals.updateForm.formTitle') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <input id="update_form_name" type="text" class="form-control form-control-solid" placeholder="Form Başlığı">
+                                    <input id="update_form_name" type="text" class="form-control form-control-solid" placeholder="{{ __('user/modules/form.index.modals.updateForm.formTitle') }}">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
-                        <button type="button" class="btn btn-success" id="UpdateFormButton">Kaydet</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">{{ __('user/modules/form.index.modals.updateForm.cancelButton') }}</button>
+                        <button type="button" class="btn btn-success" id="UpdateFormButton">{{ __('user/modules/form.index.modals.updateForm.updateButton') }}</button>
                     </div>
                 </div>
             </div>

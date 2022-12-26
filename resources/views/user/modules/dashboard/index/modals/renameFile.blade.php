@@ -14,20 +14,20 @@
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Dosyayı Yeniden Adlandır</h1>
+                        <h1 class="mb-3">{{ __('user/modules/dashboard.index.modals.renameFile.modalTitle') }}</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <div class="row mb-5">
                             <div class="col-xl-12">
                                 <div class="form-group">
-                                    <input id="rename_file_name" type="text" class="form-control form-control-solid" placeholder="Dosya Adı" aria-label="Dosya Adı">
+                                    <input id="rename_file_name" type="text" class="form-control form-control-solid" placeholder="{{ __('user/modules/dashboard.index.modals.renameFile.placeholder') }}" aria-label="{{ __('user/modules/dashboard.index.modals.renameFile.placeholder') }}">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
-                        <button type="button" class="btn btn-success" id="RenameFileButton">Güncelle</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">{{ __('user/modules/dashboard.index.modals.renameFile.cancelButton') }}</button>
+                        <button type="button" class="btn btn-success" id="RenameFileButton">{{ __('user/modules/dashboard.index.modals.renameFile.updateButton') }}</button>
                     </div>
                 </div>
             </div>

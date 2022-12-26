@@ -1,4 +1,4 @@
-<div class="modal fade show" id="CreateFormModal" tabindex="-1" aria-modal="true" role="dialog" data-bs-backdrop="static">
+<div class="modal fade show" id="CompaniesModal" tabindex="-1" aria-modal="true" role="dialog" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered mw-800px">
         <div class="modal-content rounded">
             <div class="modal-header pb-0 border-0 justify-content-end">
@@ -14,23 +14,20 @@
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">{{ __('user/modules/form.index.modals.createForm.modalTitle') }}</h1>
+                        <h1 class="mb-3">Firma Seçimi</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
-                        <div class="row mb-5">
-                            <div class="col-xl-3 mt-3">
-                                <label for="create_form_name" class="font-weight-bolder">{{ __('user/modules/form.index.modals.createForm.formTitle') }}</label>
-                            </div>
-                            <div class="col-xl-9">
-                                <div class="form-group">
-                                    <input id="create_form_name" type="text" class="form-control form-control-solid" placeholder="{{ __('user/modules/form.index.modals.createForm.formTitle') }}">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div id="companies" class="text-center">
+                                    <i class="fa fa-spinner fa-spin"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">{{ __('user/modules/form.index.modals.createForm.cancelButton') }}</button>
-                        <button type="button" class="btn btn-success" id="CreateFormButton">{{ __('user/modules/form.index.modals.createForm.createButton') }}</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
+                        <button type="button" class="btn btn-success" id="SelectCompanyButton">Onayla</button>
                     </div>
                 </div>
             </div>

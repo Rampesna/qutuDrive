@@ -14,12 +14,12 @@
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Not Oluştur</h1>
+                        <h1 class="mb-3">{{ __('user/modules/calendar.index.modals.createNote.modalTitle') }}</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_note_date" class="font-weight-bolder">Tarih</label>
+                                <label for="create_note_date" class="font-weight-bolder">{{ __('user/modules/calendar.index.modals.createNote.date') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
@@ -29,7 +29,7 @@
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_note_title" class="font-weight-bolder">Başlık</label>
+                                <label for="create_note_title" class="font-weight-bolder">{{ __('user/modules/calendar.index.modals.createNote.title') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
@@ -39,7 +39,7 @@
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="create_note_note" class="font-weight-bolder">İçerik</label>
+                                <label for="create_note_note" class="font-weight-bolder">{{ __('user/modules/calendar.index.modals.createNote.note') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
@@ -49,8 +49,8 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
-                        <button type="button" class="btn btn-success" id="CreateNoteButton">Oluştur</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">{{ __('user/modules/calendar.index.modals.createNote.cancelButton') }}</button>
+                        <button type="button" class="btn btn-success" id="CreateNoteButton">{{ __('user/modules/calendar.index.modals.createNote.createButton') }}</button>
                     </div>
                 </div>
             </div>

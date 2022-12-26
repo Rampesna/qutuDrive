@@ -21,8 +21,8 @@
                     <div class="row">
                         <div class="col-xl-3 mb-5">
                             <div class="form-group">
-                                <label for="yearSelector">Yıl Seçimi</label>
-                                <select class="form-select form-select-solid select2Input" data-control="select2" id="yearSelector" data-placeholder="Yıl Seçimi">
+                                <label for="yearSelector">{{ __('user/modules/eLedgerBackup.index.yearSelection') }}</label>
+                                <select class="form-select form-select-solid select2Input" data-control="select2" id="yearSelector" data-placeholder="{{ __('user/modules/eLedgerBackup.index.yearSelection') }}">
                                     <option value="" selected hidden disabled></option>
                                     @for($yearCounter = intval(date('Y')); $yearCounter >= 2015; $yearCounter--)
                                         <option value="{{ $yearCounter }}">{{ $yearCounter }}</option>
@@ -32,8 +32,8 @@
                         </div>
                         <div class="col-xl-3 mb-5">
                             <div class="form-group">
-                                <label for="monthSelector">Ay Seçimi</label>
-                                <select class="form-select form-select-solid select2Input" data-control="select2" id="monthSelector" data-placeholder="Ay Seçimi"></select>
+                                <label for="monthSelector">{{ __('user/modules/eLedgerBackup.index.monthSelection') }}</label>
+                                <select class="form-select form-select-solid select2Input" data-control="select2" id="monthSelector" data-placeholder="{{ __('user/modules/eLedgerBackup.index.monthSelection') }}"></select>
                             </div>
                         </div>
                         <div class="col-xl-4 mb-5"></div>
@@ -50,7 +50,7 @@
                                                     <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black"/>
                                                 </svg>
                                             </span>
-                                            Dosya Yükle
+                                            {{ __('user/modules/eLedgerBackup.index.uploadFileButton') }}
                                         </button>
                                     </div>
                                 </div>
@@ -68,28 +68,28 @@
                 <div class="card-body">
                     <ul class="d-flex nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="1">Kebir Defteri</a>
+                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="1">{{ __('user/modules/eLedgerBackup.index.kebirDefteri') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="2">Yevmiye Defteri</a>
+                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="2">{{ __('user/modules/eLedgerBackup.index.yevmiyeDefteri') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="3">Kebir Defteri Beratı</a>
+                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="3">{{ __('user/modules/eLedgerBackup.index.kebirDefteriBeratı') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="4">Yevmiye Defteri Beratı</a>
+                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="4">{{ __('user/modules/eLedgerBackup.index.yevmiyeDefteriBeratı') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="5">Kebir Onay Defteri Beratı</a>
+                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="5">{{ __('user/modules/eLedgerBackup.index.kebirOnayDefteriBeratı') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="6">Yevmiye Onay Defteri Beratı</a>
+                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="6">{{ __('user/modules/eLedgerBackup.index.YevmiyeOnayDefteriBeratı') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="7">Defter Raporu</a>
+                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="7">{{ __('user/modules/eLedgerBackup.index.defterRaporu') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="0">İkincil Saklama</a>
+                            <a class="nav-link text-active-primary py-5 me-6 cursor-pointer getEDefterDosyalar" data-type-id="0">{{ __('user/modules/eLedgerBackup.index.ikincilSaklama') }}</a>
                         </li>
                     </ul>
                 </div>

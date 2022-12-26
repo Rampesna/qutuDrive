@@ -15,14 +15,14 @@
                 <input type="hidden" id="update_shift_clicked_date">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Not Güncelle</h1>
+                        <h1 class="mb-3">{{ __('user/modules/calendar.index.modals.updateNote.modalTitle') }}</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <input type="hidden" id="update_note_id">
                         <input type="hidden" id="update_note_date">
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="update_note_title" class="font-weight-bolder">Başlık</label>
+                                <label for="update_note_title" class="font-weight-bolder">{{ __('user/modules/calendar.index.modals.updateNote.title') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="update_note_note" class="font-weight-bolder">İçerik</label>
+                                <label for="update_note_note" class="font-weight-bolder">{{ __('user/modules/calendar.index.modals.updateNote.note') }}</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
@@ -42,9 +42,9 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
-                        <button type="button" onclick="deleteNote()" class="btn btn-danger me-3">Sil</button>
-                        <button type="button" class="btn btn-success" id="UpdateNoteButton">Güncelle</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">{{ __('user/modules/calendar.index.modals.updateNote.cancelButton') }}</button>
+                        <button type="button" onclick="deleteNote()" class="btn btn-danger me-3">{{ __('user/modules/calendar.index.modals.updateNote.deleteButton') }}</button>
+                        <button type="button" class="btn btn-success" id="UpdateNoteButton">{{ __('user/modules/calendar.index.modals.updateNote.updateButton') }}</button>
                     </div>
                 </div>
             </div>

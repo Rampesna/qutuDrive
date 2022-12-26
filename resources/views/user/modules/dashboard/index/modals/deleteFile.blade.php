@@ -14,16 +14,16 @@
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Dosya Sil</h1>
+                        <h1 class="mb-3">{{ __('user/modules/dashboard.index.modals.deleteFile.modalTitle') }}</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <p class="text-center">
-                            Seçili dosyaları silmek istediğinize emin misiniz?
+                            {{ __('user/modules/dashboard.index.modals.deleteFile.modalText') }}
                         </p>
                     </div>
                     <div class="text-center">
-                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
-                        <button type="button" class="btn btn-danger" id="DeleteFileButton">Sil</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">{{ __('user/modules/dashboard.index.modals.deleteFile.cancelButton') }}</button>
+                        <button type="button" class="btn btn-danger" id="DeleteFileButton">{{ __('user/modules/dashboard.index.modals.deleteFile.deleteButton') }}</button>
                     </div>
                 </div>
             </div>

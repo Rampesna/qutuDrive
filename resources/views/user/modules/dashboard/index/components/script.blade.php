@@ -21,6 +21,7 @@
     var RenameDirectoryButton = $('#RenameDirectoryButton');
     var DeleteDirectoryButton = $('#DeleteDirectoryButton');
     var DeleteFileButton = $('#DeleteFileButton');
+    var UploadFileButton = $('#UploadFileButton');
 
     var RenameFileButton = $('#RenameFileButton');
 
@@ -308,6 +309,10 @@
     /**
      * Context Menu Transactions Start
      * */
+
+    function uploadFileTransaction() {
+        $('#UploadFileModal').modal('show');
+    }
 
     function createDirectoryTransaction() {
         $('#create_directory_name').val('');
@@ -619,6 +624,49 @@
                 }
             }
         });
+    });
+
+    UploadFileButton.click(function () {
+        var file = $('#upload_file').prop('files')[0];
+        var filePath = 'directory_id_' + parentDirectoryId + '/';
+
+        if (!file) {
+            toastr.warning('Dosya Seçmediniz!');
+        } else {
+            UploadFileButton.attr('disabled', true).html('<i class="fa fa-spinner fa-spin"></i>');
+            var data = new FormData();
+            data.append('file', file);
+            data.append('filePath', filePath);
+
+            $.ajax({
+                contentType: false,
+                processData: false,
+                type: 'post',
+                url: '{{ route('user.api.file.upload') }}',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': authUserToken
+                },
+                data: data,
+                success: function () {
+                    toastr.success('Dosya Başarıyla Yüklendi');
+                    UploadFileButton.attr('disabled', false).html('Yükle');
+                    $('#UploadFileModal').modal('hide');
+                    getFilesByDirectoryId();
+                },
+                error: function (error) {
+                    console.log(error);
+                    UploadFileButton.attr('disabled', false).html('Yükle');
+                    if (parseInt(error.status) === 422) {
+                        $.each(error.responseJSON.response, function (i, error) {
+                            toastr.error(error[0]);
+                        });
+                    } else {
+                        toastr.error(error.responseJSON.message);
+                    }
+                }
+            });
+        }
     });
 
     // Context Menu Transactions End

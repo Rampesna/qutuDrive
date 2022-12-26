@@ -24,10 +24,10 @@
                         <div class="row">
                             <div class="col-xl-12 mb-5">
                                 <input id="update_form_name" type="hidden">
-                                <input id="update_form_title" type="text" class="form-control form-control-lg nonBorder fs-2qx" placeholder="Form Başlığı" aria-label="Form Başlığı">
+                                <input id="update_form_title" type="text" class="form-control form-control-lg nonBorder fs-2qx" placeholder="{{ __('user/modules/form.update.formTitle') }}" aria-label="{{ __('user/modules/form.update.formTitle') }}">
                             </div>
                             <div class="col-xl-12">
-                                <textarea id="update_form_description" class="form-control form-control-lg nonBorder" placeholder="Açıklama (İsteğe Bağlı)" aria-label="Açıklama (İsteğe Bağlı)"></textarea>
+                                <textarea id="update_form_description" class="form-control form-control-lg nonBorder" placeholder="{{ __('user/modules/form.update.formDescription') }}" aria-label="{{ __('user/modules/form.update.formDescription') }}"></textarea>
                             </div>
                         </div>
                     </div>
@@ -39,13 +39,13 @@
         </div>
         <div class="row">
             <div class="col-xl-11 text-end">
-                <button id="AddNewQuestionButton" class="btn btn-icon btn-white me-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="Soru Ekle">
+                <button id="AddNewQuestionButton" class="btn btn-icon btn-white me-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="{{ __('user/modules/form.update.buttons.addQuestion') }}">
                     <i class="fa fa-plus-circle"></i>
                 </button>
-                <button id="SaveFormButton" class="btn btn-icon btn-success me-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="Kaydet">
+                <button id="SaveFormButton" class="btn btn-icon btn-success me-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="{{ __('user/modules/form.update.buttons.save') }}">
                     <i class="fa fa-save"></i>
                 </button>
-                <button id="ShareFormButton" class="btn btn-icon btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="Paylaş">
+                <button id="ShareFormButton" class="btn btn-icon btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-dismiss="click" data-bs-original-title="{{ __('user/modules/form.update.buttons.share') }}">
                     <i class="fas fa-share-alt"></i>
                 </button>
             </div>

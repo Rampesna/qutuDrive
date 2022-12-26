@@ -18,7 +18,7 @@ class StorageService extends AwsS3Service implements IStorageService
     {
         $response = $this->getClient()->putObject([
             'Bucket' => $this->getBucket(),
-            'Key' => $filePath . $file->getClientOriginalName(),
+            'Key' => 'qutuDriveTestFiles/' . $filePath . $file->getClientOriginalName(),
             'Body' => fopen($file->getPath() . '/' . $file->getFilename(), 'r'),
             'ACL' => 'public-read'
         ]);
