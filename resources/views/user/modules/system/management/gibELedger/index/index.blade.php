@@ -14,6 +14,8 @@
 
 @section('content')
 
+    @include('user.modules.system.management.gibELedger.index.modals.createGibSaklamaOzelListe')
+
     <input type="hidden" id="selected_gib_saklama_ozel_liste_row_index">
     <input type="hidden" id="selected_gib_saklama_ozel_liste_id">
     <div class="row mb-3">

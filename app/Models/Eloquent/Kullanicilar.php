@@ -114,4 +114,9 @@ class Kullanicilar extends Authenticatable
     {
         return $this->hasMany(Directory::class, 'user_id', 'ID');
     }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'user_permission', 'user_id', 'permission_id', 'ID', 'id');
+    }
 }

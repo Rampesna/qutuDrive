@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Core\Controller;
 use App\Models\Eloquent\Firmalar;
+use App\Models\Eloquent\Kullanicilar;
 use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
@@ -19,8 +20,10 @@ class HomeController extends Controller
 
     public function deneme()
     {
-        $company = Firmalar::find(13493)->users;
+        $user = Kullanicilar::with([
+            'permissions',
+        ])->find(5692);
 
-        return $company;
+        return $user;
     }
 }

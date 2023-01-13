@@ -205,5 +205,6 @@ Route::middleware([
 
     Route::prefix('gibsaklamaozelliste')->group(function () {
         Route::get('getAll', [\App\Http\Controllers\Api\User\GibSaklamaOzelListeController::class, 'getAll'])->name('user.api.gibsaklamaozelliste.getAll');
+        Route::post('create', [\App\Http\Controllers\Api\User\GibSaklamaOzelListeController::class, 'create'])->name('user.api.gibsaklamaozelliste.create');
     });
 });
