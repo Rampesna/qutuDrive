@@ -27,7 +27,6 @@
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
                     <label for="SelectedCompany"></label>
                     <select id="SelectedCompany" class="form-select form-select-solid select2Input w-300px" data-control="select2" data-minimum-results-for-search="Infinity" data-placeholder="Firma Seçimi">
-
                     </select>
                 </div>
                 <div class="d-flex align-items-center ms-1 ms-lg-3">

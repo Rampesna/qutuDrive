@@ -78,4 +78,19 @@ return [
         'success' => 'Kullanıcı silindi',
     ],
 
+    'getPermissions' => [
+        'success' => 'Kullanıcı Yetkileri',
+    ],
+
+    'getAllPermissions' => [
+        'success' => 'Tüm Yetki Listesi',
+    ],
+
+    'setPermissions' => [
+        'success' => 'Kullanıcı Yetkileri Güncellendi',
+        'notFound' => 'Kullanıcı Yetkileri Güncellenemedi',
+    ],
+
+
+
 ];

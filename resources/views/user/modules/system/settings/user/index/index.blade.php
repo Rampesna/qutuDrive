@@ -17,6 +17,9 @@
     @include('user.modules.system.settings.user.index.modals.createUser')
     @include('user.modules.system.settings.user.index.modals.updateUser')
     @include('user.modules.system.settings.user.index.modals.deleteUser')
+    @include('user.modules.system.settings.user.index.modals.updateUserPermission')
+
+
 
     <div class="row">
         <div class="col-xl-9 mb-5">

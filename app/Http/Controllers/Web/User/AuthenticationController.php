@@ -39,6 +39,9 @@ class AuthenticationController extends Controller
                 return redirect()->route('user.web.authentication.login.index');
             }
 
+            session()->put('user_id', $user->ID);
+            session()->put('api_token', $user->api_token);
+            session()->put('selected_company_id', $user->selected_company_id);
             auth()->guard('user_web')->login($user, $request->remember);
 
             return redirect()->route('user.web.dashboard.index');
@@ -76,6 +79,14 @@ class AuthenticationController extends Controller
     public function logout()
     {
         auth()->guard('user_web')->logout();
+        session()->flush();
         return redirect()->route('user.web.authentication.login.index');
+    }
+
+    public function changeCompany(Request $request)
+    {
+        $company_id = $request->get('company_id');
+        session()->put('selected_company_id', $company_id);
+        return redirect()->back();
     }
 }

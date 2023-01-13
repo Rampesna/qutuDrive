@@ -14,7 +14,7 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('getProfile', [\App\Http\Controllers\Api\User\UserController::class, 'getProfile'])->name('user.api.getProfile');
-    Route::get('getCompanies', [\App\Http\Controllers\Api\User\UserController::class, 'getCompanies'])->name('user.api.getCompanies');
+    Route::get('getCompanies', [\App\Http\Controllers\Api\User\UserController::class, 'getCompanies'])->name('user.api.getCompanies');/**/
     Route::post('checkPassword', [\App\Http\Controllers\Api\User\UserController::class, 'checkPassword'])->name('user.api.checkPassword');
 
     Route::prefix('user')->group(function () {
@@ -26,6 +26,9 @@ Route::middleware([
         Route::post('create', [\App\Http\Controllers\Api\User\UserController::class, 'create'])->name('user.api.user.create');
         Route::put('update', [\App\Http\Controllers\Api\User\UserController::class, 'update'])->name('user.api.user.update');
         Route::delete('delete', [\App\Http\Controllers\Api\User\UserController::class, 'delete'])->name('user.api.user.delete');
+        Route::post('getUserPermission', [\App\Http\Controllers\Api\User\UserController::class, 'getUserPermission'])->name('user.api.user.getUserPermission');
+        Route::get('getAllPermissions', [\App\Http\Controllers\Api\User\UserController::class, 'getAllPermissions'])->name('user.api.user.getAllPermissions');
+        Route::post('setPermissions', [\App\Http\Controllers\Api\User\UserController::class, 'setPermissions'])->name('user.api.user.setPermissions');
     });
 
     Route::prefix('company')->group(function () {

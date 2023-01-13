@@ -1,14 +1,37 @@
 <script>
 
+    var allPermissions = [];
+    var userPermissions = [];
+
     $(document).ready(function () {
+        getAllPermissions();
         $('#loader').hide();
     });
+
+    function getAllPermissions() {
+        $.ajax({
+            url: '{{ route('user.api.user.getAllPermissions') }}',
+            type: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            success: function (data) {
+                allPermissions = data.response;
+            },
+            error: function (data) {
+                $('#loader').hide();
+            }
+        });
+    }
 
     var users = $('#users');
 
     var CreateUserButton = $('#CreateUserButton');
     var UpdateUserButton = $('#UpdateUserButton');
     var DeleteUserButton = $('#DeleteUserButton');
+    var UpdateUserPermissionButton = $('#UpdateUserPermissionButton');
+    var permissionList = $('#permissionList');
 
     function createUser() {
         $('#create_user_username').val('');
@@ -41,6 +64,49 @@
                 $('#update_user_tax_number').val(response.response.TCNO);
                 $('#update_user_password').val('');
                 $('#UpdateUserModal').modal('show');
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+    }
+
+    function updatePermission(id) {
+        userPermissions = [];
+        $.ajax({
+            type: 'post',
+            url: '{{ route('user.api.user.getUserPermission') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {
+                id: id,
+            },
+            success: function (response) {
+                $('#update_user_id').val(id);
+                permissionList.empty();
+                $.each(response.response, function (i, permission) {
+                    userPermissions.push(permission.id);
+                });
+                $.each(allPermissions, function (i, permissionItem) {
+                    permissionList.append(`
+                   <div class="form-check form-check-custom form-check-solid m-1">
+                        <input class="form-check-input userPermissionCheckbox" type="checkbox" value="${permissionItem.id}" id="selectedPermissions_${permissionItem}" ${userPermissions.includes(permissionItem.id) ? 'checked' : ''} />
+                        <label class="form-check-label" for="selectedPermissions_${permissionItem}">
+                            ${permissionItem.name}
+                        </label>
+                    </div>
+                   `);
+                });
+                $('#UpdateUserPermission').modal('show');
             },
             error: function (error) {
                 console.log(error);
@@ -96,8 +162,11 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="${user.ID}_Dropdown" style="width: 175px">
                                     <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="updateUser(${user.ID})" title="Düzenle"><i class="fas fa-edit me-2 text-primary"></i> <span class="text-dark">Düzenle</span></a>
+
                                     <hr class="text-muted">
                                     <a class="dropdown-item cursor-pointer py-3 ps-6" onclick="deleteUser(${user.ID})" title="Sil"><i class="fas fa-trash-alt me-3 text-danger"></i> <span class="text-dark">Sil</span></a>
+                                    <hr class="text-muted">
+                                    <a class="dropdown-item cursor-pointer mb-2 py-3 ps-6" onclick="updatePermission(${user.ID})" title="Yetkiler"><i class="fas fa-lock me-2 text-primary"></i> <span class="text-dark">Yetkiler</span></a>
                                 </div>
                             </div>
                         </td>
@@ -297,9 +366,11 @@
 
         if (!username) {
             toastr.warning('Lütfen kullanıcı adı giriniz.');
-        }if (!email) {
+        }
+        if (!email) {
             toastr.warning('Lütfen e-posta adresi giriniz.');
-        }if (!name) {
+        }
+        if (!name) {
             toastr.warning('Lütfen ad giriniz.');
         } else if (!surname) {
             toastr.warning('Lütfen soyad giriniz.');
@@ -395,6 +466,44 @@
                 }
             });
         }
+    });
+
+    UpdateUserPermissionButton.click(function () {
+        var id = $('#update_user_id').val();
+        var selectedPermissions = [];
+        $('.userPermissionCheckbox').each(function (item) {
+            if ($(this).is(':checked')) {
+                selectedPermissions.push($(this).val());
+            }
+        });
+
+        $.ajax({
+            type: 'post',
+            url: '{{ route('user.api.user.setPermissions') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {
+                id: id,
+                permissions: selectedPermissions
+            },
+            success: function () {
+                toastr.success('Kullanıcı izinleri başarıyla güncellendi.',);
+                $('#UpdateUserPermission').modal('hide');
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+
     });
 
     DeleteUserButton.click(function () {
