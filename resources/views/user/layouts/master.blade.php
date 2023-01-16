@@ -7,17 +7,20 @@
     <meta name="viewport" content="width=device-width, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
 
-    <link id="themePlugin" href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css"/>
+    <link id="themePlugin" href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+          type="text/css"/>
     <link id="themeBundle" href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css"/>
 
-    <link href="{{ asset('assets/plugins/custom/selectpicker/css/bootstrap-select.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/plugins/custom/selectpicker/css/bootstrap-select.css') }}" rel="stylesheet"
+          type="text/css"/>
 
     @yield('customStyles')
 
 </head>
 
-<body id="kt_body" class="header-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<body id="kt_body" class="header-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+      style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 
 <div id="loader"></div>
 
@@ -54,9 +57,9 @@
 
 <script>
 
-    var authUserId = parseInt(`{{ auth()->id() }}`);
-    var authUserToken = 'Bearer {{ auth()->user()->apiToken() }}';
-    var authUserSelectedCompanyId = parseInt(`{{ auth()->user()->selectedCompanyId() }}`);
+    var authUserId = parseInt(`{{ session('user_id') }}`);
+    var authUserToken = 'Bearer {{ session('api_token') }}';
+    var authUserSelectedCompanyId = parseInt(`{{ session('selected_company_id') }}`);
     var userCompanies = [];
     var SelectedCompany = $('#SelectedCompany');
     var jqxGridGlobalTheme = 'metro';
@@ -78,7 +81,7 @@
                 $.each(response.response, function (i, company) {
                     SelectedCompany.append($('<option>', {
                         value: company.ID,
-                        text: company.FIRMAUNVAN
+                        text: company.FIRMAUNVAN,
                     }));
                 });
                 SelectedCompany.val(authUserSelectedCompanyId);
@@ -97,6 +100,32 @@
     }
 
     getCompanies();
+
+    $(SelectedCompany).on('select2:select', function (e) {
+        var companyId = parseInt(e.params.data.id);
+        $.ajax({
+            async: false,
+            type: 'post',
+            url: '{{ route('user.web.changeCompany') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                company_id: companyId
+            },
+            success: function (response) {
+                window.location.reload();
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    toastr.error(error.message);
+                } else {
+                    toastr.error(error.message);
+
+                }
+            }
+        });
+    });
+
 
     function changeLanguage(locale) {
         $.ajax({
@@ -117,7 +146,6 @@
             }
         });
     }
-
 </script>
 
 @yield('customScripts')

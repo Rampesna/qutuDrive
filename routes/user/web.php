@@ -17,7 +17,7 @@ Route::middleware([
 
     Route::put('changeLanguage', [\App\Http\Controllers\Web\User\LanguageController::class, 'changeLanguage'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])->name('user.web.changeLanguage');
     Route::get('logout', [\App\Http\Controllers\Web\User\AuthenticationController::class, 'logout'])->name('user.web.authentication.logout');
-
+    Route::post('changeCompany', [\App\Http\Controllers\Web\User\AuthenticationController::class, 'changeCompany'])->name('user.web.changeCompany');
     Route::prefix('dashboard')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\DashboardController::class, 'index'])->name('user.web.dashboard.index');
     });

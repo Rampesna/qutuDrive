@@ -6,6 +6,7 @@ use App\Interfaces\Eloquent\IUserService;
 use App\Models\Eloquent\Firmalar;
 use App\Models\Eloquent\Kullanicilar;
 use App\Core\ServiceResponse;
+use App\Models\Eloquent\Permission;
 use Illuminate\Support\Str;
 
 class UserService implements IUserService
@@ -543,5 +544,58 @@ class UserService implements IUserService
         } else {
             return $user;
         }
+    }
+
+    public function getPermissions(int $userId): ServiceResponse
+    {
+        $user = $this->getById($userId);
+        if ($user->isSuccess()) {
+            $permissions = $user->getData()->permissions;
+
+
+            return new ServiceResponse(
+                true,
+                __('ServiceResponse/Eloquent/UserService.getPermissions.success'),
+                200,
+                $permissions
+            );
+        } else {
+            return $user;
+        }
+    }
+
+    public function setPermissions(
+        int   $userId,
+        array $permissionIds
+    ): ServiceResponse
+    {
+        $user = $this->getById($userId);
+        if ($user->isSuccess()) {
+            $user->getData()->permissions()->sync($permissionIds);
+            return new ServiceResponse(
+                true,
+                __('ServiceResponse/Eloquent/UserService.setPermissions.success'),
+                200,
+                $user->getData()
+            );
+        } else {
+            return new ServiceResponse(
+                false,
+                __('ServiceResponse/Eloquent/UserService.setPermissions.notFound'),
+                404,
+                null
+            );
+        }
+    }
+
+    public function getAllPermissions(): ServiceResponse
+    {
+       $permissions = Permission::all();
+        return new ServiceResponse(
+            true,
+            __('ServiceResponse/Eloquent/UserService.getAllPermissions.success'),
+            200,
+            $permissions
+        );
     }
 }

@@ -20,16 +20,16 @@ class AwsS3Service
     public function __construct()
     {
         $this->client = new S3Client([
-            'region' => '',
+            'region' => 'us-east-1',
             'version' => '2006-03-01',
-            'endpoint' => env('AWS_URL'),
+            'endpoint' => 'http://ays.s3.ayssoft.com/',
             'credentials' => [
-                'key' => env('AWS_ACCESS_KEY_ID'),
-                'secret' => env('AWS_SECRET_ACCESS_KEY')
+                'key' => 'ots',
+                'secret' => '357159123'
             ],
             'use_path_style_endpoint' => true
         ]);
-        $this->bucket = env('AWS_BUCKET');
+        $this->bucket = 'otsweb';
     }
 
     public function getClient()

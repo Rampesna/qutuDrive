@@ -185,4 +185,16 @@ interface IUserService extends IEloquentService
         int     $pageSize,
         ?string $keyword = null
     ): ServiceResponse;
+
+    public function getPermissions(
+        int $userId
+    ): ServiceResponse;
+
+    public function setPermissions(
+        int   $userId,
+        array $permissionIds
+    ): ServiceResponse;
+
+    public function getAllPermissions(
+    ): ServiceResponse;
 }

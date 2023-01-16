@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Core\Controller;
+use App\Http\Requests\Api\User\UserController\GetAllPermissionsRequest;
 use App\Http\Requests\Api\User\UserController\GetCompaniesRequest;
 use App\Http\Requests\Api\User\UserController\CheckPasswordRequest;
+use App\Http\Requests\Api\User\UserController\GetUserPermissionRequest;
 use App\Http\Requests\Api\User\UserController\LoginRequest;
 use App\Http\Requests\Api\User\UserController\RegisterRequest;
 use App\Http\Requests\Api\User\UserController\GetAllRequest;
@@ -14,6 +16,7 @@ use App\Http\Requests\Api\User\UserController\GetByUsernameRequest;
 use App\Http\Requests\Api\User\UserController\GetByIdRequest;
 use App\Http\Requests\Api\User\UserController\GetProfileRequest;
 use App\Http\Requests\Api\User\UserController\CreateRequest;
+use App\Http\Requests\Api\User\UserController\SetPermissionsRequest;
 use App\Http\Requests\Api\User\UserController\UpdateRequest;
 use App\Http\Requests\Api\User\UserController\DeleteRequest;
 use App\Interfaces\Eloquent\IUserService;
@@ -362,4 +365,46 @@ class UserController extends Controller
             $response->isSuccess()
         );
     }
+
+    public function getUserPermission(GetUserPermissionRequest $request)
+    {
+        $response = $this->userService->getPermissions(
+            $request->id
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    public function getAllPermissions(GetAllPermissionsRequest $request)
+    {
+        $response = $this->userService->getAllPermissions();
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    public function setPermissions(SetPermissionsRequest $request)
+    {
+        $response = $this->userService->setPermissions(
+            $request->id,
+            $request->permissions
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+
 }
