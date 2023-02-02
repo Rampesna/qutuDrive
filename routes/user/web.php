@@ -97,6 +97,10 @@ Route::middleware([
     Route::prefix('history')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\HistoryController::class, 'index'])->name('user.web.history.index');
     });
+    Route::prefix('video')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Web\User\VideoController::class, 'index'])->name('user.web.video.index');
+        Route::get('videolist', [\App\Http\Controllers\Web\User\VideoController::class, 'videoList'])->name('user.web.video.videolist.index');
+    });
 
     Route::prefix('system')->group(function () {
         Route::prefix('settings')->group(function () {
@@ -130,6 +134,7 @@ Route::middleware([
                     Route::get('user/{id?}', [\App\Http\Controllers\Web\User\System\Management\CompanyDetailController::class, 'user'])->name('user.web.system.management.company.detail.user');
                 });
             });
+
 
             Route::prefix('userCompanyConnection')->group(function () {
                 Route::get('index', [\App\Http\Controllers\Web\User\System\Management\UserCompanyConnectionController::class, 'index'])->name('user.web.system.management.userCompanyConnection.index');

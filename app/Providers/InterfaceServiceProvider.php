@@ -29,6 +29,7 @@ use App\Interfaces\Eloquent\ISyncKlasorlerService;
 use App\Interfaces\Eloquent\ITaskPriorityService;
 use App\Interfaces\Eloquent\ITaskService;
 use App\Interfaces\Eloquent\IUserService;
+use App\Interfaces\Eloquent\IVideoService;
 use App\Services\AwsS3\StorageService;
 use App\Services\Eloquent\BackupDosyalarService;
 use App\Services\Eloquent\BoardService;
@@ -56,6 +57,7 @@ use App\Services\Eloquent\TaskPriorityService;
 use App\Services\Eloquent\TaskService;
 use App\Services\Eloquent\UserService;
 use App\Services\Eloquent\NoteService;
+use App\Services\Eloquent\VideoService;
 use Illuminate\Support\ServiceProvider;
 
 class InterfaceServiceProvider extends ServiceProvider
@@ -94,9 +96,12 @@ class InterfaceServiceProvider extends ServiceProvider
         $this->app->bind(IFirmaPaketleriService::class, FirmaPaketleriService::class);
         $this->app->bind(IPaketBilgileriService::class, PaketBilgileriService::class);
         $this->app->bind(IGibSaklamaOzelListeService::class, GibSaklamaOzelListeService::class);
+        $this->app->bind(IVideoService::class, VideoService::class);
+
 
         // Aws Services
         $this->app->bind(IStorageService::class, StorageService::class);
+
     }
 
     /**

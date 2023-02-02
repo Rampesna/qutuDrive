@@ -31,6 +31,14 @@ Route::middleware([
         Route::post('setPermissions', [\App\Http\Controllers\Api\User\UserController::class, 'setPermissions'])->name('user.api.user.setPermissions');
     });
 
+    Route::prefix('video')->group(function () {
+        Route::get('getAll', [\App\Http\Controllers\Api\User\VideoController::class, 'getAll'])->name('user.api.video.getAll');
+        Route::get('getById', [\App\Http\Controllers\Api\User\VideoController::class, 'getById'])->name('user.api.video.getById');
+        Route::post('create', [\App\Http\Controllers\Api\User\VideoController::class, 'create'])->name('user.api.video.create');
+        Route::put('update', [\App\Http\Controllers\Api\User\VideoController::class, 'update'])->name('user.api.video.update');
+        Route::delete('delete', [\App\Http\Controllers\Api\User\VideoController::class, 'delete'])->name('user.api.video.delete');
+    });
+
     Route::prefix('company')->group(function () {
         Route::get('getAll', [\App\Http\Controllers\Api\User\CompanyController::class, 'getAll'])->name('user.api.company.getAll');
         Route::get('getById', [\App\Http\Controllers\Api\User\CompanyController::class, 'getById'])->name('user.api.company.getById');

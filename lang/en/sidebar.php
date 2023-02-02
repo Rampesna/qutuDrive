@@ -30,6 +30,7 @@ return [
         'users' => 'Users',
         'packages' => 'Packages',
     ],
+    'videos' => 'Videos',
     'management' => [
         'title' => 'Managemet',
         'users' => 'Users',
