@@ -30,6 +30,7 @@ return [
         'users' => 'Kullanıcılar',
         'packages' => 'Paketlerim',
     ],
+    'videos' => 'Videolar',
     'management' => [
         'title' => 'Yönetim',
         'users' => 'Kullanıcılar',
