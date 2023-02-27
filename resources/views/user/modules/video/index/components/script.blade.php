@@ -36,7 +36,7 @@
                     `)
                 });
             },
-            error: function () {
+            error: function (error) {
                 if (parseInt(error.status) === 404) {
                     toastr.error('Video Bulunamadı!');
                 } else {
@@ -54,3 +54,4 @@
         return false;
     });
 </script>
+
