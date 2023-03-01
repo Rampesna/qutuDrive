@@ -48,8 +48,8 @@ class DocumentService implements IDocumentService
         $document = Document::find($id);
         if ($document) {
             $file = public_path('/documents/' . str_replace('public/documents/', '', $document->path));
-            if (FacadesFile::exists($file)) {
-                FacadesFile::delete($file);
+            if (FacadesFile::exists(str_replace('public/documents/', 'documents/', $document->path))) {
+                FacadesFile::delete(str_replace('public/documents/', 'documents/', $document->path));
             }
             $document->delete();
             return new ServiceResponse(true, __('ServiceResponse/Eloquent/DocumentService.delete.success'), 200, null);
@@ -66,10 +66,10 @@ class DocumentService implements IDocumentService
     public function create(string $name, $file): ServiceResponse
     {
         $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('/documents'), $fileName);
+        $file->storeAs('public/documents', $fileName);
         $document = new Document();
         $document->name = $name;
-        $document->path ='public/documents/' . $fileName;
+        $document->path ='storage/documents/' . $fileName;
         $document->save();
         return new ServiceResponse(true, __('ServiceResponse/Eloquent/DocumentService.create.success'), 200, $document);
     }
@@ -87,8 +87,8 @@ class DocumentService implements IDocumentService
         if ($document) {
             if ($file) {
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('/documents'), $fileName);
-                $document->path = 'public/documents/' . $fileName;
+                $file->storeAs('public/documents', $fileName);
+                $document->path = 'storage/documents/' . $fileName;
             }
             $document->name = $name;
             $document->save();
