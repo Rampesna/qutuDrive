@@ -24,6 +24,8 @@ return [
     'archiveGroup' => 'Arşiv Grupları',
     'recycleBin' => 'Geri Dönüşüm Kutusu',
     'history' => 'Geçmiş',
+    'education' => 'Eğitim',
+
     'system' => 'SİSTEM',
     'settings' => [
         'title' => 'Ayarlar',
@@ -31,6 +33,7 @@ return [
         'packages' => 'Paketlerim',
     ],
     'videos' => 'Videolar',
+    'document' => 'Dökümanlar',
     'management' => [
         'title' => 'Yönetim',
         'users' => 'Kullanıcılar',

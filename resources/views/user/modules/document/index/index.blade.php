@@ -13,7 +13,12 @@
 @endsection
 
 @section('content')
+    @include('user.modules.document.index.modal.transactions')
 
+    <div class="row mb-5" id="videosRow">
+
+
+    </div>
 
 
 @endsection
