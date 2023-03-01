@@ -25,8 +25,8 @@ return [
     'recycleBin' => 'Geri Dönüşüm Kutusu',
     'history' => 'Geçmiş',
     'education' => 'Eğitim',
-
     'system' => 'SİSTEM',
+    'systemLog' => 'Sistem Logları',
     'settings' => [
         'title' => 'Ayarlar',
         'users' => 'Kullanıcılar',

@@ -25,7 +25,7 @@
                      <div class="col-xl-3 col-12 videoCard">
                         <div class="card mb-5 mb-xl-8">
                             <div class="card-body">
-                                <a href="${baseurl+video.path}">
+                                <a href="${baseurl+video.path}" download>
                                     <div class="card h-100 flex-center text-center py-4 px-0 cursor-pointer border border-secondary bg-hover-light-dark fileSelector fileTooltip" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-file-id="1" data-file-name="Backup.sql" id="file_1" style="border-radius: 10px" data-bs-original-title="${video.name}">
                                     <i class="fas fa-file fa-lg mt-2 mb-5"></i>
                                     <span class="font-weight-bolder text-dark-75 mb-1">${video.name}</span>

@@ -25,6 +25,7 @@ return [
     'recycleBin' => 'Recycle Bin',
     'history' => 'History',
     'system' => 'SYSTEM',
+    'systemLog' => 'System Log',
     'settings' => [
         'title' => 'Settings',
         'users' => 'Users',

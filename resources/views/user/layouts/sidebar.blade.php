@@ -275,7 +275,7 @@
                 </a>
 
                     <div data-kt-menu-trigger="click"
-                         class="menu-item here menu-accordion {{ request()->segment(3) == 'education' ? 'show' : '' }}">
+                         class="menu-item here menu-accordion {{ request()->segment(2) == 'education' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -292,7 +292,7 @@
                     </span>
                         <div class="menu-sub menu-sub-accordion">
                             <div
-                                class="menu-item {{ (request()->segment(2) == 'video' || request()->segment(2) == 'document') ? 'show' : '' }}">
+                                class="menu-item {{ request()->segment(3) == 'video'  ? 'show' : '' }}">
                                 <a class="menu-link" href="{{ route('user.web.video.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -301,7 +301,7 @@
                                 </a>
                             </div>
                             <div
-                                class="menu-item {{ request()->segment(3) == 'document' && request()->segment(4) == 'package' ? 'show' : '' }}">
+                                class="menu-item {{ request()->segment(3) == 'document' ? 'show' : '' }}">
                                 <a class="menu-link" href="{{ route('user.web.document.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -533,6 +533,15 @@
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title">{{ __('sidebar.management.gibELedger') }}</span>
+                                </a>
+                            </div>
+                            <div
+                                class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'gibELedger' ? 'show' : '' }}">
+                                <a class="menu-link" href="{{ \Illuminate\Support\Facades\URL::to('log-viewer')}}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('sidebar.systemLog') }}</span>
                                 </a>
                             </div>
                         </div>
