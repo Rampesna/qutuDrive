@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Firmalar extends Model
+class Firmalar extends BaseModel
 {
     use SoftDeletes;
 

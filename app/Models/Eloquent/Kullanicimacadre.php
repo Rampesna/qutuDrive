@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Kullanicimacadre extends Model
+class Kullanicimacadre extends BaseModel
 {
     use SoftDeletes;
 

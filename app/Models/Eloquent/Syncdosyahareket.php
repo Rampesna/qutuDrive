@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Syncdosyahareket extends Model
+class Syncdosyahareket extends BaseModel
 {
     use SoftDeletes;
 

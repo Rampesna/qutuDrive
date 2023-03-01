@@ -7,7 +7,7 @@ use App\Core\ServiceResponse;
 use App\Interfaces\Eloquent\IDocumentService;
 use App\Models\Eloquent\Document;
 use Illuminate\Support\Facades\File as FacadesFile;
-
+use Illuminate\Support\Facades\Log;
 
 
 /**
@@ -52,6 +52,7 @@ class DocumentService implements IDocumentService
                 FacadesFile::delete(str_replace('public/documents/', 'documents/', $document->path));
             }
             $document->delete();
+           // Log::channel('activity')->info('Document deleted', ['id' => auth()->user()->ID,'user' => auth()->user()->KULLANICIADI,'data' => $document]);
             return new ServiceResponse(true, __('ServiceResponse/Eloquent/DocumentService.delete.success'), 200, null);
         }else{
             return new ServiceResponse(false, __('ServiceResponse/Eloquent/DocumentService.delete.notFound'), 404, null);

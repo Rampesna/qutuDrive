@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Syncklasorler extends Model
+class Syncklasorler extends BaseModel
 {
     use SoftDeletes;
 

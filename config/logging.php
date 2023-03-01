@@ -70,6 +70,12 @@ return [
             'days' => 14,
         ],
 
+        'activity' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/activity.log'),
+            'level' => 'info',
+        ],
+
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),

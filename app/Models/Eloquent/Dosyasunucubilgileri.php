@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Dosyasunucubilgileri extends Model
+class Dosyasunucubilgileri extends BaseModel
 {
     use SoftDeletes;
 

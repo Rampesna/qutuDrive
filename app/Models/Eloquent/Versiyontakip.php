@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Versiyontakip extends Model
+class Versiyontakip extends BaseModel
 {
     use SoftDeletes;
 

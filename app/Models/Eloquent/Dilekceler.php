@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Dilekceler extends Model
+class Dilekceler extends BaseModel
 {
     use SoftDeletes;
 
