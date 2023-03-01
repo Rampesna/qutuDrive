@@ -71,9 +71,10 @@ return [
         ],
 
         'activity' => [
-            'driver' => 'single',
+            'driver' => 'daily',
             'path' => storage_path('logs/activity.log'),
             'level' => 'info',
+            'days' => 14,
         ],
 
         'slack' => [
