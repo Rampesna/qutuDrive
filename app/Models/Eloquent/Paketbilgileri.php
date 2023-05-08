@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Paketbilgileri extends Model
+class Paketbilgileri extends BaseModel
 {
     use SoftDeletes;
 

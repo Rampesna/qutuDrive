@@ -6,6 +6,7 @@ use App\Interfaces\AwsS3\IStorageService;
 use App\Interfaces\Eloquent\IBackupDosyalarService;
 use App\Interfaces\Eloquent\IBoardService;
 use App\Interfaces\Eloquent\IDirectoryService;
+use App\Interfaces\Eloquent\IDocumentService;
 use App\Interfaces\Eloquent\IEDefterDonemlerService;
 use App\Interfaces\Eloquent\IEDefterDosyalarService;
 use App\Interfaces\Eloquent\IFileService;
@@ -34,6 +35,7 @@ use App\Services\AwsS3\StorageService;
 use App\Services\Eloquent\BackupDosyalarService;
 use App\Services\Eloquent\BoardService;
 use App\Services\Eloquent\DirectoryService;
+use App\Services\Eloquent\DocumentService;
 use App\Services\Eloquent\EDefterDonemlerService;
 use App\Services\Eloquent\EDefterDosyalarService;
 use App\Services\Eloquent\FileService;
@@ -97,6 +99,7 @@ class InterfaceServiceProvider extends ServiceProvider
         $this->app->bind(IPaketBilgileriService::class, PaketBilgileriService::class);
         $this->app->bind(IGibSaklamaOzelListeService::class, GibSaklamaOzelListeService::class);
         $this->app->bind(IVideoService::class, VideoService::class);
+        $this->app->bind(IDocumentService::class, DocumentService::class);
 
 
         // Aws Services

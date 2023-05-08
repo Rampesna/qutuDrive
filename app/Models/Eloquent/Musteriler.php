@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Musteriler extends Model
+class Musteriler extends BaseModel
 {
     use SoftDeletes;
 

@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Gibsaklamaozelliste extends Model
+class Gibsaklamaozelliste extends BaseModel
 {
     use SoftDeletes;
 

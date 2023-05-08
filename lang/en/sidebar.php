@@ -2,6 +2,7 @@
 
 return [
     'dashboard' => 'Dashboard',
+    'panel' => 'Panel',
     'syncklasor' => 'My Devices',
     'document' => 'Documents',
     'sharedDirectory' => 'Shared Directories',
@@ -25,12 +26,15 @@ return [
     'recycleBin' => 'Recycle Bin',
     'history' => 'History',
     'system' => 'SYSTEM',
+    'systemLog' => 'System Log',
     'settings' => [
         'title' => 'Settings',
         'users' => 'Users',
         'packages' => 'Packages',
     ],
     'videos' => 'Videos',
+    'document' => 'Documents',
+    'education' => 'Education',
     'management' => [
         'title' => 'Managemet',
         'users' => 'Users',

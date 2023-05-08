@@ -38,6 +38,13 @@ Route::middleware([
         Route::put('update', [\App\Http\Controllers\Api\User\VideoController::class, 'update'])->name('user.api.video.update');
         Route::delete('delete', [\App\Http\Controllers\Api\User\VideoController::class, 'delete'])->name('user.api.video.delete');
     });
+    Route::prefix('document')->group(function () {
+        Route::get('getAll', [\App\Http\Controllers\Api\User\DocumentController::class, 'getAll'])->name('user.api.document.getAll');
+        Route::get('getById', [\App\Http\Controllers\Api\User\DocumentController::class, 'getById'])->name('user.api.document.getById');
+        Route::post('create', [\App\Http\Controllers\Api\User\DocumentController::class, 'create'])->name('user.api.document.create');
+        Route::post('update', [\App\Http\Controllers\Api\User\DocumentController::class, 'update'])->name('user.api.document.update');
+        Route::delete('delete', [\App\Http\Controllers\Api\User\DocumentController::class, 'delete'])->name('user.api.document.delete');
+    });
 
     Route::prefix('company')->group(function () {
         Route::get('getAll', [\App\Http\Controllers\Api\User\CompanyController::class, 'getAll'])->name('user.api.company.getAll');

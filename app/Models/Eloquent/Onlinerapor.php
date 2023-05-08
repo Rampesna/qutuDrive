@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Onlinerapor extends Model
+class Onlinerapor extends BaseModel
 {
     use SoftDeletes;
 

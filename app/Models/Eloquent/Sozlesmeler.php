@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Sozlesmeler extends Model
+class Sozlesmeler extends BaseModel
 {
     use SoftDeletes;
 

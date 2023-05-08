@@ -21,14 +21,15 @@ Route::middleware([
     Route::prefix('dashboard')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\DashboardController::class, 'index'])->name('user.web.dashboard.index');
     });
+    Route::prefix('panel')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Web\User\PanelController::class, 'index'])->name('user.web.panel.index');
+    });
 
     Route::prefix('syncklasor')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\SyncklasorController::class, 'index'])->name('user.web.syncklasor.index');
     });
 
-    Route::prefix('document')->group(function () {
-        Route::get('index', [\App\Http\Controllers\Web\User\DocumentController::class, 'index'])->name('user.web.document.index');
-    });
+
 
     Route::prefix('sharedDirectory')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\SharedDirectoryController::class, 'index'])->name('user.web.sharedDirectory.index');
@@ -97,9 +98,13 @@ Route::middleware([
     Route::prefix('history')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\HistoryController::class, 'index'])->name('user.web.history.index');
     });
-    Route::prefix('video')->group(function () {
+    Route::prefix('education/video')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\VideoController::class, 'index'])->name('user.web.video.index');
         Route::get('videolist', [\App\Http\Controllers\Web\User\VideoController::class, 'videoList'])->name('user.web.video.videolist.index');
+    });
+    Route::prefix('education/document')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Web\User\DocumentController::class, 'index'])->name('user.web.document.index');
+        Route::get('documentlist', [\App\Http\Controllers\Web\User\DocumentController::class, 'documentList'])->name('user.web.document.documentlist.index');
     });
 
     Route::prefix('system')->group(function () {

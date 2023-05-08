@@ -2,6 +2,7 @@
 
 return [
     'dashboard' => 'Duvarım',
+    'panel' => 'Panel',
     'syncklasor' => 'Cihazlarım',
     'document' => 'Belgeler',
     'sharedDirectory' => 'Ortak Klasörler',
@@ -24,13 +25,16 @@ return [
     'archiveGroup' => 'Arşiv Grupları',
     'recycleBin' => 'Geri Dönüşüm Kutusu',
     'history' => 'Geçmiş',
+    'education' => 'Eğitim',
     'system' => 'SİSTEM',
+    'systemLog' => 'Sistem Logları',
     'settings' => [
         'title' => 'Ayarlar',
         'users' => 'Kullanıcılar',
         'packages' => 'Paketlerim',
     ],
     'videos' => 'Videolar',
+    'document' => 'Dökümanlar',
     'management' => [
         'title' => 'Yönetim',
         'users' => 'Kullanıcılar',

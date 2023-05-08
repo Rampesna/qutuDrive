@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Sanalposbilgileri extends Model
+class Sanalposbilgileri extends BaseModel
 {
     use SoftDeletes;
 

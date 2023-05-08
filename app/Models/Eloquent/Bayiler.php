@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Bayiler extends Model
+class Bayiler extends BaseModel
 {
     use SoftDeletes;
 

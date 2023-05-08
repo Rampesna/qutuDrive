@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Fissaklamaklasorler extends Model
+class Fissaklamaklasorler extends BaseModel
 {
     use SoftDeletes;
 

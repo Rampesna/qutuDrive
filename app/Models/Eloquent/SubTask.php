@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SubTask extends Model
+class SubTask extends BaseModel
 {
     use HasFactory, SoftDeletes;
 

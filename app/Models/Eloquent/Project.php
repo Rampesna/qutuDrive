@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
-class Project extends Model
+class Project extends BaseModel
 {
     use HasFactory, SoftDeletes, HasRelationships;
 

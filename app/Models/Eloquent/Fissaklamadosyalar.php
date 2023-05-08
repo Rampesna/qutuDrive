@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @package App\Models
  */
-class Fissaklamadosyalar extends Model
+class Fissaklamadosyalar extends BaseModel
 {
     use SoftDeletes;
 
