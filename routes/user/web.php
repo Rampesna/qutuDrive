@@ -21,6 +21,9 @@ Route::middleware([
     Route::prefix('dashboard')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\DashboardController::class, 'index'])->name('user.web.dashboard.index');
     });
+    Route::prefix('panel')->group(function () {
+        Route::get('index', [\App\Http\Controllers\Web\User\PanelController::class, 'index'])->name('user.web.panel.index');
+    });
 
     Route::prefix('syncklasor')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\SyncklasorController::class, 'index'])->name('user.web.syncklasor.index');

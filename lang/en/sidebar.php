@@ -2,6 +2,7 @@
 
 return [
     'dashboard' => 'Dashboard',
+    'panel' => 'Panel',
     'syncklasor' => 'My Devices',
     'document' => 'Documents',
     'sharedDirectory' => 'Shared Directories',

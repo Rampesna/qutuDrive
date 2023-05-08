@@ -31,6 +31,27 @@
                 class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
                 id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
 
+                @if(checkUserPermission(46, $permissions))
+                    <a href="{{ route('user.web.panel.index') }}"
+                       class="menu-item {{ request()->segment(2) == 'panel' ? 'show' : '' }}">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <span class="svg-icon svg-icon-1">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+<path opacity="0.3"
+      d="M22 12C22 13.8 21.5 15.5 20.7 17L14.9 7H20.7C21.5 8.5 22 10.2 22 12ZM3.3 7L6.2 12L12 2C8.3 2 5.1 4 3.3 7ZM3.3 17C5 20 8.3 22 12 22L14.9 17H3.3Z"
+      fill="black"/>
+<path
+    d="M20.7 7H9.2L12.1 2C15.7 2 18.9 4 20.7 7ZM3.3 7C2.4 8.5 2 10.2 2 12C2 13.8 2.5 15.5 3.3 17H9.10001L3.3 7ZM17.8 12L12 22C15.7 22 18.9 20 20.7 17L17.8 12Z"
+    fill="black"/>
+</svg>
+                            </span>
+                        </span>
+                        <span class="menu-title">{{ __('sidebar.panel') }}</span>
+                    </span>
+                    </a>
+                @endif
                 @if(checkUserPermission(1, $permissions))
                     <a href="{{ route('user.web.dashboard.index') }}"
                        class="menu-item {{ request()->segment(2) == 'dashboard' ? 'show' : '' }}">
@@ -274,15 +295,17 @@
                     </span>
                 </a>
 
-                    <div data-kt-menu-trigger="click"
-                         class="menu-item here menu-accordion {{ request()->segment(2) == 'education' ? 'show' : '' }}">
+                <div data-kt-menu-trigger="click"
+                     class="menu-item here menu-accordion {{ request()->segment(2) == 'education' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
-                                    <path d="M21 6.30005C20.5 5.30005 19.9 5.19998 18.7 5.09998C17.5 4.99998 14.5 5 11.9 5C9.29999 5 6.29998 4.99998 5.09998 5.09998C3.89998 5.19998 3.29999 5.30005 2.79999 6.30005C2.19999 7.30005 2 8.90002 2 11.9C2 14.8 2.29999 16.5 2.79999 17.5C3.29999 18.5 3.89998 18.6001 5.09998 18.7001C6.29998 18.8001 9.29999 18.8 11.9 18.8C14.5 18.8 17.5 18.8001 18.7 18.7001C19.9 18.6001 20.5 18.4 21 17.5C21.6 16.5 21.8 14.9 21.8 11.9C21.8 9.00002 21.5 7.30005 21 6.30005ZM9.89999 15.7001V8.20007L14.5 11C15.3 11.5 15.3 12.5 14.5 13L9.89999 15.7001Z" fill="black"/>
+                                    <path
+                                        d="M21 6.30005C20.5 5.30005 19.9 5.19998 18.7 5.09998C17.5 4.99998 14.5 5 11.9 5C9.29999 5 6.29998 4.99998 5.09998 5.09998C3.89998 5.19998 3.29999 5.30005 2.79999 6.30005C2.19999 7.30005 2 8.90002 2 11.9C2 14.8 2.29999 16.5 2.79999 17.5C3.29999 18.5 3.89998 18.6001 5.09998 18.7001C6.29998 18.8001 9.29999 18.8 11.9 18.8C14.5 18.8 17.5 18.8001 18.7 18.7001C19.9 18.6001 20.5 18.4 21 17.5C21.6 16.5 21.8 14.9 21.8 11.9C21.8 9.00002 21.5 7.30005 21 6.30005ZM9.89999 15.7001V8.20007L14.5 11C15.3 11.5 15.3 12.5 14.5 13L9.89999 15.7001Z"
+                                        fill="black"/>
                                 </svg>
                             </span>
                             </span>
@@ -290,27 +313,27 @@
                         <span class="menu-title">{{ __('sidebar.education') }}</span>
                         <span class="menu-arrow"></span>
                     </span>
-                        <div class="menu-sub menu-sub-accordion">
-                            <div
-                                class="menu-item {{ request()->segment(3) == 'video'  ? 'show' : '' }}">
-                                <a class="menu-link" href="{{ route('user.web.video.index') }}">
+                    <div class="menu-sub menu-sub-accordion">
+                        <div
+                            class="menu-item {{ request()->segment(3) == 'video'  ? 'show' : '' }}">
+                            <a class="menu-link" href="{{ route('user.web.video.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                    <span class="menu-title">{{ __('sidebar.videos') }} </span>
-                                </a>
-                            </div>
-                            <div
-                                class="menu-item {{ request()->segment(3) == 'document' ? 'show' : '' }}">
-                                <a class="menu-link" href="{{ route('user.web.document.index') }}">
+                                <span class="menu-title">{{ __('sidebar.videos') }} </span>
+                            </a>
+                        </div>
+                        <div
+                            class="menu-item {{ request()->segment(3) == 'document' ? 'show' : '' }}">
+                            <a class="menu-link" href="{{ route('user.web.document.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                    <span class="menu-title">{{ __('sidebar.document') }}</span>
-                                </a>
-                            </div>
+                                <span class="menu-title">{{ __('sidebar.document') }}</span>
+                            </a>
                         </div>
                     </div>
+                </div>
                 {{--                <a href="{{ route('user.web.uploadRequest.index') }}" class="menu-item {{ request()->segment(2) == 'uploadRequest' ? 'show' : '' }}">--}}
                 {{--                    <span class="menu-link">--}}
                 {{--                        <span class="menu-icon">--}}

@@ -2,6 +2,7 @@
 
 return [
     'dashboard' => 'Duvarım',
+    'panel' => 'Panel',
     'syncklasor' => 'Cihazlarım',
     'document' => 'Belgeler',
     'sharedDirectory' => 'Ortak Klasörler',
