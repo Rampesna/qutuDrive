@@ -14,7 +14,8 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('getProfile', [\App\Http\Controllers\Api\User\UserController::class, 'getProfile'])->name('user.api.getProfile');
-    Route::get('getCompanies', [\App\Http\Controllers\Api\User\UserController::class, 'getCompanies'])->name('user.api.getCompanies');/**/
+    Route::get('getCompanies', [\App\Http\Controllers\Api\User\UserController::class, 'getCompanies'])->name('user.api.getCompanies');
+    Route::post('setSelectedCompany', [\App\Http\Controllers\Api\User\UserController::class, 'setSelectedCompany'])->name('user.api.setSelectedCompany');
     Route::post('checkPassword', [\App\Http\Controllers\Api\User\UserController::class, 'checkPassword'])->name('user.api.checkPassword');
 
     Route::prefix('user')->group(function () {

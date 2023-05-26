@@ -93,6 +93,7 @@
             },
             data: {},
             success: function (response) {
+                console.log(response);
                 userCompanies = response.response;
                 SelectedCompany.empty();
                 $.each(response.response, function (i, company) {
@@ -119,14 +120,17 @@
     getCompanies();
 
     $(SelectedCompany).on('select2:select', function (e) {
+        $('#loader').show();
         var companyId = parseInt(e.params.data.id);
         $.ajax({
-            async: false,
             type: 'post',
-            url: '{{ route('user.web.changeCompany') }}',
+            url: '{{ route('user.api.setSelectedCompany') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
             data: {
-                "_token": "{{ csrf_token() }}",
-                company_id: companyId
+                companyId: companyId
             },
             success: function (response) {
                 window.location.reload();
@@ -142,7 +146,6 @@
             }
         });
     });
-
 
     function changeLanguage(locale) {
         $.ajax({

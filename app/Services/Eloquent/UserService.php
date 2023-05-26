@@ -179,6 +179,42 @@ class UserService implements IUserService
      *
      * @return ServiceResponse
      */
+    public function setSelectedCompany(
+        int $userId,
+        int $companyId
+    ): ServiceResponse
+    {
+        $user = $this->getById($userId);
+        if ($user->isSuccess()) {
+            $company = Firmalar::find($companyId);
+            if ($company) {
+                $user->getData()->selected_company_id = $companyId;
+                $user->getData()->save();
+                return new ServiceResponse(
+                    true,
+                    'setSelectedCompany.success',
+                    200,
+                    $user->getData()
+                );
+            } else {
+                return new ServiceResponse(
+                    false,
+                    'setSelectedCompany.notFound',
+                    404,
+                    null
+                );
+            }
+        } else {
+            return $user;
+        }
+    }
+
+    /**
+     * @param int $userId
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     */
     public function checkUserCompany(
         int $userId,
         int $companyId
@@ -390,7 +426,7 @@ class UserService implements IUserService
             $company = $user->getData()->companies()->first();
 
             $user->getData()->api_token = $token;
-            $user->getData()->selected_company_id = $company->id;
+            $user->getData()->selected_company_id = $company->ID;
             $user->getData()->save();
 
             return new ServiceResponse(

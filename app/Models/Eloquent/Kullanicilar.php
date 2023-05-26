@@ -65,6 +65,8 @@ class Kullanicilar extends Authenticatable
         'KULLANICITIPI',
         'KAYITTARIHI',
         'TOKENTARIHI',
+        'api_token',
+        'selected_company_id'
     ];
 
     public function getId()
