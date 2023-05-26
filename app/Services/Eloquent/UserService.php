@@ -384,9 +384,10 @@ class UserService implements IUserService
         $user = $this->getById($userId);
         if ($user->isSuccess()) {
             $token = $user->getData()->createToken('userApiToken')->plainTextToken;
+            session()->put('api_token', $token);
 
-            $user->getData()->api_token = $token;
-            $user->getData()->save();
+//            $user->getData()->api_token = $token;
+//            $user->getData()->save();
 
             return new ServiceResponse(
                 true,
@@ -590,7 +591,7 @@ class UserService implements IUserService
 
     public function getAllPermissions(): ServiceResponse
     {
-       $permissions = Permission::all();
+        $permissions = Permission::all();
         return new ServiceResponse(
             true,
             __('ServiceResponse/Eloquent/UserService.getAllPermissions.success'),
