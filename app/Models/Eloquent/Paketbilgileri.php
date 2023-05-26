@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Paketbilgileri extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'paketbilgileri';
 	protected $primaryKey = 'ID';

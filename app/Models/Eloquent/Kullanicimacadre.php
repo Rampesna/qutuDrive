@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Kullanicimacadre extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'kullanicimacadres';
 	protected $primaryKey = 'ID';

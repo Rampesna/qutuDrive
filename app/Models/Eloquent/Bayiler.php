@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Bayiler extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'bayiler';
 	protected $primaryKey = 'ID';

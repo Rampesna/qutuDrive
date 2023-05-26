@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Musterifinanshareketler extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'musterifinanshareketler';
 	protected $primaryKey = 'ID';

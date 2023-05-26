@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Musteriler extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'musteriler';
 	protected $primaryKey = 'ID';

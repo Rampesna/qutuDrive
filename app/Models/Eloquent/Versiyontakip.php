@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Versiyontakip extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'versiyontakip';
 	protected $primaryKey = 'ID';

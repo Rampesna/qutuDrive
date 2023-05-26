@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Kullaniciyetkileri extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'kullaniciyetkileri';
 	protected $primaryKey = 'ID';

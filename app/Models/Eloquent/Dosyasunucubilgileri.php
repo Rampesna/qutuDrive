@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Dosyasunucubilgileri extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'dosyasunucubilgileri';
 	protected $primaryKey = 'GUID';

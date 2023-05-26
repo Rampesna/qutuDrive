@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Syncklasorler extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'syncklasorler';
 	protected $primaryKey = 'ID';

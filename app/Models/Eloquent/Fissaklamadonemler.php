@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Fissaklamadonemler extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'fissaklamadonemler';
 	protected $primaryKey = 'ID';

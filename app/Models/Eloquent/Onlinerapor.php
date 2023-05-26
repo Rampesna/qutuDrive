@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Onlinerapor extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'onlinerapor';
 	protected $primaryKey = 'ID';

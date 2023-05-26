@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Musterileralt extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'musterileralt';
 	protected $primaryKey = 'ID';

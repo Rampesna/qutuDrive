@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Fissaklamadosyalar extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'fissaklamadosyalar';
 	protected $primaryKey = 'ID';

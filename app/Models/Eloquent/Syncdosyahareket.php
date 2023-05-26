@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Syncdosyahareket extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'syncdosyahareket';
 	protected $primaryKey = 'ID';

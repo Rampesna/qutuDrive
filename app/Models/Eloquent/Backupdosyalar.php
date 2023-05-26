@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Backupdosyalar extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
     protected $table = 'backupdosyalar';
     protected $primaryKey = 'ID';

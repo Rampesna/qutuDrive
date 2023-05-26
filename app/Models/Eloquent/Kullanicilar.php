@@ -35,7 +35,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Kullanicilar extends Authenticatable
 {
 
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'kullanicilar';
     protected $primaryKey = 'ID';

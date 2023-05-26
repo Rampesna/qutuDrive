@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Firmalar extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
     protected $table = 'firmalar';
     protected $primaryKey = 'ID';

@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Edefterklasorler extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'edefterklasorler';
 	protected $primaryKey = 'ID';

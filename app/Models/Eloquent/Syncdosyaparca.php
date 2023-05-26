@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Syncdosyaparca extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'syncdosyaparca';
 	protected $primaryKey = 'ID';

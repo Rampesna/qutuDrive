@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Firmakullanicibaglanti extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'firmakullanicibaglanti';
 	protected $primaryKey = 'ID';

@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Edefterdosyalar extends BaseModel
 {
-    use SoftDeletes;
+//    use SoftDeletes;
 
 	protected $table = 'edefterdosyalar';
 	protected $primaryKey = 'ID';
