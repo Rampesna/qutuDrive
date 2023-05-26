@@ -40,9 +40,12 @@ class AuthenticationController extends Controller
             }
 
             session()->put('user_id', $user->ID);
-//            session()->put('api_token', $user->api_token);
-            session()->put('selected_company_id', $user->selected_company_id);
-            auth()->guard('user_web')->login($user, $request->remember);
+            session()->put('api_token', $request->token);
+
+            $company = $user->companies()->first();
+
+            session()->put('selected_company_id', $company->ID);
+            auth()->guard('user_web')->login($user);
 
             return redirect()->route('user.web.dashboard.index');
         } else {

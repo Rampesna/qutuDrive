@@ -385,7 +385,7 @@ class UserService implements IUserService
         $user = $this->getById($userId);
         if ($user->isSuccess()) {
             $token = $user->getData()->createToken('userApiToken')->plainTextToken;
-            session()->put('api_token', $token);
+//            session()->put('api_token', $token);
 
 //            $user->getData()->api_token = $token;
 //            $user->getData()->save();
