@@ -72,9 +72,9 @@
 
 <script>
 
-    var authUserId = parseInt(`{{ session('user_id') }}`);
-    var authUserToken = 'Bearer {{ session('api_token') }}';
-    var authUserSelectedCompanyId = parseInt(`{{ session('selected_company_id') }}`);
+    var authUserId = parseInt(`{{ auth()->user()->getId() }}`);
+    var authUserToken = 'Bearer {{ auth()->user()->getApiToken() }}';
+    var authUserSelectedCompanyId = parseInt(`{{ auth()->user()->getSelectedCompanyId() }}`);
     var userCompanies = [];
     var SelectedCompany = $('#SelectedCompany');
     var jqxGridGlobalTheme = 'metro';

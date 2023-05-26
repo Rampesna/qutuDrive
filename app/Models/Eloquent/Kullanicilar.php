@@ -67,12 +67,17 @@ class Kullanicilar extends Authenticatable
         'TOKENTARIHI',
     ];
 
-    public function apiToken()
+    public function getId()
+    {
+        return $this->ID;
+    }
+
+    public function getApiToken()
     {
         return $this->api_token;
     }
 
-    public function selectedCompanyId()
+    public function getSelectedCompanyId()
     {
         return $this->selected_company_id;
     }

@@ -387,8 +387,11 @@ class UserService implements IUserService
             $token = $user->getData()->createToken('userApiToken')->plainTextToken;
 //            session()->put('api_token', $token);
 
-//            $user->getData()->api_token = $token;
-//            $user->getData()->save();
+            $company = $user->getData()->companies()->first();
+
+            $user->getData()->api_token = $token;
+            $user->getData()->selected_company_id = $company->id;
+            $user->getData()->save();
 
             return new ServiceResponse(
                 true,
