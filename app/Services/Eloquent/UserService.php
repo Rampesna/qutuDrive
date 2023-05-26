@@ -7,6 +7,7 @@ use App\Models\Eloquent\Firmalar;
 use App\Models\Eloquent\Kullanicilar;
 use App\Core\ServiceResponse;
 use App\Models\Eloquent\Permission;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class UserService implements IUserService
