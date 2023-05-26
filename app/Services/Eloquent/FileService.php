@@ -79,18 +79,22 @@ class FileService implements IFileService
      * @param int $typeId
      * @param string $fullPath
      * @param float|null $fileSize
+     * @param string|null $uuid
+     * @param mixed $directoryId
      *
      * @return ServiceResponse
      */
     public function create(
-        int    $relationId,
-        string $relationType,
-        string $name = null,
-        string $mimeType = null,
-        string $icon = null,
-        int    $typeId,
-        string $fullPath,
-        float  $fileSize = null
+        int         $relationId,
+        string      $relationType,
+        string      $name = null,
+        string      $mimeType = null,
+        string      $icon = null,
+        int         $typeId,
+        string      $fullPath,
+        float       $fileSize = null,
+        string|null $uuid = null,
+        mixed       $directoryId = null
     ): ServiceResponse
     {
         $file = new File();
@@ -102,6 +106,10 @@ class FileService implements IFileService
         $file->type_id = $typeId;
         $file->full_path = $fullPath;
         $file->file_size = $fileSize;
+        $file->uuid = $uuid;
+        if (gettype($directoryId) === 'integer') {
+            $file->directory_id = $directoryId;
+        }
         $file->save();
 
         return new ServiceResponse(

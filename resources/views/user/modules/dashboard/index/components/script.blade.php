@@ -150,7 +150,7 @@
                     <div class="col-xl-2 mb-5">
                         <div class="card h-100 flex-center text-center py-4 px-0 cursor-pointer border border-secondary bg-hover-light-dark fileSelector fileTooltip" data-bs-toggle="tooltip" data-bs-placement="bottom" title="${file.name}" data-file-id="${file.id}" data-file-name="${file.name}" id="file_${file.id}" style="border-radius: 10px">
                             <i class="fas fa-file fa-lg mt-2 mb-5"></i>
-                            <span class="font-weight-bolder text-dark-75 mb-1">${file.name.length > 19 ? `${file.name.substring(0,16)}...` : file.name}</span>
+                            <span class="font-weight-bolder text-dark-75 mb-1">${file.name.length > 19 ? `${file.name.substring(0, 16)}...` : file.name}</span>
                             <div class="fs-7 fw-bold text-gray-400 mt-auto mb-1">${formatBytes(file.file_size)}</div>
                             <span class="fs-7 fw-bold text-gray-600 mt-auto mb-1">${reformatDatetimeToDatetimeForHuman(file.created_at)}</span>
                         </div>
@@ -320,7 +320,37 @@
     }
 
     function downloadTransaction() {
-        toastr.info('İndirme İşlemi Henüz Yapılamamaktadır.');
+        if (selectedDirectories.length > 0) {
+
+        } else if (selectedFiles.length === 1) {
+            console.log(selectedFiles[0].id);
+            $.ajax({
+                type: 'get',
+                url: '{{ route('user.api.file.downloadSingleFile') }}',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': authUserToken
+                },
+                data: {
+                    fileId: selectedFiles[0].id
+                },
+                success: function (response) {
+                    window.open(response.response, '_blank');
+                },
+                error: function (error) {
+                    console.log(error);
+                    if (parseInt(error.status) === 422) {
+                        $.each(error.responseJSON.response, function (i, error) {
+                            toastr.error(error[0]);
+                        });
+                    } else {
+                        toastr.error(error.responseJSON.message);
+                    }
+                }
+            });
+        } else {
+            toastr.info('İndirmek İçin Yalnızca Bir Dosya Seçebilirsiniz.');
+        }
     }
 
     function cutTransaction() {
@@ -419,7 +449,7 @@
                     }
                 }
             });
-        } else if (cutFiles.length  > 0) {
+        } else if (cutFiles.length > 0) {
             toastr.info('İşleminiz yapılıyor lütfen bekleyiniz...');
             $.ajax({
                 type: 'put',
@@ -628,8 +658,8 @@
 
     UploadFileButton.click(function () {
         var file = $('#upload_file').prop('files')[0];
-        var filePath = 'directory_id_' + parentDirectoryId + '/';
-
+        var filePath = '';
+        var companyId = SelectedCompany.val();
         if (!file) {
             toastr.warning('Dosya Seçmediniz!');
         } else {
@@ -637,6 +667,8 @@
             var data = new FormData();
             data.append('file', file);
             data.append('filePath', filePath);
+            data.append('companyId', companyId);
+            data.append('directoryId', parentDirectoryId);
 
             $.ajax({
                 contentType: false,

@@ -6,6 +6,7 @@ use App\Core\Controller;
 use App\Core\HttpResponse;
 use App\Http\Requests\Api\User\FirmaPaketleriController\GetByCompanyIdRequest;
 use App\Http\Requests\Api\User\FirmaPaketleriController\CreateRequest;
+use App\Http\Requests\Api\User\FirmaPaketleriController\GetUsageRequest;
 use App\Interfaces\Eloquent\IFirmaPaketleriService;
 
 class FirmaPaketleriController extends Controller
@@ -52,6 +53,23 @@ class FirmaPaketleriController extends Controller
             $request->endDate,
             $request->status,
             $request->paymentType
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
+     * @param GetUsageRequest $request
+     */
+    public function getUsage(GetUsageRequest $request)
+    {
+        $response = $this->firmaPaketleriService->getUsage(
+            $request->companyId
         );
 
         return $this->httpResponse(

@@ -53,4 +53,13 @@ interface IFirmaPaketleriService
     public function delete(
         int $id
     ): ServiceResponse;
+
+    /*
+     * @param int $companyId
+     *
+     * return ServiceResponse
+     * */
+    public function getUsage(
+        int $companyId
+    ): ServiceResponse;
 }

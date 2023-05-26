@@ -3,8 +3,10 @@
 namespace App\Services\Eloquent;
 
 use App\Core\ServiceResponse;
+use App\Models\Eloquent\Firmalar;
 use App\Models\Eloquent\Syncdosyahareket;
 use App\Interfaces\Eloquent\ISyncDosyaHareketService;
+use Illuminate\Support\Facades\DB;
 
 class SyncDosyaHareketService implements ISyncDosyaHareketService
 {
@@ -85,5 +87,52 @@ class SyncDosyaHareketService implements ISyncDosyaHareketService
             200,
             Syncdosyahareket::where('SUNUCUKLASORLERID', $sunucuKlasorId)->get()
         );
+    }
+
+    /*
+     * return ServiceResponse
+     * */
+    public function getUsage(
+        int $companyId
+    ): ServiceResponse
+    {
+        $company = Firmalar::find($companyId);
+        $usage = DB::select("
+        SELECT SUM(DOSYABOYUTU) AS SyncDosyaHareketUsage FROM syncdosyahareket WHERE FIRMAAPIKEY='$company->APIKEY' AND DURUM=1
+        ");
+
+        return new ServiceResponse(
+            true,
+            'syncdosyahareket usage',
+            200,
+            $usage
+        );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return ServiceResponse
+     */
+    public function getByUuId(
+        string $id
+    ): ServiceResponse
+    {
+        $syncklasorler = Syncdosyahareket::where('ID', $id)->first();
+        if ($syncklasorler) {
+            return new ServiceResponse(
+                true,
+                __('ServiceResponse/Eloquent/SyncDosyaHareketService.getById.exists'),
+                200,
+                $syncklasorler
+            );
+        } else {
+            return new ServiceResponse(
+                false,
+                __('ServiceResponse/Eloquent/SyncDosyaHareketService.getById.notFound'),
+                404,
+                null
+            );
+        }
     }
 }

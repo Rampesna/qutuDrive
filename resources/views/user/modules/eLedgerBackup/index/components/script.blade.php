@@ -6,6 +6,27 @@
     var filesRow = $('#filesRow');
     var filesRowBody = $('#filesRowBody');
 
+    var uploadELedgerInput = $('#uploadELedgerInput');
+    var singleELedgerUploadInputSelector = $('#singleELedgerUploadInput');
+    var multipleELedgerUploadInputSelector = $('#multipleELedgerUploadInput');
+
+    var SingleELedgerUploadButton = $('#SingleELedgerUploadButton');
+    var MultipleELedgerUploadButton = $('#MultipleELedgerUploadButton');
+
+    function transactions() {
+        $('#TransactionsModal').modal('show');
+    }
+
+    function singleELedgerUpload() {
+        $('#TransactionsModal').modal('hide');
+        $('#SingleELedgerUploadModal').modal('show');
+    }
+
+    function multipleELedgerUpload() {
+        $('#TransactionsModal').modal('hide');
+        $('#MultipleELedgerUploadModal').modal('show');
+    }
+
     $(document).ready(function () {
         $('#loader').hide();
         $.each(months, function (i, month) {
@@ -15,6 +36,10 @@
     });
 
     var UploadELedgersButton = $('#UploadELedgersButton');
+
+    UploadELedgersButton.click(function () {
+        transactions();
+    });
 
     $(document).delegate('.getEDefterDosyalar', 'click', function () {
         var selectedTab = $(this);
@@ -47,7 +72,7 @@
                     companyId: SelectedCompany.val(),
                     year: year,
                     month: month,
-                    typeIds: parseInt(typeId) === 0 ? [1,2,5,6] : [typeId],
+                    typeIds: parseInt(typeId) === 0 ? [1, 2, 5, 6] : [typeId],
                 },
                 success: function (response) {
                     filesRowBody.show();
@@ -101,6 +126,45 @@
                         });
                     } else if (parseInt(error.status) === 404) {
                         toastr.error('Bu Döneme Ait Defter Verisi Bulunamadı!');
+                    } else {
+                        toastr.error(error.responseJSON.message);
+                    }
+                }
+            });
+        }
+    });
+
+
+    SingleELedgerUploadButton.click(function () {
+        var file = $('#single_file').prop('files')[0];
+        var companyId = SelectedCompany.val();
+        if (!file) {
+            toastr.warning('Dosya Seçmediniz!');
+        } else {
+            SingleELedgerUploadButton.attr('disabled', true).html('<i class="fa fa-spinner fa-spin"></i>');
+            var data = new FormData();
+            data.append('file', file);
+            data.append('companyId', companyId);
+            $.ajax({
+                contentType: false,
+                processData: false,
+                type: 'post',
+                url: '{{ route('user.api.edefterdosyalar.singleELedgerUpload') }}',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': authUserToken
+                },
+                data: data,
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (error) {
+                    console.log(error);
+                    SingleELedgerUploadButton.attr('disabled', false).html('Yükle');
+                    if (parseInt(error.status) === 422) {
+                        $.each(error.responseJSON.response, function (i, error) {
+                            toastr.error(error[0]);
+                        });
                     } else {
                         toastr.error(error.responseJSON.message);
                     }

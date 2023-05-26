@@ -15,154 +15,67 @@
 @section('content')
 
 
-
+    <div class="row">
+        <div class="col-xl-6"></div>
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col border-right pb-4 pt-4">
+                            <i class="fas fa-chart-pie fa-2x text-info"></i><br>
+                            <label class="mb-0 mr-5 mt-2">Kalan Kullanım</label>
+                            <h4 class="font-30 font-weight-bold text-col-blue" style="font-size: 30px" id="generalUsage">--</h4>
+                        </div>
+                        <div class="col pb-4 pt-4">
+                            <i class="fas fa-credit-card fa-2x text-success"></i><br>
+                            <label class="mb-0 mr-5 mt-2">Bakiye</label>
+                            <h4 class="font-30 font-weight-bold text-col-blue" style="font-size: 30px" id="balanceSpan">--</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="text-muted">
     <div id="driveMain" class="container-fluid" style="padding:0 10px;margin:10px 0">
         <div class="card">
             <div class="card-body">
               <div class="col-md-12">
                   <div class="row">
-                      <div class="col-md-3">
-                          <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end " style="background-color: #F1416C;background-image:url('/metronic8/demo1/assets/media/patterns/vector-1.png')">
-                              <!--begin::Header-->
-                              <div class="card-header pt-5">
-                                  <!--begin::Title-->
+                      <div class="col-md-4">
+                          <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end bg-dark">
+                              <div class="card-header pt-5 pb-5">
                                   <div class="card-title d-flex flex-column">
-                                      <!--begin::Amount-->
-                                      <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">69</span>
-                                      <!--end::Amount-->
-
-                                      <!--begin::Subtitle-->
-                                      <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Active Projects</span>
-                                      <!--end::Subtitle-->
+                                      <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2" id="backupdosyalarSpan">
+                                          <i class="fa fa-sm fa-spinner fa-spin text-white"></i>
+                                      </span>
+                                      <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Veritabanı Yedek Kullanımı</span>
                                   </div>
-                                  <!--end::Title-->
                               </div>
-                              <!--end::Header-->
-
-                              <!--begin::Card body-->
-                              <div class="card-body d-flex align-items-end pt-0">
-                                  <!--begin::Progress-->
-                                  <div class="d-flex align-items-center flex-column mt-3 w-100">
-                                      <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
-                                          <span>43 Pending</span>
-                                          <span>72%</span>
-                                      </div>
-
-                                      <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
-                                          <div class="bg-white rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                  </div>
-                                  <!--end::Progress-->
-                              </div>
-                              <!--end::Card body-->
                           </div>
                       </div>
-                      <div class="col-md-3">
-                          <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end " style="background-color: #F1416C;background-image:url('/metronic8/demo1/assets/media/patterns/vector-1.png')">
-                              <!--begin::Header-->
-                              <div class="card-header pt-5">
-                                  <!--begin::Title-->
+                      <div class="col-md-4">
+                          <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end bg-warning">
+                              <div class="card-header pt-5 pb-5">
                                   <div class="card-title d-flex flex-column">
-                                      <!--begin::Amount-->
-                                      <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">69</span>
-                                      <!--end::Amount-->
-
-                                      <!--begin::Subtitle-->
-                                      <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Active Projects</span>
-                                      <!--end::Subtitle-->
+                                      <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2" id="syncdosyahareketSpan">
+                                          <i class="fa fa-sm fa-spinner fa-spin text-white"></i>
+                                      </span>
+                                      <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Dosya Yedek Kullanımı</span>
                                   </div>
-                                  <!--end::Title-->
                               </div>
-                              <!--end::Header-->
-
-                              <!--begin::Card body-->
-                              <div class="card-body d-flex align-items-end pt-0">
-                                  <!--begin::Progress-->
-                                  <div class="d-flex align-items-center flex-column mt-3 w-100">
-                                      <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
-                                          <span>43 Pending</span>
-                                          <span>72%</span>
-                                      </div>
-
-                                      <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
-                                          <div class="bg-white rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                  </div>
-                                  <!--end::Progress-->
-                              </div>
-                              <!--end::Card body-->
                           </div>
                       </div>
-                      <div class="col-md-3">
-                          <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end " style="background-color: #F1416C;background-image:url('/metronic8/demo1/assets/media/patterns/vector-1.png')">
-                              <!--begin::Header-->
-                              <div class="card-header pt-5">
-                                  <!--begin::Title-->
+                      <div class="col-md-4">
+                          <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end bg-primary">
+                              <div class="card-header pt-5 pb-5">
                                   <div class="card-title d-flex flex-column">
-                                      <!--begin::Amount-->
-                                      <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">69</span>
-                                      <!--end::Amount-->
-
-                                      <!--begin::Subtitle-->
-                                      <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Active Projects</span>
-                                      <!--end::Subtitle-->
+                                      <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2" id="edefterdosyalarSpan">
+                                          <i class="fa fa-sm fa-spinner fa-spin text-white"></i>
+                                      </span>
+                                      <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Edefter Yedek Kullanımı</span>
                                   </div>
-                                  <!--end::Title-->
                               </div>
-                              <!--end::Header-->
-
-                              <!--begin::Card body-->
-                              <div class="card-body d-flex align-items-end pt-0">
-                                  <!--begin::Progress-->
-                                  <div class="d-flex align-items-center flex-column mt-3 w-100">
-                                      <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
-                                          <span>43 Pending</span>
-                                          <span>72%</span>
-                                      </div>
-
-                                      <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
-                                          <div class="bg-white rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                  </div>
-                                  <!--end::Progress-->
-                              </div>
-                              <!--end::Card body-->
-                          </div>
-                      </div>
-                      <div class="col-md-3">
-                          <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end " style="background-color: #F1416C;background-image:url('/metronic8/demo1/assets/media/patterns/vector-1.png')">
-                              <!--begin::Header-->
-                              <div class="card-header pt-5">
-                                  <!--begin::Title-->
-                                  <div class="card-title d-flex flex-column">
-                                      <!--begin::Amount-->
-                                      <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">69</span>
-                                      <!--end::Amount-->
-
-                                      <!--begin::Subtitle-->
-                                      <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Active Projects</span>
-                                      <!--end::Subtitle-->
-                                  </div>
-                                  <!--end::Title-->
-                              </div>
-                              <!--end::Header-->
-
-                              <!--begin::Card body-->
-                              <div class="card-body d-flex align-items-end pt-0">
-                                  <!--begin::Progress-->
-                                  <div class="d-flex align-items-center flex-column mt-3 w-100">
-                                      <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
-                                          <span>43 Pending</span>
-                                          <span>72%</span>
-                                      </div>
-
-                                      <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
-                                          <div class="bg-white rounded h-8px" role="progressbar" style="width: 72%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                      </div>
-                                  </div>
-                                  <!--end::Progress-->
-                              </div>
-                              <!--end::Card body-->
                           </div>
                       </div>
                   </div>

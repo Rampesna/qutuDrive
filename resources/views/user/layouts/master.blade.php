@@ -80,6 +80,8 @@
     var jqxGridGlobalTheme = 'metro';
     var baseAssetUrl = '{{ asset('') }}';
 
+    var waitingDatabaseBackDownloadsRow = $('#waitingDatabaseBackDownloadsRow');
+
     function getCompanies() {
         $.ajax({
             async: false,
@@ -161,6 +163,107 @@
             }
         });
     }
+
+    function getWaitingDatabaseBackupDownloadsByUserId() {
+        $.ajax({
+            type: 'get',
+            url: '{{ route('user.api.waitingDatabaseBackupDownload.getByUserId') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {},
+            success: function (response) {
+                waitingDatabaseBackDownloadsRow.empty();
+                $.each(response.response, function (i, waitingDatabaseBackDownload) {
+                    var statusBadge = ``;
+                    var statusName = ``;
+                    var downloadLinkHtml = `<span class="fs-6 text-gray-800 text-hover-primary fw-bolder">${waitingDatabaseBackDownload.backupdosyalar.DOSYAADI}</span>`;
+                    var cancelIconHtml = ``;
+
+                    if (waitingDatabaseBackDownload.status_id === 1) {
+                        statusBadge = `badge-light-warning`;
+                        statusName = `Bekliyor`;
+                        cancelIconHtml = `<i class="fa fa-times-circle fa-lg text-danger cursor-pointer waitingDatabaseBackupDownloadCancelIcon" data-id="${waitingDatabaseBackDownload.id}"></i>`;
+                    } else if (waitingDatabaseBackDownload.status_id === 2) {
+                        statusBadge = `badge-light-info`;
+                        statusName = `İşleme Alındı`;
+                    } else if (waitingDatabaseBackDownload.status_id === 3) {
+                        statusBadge = `badge-light-success`;
+                        statusName = `Tamamlandı`;
+                        downloadLinkHtml = `<a href="${waitingDatabaseBackDownload.download_link}" target="_blank" class="fs-6 text-gray-800 text-hover-primary fw-bolder">${waitingDatabaseBackDownload.backupdosyalar.DOSYAADI}</a>`;
+                    } else if (waitingDatabaseBackDownload.status_id === 5) {
+                        statusBadge = `badge-secondary`;
+                        statusName = `İptal Edildi`;
+                    } else {
+                        statusBadge = `badge-light-danger`;
+                        statusName = `Hata`;
+                    }
+
+                    waitingDatabaseBackDownloadsRow.append(`
+                    <div class="col-xl-12" id="waitingDatabaseBackupDownloadCol_${waitingDatabaseBackDownload.id}">
+                        <div class="d-flex flex-stack py-4">
+                            <div class="d-flex align-items-center">
+                                <div class="symbol symbol-35px me-4">
+                                    ${cancelIconHtml}
+                                </div>
+                                <div class="mb-0 me-2">
+                                    ${downloadLinkHtml}
+                                </div>
+                            </div>
+                            <span class="badge ${statusBadge} fs-8">
+                                ${statusName}
+                            </span>
+                        </div>
+                    </div>
+                    `);
+                });
+                console.log(response);
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+    }
+
+    getWaitingDatabaseBackupDownloadsByUserId();
+
+    $(document).delegate('.waitingDatabaseBackupDownloadCancelIcon', 'click', function () {
+        $(this).removeClass('fa-times-circle').addClass('fa-spinner fa-spin');
+        var id = parseInt($(this).data('id'));
+        $.ajax({
+            type: 'post',
+            url: '{{ route('user.api.waitingDatabaseBackupDownload.cancel') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {
+                id: id,
+            },
+            success: function () {
+                getWaitingDatabaseBackupDownloadsByUserId();
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+    });
+
 </script>
 
 @yield('customScripts')

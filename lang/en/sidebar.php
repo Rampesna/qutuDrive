@@ -33,7 +33,6 @@ return [
         'packages' => 'Packages',
     ],
     'videos' => 'Videos',
-    'document' => 'Documents',
     'education' => 'Education',
     'management' => [
         'title' => 'Managemet',

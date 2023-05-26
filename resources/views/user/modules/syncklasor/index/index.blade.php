@@ -14,26 +14,29 @@
 
 @section('content')
 
+    @include('user.modules.syncklasor.index.modals.transactions')
+
     <div id="driveMain" class="container-fluid" style="padding:0 10px;margin:10px 0">
         <div class="card">
-            <div class="card-header">
-                <div class="card-title" style="margin:0;">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-light btn-sm" id="homeSyncklasorButton"><i class="fa fa-home"></i></button>
-                    </div>
-                    <div id="historyRow"></div>
-                </div>
-                <div class="card-toolbar">
-                    <button class="btn btn-sm btn-primary">
-                        <i class="fa fa-file-upload"></i> {{ __('user/modules/syncklasor.index.uploadFile') }}
-                    </button>
-                </div>
-            </div>
+            {{--            <div class="card-header">--}}
+            {{--                <div class="card-title" style="margin:0;">--}}
+            {{--                    <div class="btn-group">--}}
+            {{--                        <button type="button" class="btn btn-light btn-sm" id="homeSyncklasorButton"><i class="fa fa-home"></i></button>--}}
+            {{--                    </div>--}}
+            {{--                    <div id="historyRow"></div>--}}
+            {{--                </div>--}}
+            {{--                <div class="card-toolbar">--}}
+            {{--                    <button class="btn btn-sm btn-primary">--}}
+            {{--                        <i class="fa fa-file-upload"></i> {{ __('user/modules/syncklasor.index.uploadFile') }}--}}
+            {{--                    </button>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
             <div class="card-body">
                 <div id="devicesArea">
                     <div class="row mb-5">
                         <div class="col-xl-12">
-                            <span class="fw-bolder text-gray-700">{{ __('user/modules/syncklasor.index.myDevices') }}</span>
+                            <span
+                                class="fw-bolder text-gray-700">{{ __('user/modules/syncklasor.index.myDevices') }}</span>
                         </div>
                     </div>
                     <div class="row" id="devicesRow">

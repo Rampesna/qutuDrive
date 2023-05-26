@@ -3,9 +3,10 @@
 
 @section('content')
 
+
     <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
         <a href="#" class="mb-12">
-            <img alt="Logo" src="{{ asset('assets/media/logos/favicon.png') }}" class="h-75px" />
+            <img alt="Logo" src="{{ getLogoPath(url('/')) }}" class="h-75px" />
         </a>
         <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
             <div class="form w-100">

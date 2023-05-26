@@ -14,6 +14,7 @@ return new class extends Migration {
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid');
             $table->string('relation_type');
             $table->unsignedBigInteger('relation_id');
             $table->unsignedBigInteger('directory_id')->nullable();

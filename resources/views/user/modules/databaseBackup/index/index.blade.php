@@ -14,6 +14,8 @@
 
 @section('content')
 
+    @include('user.modules.databaseBackup.index.modals.transactions')
+
     <input type="file" id="fileSelector" style="display: none">
 
     <div class="row">

@@ -3,6 +3,9 @@
 
 <script>
 
+    console.log('{{ getLogoPath(url('/')) }}');
+    console.log('{{ url('/') }}');
+
     $(document).ready(function () {
         $('#loader').hide();
     });

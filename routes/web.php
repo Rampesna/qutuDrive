@@ -16,5 +16,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\Home\HomeController::class, 'index'])->name('home');
 
 Route::get('share/form/{id?}', [\App\Http\Controllers\Home\FormController::class, 'form'])->name('share.form');
-
-Route::get('deneme', [\App\Http\Controllers\Home\HomeController::class, 'deneme'])->name('deneme');

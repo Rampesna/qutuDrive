@@ -14,6 +14,8 @@
         controlKeyPressStatus = false;
     });
 
+    var contextMenuSelector = $('.contextMenu');
+
     var backSyncklasorButton = $('#backSyncklasorButton');
     var homeSyncklasorButton = $('#homeSyncklasorButton');
 
@@ -22,6 +24,8 @@
      * */
 
     var parentSyncklasorId = null;
+
+    var selectedFileId = null;
 
     var selectedSyncKlasorler = [];
     var selectedFiles = [];
@@ -69,10 +73,10 @@
                     $.each(response.response, function (i, syncDosyaHareket) {
                         filesRow.append(`
                         <div class="col-xl-2 mb-5">
-                            <div class="card h-100 flex-center text-center py-4 px-0 cursor-pointer border border-secondary bg-hover-light-dark" style="border-radius: 10px">
+                            <div class="card h-100 flex-center text-center py-4 px-0 cursor-pointer border border-secondary bg-hover-light-dark deviceFile" data-file-id="${syncDosyaHareket.ID}" style="border-radius: 10px">
                                 <i class="fas fa-file fa-lg mt-2 mb-5"></i>
-                                <span class="font-weight-bolder text-dark-75 mb-1 fileTooltip" data-bs-toggle="tooltip" data-bs-placement="bottom" title="${syncDosyaHareket.DOSYAADI}">${syncDosyaHareket.DOSYAADI.length > 24 ? `${syncDosyaHareket.DOSYAADI.substring(0,21)}...` : syncDosyaHareket.DOSYAADI}</span>
-                                <span class="font-weight-bolder text-dark-75 mb-1 fileTooltip" data-bs-toggle="tooltip" data-bs-placement="bottom" title="${syncDosyaHareket.YERELDOSYAYOLU}">${syncDosyaHareket.YERELDOSYAYOLU.length > 24 ? `${syncDosyaHareket.YERELDOSYAYOLU.substring(0,21)}...` : syncDosyaHareket.YERELDOSYAYOLU}</span>
+                                <span class="font-weight-bolder text-dark-75 mb-1 fileTooltip" data-bs-toggle="tooltip" data-bs-placement="bottom" title="${syncDosyaHareket.DOSYAADI}">${syncDosyaHareket.DOSYAADI.length > 24 ? `${syncDosyaHareket.DOSYAADI.substring(0, 21)}...` : syncDosyaHareket.DOSYAADI}</span>
+                                <span class="font-weight-bolder text-dark-75 mb-1 fileTooltip" data-bs-toggle="tooltip" data-bs-placement="bottom" title="${syncDosyaHareket.YERELDOSYAYOLU}">${syncDosyaHareket.YERELDOSYAYOLU.length > 24 ? `${syncDosyaHareket.YERELDOSYAYOLU.substring(0, 21)}...` : syncDosyaHareket.YERELDOSYAYOLU}</span>
                                 <div class="fs-7 fw-bold text-gray-400 mt-auto mb-1">${syncDosyaHareket.DOSYABOYUTU} MB</div>
                                 <span class="fs-7 fw-bold text-gray-600 mt-auto mb-1">${reformatDatetimeToDatetimeForHuman(syncDosyaHareket.KAYITTARIHI)}</span>
                             </div>
@@ -281,7 +285,60 @@
      * File Transactions
      * */
 
+    function downloadFile() {
+        $.ajax({
+            type: 'get',
+            url: '{{ route('user.api.syncdosyahareket.downloadSingleFile') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {
+                fileId: selectedFileId
+            },
+            success: function (response) {
+                window.open(response.response, '_blank');
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+    }
 
+    $(document).delegate('.deviceFile', 'contextmenu', function (e) {
+        selectedFileId = $(this).attr('data-file-id');
+        $('#TransactionsModal').modal('show');
+
+        return false;
+    });
+
+    // $('.deviceFile').on('contextmenu', function (e) {
+    //     if (detectMobile()) {
+    //         return false;
+    //     } else {
+    //         var top = e.pageY - 10;
+    //         var left = e.pageX - 10;
+    //
+    //         contextMenuSelector.css({
+    //             display: "block",
+    //             top: top,
+    //             left: left
+    //         });
+    //
+    //         return false;
+    //     }
+    // }).on("click", function () {
+    //     contextMenuSelector.hide();
+    // }).on('focusout', function () {
+    //     contextMenuSelector.hide();
+    // });
 
     // File Transactions End
 

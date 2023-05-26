@@ -16,4 +16,22 @@ interface IBackupDosyalarService
         int     $companyId,
         ?string $keyword = null
     ): ServiceResponse;
+
+    /**
+     * @param int $companyId
+     *
+     * @return ServiceResponse
+     * */
+    public function getUsage(
+        int $companyId
+    ): ServiceResponse;
+
+    /**
+     * @param int $id
+     *
+     * @return ServiceResponse
+     * */
+    public function getById(
+        int $id
+    ): ServiceResponse;
 }

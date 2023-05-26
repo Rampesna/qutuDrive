@@ -3,20 +3,22 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Core\Controller;
-use App\Interfaces\AwsS3\IStorageService;
-use App\Interfaces\Eloquent\IFileService;
-use App\Http\Requests\Api\User\FileController\GetAllRequest;
-use App\Http\Requests\Api\User\FileController\UploadRequest;
-use App\Http\Requests\Api\User\FileController\UploadBatchRequest;
+use App\Core\HttpResponse;
+use App\Http\Requests\Api\User\FileController\DeleteBatchRequest;
+use App\Http\Requests\Api\User\FileController\DeleteRequest;
 use App\Http\Requests\Api\User\FileController\DownloadRequest;
+use App\Http\Requests\Api\User\FileController\DownloadSingleRequest;
+use App\Http\Requests\Api\User\FileController\GetAllRequest;
 use App\Http\Requests\Api\User\FileController\GetByIdRequest;
 use App\Http\Requests\Api\User\FileController\GetByRelationRequest;
 use App\Http\Requests\Api\User\FileController\GetTrashedByRelationRequest;
-use App\Http\Requests\Api\User\FileController\UpdateDirectoryIdRequest;
-use App\Http\Requests\Api\User\FileController\DeleteRequest;
-use App\Http\Requests\Api\User\FileController\DeleteBatchRequest;
 use App\Http\Requests\Api\User\FileController\RecoverRequest;
-use App\Core\HttpResponse;
+use App\Http\Requests\Api\User\FileController\UpdateDirectoryIdRequest;
+use App\Http\Requests\Api\User\FileController\UploadBatchRequest;
+use App\Http\Requests\Api\User\FileController\UploadRequest;
+use App\Interfaces\AwsS3\IStorageService;
+use App\Interfaces\Eloquent\IFileService;
+use Illuminate\Support\Str;
 
 class FileController extends Controller
 {
@@ -139,21 +141,25 @@ class FileController extends Controller
      */
     public function upload(UploadRequest $request)
     {
+        $uuid = Str::uuid()->toString();
         $storeResponse = $this->storageService->store(
             $request->file('file'),
-            $request->filePath
+            '',
+            $uuid
         );
 
         if ($storeResponse->isSuccess()) {
             $createResponse = $this->fileService->create(
-                $request->user()->ID,
-                'App\\Models\\Eloquent\\Kullanicilar',
+                $request->companyId,
+                'App\\Models\\Eloquent\\Firmalar',
                 $request->file('file')->getClientOriginalName(),
                 $request->file('file')->getClientMimeType(),
                 $request->icon,
                 $request->typeId ?? getFileTypeId($request->file('file')->getClientMimeType()),
                 $storeResponse->getData(),
-                $request->file('file')->getSize()
+                $request->file('file')->getSize(),
+                $uuid,
+                $request->directoryId ?? null
             );
 
             return $this->httpResponse(
@@ -241,6 +247,35 @@ class FileController extends Controller
             return $this->error(
                 $file->getMessage(),
                 $file->getStatusCode()
+            );
+        }
+    }
+
+    /**
+     * @param DownloadSingleRequest $request
+     */
+    public function downloadSingleFile(DownloadSingleRequest $request)
+    {
+        $file = $this->fileService->getById(
+            $request->fileId
+        );
+        if ($file->isSuccess()) {
+            $fileFromStorage = $this->storageService->downloadSingleFile(
+                $file->getData()->full_path
+            );
+
+            return $this->httpResponse(
+                $fileFromStorage->getMessage(),
+                $fileFromStorage->getStatusCode(),
+                $fileFromStorage->getData(),
+                $fileFromStorage->isSuccess()
+            );
+        } else {
+            return $this->httpResponse(
+                $file->getMessage(),
+                $file->getStatusCode(),
+                $file->getData(),
+                $file->isSuccess()
             );
         }
     }

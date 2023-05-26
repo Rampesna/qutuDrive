@@ -13,7 +13,7 @@
 
         <div class="d-flex align-items-center flex-lg-grow-0">
             <a href="#" class="d-lg-none">
-                <img alt="Logo" src="{{ asset('assets/media/logos/favicon.png') }}" class="h-30px" />
+                <img alt="Logo" src="{{ getLogoPath(url('/')) }}" class="h-30px" />
             </a>
         </div>
 
@@ -38,6 +38,38 @@
                             </svg>
                         </span>
                         <span class="bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink"></span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center ms-1 ms-lg-3">
+                    <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                        <span class="svg-icon svg-icon-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.3" d="M19 15C20.7 15 22 13.7 22 12C22 10.3 20.7 9 19 9C18.9 9 18.9 9 18.8 9C18.9 8.7 19 8.3 19 8C19 6.3 17.7 5 16 5C15.4 5 14.8 5.2 14.3 5.5C13.4 4 11.8 3 10 3C7.2 3 5 5.2 5 8C5 8.3 5 8.7 5.1 9H5C3.3 9 2 10.3 2 12C2 13.7 3.3 15 5 15H19Z" fill="currentColor"/>
+                                <path d="M13 17.4V12C13 11.4 12.6 11 12 11C11.4 11 11 11.4 11 12V17.4H13Z" fill="currentColor"/>
+                                <path opacity="0.3" d="M8 17.4H16L12.7 20.7C12.3 21.1 11.7 21.1 11.3 20.7L8 17.4Z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px" data-kt-menu="true" style="">
+                        <div class="d-flex flex-column bgi-no-repeat rounded-top" style="background-image:url('{{ assert('assets/media/misc/pattern-1.jpg') }}')">
+                            <h3 class="text-dark fw-bold px-9 mt-10 mb-6">Veritabanı İndirmeleri</h3>
+                            <hr class="text-muted">
+                            <div class="row p-3" id="waitingDatabaseBackDownloadsRow">
+                                <div class="col-xl-12">
+                                    <div class="d-flex flex-stack py-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="symbol symbol-35px me-4">
+                                                <i class="fa fa-times-circle fa-lg text-danger cursor-pointer"></i>
+                                            </div>
+                                            <div class="mb-0 me-2">
+                                                <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-bolder">Veritabanı Adı</a>
+                                            </div>
+                                        </div>
+                                        <span class="badge badge-light-warning fs-8">Durum</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">

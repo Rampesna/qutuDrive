@@ -167,6 +167,7 @@ Route::middleware([
         Route::post('upload', [\App\Http\Controllers\Api\User\FileController::class, 'upload'])->name('user.api.file.upload');
         Route::post('uploadBatch', [\App\Http\Controllers\Api\User\FileController::class, 'uploadBatch'])->name('user.api.file.uploadBatch');
         Route::get('download', [\App\Http\Controllers\Api\User\FileController::class, 'download'])->name('user.api.file.download');
+        Route::get('downloadSingleFile', [\App\Http\Controllers\Api\User\FileController::class, 'downloadSingleFile'])->name('user.api.file.downloadSingleFile');
         Route::put('updateDirectoryId', [\App\Http\Controllers\Api\User\FileController::class, 'updateDirectoryId'])->name('user.api.file.updateDirectoryId');
         Route::delete('delete', [\App\Http\Controllers\Api\User\FileController::class, 'delete'])->name('user.api.file.delete');
         Route::delete('deleteBatch', [\App\Http\Controllers\Api\User\FileController::class, 'deleteBatch'])->name('user.api.file.deleteBatch');
@@ -198,6 +199,8 @@ Route::middleware([
 
     Route::prefix('syncdosyahareket')->group(function () {
         Route::get('getBySunucuKlasorId', [\App\Http\Controllers\Api\User\SyncDosyaHareketController::class, 'getBySunucuKlasorId'])->name('user.api.syncdosyahareket.getBySunucuKlasorId');
+        Route::get('getUsage', [\App\Http\Controllers\Api\User\SyncDosyaHareketController::class, 'getUsage'])->name('user.api.syncdosyahareket.getUsage');
+        Route::get('downloadSingleFile', [\App\Http\Controllers\Api\User\SyncDosyaHareketController::class, 'downloadSingleFile'])->name('user.api.syncdosyahareket.downloadSingleFile');
     });
 
     Route::prefix('edefterdonemler')->group(function () {
@@ -206,10 +209,14 @@ Route::middleware([
 
     Route::prefix('edefterdosyalar')->group(function () {
         Route::get('getByDonemId', [\App\Http\Controllers\Api\User\EDefterDosyalarController::class, 'getByDonemId'])->name('user.api.edefterdosyalar.getByDonemId');
+        Route::get('getUsage', [\App\Http\Controllers\Api\User\EDefterDosyalarController::class, 'getUsage'])->name('user.api.edefterdosyalar.getUsage');
+        Route::post('singleELedgerUpload', [\App\Http\Controllers\Api\User\EDefterDosyalarController::class, 'singleELedgerUpload'])->name('user.api.edefterdosyalar.singleELedgerUpload');
     });
 
     Route::prefix('backupdosyalar')->group(function () {
         Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\BackupDosyalarController::class, 'getByCompanyId'])->name('user.api.backupdosyalar.getByCompanyId');
+        Route::get('getUsage', [\App\Http\Controllers\Api\User\BackupDosyalarController::class, 'getUsage'])->name('user.api.backupdosyalar.getUsage');
+        Route::get('downloadSingleFile', [\App\Http\Controllers\Api\User\BackupDosyalarController::class, 'downloadSingleFile'])->name('user.api.backupdosyalar.downloadSingleFile');
     });
 
     Route::prefix('paketbilgileri')->group(function () {
@@ -218,11 +225,23 @@ Route::middleware([
 
     Route::prefix('firmapaketleri')->group(function () {
         Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'getByCompanyId'])->name('user.api.firmapaketleri.getByCompanyId');
+        Route::get('getUsage', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'getUsage'])->name('user.api.firmapaketleri.getUsage');
         Route::post('create', [\App\Http\Controllers\Api\User\FirmaPaketleriController::class, 'create'])->name('user.api.firmapaketleri.create');
     });
 
     Route::prefix('gibsaklamaozelliste')->group(function () {
         Route::get('getAll', [\App\Http\Controllers\Api\User\GibSaklamaOzelListeController::class, 'getAll'])->name('user.api.gibsaklamaozelliste.getAll');
         Route::post('create', [\App\Http\Controllers\Api\User\GibSaklamaOzelListeController::class, 'create'])->name('user.api.gibsaklamaozelliste.create');
+    });
+
+    Route::prefix('waitingDatabaseBackupDownload')->group(function () {
+        Route::get('getByUserId', [\App\Http\Controllers\Api\User\WaitingDatabaseBackupDownloadController::class, 'getByUserId'])->name('user.api.waitingDatabaseBackupDownload.getByUserId');
+        Route::post('cancel', [\App\Http\Controllers\Api\User\WaitingDatabaseBackupDownloadController::class, 'cancel'])->name('user.api.waitingDatabaseBackupDownload.cancel');
+    });
+
+    Route::prefix('apiAyssoft')->group(function () {
+        Route::prefix('BalanceInquiry')->group(function () {
+            Route::get('Index', [\App\Http\Controllers\Api\User\ApiAyssoft\BalanceInquiryController::class, 'Index'])->name('user.api.apiAyssoft.BalanceInquiry.Index');
+        });
     });
 });

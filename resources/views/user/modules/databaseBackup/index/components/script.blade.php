@@ -9,6 +9,8 @@
     var fileSelector = $('#fileSelector');
     var keywordInput = $('#keyword');
 
+    var selectedBackupDosyalarId = null;
+
     var FilterButton = $('#FilterButton');
 
     function getBackupDosyalarByCompanyId() {
@@ -31,21 +33,21 @@
                 var newFileTitle = '{{ __('user/modules/databaseBackup.index.newFile.title') }}';
                 var newFileClickForUpload = '{{ __('user/modules/databaseBackup.index.newFile.clickForUpload') }}';
 
-                filesRow.empty().append(`
-                <div class="col-xl-2 mb-5">
-                    <div class="card h-100 flex-center border-dashed p-8 cursor-pointer" id="fileUploadArea">
-                        <img src="${fileUploadSvg}" class="mb-8" alt="" />
-                        <a class="font-weight-bolder text-dark-75 mb-2">${newFileTitle}</a>
-                        <div class="fs-7 fw-bold text-gray-400 mt-auto">${newFileClickForUpload}</div>
-                    </div>
-                </div>
-                `);
+                // filesRow.empty().append(`
+                // <div class="col-xl-2 mb-5">
+                //     <div class="card h-100 flex-center border-dashed p-8 cursor-pointer" id="fileUploadArea">
+                //         <img src="${fileUploadSvg}" class="mb-8" alt="" />
+                //         <a class="font-weight-bolder text-dark-75 mb-2">${newFileTitle}</a>
+                //         <div class="fs-7 fw-bold text-gray-400 mt-auto">${newFileClickForUpload}</div>
+                //     </div>
+                // </div>
+                // `);
                 $.each(response.response, function (i, backupDosya) {
                     filesRow.append(`
                     <div class="col-xl-2 mb-5">
                         <div class="card h-100 flex-center text-center border-dashed p-8 cursor-pointer backupDosya" data-id="${backupDosya.ID}" id="backupDosya_${backupDosya.ID}">
                             <i class="fas fa-database fa-4x mb-12"></i>
-                            <a class="font-weight-bolder text-dark-75 mb-1">${backupDosya.DOSYAADI.length > 21 ? `${backupDosya.DOSYAADI.substring(0,18)}...` : backupDosya.DOSYAADI}</a>
+                            <a class="font-weight-bolder text-dark-75 mb-1">${backupDosya.DOSYAADI.length > 21 ? `${backupDosya.DOSYAADI.substring(0, 18)}...` : backupDosya.DOSYAADI}</a>
                             <div class="fs-7 fw-bold text-gray-400 mt-auto mb-1">${backupDosya.DOSYABOYUTU} MB</div>
                             <span class="fs-7 fw-bold text-gray-600 mt-auto mb-1">${reformatDatetimeToDatetimeForHuman(backupDosya.BACKUPOLUSMATARIHI)}</span>
                         </div>
@@ -68,6 +70,7 @@
 
     getBackupDosyalarByCompanyId();
 
+    /*
     function uploadFile(data) {
         toastr.info('Dosya Yükleniyor...');
         $.ajax({
@@ -96,6 +99,7 @@
             }
         });
     }
+    */
 
     $(document).delegate('#fileUploadArea', 'click', function () {
         fileSelector.click();
@@ -117,6 +121,45 @@
         if (parseInt(e.keyCode) === 13) {
             getBackupDosyalarByCompanyId();
         }
+    });
+
+    function downloadBackupDosya() {
+        $.ajax({
+            type: 'get',
+            url: '{{ route('user.api.backupdosyalar.downloadSingleFile') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: {
+                backupDosyalarId: selectedBackupDosyalarId
+            },
+            success: function (response) {
+                if (response.message === 'File') {
+                    window.open(response.response, '_blank');
+                } else if (response.message === 'Waiting Database Backup Download created') {
+                    toastr.info('İndirme İşleminiz Sıraya Alındı, Tamamlandığında Bildirim Alacaksınız.');
+                    $('#TransactionsModal').modal('hide');
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+    }
+
+    $(document).delegate('.backupDosya', 'contextmenu', function (e) {
+        selectedBackupDosyalarId = $(this).attr('data-id');
+        $('#TransactionsModal').modal('show');
+
+        return false;
     });
 
 </script>

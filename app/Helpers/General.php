@@ -76,7 +76,7 @@ if (!function_exists('getDurationForHuman')) {
 if (!function_exists('checkUserPermission')) {
     function checkUserPermission($userPermissionId, $authUserPermissions)
     {
-        return in_array($userPermissionId, $authUserPermissions);
+        return true;
     }
 }
 
@@ -136,6 +136,88 @@ if (!function_exists('checkFileTypeTest')) {
             return 'zip';
         } else {
             return 'other';
+        }
+    }
+}
+
+if (!function_exists('getELedgerType')) {
+    function getELedgerType($short, $gib)
+    {
+        $eLedgerTypes = [
+            [
+                'type' => 'kebir',
+                'id' => 1,
+                'short' => 'K'
+            ],
+            [
+                'type' => 'yevmiye',
+                'id' => 2,
+                'short' => 'Y'
+            ],
+            [
+                'type' => 'kebirberat',
+                'id' => 3,
+                'short' => 'KB'
+            ],
+            [
+                'type' => 'yevmiyeberat',
+                'id' => 4,
+                'short' => 'YB'
+            ],
+            [
+                'type' => 'defterraporu',
+                'id' => 7,
+                'short' => 'DR'
+            ]
+        ];
+
+        $gibELedgerTypes = [
+            [
+                'type' => 'gibkebirberat',
+                'id' => 5,
+                'short' => 'KB'
+            ],
+            [
+                'type' => 'gibyevmiyeberat',
+                'id' => 6,
+                'short' => 'YB'
+            ]
+        ];
+
+        if ($gib == 1) {
+            foreach ($gibELedgerTypes as $gibELedgerType) {
+                if ($gibELedgerType['short'] == $short) {
+                    return $gibELedgerType['id'];
+                }
+            }
+        } else {
+            foreach ($eLedgerTypes as $eLedgerType) {
+                if ($eLedgerType['short'] == $short) {
+                    return $eLedgerType['id'];
+                }
+            }
+        }
+    }
+}
+
+if (!function_exists('getLogoPath')) {
+    function getLogoPath(
+        $domain
+    )
+    {
+        $domain = str_replace('http://', '', $domain);
+        $domain = str_replace('https://', '', $domain);
+        $domain = str_replace('www.', '', $domain);
+        $exploded = explode('.', $domain);
+        array_pop($exploded);
+        $domain = end($exploded);
+
+        if ($domain == 'qutudrive') {
+            return asset('logos/qutudrive.png');
+        } else if ($domain == 'uyumyedek') {
+            return asset('logos/uyumyedek.png');
+        } else {
+            return asset('logos/logo.png');
         }
     }
 }

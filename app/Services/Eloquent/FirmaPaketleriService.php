@@ -7,6 +7,7 @@ use App\Interfaces\Eloquent\IFirmaPaketleriService;
 use App\Models\Eloquent\Firmalar;
 use App\Models\Eloquent\Firmapaketleri;
 use App\Models\Eloquent\Paketbilgileri;
+use Illuminate\Support\Facades\DB;
 
 class FirmaPaketleriService implements IFirmaPaketleriService
 {
@@ -145,5 +146,27 @@ class FirmaPaketleriService implements IFirmaPaketleriService
         } else {
             return $companyPackage;
         }
+    }
+
+    /*
+     * @param int $companyId
+     *
+     * return ServiceResponse
+     * */
+    public function getUsage(
+        int $companyId
+    ): ServiceResponse
+    {
+        $company = Firmalar::find($companyId);
+        $usage = DB::select("
+        SELECT * FROM firmapaketleri WHERE FIRMAAPIKEY='$company->APIKEY' AND DURUM=1 AND BASLANGICTARIHI<NOW() AND BITISTARIHI>NOW()
+        ");
+
+        return new ServiceResponse(
+            true,
+            'firmapaketleri usage',
+            200,
+            $usage
+        );
     }
 }

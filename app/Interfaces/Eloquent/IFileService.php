@@ -15,18 +15,22 @@ interface IFileService extends IEloquentService
      * @param int $typeId
      * @param string $fullPath
      * @param float|null $fileSize
+     * @param string|null $uuid
+     * @param mixed $directoryId
      *
      * @return ServiceResponse
      */
     public function create(
-        int    $relationId,
-        string $relationType,
-        string $name = null,
-        string $mimeType = null,
-        string $icon = null,
-        int    $typeId,
-        string $fullPath,
-        float  $fileSize = null
+        int         $relationId,
+        string      $relationType,
+        string      $name = null,
+        string      $mimeType = null,
+        string      $icon = null,
+        int         $typeId,
+        string      $fullPath,
+        float       $fileSize = null,
+        string|null $uuid = null,
+        mixed       $directoryId = null
     ): ServiceResponse;
 
     /**
