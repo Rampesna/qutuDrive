@@ -39,6 +39,7 @@ class Kullanicilar extends Authenticatable
 
     protected $table = 'kullanicilar';
     protected $primaryKey = 'ID';
+    protected $rememberTokenName = false;
     public $timestamps = false;
 
     protected $casts = [
@@ -64,7 +65,6 @@ class Kullanicilar extends Authenticatable
         'KULLANICITIPI',
         'KAYITTARIHI',
         'TOKENTARIHI',
-        'api_token'
     ];
 
     public function apiToken()
