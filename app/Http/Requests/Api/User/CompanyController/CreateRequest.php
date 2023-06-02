@@ -31,7 +31,7 @@ class CreateRequest extends BaseApiRequest
             'taxOffice' => 'nullable',
             'address' => 'nullable',
             'phone' => 'nullable',
-            'email' => 'required',
+            'email' => 'nullable',
             'dealerCode' => 'nullable',
             'eLedgerSourceType' => 'required',
         ];

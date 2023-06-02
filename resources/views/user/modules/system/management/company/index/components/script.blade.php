@@ -370,8 +370,6 @@
             toastr.warning('Vergi dairesi alanı boş bırakılamaz.');
         } else if (!companyTitle) {
             toastr.warning('Firma ünvanı alanı boş bırakılamaz.');
-        } else if (!companyEmail) {
-            toastr.warning('E-posta alanı boş bırakılamaz.');
         } else {
             CreateCompanyButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
             $.ajax({

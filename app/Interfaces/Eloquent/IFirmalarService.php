@@ -73,7 +73,7 @@ interface IFirmalarService
         ?string $taxOffice,
         ?string $address,
         ?string $phone,
-        string  $email,
+        ?string $email,
         ?string $dealerCode,
         int     $eLedgerSourceType
     ): ServiceResponse;

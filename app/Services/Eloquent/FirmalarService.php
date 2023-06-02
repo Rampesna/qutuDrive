@@ -165,7 +165,7 @@ class FirmalarService implements IFirmalarService
         ?string $taxOffice,
         ?string $address,
         ?string $phone,
-        string  $email,
+        ?string $email,
         ?string $dealerCode,
         int     $eLedgerSourceType
     ): ServiceResponse
@@ -180,14 +180,16 @@ class FirmalarService implements IFirmalarService
             );
         }
 
-        $checkCompanyByEmail = $this->getByEmail($email);
-        if ($checkCompanyByEmail->isSuccess()) {
-            return new ServiceResponse(
-                false,
-                __('ServiceResponse/Eloquent/FirmalarService.create.emailExists'),
-                400,
-                null
-            );
+        if ($email) {
+            $checkCompanyByEmail = $this->getByEmail($email);
+            if ($checkCompanyByEmail->isSuccess()) {
+                return new ServiceResponse(
+                    false,
+                    __('ServiceResponse/Eloquent/FirmalarService.create.emailExists'),
+                    400,
+                    null
+                );
+            }
         }
 
         $company = new Firmalar;
