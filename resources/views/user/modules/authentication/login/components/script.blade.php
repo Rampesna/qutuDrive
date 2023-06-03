@@ -3,12 +3,26 @@
 
 <script>
 
+    var authUserId = localStorage.getItem('authUserId');
+    var authUserToken = localStorage.getItem('authUserToken');
+    var authUserSelectedCompanyId = localStorage.getItem('authUserSelectedCompanyId');
+
+    function checkLogin() {
+        if (
+            authUserId &&
+            authUserToken &&
+            authUserSelectedCompanyId
+        ) {
+            window.location.href = '{{ route('user.web.dashboard.index') }}';
+        } else {
+            $('#loader').hide();
+        }
+    }
+
+    checkLogin();
+
     console.log('{{ getLogoPath(url('/')) }}');
     console.log('{{ url('/') }}');
-
-    $(document).ready(function () {
-        $('#loader').hide();
-    });
 
     var usernameInput = $('#username');
     var passwordInput = $('#password');
@@ -34,7 +48,37 @@
                     password: password,
                 },
                 success: function (response) {
-                    window.location.href = `{{ route('user.web.authentication.oAuth') }}?token=${response.response.token}&remember=${remember}`;
+                    $.ajax({
+                        type: 'get',
+                        url: '{{ route('user.api.getProfile') }}',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Authorization': `Bearer ${response.response.token}`
+                        },
+                        data: {},
+                        success: function (profileResponse) {
+                            localStorage.setItem('authUserId', profileResponse.response.ID);
+                            localStorage.setItem('authUserName', `${profileResponse.response.AD} ${profileResponse.response.SOYAD}`);
+                            localStorage.setItem('authUserEmail', profileResponse.response.MAIL);
+                            localStorage.setItem('authUserUsername', profileResponse.response.KULLANICIADI);
+                            localStorage.setItem('authUserToken', `Bearer ${response.response.token}`);
+                            localStorage.setItem('authUserSelectedCompanyId', profileResponse.response.selected_company_id);
+                            localStorage.setItem('authUserType', profileResponse.response.KULLANICITIPI);
+
+                            window.location.href = '{{ route('user.web.dashboard.index') }}';
+                        },
+                        error: function (error) {
+                            console.log(error);
+                            if (parseInt(error.status) === 422) {
+                                $.each(error.responseJSON.response, function (i, error) {
+                                    toastr.error(error[0]);
+                                });
+                            } else {
+                                toastr.error(error.responseJSON.message);
+                            }
+                        }
+                    });
+                    {{--window.location.href = `{{ route('user.web.authentication.oAuth') }}?token=${response.response.token}&remember=${remember}`;--}}
                 },
                 error: function (error) {
                     console.log(error);

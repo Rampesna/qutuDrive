@@ -137,7 +137,7 @@ class UserService implements IUserService
         if ($user) {
             return new ServiceResponse(
                 true,
-                __('ServiceResponse/Eloquent/UserService.getProfile.notFound'),
+                __('ServiceResponse/Eloquent/UserService.getProfile.success'),
                 200,
                 $user
             );

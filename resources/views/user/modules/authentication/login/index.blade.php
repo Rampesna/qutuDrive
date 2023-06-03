@@ -3,7 +3,6 @@
 
 @section('content')
 
-
     <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
         <a href="#" class="mb-12">
             <img alt="Logo" src="{{ getLogoPath(url('/')) }}" class="h-75px" />

@@ -11,7 +11,6 @@ Route::prefix('authentication')->group(function () {
 });
 
 Route::middleware([
-    'auth:user_web',
     'CheckLanguage'
 ])->group(function () {
 
@@ -28,7 +27,6 @@ Route::middleware([
     Route::prefix('syncklasor')->group(function () {
         Route::get('index', [\App\Http\Controllers\Web\User\SyncklasorController::class, 'index'])->name('user.web.syncklasor.index');
     });
-
 
 
     Route::prefix('sharedDirectory')->group(function () {

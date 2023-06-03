@@ -56,8 +56,7 @@
                     </a>
                 @endif
                 @if(checkUserPermission(11, $permissions))
-                    <a href="{{ route('user.web.syncklasor.index') }}"
-                       class="menu-item {{ request()->segment(2) == 'syncklasor' ? 'show' : '' }}">
+                    <a href="{{ route('user.web.syncklasor.index') }}" class="menu-item {{ request()->segment(2) == 'syncklasor' ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-1">
@@ -460,9 +459,8 @@
                         </div>
                     </div>
                 </div>
-                @if(auth()->user()->getType() == 2)
-                    <div data-kt-menu-trigger="click"
-                         class="menu-item here menu-accordion {{ request()->segment(3) == 'management' ? 'show' : '' }}">
+                <div style="display: none" data-kt-menu-trigger="click"
+                         class="showIfOnlyManager menu-item here menu-accordion {{ request()->segment(3) == 'management' ? 'show' : '' }}">
                         <span class="menu-link">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -549,7 +547,6 @@
                             </div>
                         </div>
                     </div>
-                @endif
 
             </div>
         </div>

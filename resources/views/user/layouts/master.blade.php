@@ -72,9 +72,42 @@
 
 <script>
 
-    var authUserId = parseInt(`{{ auth()->user()->getId() }}`);
-    var authUserToken = 'Bearer {{ auth()->user()->getApiToken() }}';
-    var authUserSelectedCompanyId = parseInt(`{{ auth()->user()->getSelectedCompanyId() }}`);
+    var authUserId = parseInt(localStorage.getItem('authUserId'));
+    var authUserToken = localStorage.getItem('authUserToken');
+    var authUserSelectedCompanyId = parseInt(localStorage.getItem('authUserSelectedCompanyId'));
+    var authUserType = localStorage.getItem('authUserType');
+
+    function checkLogin() {
+        if (
+            !authUserId ||
+            !authUserToken ||
+            !authUserSelectedCompanyId
+        ) {
+            window.location.href = '{{ route('user.web.authentication.login.index') }}';
+        }
+
+        if (parseInt(authUserType) === 2) {
+            $('.showIfOnlyManager').show();
+        } else {
+            $('.showIfOnlyManager').hide();
+        }
+
+        $('#authUserNameSpan').html(localStorage.getItem('authUserName'));
+        $('#authUserEmailSpan').html(localStorage.getItem('authUserEmail'));
+    }
+
+    checkLogin();
+
+    function logout() {
+        localStorage.removeItem('authUserId');
+        localStorage.removeItem('authUserToken');
+        localStorage.removeItem('authUserSelectedCompanyId');
+        localStorage.removeItem('authUserType');
+        localStorage.removeItem('authUserName');
+        localStorage.removeItem('authUserEmail');
+        window.location.href = '{{ route('user.web.authentication.login.index') }}';
+    }
+
     var userCompanies = [];
     var SelectedCompany = $('#SelectedCompany');
     var jqxGridGlobalTheme = 'metro';

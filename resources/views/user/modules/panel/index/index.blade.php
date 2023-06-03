@@ -24,12 +24,16 @@
                         <div class="col border-right pb-4 pt-4">
                             <i class="fas fa-chart-pie fa-2x text-info"></i><br>
                             <label class="mb-0 mr-5 mt-2">Kalan Kullanım</label>
-                            <h4 class="font-30 font-weight-bold text-col-blue" style="font-size: 30px" id="generalUsage">--</h4>
+                            <h4 class="font-30 font-weight-bold text-col-blue" style="font-size: 30px" id="generalUsage">
+                                <i class="fa fa-sm fa-spinner fa-spin"></i>
+                            </h4>
                         </div>
                         <div class="col pb-4 pt-4">
                             <i class="fas fa-credit-card fa-2x text-success"></i><br>
                             <label class="mb-0 mr-5 mt-2">Bakiye</label>
-                            <h4 class="font-30 font-weight-bold text-col-blue" style="font-size: 30px" id="balanceSpan">--</h4>
+                            <h4 class="font-30 font-weight-bold text-col-blue" style="font-size: 30px" id="balanceSpan">
+                                <i class="fa fa-sm fa-spinner fa-spin"></i>
+                            </h4>
                         </div>
                     </div>
                 </div>
