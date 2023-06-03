@@ -195,6 +195,21 @@ interface IUserService extends IEloquentService
         array $permissionIds
     ): ServiceResponse;
 
-    public function getAllPermissions(
+    public function getAllPermissions(): ServiceResponse;
+
+    /**
+     * @param string $email
+     */
+    public function sendPasswordResetEmail(
+        string $email
+    ): ServiceResponse;
+
+    /**
+     * @param string $resetPasswordToken
+     * @param string $newPassword
+     */
+    public function resetPassword(
+        string $resetPasswordToken,
+        string $newPassword
     ): ServiceResponse;
 }

@@ -20,6 +20,8 @@ use App\Http\Requests\Api\User\UserController\CreateRequest;
 use App\Http\Requests\Api\User\UserController\SetPermissionsRequest;
 use App\Http\Requests\Api\User\UserController\UpdateRequest;
 use App\Http\Requests\Api\User\UserController\DeleteRequest;
+use App\Http\Requests\Api\User\UserController\SendPasswordResetEmailRequest;
+use App\Http\Requests\Api\User\UserController\ResetPasswordRequest;
 use App\Interfaces\Eloquent\IUserService;
 use App\Interfaces\Eloquent\IFirmalarService;
 use App\Core\HttpResponse;
@@ -425,5 +427,38 @@ class UserController extends Controller
         );
     }
 
+    /**
+     * @param SendPasswordResetEmailRequest $request
+     * */
+    public function sendPasswordResetEmail(SendPasswordResetEmailRequest $request)
+    {
+        $response = $this->userService->sendPasswordResetEmail(
+            $request->email
+        );
 
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
+     * @param ResetPasswordRequest $request
+     * */
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        $response = $this->userService->resetPassword(
+            $request->resetPasswordToken,
+            $request->newPassword
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
 }

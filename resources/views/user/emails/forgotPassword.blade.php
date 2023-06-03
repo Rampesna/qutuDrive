@@ -9,8 +9,8 @@
         <tbody>
         <tr>
             <td align="center" valign="center" style="text-align:center; padding: 40px">
-                <a href="http://ebelge.app" rel="noopener" target="_blank">
-                    <img alt="Logo" src="{{ asset('assets/media/logos/favicon.png') }}" style="width: 150px; height: auto"/>
+                <a href="{{ route('user.web.authentication.login.index') }}" rel="noopener" target="_blank">
+
                 </a>
             </td>
         </tr>
@@ -42,14 +42,14 @@
                     </div>
                     <!--end:Email content-->
                     <div style="padding-bottom: 10px">Saygılarımızla,
-                        <br>Bien eBelge.
+                        <br>{{ config('app.name') }}.
         <tr>
             <td align="center" valign="center"
                 style="font-size: 13px; text-align:center;padding: 20px; color: #6d6e7c;">
                 <p>Bulgurlu Mah. Kanyon Cad. Malatya Teknopark 89/2
                     <br>C Blok No:201 Battalgazi / Malatya / Türkiye</p>
                 <p>Tüm Hakları Saklıdır ©
-                    <a href="https://www.bienteknoloji.com" rel="noopener" target="_blank">Ayssoft Bilgi Teknolojileri A.Ş.</a>.</p>
+                    <a href="https://www.bienteknoloji.com" rel="noopener" target="_blank">{{ config('app.name') }}</a>.</p>
             </td>
         </tr>
         </br>

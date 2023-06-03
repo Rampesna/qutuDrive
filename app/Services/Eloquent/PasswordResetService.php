@@ -116,21 +116,22 @@ class PasswordResetService implements IPasswordResetService
             ->where('created_at', '>', $datetime)
             ->where('used', 0)
             ->exists();
-        if ($passwordReset) {
-            return new ServiceResponse(
-                true,
-                __('ServiceResponse/Eloquent/PasswordResetService.checkPasswordReset.success'),
-                200,
-                true
-            );
-        } else {
+
+        if (!$passwordReset) {
             return new ServiceResponse(
                 false,
-                __('ServiceResponse/Eloquent/PasswordResetService.checkPasswordReset.notFound'),
+                'Password reset not exists',
                 404,
-                false
+                true
             );
         }
+
+        return new ServiceResponse(
+            true,
+            'Password reset exists',
+            200,
+            false
+        );
     }
 
     /**

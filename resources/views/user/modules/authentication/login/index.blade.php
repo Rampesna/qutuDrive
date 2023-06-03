@@ -22,7 +22,7 @@
                 <div class="fv-row mb-10">
                     <div class="d-flex flex-stack mb-2">
                         <label for="password" class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('user/modules/authentication.login.password') }}</label>
-                        <a href="#" class="link-primary fs-6 fw-bolder" tabindex="-1">{{ __('user/modules/authentication.login.forgotPassword') }}</a>
+                        <a href="{{ route('user.web.authentication.forgotPassword') }}" class="link-primary fs-6 fw-bolder" tabindex="-1">{{ __('user/modules/authentication.login.forgotPassword') }}</a>
                     </div>
                     <input id="password" type="password" class="form-control form-control-lg form-control-solid" autocomplete="off" />
                 </div>

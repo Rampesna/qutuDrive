@@ -9,7 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-zip": "*",
         "aws/aws-sdk-php": "^3.238",
+        "coconutcraig/laravel-postmark": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
@@ -17,8 +19,7 @@
         "opcodesio/log-viewer": "^2.1",
         "reliese/laravel": "^1.1",
         "shalvah/clara": "^3.1",
-        "staudenmeir/eloquent-has-many-deep": "^1.16",
-        "ext-zip": "*"
+        "staudenmeir/eloquent-has-many-deep": "^1.16"
     },
     "require-dev": {
         "bennett-treptow/laravel-migration-generator": "^4.3",

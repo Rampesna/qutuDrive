@@ -3,12 +3,14 @@
 namespace App\Services\Eloquent;
 
 use App\Interfaces\Eloquent\IUserService;
+use App\Mail\User\ForgotPasswordEmail;
 use App\Models\Eloquent\Firmalar;
 use App\Models\Eloquent\Kullanicilar;
 use App\Core\ServiceResponse;
 use App\Models\Eloquent\Permission;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Interfaces\Eloquent\IPasswordResetService;
 
 class UserService implements IUserService
 {
@@ -637,6 +639,85 @@ class UserService implements IUserService
             __('ServiceResponse/Eloquent/UserService.getAllPermissions.success'),
             200,
             $permissions
+        );
+    }
+
+
+    /**
+     * @param string $email
+     */
+    public function sendPasswordResetEmail(
+        string $email
+    ): ServiceResponse
+    {
+        $user = Kullanicilar::where('MAIL', $email)->first();
+        if (!$user) {
+            return new ServiceResponse(
+                false,
+                'User not found with this email',
+                404,
+                null
+            );
+        }
+
+        $passwordResetService = app()->make(PasswordResetService::class);
+        $checkPasswordReset = $passwordResetService->checkPasswordReset(
+            'App\\Models\\Eloquent\\Kullanicilar',
+            $user->ID,
+            date('Y-m-d H:i:s', strtotime('-1 hour'))
+        );
+
+        if ($checkPasswordReset->isSuccess()) {
+            return new ServiceResponse(
+                false,
+                'You can only send password reset email once in an hour',
+                406,
+                null
+            );
+        }
+
+        $passwordReset = $passwordResetService->create(
+            'App\\Models\\Eloquent\\Kullanicilar',
+            $user->ID
+        );
+
+        Mail::to($email)->send(new ForgotPasswordEmail($passwordReset->getData()->token));
+
+        return new ServiceResponse(
+            true,
+            'Email sent successfully',
+            200,
+            $passwordReset->getData()
+        );
+    }
+
+    /**
+     * @param string $resetPasswordToken
+     * @param string $newPassword
+     */
+    public function resetPassword(
+        string $resetPasswordToken,
+        string $newPassword
+    ): ServiceResponse
+    {
+        $passwordResetService = app()->make(PasswordResetService::class);
+        $passwordReset = $passwordResetService->getByToken($resetPasswordToken);
+
+        if (!$passwordReset->isSuccess()) {
+            return $passwordReset;
+        }
+
+        $user = $passwordReset->getData()->relation;
+        $user->KULLANICISIFRE = $newPassword;
+        $user->save();
+
+        $passwordResetService->setUsed($passwordReset->getData()->id);
+
+        return new ServiceResponse(
+            true,
+            'Password reset successfully',
+            200,
+            $user
         );
     }
 }
