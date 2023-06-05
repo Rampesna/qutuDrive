@@ -93,6 +93,7 @@
         }
 
         $('#authUserNameSpan').html(localStorage.getItem('authUserName'));
+        $('#loggedUserNameFirstWordSpan').html(localStorage.getItem('authUserName').charAt(0).toUpperCase());
         $('#authUserEmailSpan').html(localStorage.getItem('authUserEmail'));
     }
 
@@ -132,7 +133,7 @@
                 $.each(response.response, function (i, company) {
                     SelectedCompany.append($('<option>', {
                         value: company.ID,
-                        text: company.FIRMAUNVAN,
+                        text: `${company.VKNTCKN.length === 10 ? company.FIRMAUNVAN : `${company.AD} ${company.SOYAD}`}`,
                     }));
                 });
                 SelectedCompany.val(authUserSelectedCompanyId);

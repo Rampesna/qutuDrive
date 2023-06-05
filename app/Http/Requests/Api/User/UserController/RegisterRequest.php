@@ -29,7 +29,7 @@ class RegisterRequest extends BaseApiRequest
             'companyType' => 'required|integer',
             'taxNumber' => 'required|min:10|max:11',
             'taxOffice' => 'required',
-            'title' => 'required',
+            'title' => 'nullable',
             'phone' => 'nullable',
             'email' => 'required|email',
             'address' => 'nullable',

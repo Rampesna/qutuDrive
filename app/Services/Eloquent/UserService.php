@@ -426,8 +426,11 @@ class UserService implements IUserService
 
             $company = $user->getData()->companies()->first();
 
+            if ($company) {
+                $user->getData()->selected_company_id = $company->ID;
+            }
+
             $user->getData()->api_token = $token;
-            $user->getData()->selected_company_id = $company->ID;
             $user->getData()->save();
 
             return new ServiceResponse(

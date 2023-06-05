@@ -52,7 +52,7 @@ interface IFirmalarService
     ): ServiceResponse;
 
     /**
-     * @param string $title
+     * @param string|null $title
      * @param string $taxNumber
      * @param string|null $name
      * @param string|null $surname
@@ -66,7 +66,7 @@ interface IFirmalarService
      * @return ServiceResponse
      */
     public function create(
-        string  $title,
+        ?string  $title,
         string  $taxNumber,
         ?string $name,
         ?string $surname,

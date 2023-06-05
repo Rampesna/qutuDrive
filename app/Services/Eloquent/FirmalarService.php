@@ -144,7 +144,7 @@ class FirmalarService implements IFirmalarService
     }
 
     /**
-     * @param string $title
+     * @param string|null $title
      * @param string $taxNumber
      * @param string|null $name
      * @param string|null $surname
@@ -158,7 +158,7 @@ class FirmalarService implements IFirmalarService
      * @return ServiceResponse
      */
     public function create(
-        string  $title,
+        ?string $title,
         string  $taxNumber,
         ?string $name,
         ?string $surname,

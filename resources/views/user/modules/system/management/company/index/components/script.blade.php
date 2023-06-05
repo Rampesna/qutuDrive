@@ -358,57 +358,75 @@
         var companyEmail = $('#create_company_email').val();
         var companyAddress = $('#create_company_address').val();
 
-        if (!name) {
-            toastr.warning('Ad alanı boş bırakılamaz.');
-        } else if (!surname) {
-            toastr.warning('Soyad alanı boş bırakılamaz.');
-        } else if (!companyType) {
+        if (!companyType) {
             toastr.warning('Lütfen firma tipini seçiniz.');
-        } else if (!companyTaxNumber) {
-            toastr.warning('Vergi numarası alanı boş bırakılamaz.');
-        } else if (!companyTaxOffice) {
-            toastr.warning('Vergi dairesi alanı boş bırakılamaz.');
-        } else if (!companyTitle) {
-            toastr.warning('Firma ünvanı alanı boş bırakılamaz.');
+            return false;
         } else {
-            CreateCompanyButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
-            $.ajax({
-                type: 'post',
-                url: '{{ route('user.api.company.create') }}',
-                headers: {
-                    'Accept': 'application/json',
-                    'Authorization': authUserToken,
-                },
-                data: {
-                    title: companyTitle,
-                    taxNumber: companyTaxNumber,
-                    name: name,
-                    surname: surname,
-                    taxOffice: companyTaxOffice,
-                    address: companyAddress,
-                    phone: companyPhone,
-                    email: companyEmail,
-                    eLedgerSourceType: companyType,
-                },
-                success: function () {
-                    toastr.success('Firma başarıyla oluşturuldu.');
-                    CreateCompanyButton.attr('disabled', false).html('Oluştur');
-                    $('#CreateCompanyModal').modal('hide');
-                    getAllCompanies();
-                },
-                error: function (error) {
-                    console.log(error);
-                    CreateCompanyButton.attr('disabled', false).html('Oluştur');
-                    if (parseInt(error.status) === 422) {
-                        $.each(error.responseJSON.response, function (i, error) {
-                            toastr.error(error[0]);
-                        });
-                    } else {
-                        toastr.error(error.responseJSON.message);
-                    }
+            if (parseInt(companyType) === 1) {
+                if (!companyTitle) {
+                    toastr.warning('Firma ünvanı alanı boş bırakılamaz.');
+                    return false;
                 }
-            });
+            } else if (parseInt(companyType) === 2) {
+                if (!name) {
+                    toastr.warning('Ad alanı boş bırakılamaz.');
+                    return false;
+                } else if (!surname) {
+                    toastr.warning('Soyad alanı boş bırakılamaz.');
+                    return false;
+                }
+            } else {
+
+            }
         }
+
+        if (!companyTaxNumber) {
+            toastr.warning('Vergi numarası alanı boş bırakılamaz.');
+            return false;
+        }
+
+        if (!companyTaxOffice) {
+            toastr.warning('Vergi dairesi alanı boş bırakılamaz.');
+            return false;
+        }
+
+        CreateCompanyButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
+        $.ajax({
+            type: 'post',
+            url: '{{ route('user.api.company.create') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken,
+            },
+            data: {
+                title: companyTitle,
+                taxNumber: companyTaxNumber,
+                name: name,
+                surname: surname,
+                taxOffice: companyTaxOffice,
+                address: companyAddress,
+                phone: companyPhone,
+                email: companyEmail,
+                eLedgerSourceType: companyType,
+            },
+            success: function () {
+                toastr.success('Firma başarıyla oluşturuldu.');
+                CreateCompanyButton.attr('disabled', false).html('Oluştur');
+                $('#CreateCompanyModal').modal('hide');
+                getAllCompanies();
+            },
+            error: function (error) {
+                console.log(error);
+                CreateCompanyButton.attr('disabled', false).html('Oluştur');
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
     });
 
     DeleteCompanyButton.click(function () {
