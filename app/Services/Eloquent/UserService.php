@@ -10,7 +10,6 @@ use App\Core\ServiceResponse;
 use App\Models\Eloquent\Permission;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use App\Interfaces\Eloquent\IPasswordResetService;
 
 class UserService implements IUserService
 {

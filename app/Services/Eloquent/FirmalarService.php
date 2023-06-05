@@ -309,7 +309,6 @@ class FirmalarService implements IFirmalarService
         if ($company->isSuccess()) {
             $company->getData()->DURUM = 0;
             $company->getData()->save();
-            $company->getData()->delete();
             return new ServiceResponse(
                 true,
                 __('ServiceResponse/Eloquent/FirmalarService.delete.success'),
