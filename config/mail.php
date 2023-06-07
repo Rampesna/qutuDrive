@@ -35,12 +35,12 @@ return [
 
     'mailers' => [
         'smtp' => [
-            'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'transport' => 'postmark',
+            'host' => env('MAIL_HOST', 'smtp.postmarkapp.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'username' => env('MAIL_USERNAME', 'd21a2de2-5656-4706-905b-a0f6f5a8c452'),
+            'password' => env('MAIL_PASSWORD', 'd21a2de2-5656-4706-905b-a0f6f5a8c452'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
@@ -92,8 +92,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', "bilgilendirme@uyumyedek.com"),
+        'name' => env('MAIL_FROM_NAME', 'Yedek'),
     ],
 
     /*

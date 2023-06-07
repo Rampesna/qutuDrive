@@ -82,7 +82,9 @@
                         <div class="menu-item px-3">
                             <div class="menu-content d-flex align-items-center px-3">
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="{{ asset('assets/media/logos/avatar.png') }}" />
+                                    <span class="btn btn-sm btn-active-secondary btn-secondary btn-icon fs-5 fw-bolder cursor-default" id="loggedUserNameFirstWordSpan2">
+                                        <i class="fa fa-spinner fa-spin fa-sm"></i>
+                                    </span>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="fw-bolder d-flex align-items-center fs-5">

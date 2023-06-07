@@ -94,6 +94,7 @@
 
         $('#authUserNameSpan').html(localStorage.getItem('authUserName'));
         $('#loggedUserNameFirstWordSpan').html(localStorage.getItem('authUserName').charAt(0).toUpperCase());
+        $('#loggedUserNameFirstWordSpan2').html(localStorage.getItem('authUserName').charAt(0).toUpperCase());
         $('#authUserEmailSpan').html(localStorage.getItem('authUserEmail'));
     }
 
@@ -166,7 +167,8 @@
             data: {
                 companyId: companyId
             },
-            success: function (response) {
+            success: function () {
+                localStorage.setItem('authUserSelectedCompanyId', companyId);
                 window.location.reload();
             },
             error: function (error) {

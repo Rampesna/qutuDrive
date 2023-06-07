@@ -39,6 +39,7 @@ return [
         'users' => 'Users',
         'companies' => 'Companies',
         'userCompanyConnections' => 'User-Company Connections',
+        'package' => 'Packages',
         'packageConnections' => 'Package Connections',
         'reports' => 'Reports',
         'gibELedger' => 'GIB e-Ledger Transactions',

@@ -195,7 +195,10 @@ class UserService implements IUserService
                     true,
                     'setSelectedCompany.success',
                     200,
-                    $user->getData()
+                    [
+                        'user' => $user->getData(),
+                        'company' => $company,
+                    ]
                 );
             } else {
                 return new ServiceResponse(
@@ -422,7 +425,6 @@ class UserService implements IUserService
         $user = $this->getById($userId);
         if ($user->isSuccess()) {
             $token = $user->getData()->createToken('userApiToken')->plainTextToken;
-//            session()->put('api_token', $token);
 
             $company = $user->getData()->companies()->first();
 

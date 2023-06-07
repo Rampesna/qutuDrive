@@ -143,6 +143,10 @@ Route::middleware([
                 Route::get('index', [\App\Http\Controllers\Web\User\System\Management\UserCompanyConnectionController::class, 'index'])->name('user.web.system.management.userCompanyConnection.index');
             });
 
+            Route::prefix('package')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Management\PackageController::class, 'index'])->name('user.web.system.management.package.index');
+            });
+
             Route::prefix('packageConnection')->group(function () {
                 Route::get('index', [\App\Http\Controllers\Web\User\System\Management\PackageConnectionController::class, 'index'])->name('user.web.system.management.packageConnection.index');
             });
