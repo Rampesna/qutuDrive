@@ -61,7 +61,7 @@
                     'Authorization': authUserToken
                 },
                 data: {
-                    companyId: SelectedCompany.val(),
+                    companyId: companyId,
                     year: year,
                     month: month,
                     typeIds: parseInt(typeId) === 0 ? [1, 2, 5, 6] : [typeId],
@@ -108,13 +108,8 @@
                                     {name: 'DOSYAADI', type: 'string'},
                                     {name: 'DOSYABOYUTU', type: 'string'},
                                     {name: 'KAYITTARIHI', type: 'string'},
-                                    {name: 'DURUM', type: 'string'},
                                     {name: 'GIBDURUM', type: 'string'},
                                     {name: 'GIBGONDERIMTARIHI', type: 'string'},
-                                    {name: 'GIBKUYRUKDURUM', type: 'string'},
-                                    {name: 'GIBKUYRUKTARIHI', type: 'string'},
-                                    {name: 'DOSYAIMZA', type: 'string'},
-                                    {name: 'SERVISDURUMU', type: 'string'},
                                 ]
                             };
                             var dataAdapter = new $.jqx.dataAdapter(source);
@@ -166,7 +161,7 @@
                                         text: 'Dosya Adı',
                                         dataField: 'DOSYAADI',
                                         columntype: 'textbox',
-                                        width: '16%',
+                                        width: '58%',
                                     },
                                     {
                                         text: 'Dosya Boyutu',
@@ -181,47 +176,11 @@
                                         width: '10%',
                                     },
                                     {
-                                        text: 'Durum',
-                                        dataField: 'DURUM',
-                                        columntype: 'textbox',
-                                        width: '6%',
-                                    },
-                                    {
                                         text: 'GİB Durumu',
                                         dataField: 'GIBDURUM',
                                         columntype: 'textbox',
                                         width: '10%',
                                     },
-                                    {
-                                        text: 'GİB Gönderim Tarihi',
-                                        dataField: 'GIBGONDERIMTARIHI',
-                                        columntype: 'textbox',
-                                        width: '10%',
-                                    },
-                                    {
-                                        text: 'GİB Kuyruk Durumu',
-                                        dataField: 'GIBKUYRUKDURUM',
-                                        columntype: 'textbox',
-                                        width: '6%',
-                                    },
-                                    {
-                                        text: 'GİB Kuyruk Tarihi',
-                                        dataField: 'GIBKUYRUKTARIHI',
-                                        columntype: 'textbox',
-                                        width: '10%',
-                                    },
-                                    {
-                                        text: 'Dosya İmza',
-                                        dataField: 'DOSYAIMZA',
-                                        columntype: 'textbox',
-                                        width: '10%',
-                                    },
-                                    {
-                                        text: 'Servis Durumu',
-                                        dataField: 'SERVISDURUMU',
-                                        columntype: 'textbox',
-                                        width: '6%',
-                                    }
                                 ],
                             });
                             eLedgerBackupsDiv.jqxLoader('open');
