@@ -88,7 +88,13 @@
                                         DOSYABOYUTU: `${edefterdosyalar.DOSYABOYUTU} MB`,
                                         KAYITTARIHI: edefterdosyalar.KAYITTARIHI ? reformatDatetimeToDatetimeForHuman(edefterdosyalar.KAYITTARIHI) : ``,
                                         DURUM: edefterdosyalar.DURUM,
-                                        GIBDURUM: `${parseInt(edefterdosyalar.GIBDURUM) === 6 ? `<span class="badge badge-success">GİB'e GÖNDERİLDİ</span>` : `<span class="badge badge-warning">KUYRUKTA</span>`}`,
+                                        GIBDURUM: parseInt(edefterdosyalar.GIBDURUM) === 0 ?
+                                            `<span class="badge badge-warning">BEKLEMEDE</span>` : (
+                                                parseInt(edefterdosyalar.GIBDURUM) === 1 ?
+                                                    `<span class="badge badge-info">İŞLENİYOR</span>` : (
+                                                        parseInt(edefterdosyalar.GIBDURUM) === 6 ? `<span class="badge badge-success">BAŞARILI</span>` : ``
+                                                    )
+                                            ),
                                         GIBGONDERIMTARIHI: edefterdosyalar.GIBGONDERIMTARIHI ? reformatDatetimeToDatetimeForHuman(edefterdosyalar.GIBGONDERIMTARIHI) : ``,
                                         GIBKUYRUKDURUM: edefterdosyalar.GIBKUYRUKDURUM,
                                         GIBKUYRUKTARIHI: edefterdosyalar.GIBKUYRUKTARIHI ? reformatDatetimeToDatetimeForHuman(edefterdosyalar.GIBKUYRUKTARIHI) : ``,

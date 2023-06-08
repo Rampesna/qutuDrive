@@ -11,7 +11,7 @@
                 <a class="nav-link text-active-primary py-5 me-6 {{ request()->segment(6) === 'backupStatus' ? 'active' : '' }}" href="{{ route('user.web.system.management.company.detail.backupStatus', ['id' => $id]) }}">Yedek Durumu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-active-primary py-5 me-6 {{ request()->segment(6) === 'eLedgerBackupStatus' ? 'active' : '' }}" href="{{ route('user.web.system.management.company.detail.eLedgerBackupStatus', ['id' => $id]) }}">e-Defter Yedek Durumu</a>
+                <a class="nav-link text-active-primary py-5 me-6 {{ request()->segment(6) === 'eLedgerBackupStatus' ? 'active' : '' }}" href="{{ route('user.web.system.management.company.detail.eLedgerBackupStatus', ['id' => $id]) }}">e-Defter İkincil Saklama</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-active-primary py-5 me-6 {{ request()->segment(6) === 'user' ? 'active' : '' }}" href="{{ route('user.web.system.management.company.detail.user', ['id' => $id]) }}">Kullanıcılar</a>
