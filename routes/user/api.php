@@ -222,6 +222,10 @@ Route::middleware([
 
     Route::prefix('paketbilgileri')->group(function () {
         Route::get('getAll', [\App\Http\Controllers\Api\User\PaketBilgileriController::class, 'getAll'])->name('user.api.paketbilgileri.getAll');
+        Route::get('getById', [\App\Http\Controllers\Api\User\PaketBilgileriController::class, 'getById'])->name('user.api.paketbilgileri.getById');
+        Route::post('create', [\App\Http\Controllers\Api\User\PaketBilgileriController::class, 'create'])->name('user.api.paketbilgileri.create');
+        Route::put('update', [\App\Http\Controllers\Api\User\PaketBilgileriController::class, 'update'])->name('user.api.paketbilgileri.update');
+        Route::delete('delete', [\App\Http\Controllers\Api\User\PaketBilgileriController::class, 'delete'])->name('user.api.paketbilgileri.delete');
     });
 
     Route::prefix('firmapaketleri')->group(function () {

@@ -1,4 +1,4 @@
-<div class="modal fade show" id="AddNewPackageModal" tabindex="-1" aria-modal="true" role="dialog" data-bs-backdrop="static">
+<div class="modal fade show" id="CreatePackageModal" tabindex="-1" aria-modal="true" role="dialog" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered mw-800px">
         <div class="modal-content rounded">
             <div class="modal-header pb-0 border-0 justify-content-end">
@@ -14,53 +14,76 @@
             <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
                 <div class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="mb-13 text-center">
-                        <h1 class="mb-3">Yeni Paket Ekle</h1>
+                        <h1 class="mb-3">Paket Oluştur</h1>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="add_new_package_package_id" class="font-weight-bolder">Paket Seçimi</label>
+                                <label for="create_package_dealer_code" class="font-weight-bolder">Bayi Kodu</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <select id="add_new_package_package_id" class="form-select form-select-solid"></select>
+                                    <input id="create_package_dealer_code" type="text" class="form-control form-control-solid" placeholder="Bayi Kodu">
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="add_new_package_price" class="font-weight-bolder">Paket Fiyatı</label>
+                                <label for="create_package_code" class="font-weight-bolder">Paket Kodu</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <input id="add_new_package_price" type="number" class="form-control form-control-solid" placeholder="Paket Fiyatı">
+                                    <input id="create_package_code" type="text" class="form-control form-control-solid" placeholder="Paket Kodu">
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="add_new_package_start_date" class="font-weight-bolder">Başlangıç Tarihi</label>
+                                <label for="create_package_name" class="font-weight-bolder">Paket Adı</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <input id="add_new_package_start_date" type="date" class="form-control form-control-solid">
+                                    <input id="create_package_name" type="text" class="form-control form-control-solid" placeholder="Paket Adı">
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-5">
                             <div class="col-xl-3 mt-3">
-                                <label for="add_new_package_end_date" class="font-weight-bolder">Bitiş Tarihi</label>
+                                <label for="create_package_size" class="font-weight-bolder">Paket Boyutu (GB)</label>
                             </div>
                             <div class="col-xl-9">
                                 <div class="form-group">
-                                    <input id="add_new_package_end_date" type="date" class="form-control form-control-solid">
+                                    <input id="create_package_size" type="number" class="form-control form-control-solid" placeholder="Paket Boyutu">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-xl-3 mt-3">
+                                <label for="create_package_price" class="font-weight-bolder">Paket Fiyatı</label>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="form-group">
+                                    <input id="create_package_price" type="text" class="form-control form-control-solid moneyMask" placeholder="Paket Fiyatı">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-xl-3 mt-3">
+                                <label for="create_package_status" class="font-weight-bolder">Durum</label>
+                            </div>
+                            <div class="col-xl-9">
+                                <div class="form-group">
+                                    <select id="create_package_status" class="form-select form-select-solid">
+                                        <option value="1">Aktif</option>
+                                        <option value="0">Pasif</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
                         <button type="button" data-bs-dismiss="modal" class="btn btn-light me-3">Vazgeç</button>
-                        <button type="button" class="btn btn-success" id="AddNewPackageButton">Ekle</button>
+                        <button type="button" class="btn btn-success" id="CreatePackageButton">Oluştur</button>
                     </div>
                 </div>
             </div>

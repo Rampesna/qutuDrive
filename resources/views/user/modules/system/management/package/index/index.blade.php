@@ -14,7 +14,31 @@
 
 @section('content')
 
+    @include('user.modules.system.management.package.index.components.contextMenu')
 
+    @include('user.modules.system.management.package.index.modals.createPackage')
+    @include('user.modules.system.management.package.index.modals.updatePackage')
+    @include('user.modules.system.management.package.index.modals.deletePackage')
+
+    <input type="hidden" id="selected_package_row_index">
+    <input type="hidden" id="selected_package_id">
+    <div class="row mb-3">
+        <div class="col-xl-12">
+            <button class="btn btn-primary" onclick="createPackage()">Yeni Paket</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="jqxLoader"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="packages" class="text-center">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+        </div>
+    </div>
 
 @endsection
 

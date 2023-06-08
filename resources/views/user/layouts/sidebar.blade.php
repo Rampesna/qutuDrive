@@ -508,16 +508,16 @@
                                         class="menu-title">{{ __('sidebar.management.userCompanyConnections') }}</span>
                                 </a>
                             </div>
-{{--                            <div--}}
-{{--                                class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'package' ? 'show' : '' }}">--}}
-{{--                                <a class="menu-link"--}}
-{{--                                   href="{{ route('user.web.system.management.package.index') }}">--}}
-{{--                                    <span class="menu-bullet">--}}
-{{--                                        <span class="bullet bullet-dot"></span>--}}
-{{--                                    </span>--}}
-{{--                                    <span class="menu-title">{{ __('sidebar.management.package') }}</span>--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
+                            <div
+                                class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'package' ? 'show' : '' }}">
+                                <a class="menu-link"
+                                   href="{{ route('user.web.system.management.package.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('sidebar.management.package') }}</span>
+                                </a>
+                            </div>
                             <div
                                 class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'packageConnection' ? 'show' : '' }}">
                                 <a class="menu-link"
