@@ -19,6 +19,7 @@
     @include('user.modules.system.management.user.index.modals.createUser')
     @include('user.modules.system.management.user.index.modals.updateUser')
     @include('user.modules.system.management.user.index.modals.deleteUser')
+    @include('user.modules.system.management.user.index.modals.changeEmail')
 
     <input type="hidden" id="selected_user_row_index">
     <input type="hidden" id="selected_user_id">

@@ -212,4 +212,17 @@ interface IUserService extends IEloquentService
         string $resetPasswordToken,
         string $newPassword
     ): ServiceResponse;
+
+    /**
+     * @param int $transactionUserId
+     * @param int $userId
+     * @param string $email
+     * @param mixed $petitionFile
+     */
+    public function changeEmail(
+        int    $transactionUserId,
+        int    $userId,
+        string $email,
+        mixed  $petitionFile
+    ): ServiceResponse;
 }

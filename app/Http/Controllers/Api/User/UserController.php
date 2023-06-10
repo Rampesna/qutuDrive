@@ -22,6 +22,7 @@ use App\Http\Requests\Api\User\UserController\UpdateRequest;
 use App\Http\Requests\Api\User\UserController\DeleteRequest;
 use App\Http\Requests\Api\User\UserController\SendPasswordResetEmailRequest;
 use App\Http\Requests\Api\User\UserController\ResetPasswordRequest;
+use App\Http\Requests\Api\User\UserController\ChangeEmailRequest;
 use App\Interfaces\Eloquent\IUserService;
 use App\Interfaces\Eloquent\IFirmalarService;
 use App\Core\HttpResponse;
@@ -452,6 +453,26 @@ class UserController extends Controller
         $response = $this->userService->resetPassword(
             $request->resetPasswordToken,
             $request->newPassword
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
+     * @param ChangeEmailRequest $request
+     * */
+    public function changeEmail(ChangeEmailRequest $request)
+    {
+        $response = $this->userService->changeEmail(
+            $request->user()->ID,
+            $request->userId,
+            $request->email,
+            $request->file('petition')
         );
 
         return $this->httpResponse(

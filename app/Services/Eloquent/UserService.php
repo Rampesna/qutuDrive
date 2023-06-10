@@ -4,6 +4,7 @@ namespace App\Services\Eloquent;
 
 use App\Interfaces\Eloquent\IUserService;
 use App\Mail\User\ForgotPasswordEmail;
+use App\Models\Eloquent\Dilekceler;
 use App\Models\Eloquent\Firmalar;
 use App\Models\Eloquent\Kullanicilar;
 use App\Core\ServiceResponse;
@@ -723,5 +724,41 @@ class UserService implements IUserService
             200,
             $user
         );
+    }
+
+    /**
+     * @param int $transactionUserId
+     * @param int $userId
+     * @param string $email
+     * @param mixed $petitionFile
+     */
+    public function changeEmail(
+        int    $transactionUserId,
+        int    $userId,
+        string $email,
+        mixed  $petitionFile
+    ): ServiceResponse
+    {
+        $petition = new Dilekceler;
+        $petition->ISLEMIYAPANKULLANICI = $transactionUserId;
+        $petition->DILEKCEYOLU = base64_encode(file_get_contents($petitionFile));
+        $petition->TARIH = date('Y-m-d H:i:s');
+        $petition->save();
+
+        $user = $this->getById($userId);
+        if ($user->isSuccess()) {
+            $user->getData()->KULLANICIADI = $email;
+            $user->getData()->MAIL = $email;
+            $user->getData()->save();
+
+            return new ServiceResponse(
+                true,
+                'Email changed successfully',
+                200,
+                $user->getData()
+            );
+        } else {
+            return $user;
+        }
     }
 }

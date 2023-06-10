@@ -38,6 +38,7 @@ return [
     'management' => [
         'title' => 'Yönetim',
         'users' => 'Kullanıcılar',
+        'petitions' => 'Dilekçeler',
         'companies' => 'Firmalar',
         'userCompanyConnections' => 'Kullanıcı-Firma Bağlantıları',
         'package' => 'Paketler',

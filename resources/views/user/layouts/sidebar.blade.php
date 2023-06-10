@@ -547,6 +547,15 @@
                                 </a>
                             </div>
                             <div
+                                class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'petition' ? 'show' : '' }}">
+                                <a class="menu-link" href="{{ route('user.web.system.management.petition.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">{{ __('sidebar.management.petitions') }}</span>
+                                </a>
+                            </div>
+                            <div
                                 class="menu-item {{ request()->segment(3) == 'management' && request()->segment(4) == 'gibELedger' ? 'show' : '' }}">
                                 <a class="menu-link" href="{{ \Illuminate\Support\Facades\URL::to('log-viewer')}}">
                                     <span class="menu-bullet">

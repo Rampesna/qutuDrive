@@ -30,6 +30,7 @@
     var CreateUserButton = $('#CreateUserButton');
     var UpdateUserButton = $('#UpdateUserButton');
     var DeleteUserButton = $('#DeleteUserButton');
+    var ChangeEmailButton = $('#ChangeEmailButton');
 
     var DownloadExcelButton = $('#DownloadExcelButton');
 
@@ -162,7 +163,6 @@
         $('#loader').hide();
     });
 
-
     function createUser() {
         $('#create_user_username').val('');
         $('#create_user_email').val('');
@@ -216,6 +216,10 @@
     function userDetail() {
         var id = $('#selected_user_id').val();
         window.open(`{{ route('user.web.system.management.user.detail.index') }}/${btoa(id)}`, '_blank');
+    }
+
+    function changeUserEmail() {
+        $('#ChangeEmailModal').modal('show');
     }
 
     function downloadUsers() {
@@ -649,6 +653,77 @@
                 }
             }
         });
+    });
+
+    ChangeEmailButton.click(function () {
+        var id = $('#selected_user_id').val();
+        var email = $('#change_email_new_email').val();
+        var petitionFile = $('#change_email_petition').prop('files')[0];
+
+        if (!email) {
+            toastr.warning('Lütfen yeni e-posta adresi giriniz.');
+        } else if (!petitionFile) {
+            toastr.warning('Lütfen dilekçe yükleyiniz.');
+        } else {
+            ChangeEmailButton.attr('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>');
+            var formData = new FormData();
+            formData.append('userId', id);
+            formData.append('email', email);
+            formData.append('petition', petitionFile);
+            $.ajax({
+                type: 'get',
+                url: '{{ route('user.api.user.getByEmail') }}',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': authUserToken
+                },
+                data: {
+                    email: email,
+                    exceptId: id
+                },
+                success: function () {
+                    toastr.error('Bu e-posta adresi başka bir hesaba ait!');
+                    ChangeEmailButton.attr('disabled', false).html('Güncelle');
+                },
+                error: function (error) {
+                    console.log(error);
+                    if (parseInt(error.status) === 422) {
+                        $.each(error.responseJSON.response, function (i, error) {
+                            toastr.error(error[0]);
+                        });
+                    } else if (parseInt(error.status) === 404) {
+                        $.ajax({
+                            contentType: false,
+                            processData: false,
+                            type: 'post',
+                            url: '{{ route('user.api.user.changeEmail') }}',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Authorization': authUserToken
+                            },
+                            data: formData,
+                            success: function () {
+                                toastr.success('E-posta adresi başarıyla güncellendi');
+                                $('#ChangeEmailModal').modal('hide');
+                                ChangeEmailButton.attr('disabled', false).html('Güncelle');
+                            },
+                            error: function (error) {
+                                console.log(error);
+                                if (parseInt(error.status) === 422) {
+                                    $.each(error.responseJSON.response, function (i, error) {
+                                        toastr.error(error[0]);
+                                    });
+                                } else {
+                                    toastr.error(error.responseJSON.message);
+                                }
+                            }
+                        });
+                    } else {
+                        toastr.error(error.responseJSON.message);
+                    }
+                }
+            });
+        }
     });
 
 </script>

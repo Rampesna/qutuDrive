@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Core\Controller;
+use App\Http\Requests\Api\User\CompanyController\JqxGridRequest;
 use App\Http\Requests\Api\User\CompanyController\GetAllRequest;
 use App\Http\Requests\Api\User\CompanyController\GetByIdRequest;
 use App\Http\Requests\Api\User\CompanyController\GetByTaxNumberRequest;
@@ -27,6 +28,16 @@ class CompanyController extends Controller
     public function __construct(IFirmalarService $firmalarService)
     {
         $this->firmalarService = $firmalarService;
+    }
+
+    /**
+     * @param JqxGridRequest $request
+     */
+    public function jqxGrid(JqxGridRequest $request)
+    {
+        $response = $this->firmalarService->jqxGrid();
+
+        return response()->json($response->getData());
     }
 
     /**

@@ -158,6 +158,10 @@ Route::middleware([
             Route::prefix('gibELedger')->group(function () {
                 Route::get('index', [\App\Http\Controllers\Web\User\System\Management\GibELedgerController::class, 'index'])->name('user.web.system.management.gibELedger.index');
             });
+
+            Route::prefix('petition')->group(function () {
+                Route::get('index', [\App\Http\Controllers\Web\User\System\Management\PetitionController::class, 'index'])->name('user.web.system.management.petition.index');
+            });
         });
     });
 });

@@ -5,10 +5,63 @@ namespace App\Services\Eloquent;
 use App\Core\ServiceResponse;
 use App\Interfaces\Eloquent\IFirmalarService;
 use App\Models\Eloquent\Firmalar;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class FirmalarService implements IFirmalarService
 {
+    /**
+     * @return ServiceResponse
+     */
+    public function jqxGrid(
+
+    ): ServiceResponse
+    {
+        /**
+        {name: 'ID', type: 'integer'},
+        {name: 'FIRMAUNVAN', type: 'string'},
+        {name: 'APIKEY', type: 'string'},
+        {name: 'AD', type: 'string'},
+        {name: 'SOYAD', type: 'string'},
+        {name: 'TELEFON', type: 'string'},
+        {name: 'MAIL', type: 'string'},
+        {name: 'VKNTCKN', type: 'string'},
+        {name: 'EDEFTERKAYNAKTURU', type: 'string'},
+        {name: 'KAYITTARIHI', type: 'string'},
+        {name: 'DURUM', type: 'string'},
+         */
+
+        $from = 0;
+        $to = 30;
+        $query = "SELECT ID, FIRMAUNVAN, APIKEY, AD, SOYAD, TELEFON, MAIL, VKNTCKN, EDEFTERKAYNAKTURU, KAYITTARIHI, DURUM FROM firmalar LIMIT " . $from . ", " . $to;
+        $result = DB::select($query);
+
+        return new ServiceResponse(
+            true,
+            __('ServiceResponse/Eloquent/FirmalarService.jqxGrid.success'),
+            200,
+            $result
+        );
+
+//        $result = $mysqli->prepare($query);
+//        $result->bind_param('ii', $from, $to);
+//        $result->execute();
+//        /* bind result variables */
+//        $result->bind_result($CompanyName, $ContactName, $ContactTitle, $Address, $City);
+//        /* fetch values */
+//        while ($result->fetch())
+//        {
+//            $customers[] = array(
+//                'CompanyName' => $CompanyName,
+//                'ContactName' => $ContactName,
+//                'ContactTitle' => $ContactTitle,
+//                'Address' => $Address,
+//                'City' => $City
+//            );
+//        }
+//        echo json_encode($customers);
+    }
+
     /**
      * @return ServiceResponse
      */

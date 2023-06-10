@@ -30,6 +30,7 @@ Route::middleware([
         Route::post('getUserPermission', [\App\Http\Controllers\Api\User\UserController::class, 'getUserPermission'])->name('user.api.user.getUserPermission');
         Route::get('getAllPermissions', [\App\Http\Controllers\Api\User\UserController::class, 'getAllPermissions'])->name('user.api.user.getAllPermissions');
         Route::post('setPermissions', [\App\Http\Controllers\Api\User\UserController::class, 'setPermissions'])->name('user.api.user.setPermissions');
+        Route::post('changeEmail', [\App\Http\Controllers\Api\User\UserController::class, 'changeEmail'])->name('user.api.user.changeEmail');
     });
 
     Route::prefix('video')->group(function () {
@@ -48,6 +49,7 @@ Route::middleware([
     });
 
     Route::prefix('company')->group(function () {
+        Route::get('jqxGrid', [\App\Http\Controllers\Api\User\CompanyController::class, 'jqxGrid'])->name('user.api.company.jqxGrid');
         Route::get('getAll', [\App\Http\Controllers\Api\User\CompanyController::class, 'getAll'])->name('user.api.company.getAll');
         Route::get('getById', [\App\Http\Controllers\Api\User\CompanyController::class, 'getById'])->name('user.api.company.getById');
         Route::get('getByTaxNumber', [\App\Http\Controllers\Api\User\CompanyController::class, 'getByTaxNumber'])->name('user.api.company.getByTaxNumber');

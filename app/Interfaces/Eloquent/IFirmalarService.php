@@ -9,6 +9,11 @@ interface IFirmalarService
     /**
      * @return ServiceResponse
      */
+    public function jqxGrid(): ServiceResponse;
+
+    /**
+     * @return ServiceResponse
+     */
     public function getAll(): ServiceResponse;
 
     /**
@@ -66,7 +71,7 @@ interface IFirmalarService
      * @return ServiceResponse
      */
     public function create(
-        ?string  $title,
+        ?string $title,
         string  $taxNumber,
         ?string $name,
         ?string $surname,

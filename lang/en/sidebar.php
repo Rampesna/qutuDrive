@@ -37,6 +37,7 @@ return [
     'management' => [
         'title' => 'Managemet',
         'users' => 'Users',
+        'petitions' => 'Petitions',
         'companies' => 'Companies',
         'userCompanyConnections' => 'User-Company Connections',
         'package' => 'Packages',
