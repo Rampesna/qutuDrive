@@ -7,9 +7,13 @@ use App\Core\ServiceResponse;
 interface IFirmalarService
 {
     /**
+     * @param mixed $request
+     *
      * @return ServiceResponse
      */
-    public function jqxGrid(): ServiceResponse;
+    public function jqxGrid(
+        mixed $request
+    ): ServiceResponse;
 
     /**
      * @return ServiceResponse

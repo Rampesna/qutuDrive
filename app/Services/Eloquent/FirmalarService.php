@@ -11,55 +11,120 @@ use Illuminate\Support\Str;
 class FirmalarService implements IFirmalarService
 {
     /**
+     * @param mixed $request
+     *
      * @return ServiceResponse
      */
-    public function jqxGrid(
-
-    ): ServiceResponse
+    public function jqxGrid(mixed $request): ServiceResponse
     {
-        /**
-        {name: 'ID', type: 'integer'},
-        {name: 'FIRMAUNVAN', type: 'string'},
-        {name: 'APIKEY', type: 'string'},
-        {name: 'AD', type: 'string'},
-        {name: 'SOYAD', type: 'string'},
-        {name: 'TELEFON', type: 'string'},
-        {name: 'MAIL', type: 'string'},
-        {name: 'VKNTCKN', type: 'string'},
-        {name: 'EDEFTERKAYNAKTURU', type: 'string'},
-        {name: 'KAYITTARIHI', type: 'string'},
-        {name: 'DURUM', type: 'string'},
-         */
+        $pagenum = $request->pagenum;
+        $pagesize = $request->pagesize;
+        $start = $pagenum * $pagesize;
 
-        $from = 0;
-        $to = 30;
-        $query = "SELECT ID, FIRMAUNVAN, APIKEY, AD, SOYAD, TELEFON, MAIL, VKNTCKN, EDEFTERKAYNAKTURU, KAYITTARIHI, DURUM FROM firmalar LIMIT " . $from . ", " . $to;
-        $result = DB::select($query);
+        $filterscount = $request->filterscount ?? 0;
+        $conditions = [];
+
+        for ($i = 0; $i < $filterscount; $i++) {
+            $filtervalue = $request->input("filtervalue{$i}");
+            $filtercondition = $request->input("filtercondition{$i}");
+            $filterdatafield = $request->input("filterdatafield{$i}");
+            $filteroperator = $request->input("filteroperator{$i}");
+
+            $condition = '';
+            $value = '';
+
+            switch ($filtercondition) {
+                case 'CONTAINS':
+                    $condition = 'like';
+                    $value = "%{$filtervalue}%";
+                    break;
+                case 'DOES_NOT_CONTAIN':
+                    $condition = 'not like';
+                    $value = "%{$filtervalue}%";
+                    break;
+                case 'EQUAL':
+                    $condition = '=';
+                    $value = $filtervalue;
+                    break;
+                case 'NOT_EQUAL':
+                    $condition = '<>';
+                    $value = $filtervalue;
+                    break;
+                case 'GREATER_THAN':
+                    $condition = '>';
+                    $value = $filtervalue;
+                    break;
+                case 'LESS_THAN':
+                    $condition = '<';
+                    $value = $filtervalue;
+                    break;
+                case 'GREATER_THAN_OR_EQUAL':
+                    $condition = '>=';
+                    $value = $filtervalue;
+                    break;
+                case 'LESS_THAN_OR_EQUAL':
+                    $condition = '<=';
+                    $value = $filtervalue;
+                    break;
+                case 'STARTS_WITH':
+                    $condition = 'like';
+                    $value = "{$filtervalue}%";
+                    break;
+                case 'ENDS_WITH':
+                    $condition = 'like';
+                    $value = "%{$filtervalue}";
+                    break;
+                case 'NULL':
+                    $condition = 'is null';
+                    break;
+                case 'NOT_NULL':
+                    $condition = 'is not null';
+                    break;
+            }
+
+            $conditions[] = [
+                'column' => $filterdatafield,
+                'operator' => $condition,
+                'value' => $value,
+                'boolean' => ($i > 0) ? $filteroperator === 0 ? 'and' : 'or' : '',
+            ];
+        }
+
+        $query = DB::table('firmalar')->select([
+            'ID',
+            'DURUM',
+            'FIRMAUNVAN',
+            'APIKEY',
+            'AD',
+            'SOYAD',
+            'TELEFON',
+            'MAIL',
+            'VKNTCKN',
+            'EDEFTERKAYNAKTURU',
+            'KAYITTARIHI'
+        ]);
+
+        foreach ($conditions as $condition) {
+            $query->where($condition['column'], $condition['operator'], $condition['value'], $condition['boolean']);
+        }
+
+        $total_rows = $query->count();
+        $companies = $query->skip($start)->take($pagesize)->get()->map(function ($company) {
+            $company->DURUM = $company->DURUM === 1 ? '<span class="badge badge-light-success">AKTİF</span>' : '<span class="badge badge-light-danger">PASİF</span>';
+            return $company;
+        });
 
         return new ServiceResponse(
             true,
-            __('ServiceResponse/Eloquent/FirmalarService.jqxGrid.success'),
+            'jqxGrid success',
             200,
-            $result
+            [
+                [
+                    'TotalRows' => $total_rows,
+                    'Rows' => $companies,
+                ],
+            ]
         );
-
-//        $result = $mysqli->prepare($query);
-//        $result->bind_param('ii', $from, $to);
-//        $result->execute();
-//        /* bind result variables */
-//        $result->bind_result($CompanyName, $ContactName, $ContactTitle, $Address, $City);
-//        /* fetch values */
-//        while ($result->fetch())
-//        {
-//            $customers[] = array(
-//                'CompanyName' => $CompanyName,
-//                'ContactName' => $ContactName,
-//                'ContactTitle' => $ContactTitle,
-//                'Address' => $Address,
-//                'City' => $City
-//            );
-//        }
-//        echo json_encode($customers);
     }
 
     /**

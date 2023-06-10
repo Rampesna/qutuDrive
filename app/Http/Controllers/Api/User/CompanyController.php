@@ -35,7 +35,9 @@ class CompanyController extends Controller
      */
     public function jqxGrid(JqxGridRequest $request)
     {
-        $response = $this->firmalarService->jqxGrid();
+        $response = $this->firmalarService->jqxGrid(
+            $request
+        );
 
         return response()->json($response->getData());
     }
