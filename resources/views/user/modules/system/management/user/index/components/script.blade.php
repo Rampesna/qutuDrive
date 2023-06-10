@@ -691,6 +691,7 @@
                         $.each(error.responseJSON.response, function (i, error) {
                             toastr.error(error[0]);
                         });
+                        ChangeEmailButton.attr('disabled', false).html('Güncelle');
                     } else if (parseInt(error.status) === 404) {
                         $.ajax({
                             contentType: false,
@@ -709,6 +710,7 @@
                             },
                             error: function (error) {
                                 console.log(error);
+                                ChangeEmailButton.attr('disabled', false).html('Güncelle');
                                 if (parseInt(error.status) === 422) {
                                     $.each(error.responseJSON.response, function (i, error) {
                                         toastr.error(error[0]);
@@ -720,6 +722,7 @@
                         });
                     } else {
                         toastr.error(error.responseJSON.message);
+                        ChangeEmailButton.attr('disabled', false).html('Güncelle');
                     }
                 }
             });

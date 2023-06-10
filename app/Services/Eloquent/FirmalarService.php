@@ -425,7 +425,7 @@ class FirmalarService implements IFirmalarService
     {
         $company = $this->getById($companyId);
         if ($company->isSuccess()) {
-            $company->getData()->DURUM = 0;
+            $company->getData()->DURUM = 2;
             $company->getData()->save();
             return new ServiceResponse(
                 true,

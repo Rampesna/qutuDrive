@@ -35,13 +35,13 @@
             datafields: [
                 {name: 'ID', type: 'integer'},
                 {name: 'DURUM', type: 'string'},
+                {name: 'VKNTCKN', type: 'string'},
                 {name: 'FIRMAUNVAN', type: 'string'},
                 {name: 'APIKEY', type: 'string'},
                 {name: 'AD', type: 'string'},
                 {name: 'SOYAD', type: 'string'},
                 {name: 'TELEFON', type: 'string'},
                 {name: 'MAIL', type: 'string'},
-                {name: 'VKNTCKN', type: 'string'},
                 {name: 'EDEFTERKAYNAKTURU', type: 'string'},
                 {name: 'KAYITTARIHI', type: 'string'},
             ],
@@ -116,6 +116,12 @@
                     width: '8%',
                 },
                 {
+                    text: 'Vergi No',
+                    dataField: 'VKNTCKN',
+                    columntype: 'textbox',
+                    width: '8%',
+                },
+                {
                     text: 'Firma Ünvan',
                     dataField: 'FIRMAUNVAN',
                     columntype: 'textbox',
@@ -150,12 +156,6 @@
                     dataField: 'MAIL',
                     columntype: 'textbox',
                     width: '15%',
-                },
-                {
-                    text: 'Vergi No',
-                    dataField: 'VKNTCKN',
-                    columntype: 'textbox',
-                    width: '8%',
                 },
                 {
                     text: 'e-Defter Kaynağı',
