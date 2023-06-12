@@ -27,6 +27,7 @@
     var companiesDiv = $('#companies');
 
     var CreateCompanyButton = $('#CreateCompanyButton');
+    var CreateCompanyBatchButton = $('#CreateCompanyBatchButton');
     var DeleteCompanyButton = $('#DeleteCompanyButton');
 
     $(document).ready(function () {
@@ -181,6 +182,10 @@
         $('#CreateCompanyModal').modal('show');
     }
 
+    function createCompanyBatch() {
+        $('#CreateCompanyBatchModal').modal('show');
+    }
+
     function deleteCompany() {
         $('#DeleteCompanyModal').modal('show');
     }
@@ -272,6 +277,47 @@
             error: function (error) {
                 console.log(error);
                 CreateCompanyButton.attr('disabled', false).html('Oluştur');
+                if (parseInt(error.status) === 422) {
+                    $.each(error.responseJSON.response, function (i, error) {
+                        toastr.error(error[0]);
+                    });
+                } else {
+                    toastr.error(error.responseJSON.message);
+                }
+            }
+        });
+    });
+
+    CreateCompanyBatchButton.click(function () {
+        var file = $('#create_company_batch_file').prop('files')[0];
+
+        if (!file) {
+            toastr.warning('Lütfen bir dosya seçiniz.');
+            return false;
+        }
+
+        CreateCompanyBatchButton.attr('disabled', true).html(`<i class="fa fa-spinner fa-spin"></i>`);
+        var formData = new FormData();
+        formData.append('file', file);
+
+        $.ajax({
+            contentType: false,
+            processData: false,
+            type: 'post',
+            url: '{{ route('user.api.company.createBatch') }}',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': authUserToken
+            },
+            data: formData,
+            success: function (response) {
+                toastr.success('Firmalar başarıyla oluşturuldu.');
+                CreateCompanyBatchButton.attr('disabled', false).html('Yükle');
+                $('#CreateCompanyBatchModal').modal('hide');
+                refreshCompanies();
+            },
+            error: function (error) {
+                console.log(error);
                 if (parseInt(error.status) === 422) {
                     $.each(error.responseJSON.response, function (i, error) {
                         toastr.error(error[0]);

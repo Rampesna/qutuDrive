@@ -9,6 +9,7 @@ use App\Services\JqxGrid\JqxGridService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FirmalarService implements IFirmalarService
 {
@@ -259,6 +260,57 @@ class FirmalarService implements IFirmalarService
             __('ServiceResponse/Eloquent/FirmalarService.create.success'),
             201,
             $company
+        );
+    }
+
+    /**
+     * @param mixed $file
+     *
+     * @return ServiceResponse
+     */
+    public function createBatch(
+        mixed $file
+    ): ServiceResponse
+    {
+        $companies = [];
+        $companiesFromFile = Excel::toCollection(null, $file);
+
+        foreach ($companiesFromFile[0] as $companyFromFile) {
+            if ($companyFromFile[0] === 'VKN/TCKN') {
+                continue;
+            }
+
+            $checkTaxNumber = Firmalar::where('VKNTCKN', $companyFromFile[0])->first();
+            if ($checkTaxNumber) {
+                continue;
+            }
+
+            $checkEmail = Firmalar::where('MAIL', $companyFromFile[4])->first();
+            if ($checkEmail) {
+                continue;
+            }
+
+            $companies[] = [
+                'VKNTCKN' => $companyFromFile[0],
+                'AD' => $companyFromFile[1],
+                'SOYAD' => $companyFromFile[2],
+                'FIRMAUNVAN' => $companyFromFile[3],
+                'MAIL' => $companyFromFile[4],
+                'TELEFON' => $companyFromFile[5],
+                'VERGIDAIRESI' => $companyFromFile[6],
+                'ADRES' => $companyFromFile[7],
+                'DURUM' => 1,
+                'APIKEY' => Str::uuid()->toString(),
+            ];
+        }
+
+        Firmalar::insert($companies);
+
+        return new ServiceResponse(
+            true,
+            'Companies created successfully.',
+            201,
+            $companies
         );
     }
 

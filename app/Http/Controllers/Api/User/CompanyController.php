@@ -8,6 +8,7 @@ use App\Http\Requests\Api\User\CompanyController\GetAllRequest;
 use App\Http\Requests\Api\User\CompanyController\GetByIdRequest;
 use App\Http\Requests\Api\User\CompanyController\GetByTaxNumberRequest;
 use App\Http\Requests\Api\User\CompanyController\CreateRequest;
+use App\Http\Requests\Api\User\CompanyController\CreateBatchRequest;
 use App\Http\Requests\Api\User\CompanyController\UpdateRequest;
 use App\Http\Requests\Api\User\CompanyController\DeleteRequest;
 use App\Interfaces\Eloquent\IFirmalarService;
@@ -108,6 +109,23 @@ class CompanyController extends Controller
             $request->email,
             $request->dealerCode,
             $request->eLedgerSourceType ?? 1
+        );
+
+        return $this->httpResponse(
+            $response->getMessage(),
+            $response->getStatusCode(),
+            $response->getData(),
+            $response->isSuccess()
+        );
+    }
+
+    /**
+     * @param CreateBatchRequest $request
+     */
+    public function createBatch(CreateBatchRequest $request)
+    {
+        $response = $this->firmalarService->createBatch(
+            $request->file('file')
         );
 
         return $this->httpResponse(

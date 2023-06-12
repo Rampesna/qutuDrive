@@ -55,6 +55,7 @@ Route::middleware([
         Route::get('getById', [\App\Http\Controllers\Api\User\CompanyController::class, 'getById'])->name('user.api.company.getById');
         Route::get('getByTaxNumber', [\App\Http\Controllers\Api\User\CompanyController::class, 'getByTaxNumber'])->name('user.api.company.getByTaxNumber');
         Route::post('create', [\App\Http\Controllers\Api\User\CompanyController::class, 'create'])->name('user.api.company.create');
+        Route::post('createBatch', [\App\Http\Controllers\Api\User\CompanyController::class, 'createBatch'])->name('user.api.company.createBatch');
         Route::put('update', [\App\Http\Controllers\Api\User\CompanyController::class, 'update'])->name('user.api.company.update');
         Route::delete('delete', [\App\Http\Controllers\Api\User\CompanyController::class, 'delete'])->name('user.api.company.delete');
     });

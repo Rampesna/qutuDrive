@@ -89,6 +89,15 @@ interface IFirmalarService
     ): ServiceResponse;
 
     /**
+     * @param mixed $file
+     *
+     * @return ServiceResponse
+     */
+    public function createBatch(
+        mixed $file
+    ): ServiceResponse;
+
+    /**
      * @param int $id
      * @param string $title
      * @param string $taxNumber
