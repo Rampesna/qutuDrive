@@ -310,7 +310,7 @@
                 'Authorization': authUserToken
             },
             data: formData,
-            success: function (response) {
+            success: function () {
                 toastr.success('Firmalar başarıyla oluşturuldu.');
                 CreateCompanyBatchButton.attr('disabled', false).html('Yükle');
                 $('#CreateCompanyBatchModal').modal('hide');
