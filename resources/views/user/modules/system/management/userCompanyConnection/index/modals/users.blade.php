@@ -1,5 +1,5 @@
 <div class="modal fade show" id="UsersModal" tabindex="-1" aria-modal="true" role="dialog" data-bs-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered mw-800px">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
         <div class="modal-content rounded">
             <div class="modal-header pb-0 border-0 justify-content-end">
                 <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">

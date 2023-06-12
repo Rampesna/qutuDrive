@@ -35,10 +35,10 @@
 
     $(document).ready(function () {
         var usersSource = {
-            localdata: [],
-            datatype: "array",
+            datatype: "json",
             datafields: [
                 {name: 'ID', type: 'integer'},
+                {name: 'DURUM', type: 'string'},
                 {name: 'KULLANICIADI', type: 'string'},
                 {name: 'APIKEY', type: 'string'},
                 {name: 'AD', type: 'string'},
@@ -48,8 +48,20 @@
                 {name: 'TCNO', type: 'string'},
                 {name: 'KULLANICITIPI', type: 'string'},
                 {name: 'KAYITTARIHI', type: 'string'},
-                {name: 'DURUM', type: 'string'},
-            ]
+            ],
+            cache: false,
+            url: '{{ route('user.api.user.jqxGrid') }}',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', authUserToken);
+                xhr.setRequestHeader('Accept', 'application/json');
+            },
+            beforeprocessing: function (data) {
+                usersSource.totalrecords = data[0].TotalRows;
+            },
+            root: 'Rows',
+            filter: function () {
+                usersDiv.jqxGrid('updatebounddata', 'filter');
+            }
         };
         var usersDataAdapter = new $.jqx.dataAdapter(usersSource);
         usersDiv.on('contextmenu', function (e) {
@@ -63,24 +75,34 @@
             return false;
         });
         usersDiv.on('rowclick', function (event) {
-            usersDiv.jqxGrid('selectrow', event.args.rowindex);
-            var rowindex = usersDiv.jqxGrid('getselectedrowindex');
-            $('#selected_user_row_index').val(rowindex);
-            var dataRecord = usersDiv.jqxGrid('getrowdata', rowindex);
-            $('#selected_user_id').val(dataRecord.ID);
+            if (event.args.rightclick) {
+                usersDiv.jqxGrid('selectrow', event.args.rowindex);
+                var rowindex = usersDiv.jqxGrid('getselectedrowindex');
+                $('#selected_user_row_index').val(rowindex);
+                var dataRecord = usersDiv.jqxGrid('getrowdata', rowindex);
+                $('#selected_user_id').val(dataRecord.ID);
+                return false;
+            } else {
+                $("#contextMenu").hide();
+            }
+
             return false;
         });
         usersDiv.jqxGrid({
             width: '100%',
-            height: '600',
+            autoheight: true,
             source: usersDataAdapter,
             columnsresize: true,
             groupable: true,
             theme: jqxGridGlobalTheme,
             filterable: true,
             showfilterrow: true,
-            pageable: false,
+            pageable: true,
             sortable: true,
+            virtualmode: true,
+            rendergridrows: function (params) {
+                return params.data;
+            },
             pagesizeoptions: ['10', '20', '50', '1000'],
             localization: getLocalization('tr'),
             columns: [
@@ -88,7 +110,13 @@
                     text: '#',
                     dataField: 'ID',
                     columntype: 'textbox',
-                    width: '10%',
+                    width: '4%',
+                },
+                {
+                    text: 'Durum',
+                    dataField: 'DURUM',
+                    columntype: 'textbox',
+                    width: '8%',
                 },
                 {
                     text: 'Kullanıcı Adı',
@@ -144,32 +172,37 @@
                     columntype: 'textbox',
                     width: '10%',
                 },
-                {
-                    text: 'Durum',
-                    dataField: 'DURUM',
-                    columntype: 'textbox',
-                    width: '8%',
-                }
             ],
         });
-        usersDiv.jqxGrid('sortby', 'id', 'desc');
 
         var companiesSource = {
-            localdata: [],
-            datatype: "array",
+            datatype: "json",
             datafields: [
                 {name: 'ID', type: 'integer'},
+                {name: 'DURUM', type: 'string'},
+                {name: 'VKNTCKN', type: 'string'},
                 {name: 'FIRMAUNVAN', type: 'string'},
                 {name: 'APIKEY', type: 'string'},
                 {name: 'AD', type: 'string'},
                 {name: 'SOYAD', type: 'string'},
                 {name: 'TELEFON', type: 'string'},
                 {name: 'MAIL', type: 'string'},
-                {name: 'VKNTCKN', type: 'string'},
                 {name: 'EDEFTERKAYNAKTURU', type: 'string'},
                 {name: 'KAYITTARIHI', type: 'string'},
-                {name: 'DURUM', type: 'string'},
-            ]
+            ],
+            cache: false,
+            url: '{{ route('user.api.company.jqxGrid') }}',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', authUserToken);
+                xhr.setRequestHeader('Accept', 'application/json');
+            },
+            beforeprocessing: function (data) {
+                companiesSource.totalrecords = data[0].TotalRows;
+            },
+            root: 'Rows',
+            filter: function () {
+                companiesDiv.jqxGrid('updatebounddata', 'filter');
+            }
         };
         var companiesDataAdapter = new $.jqx.dataAdapter(companiesSource);
         companiesDiv.on('contextmenu', function (e) {
@@ -183,24 +216,34 @@
             return false;
         });
         companiesDiv.on('rowclick', function (event) {
-            companiesDiv.jqxGrid('selectrow', event.args.rowindex);
-            var rowindex = companiesDiv.jqxGrid('getselectedrowindex');
-            $('#selected_company_row_index').val(rowindex);
-            var dataRecord = companiesDiv.jqxGrid('getrowdata', rowindex);
-            $('#selected_company_id').val(dataRecord.ID);
+            if (event.args.rightclick) {
+                companiesDiv.jqxGrid('selectrow', event.args.rowindex);
+                var rowindex = companiesDiv.jqxGrid('getselectedrowindex');
+                $('#selected_company_row_index').val(rowindex);
+                var dataRecord = companiesDiv.jqxGrid('getrowdata', rowindex);
+                $('#selected_company_id').val(dataRecord.ID);
+                return false;
+            } else {
+                $("#contextMenu").hide();
+            }
+
             return false;
         });
         companiesDiv.jqxGrid({
             width: '100%',
-            height: '600',
+            autoheight: true,
             source: companiesDataAdapter,
             columnsresize: true,
             groupable: true,
             theme: jqxGridGlobalTheme,
             filterable: true,
             showfilterrow: true,
-            pageable: false,
+            pageable: true,
             sortable: true,
+            virtualmode: true,
+            rendergridrows: function (params) {
+                return params.data;
+            },
             pagesizeoptions: ['10', '20', '50', '1000'],
             localization: getLocalization('tr'),
             columns: [
@@ -208,7 +251,19 @@
                     text: '#',
                     dataField: 'ID',
                     columntype: 'textbox',
-                    width: '10%',
+                    width: '4%',
+                },
+                {
+                    text: 'Durum',
+                    dataField: 'DURUM',
+                    columntype: 'textbox',
+                    width: '8%',
+                },
+                {
+                    text: 'Vergi No',
+                    dataField: 'VKNTCKN',
+                    columntype: 'textbox',
+                    width: '8%',
                 },
                 {
                     text: 'Firma Ünvan',
@@ -247,12 +302,6 @@
                     width: '15%',
                 },
                 {
-                    text: 'Vergi No',
-                    dataField: 'VKNTCKN',
-                    columntype: 'textbox',
-                    width: '8%',
-                },
-                {
                     text: 'e-Defter Kaynağı',
                     dataField: 'EDEFTERKAYNAKTURU',
                     columntype: 'textbox',
@@ -263,16 +312,9 @@
                     dataField: 'KAYITTARIHI',
                     columntype: 'textbox',
                     width: '10%',
-                },
-                {
-                    text: 'Durum',
-                    dataField: 'DURUM',
-                    columntype: 'textbox',
-                    width: '8%',
                 }
             ],
         });
-        companiesDiv.jqxGrid('sortby', 'id', 'desc');
         $('#loader').hide();
     });
 
@@ -598,8 +640,8 @@
         $('#CompaniesModal').modal('show');
     }
 
-    getAllUsers();
-    getAllCompanies();
+    // getAllUsers();
+    // getAllCompanies();
 
     SelectUserButton.click(function () {
         var rowindex = usersDiv.jqxGrid('getselectedrowindex');
