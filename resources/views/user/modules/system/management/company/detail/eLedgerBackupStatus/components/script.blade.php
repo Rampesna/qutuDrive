@@ -53,6 +53,7 @@
         } else if (!month) {
             toastr.warning('Lütfen Ay Seçiniz!');
         } else {
+            toastr.info('Defter Verileriniz Kontrol Ediliyor, Lütfen Bekleyin...');
             $.ajax({
                 type: 'get',
                 url: '{{ route('user.api.edefterdonemler.getEDefterDonem') }}',
