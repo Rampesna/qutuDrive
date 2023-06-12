@@ -9,11 +9,58 @@ use App\Models\Eloquent\Firmalar;
 use App\Models\Eloquent\Kullanicilar;
 use App\Core\ServiceResponse;
 use App\Models\Eloquent\Permission;
+use App\Services\JqxGrid\JqxGridService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class UserService implements IUserService
 {
+    /**
+     * @param Request $request
+     *
+     * @return ServiceResponse
+     */
+    public function jqxGrid(
+        Request $request
+    ): ServiceResponse
+    {
+        $jqxGridService = new JqxGridService(
+            'kullanicilar',
+            [
+                'ID',
+                'DURUM',
+                'KULLANICIADI',
+                'APIKEY',
+                'AD',
+                'SOYAD',
+                'TELEFON',
+                'MAIL',
+                'TCNO',
+                'KULLANICITIPI',
+                'KAYITTARIHI',
+            ],
+            $request
+        );
+
+        $jqxGrid = $jqxGridService->jqxGrid();
+
+        return new ServiceResponse(
+            true,
+            'jqxGrid success',
+            200,
+            [
+                [
+                    'TotalRows' => $jqxGrid['TotalRows'],
+                    'Rows' => $jqxGrid['Rows']->map(function ($user) {
+                        $user->DURUM = $user->DURUM === 1 ? '<span class="badge badge-light-success">AKTİF</span>' : '<span class="badge badge-light-danger">PASİF</span>';
+                        return $user;
+                    })
+                ]
+            ]
+        );
+    }
+
     /**
      * @return ServiceResponse
      */

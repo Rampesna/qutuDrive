@@ -3,9 +3,19 @@
 namespace App\Interfaces\Eloquent;
 
 use App\Core\ServiceResponse;
+use Illuminate\Http\Request;
 
 interface IUserService extends IEloquentService
 {
+    /**
+     * @param Request $request
+     *
+     * @return ServiceResponse
+     */
+    public function jqxGrid(
+        Request $request
+    ): ServiceResponse;
+
     /**
      * @param string $username
      * @param int|null $exceptId

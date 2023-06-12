@@ -20,6 +20,7 @@ Route::middleware([
 
     Route::prefix('user')->group(function () {
         Route::get('getAll', [\App\Http\Controllers\Api\User\UserController::class, 'getAll'])->name('user.api.user.getAll');
+        Route::get('jqxGrid', [\App\Http\Controllers\Api\User\UserController::class, 'jqxGrid'])->name('user.api.user.jqxGrid');
         Route::get('getByCompanyId', [\App\Http\Controllers\Api\User\UserController::class, 'getByCompanyId'])->name('user.api.user.getByCompanyId');
         Route::get('getByEmail', [\App\Http\Controllers\Api\User\UserController::class, 'getByEmail'])->name('user.api.user.getByEmail');
         Route::get('getByUsername', [\App\Http\Controllers\Api\User\UserController::class, 'getByUsername'])->name('user.api.user.getByUsername');

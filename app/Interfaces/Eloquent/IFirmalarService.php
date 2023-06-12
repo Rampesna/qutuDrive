@@ -3,16 +3,17 @@
 namespace App\Interfaces\Eloquent;
 
 use App\Core\ServiceResponse;
+use Illuminate\Http\Request;
 
 interface IFirmalarService
 {
     /**
-     * @param mixed $request
+     * @param Request $request
      *
      * @return ServiceResponse
      */
     public function jqxGrid(
-        mixed $request
+        Request $request
     ): ServiceResponse;
 
     /**

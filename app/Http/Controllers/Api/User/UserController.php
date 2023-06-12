@@ -11,6 +11,7 @@ use App\Http\Requests\Api\User\UserController\GetUserPermissionRequest;
 use App\Http\Requests\Api\User\UserController\LoginRequest;
 use App\Http\Requests\Api\User\UserController\RegisterRequest;
 use App\Http\Requests\Api\User\UserController\GetAllRequest;
+use App\Http\Requests\Api\User\UserController\JqxGridRequest;
 use App\Http\Requests\Api\User\UserController\GetByCompanyIdRequest;
 use App\Http\Requests\Api\User\UserController\GetByEmailRequest;
 use App\Http\Requests\Api\User\UserController\GetByUsernameRequest;
@@ -246,6 +247,18 @@ class UserController extends Controller
             $response->getData(),
             $response->isSuccess()
         );
+    }
+
+    /**
+     * @param JqxGridRequest $request
+     */
+    public function jqxGrid(JqxGridRequest $request)
+    {
+        $response = $this->userService->jqxGrid(
+            $request
+        );
+
+        return response()->json($response->getData());
     }
 
     /**

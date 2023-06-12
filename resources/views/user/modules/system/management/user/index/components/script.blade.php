@@ -36,10 +36,10 @@
 
     $(document).ready(function () {
         var source = {
-            localdata: [],
-            datatype: "array",
+            datatype: "json",
             datafields: [
                 {name: 'ID', type: 'integer'},
+                {name: 'DURUM', type: 'string'},
                 {name: 'KULLANICIADI', type: 'string'},
                 {name: 'APIKEY', type: 'string'},
                 {name: 'AD', type: 'string'},
@@ -49,8 +49,20 @@
                 {name: 'TCNO', type: 'string'},
                 {name: 'KULLANICITIPI', type: 'string'},
                 {name: 'KAYITTARIHI', type: 'string'},
-                {name: 'DURUM', type: 'string'},
-            ]
+            ],
+            cache: false,
+            url: '{{ route('user.api.user.jqxGrid') }}',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', authUserToken);
+                xhr.setRequestHeader('Accept', 'application/json');
+            },
+            beforeprocessing: function (data) {
+                source.totalrecords = data[0].TotalRows;
+            },
+            root: 'Rows',
+            filter: function () {
+                usersDiv.jqxGrid('updatebounddata', 'filter');
+            }
         };
         var dataAdapter = new $.jqx.dataAdapter(source);
         usersDiv.on('contextmenu', function (e) {
@@ -79,15 +91,19 @@
         });
         usersDiv.jqxGrid({
             width: '100%',
-            height: '600',
+            autoheight: true,
             source: dataAdapter,
             columnsresize: true,
             groupable: true,
             theme: jqxGridGlobalTheme,
             filterable: true,
             showfilterrow: true,
-            pageable: false,
+            pageable: true,
             sortable: true,
+            virtualmode: true,
+            rendergridrows: function (params) {
+                return params.data;
+            },
             pagesizeoptions: ['10', '20', '50', '1000'],
             localization: getLocalization('tr'),
             columns: [
@@ -96,6 +112,12 @@
                     dataField: 'ID',
                     columntype: 'textbox',
                     width: '4%',
+                },
+                {
+                    text: 'Durum',
+                    dataField: 'DURUM',
+                    columntype: 'textbox',
+                    width: '8%',
                 },
                 {
                     text: 'Kullanıcı Adı',
@@ -151,15 +173,8 @@
                     columntype: 'textbox',
                     width: '10%',
                 },
-                {
-                    text: 'Durum',
-                    dataField: 'DURUM',
-                    columntype: 'textbox',
-                    width: '8%',
-                }
             ],
         });
-        usersDiv.jqxGrid('sortby', 'id', 'desc');
         $('#loader').hide();
     });
 
@@ -390,7 +405,7 @@
         });
     }
 
-    getAllUsers();
+    // getAllUsers();
 
     $('body').click(function () {
         $('#contextMenu').hide();

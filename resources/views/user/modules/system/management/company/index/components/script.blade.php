@@ -52,7 +52,6 @@
                 xhr.setRequestHeader('Accept', 'application/json');
             },
             beforeprocessing: function (data) {
-                console.log(data);
                 source.totalrecords = data[0].TotalRows;
             },
             root: 'Rows',
