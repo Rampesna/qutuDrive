@@ -227,17 +227,17 @@ class FirmalarService implements IFirmalarService
             );
         }
 
-        if ($email) {
-            $checkCompanyByEmail = $this->getByEmail($email);
-            if ($checkCompanyByEmail->isSuccess()) {
-                return new ServiceResponse(
-                    false,
-                    __('ServiceResponse/Eloquent/FirmalarService.create.emailExists'),
-                    400,
-                    null
-                );
-            }
-        }
+//        if ($email) {
+//            $checkCompanyByEmail = $this->getByEmail($email);
+//            if ($checkCompanyByEmail->isSuccess()) {
+//                return new ServiceResponse(
+//                    false,
+//                    __('ServiceResponse/Eloquent/FirmalarService.create.emailExists'),
+//                    400,
+//                    null
+//                );
+//            }
+//        }
 
         $company = new Firmalar;
         $company->APIKEY = Str::uuid();
@@ -285,10 +285,10 @@ class FirmalarService implements IFirmalarService
                 continue;
             }
 
-            $checkEmail = Firmalar::where('MAIL', $companyFromFile[4])->first();
-            if ($checkEmail) {
-                continue;
-            }
+//            $checkEmail = Firmalar::where('MAIL', $companyFromFile[4])->first();
+//            if ($checkEmail) {
+//                continue;
+//            }
 
             $companies[] = [
                 'VKNTCKN' => $companyFromFile[0],
