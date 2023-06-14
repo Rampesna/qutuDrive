@@ -58,6 +58,9 @@
             root: 'Rows',
             filter: function () {
                 companiesDiv.jqxGrid('updatebounddata', 'filter');
+            },
+            sort: function () {
+                companiesDiv.jqxGrid('updatebounddata');
             }
         };
         var dataAdapter = new $.jqx.dataAdapter(source);

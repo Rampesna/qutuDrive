@@ -61,6 +61,9 @@
             root: 'Rows',
             filter: function () {
                 usersDiv.jqxGrid('updatebounddata', 'filter');
+            },
+            sort: function () {
+                usersDiv.jqxGrid('updatebounddata');
             }
         };
         var usersDataAdapter = new $.jqx.dataAdapter(usersSource);
@@ -202,6 +205,9 @@
             root: 'Rows',
             filter: function () {
                 companiesDiv.jqxGrid('updatebounddata', 'filter');
+            },
+            sort: function () {
+                companiesDiv.jqxGrid('updatebounddata');
             }
         };
         var companiesDataAdapter = new $.jqx.dataAdapter(companiesSource);

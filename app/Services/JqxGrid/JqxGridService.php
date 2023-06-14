@@ -101,6 +101,19 @@ class JqxGridService
 
         $query = DB::table($this->tableName)->select($this->columns);
 
+        if (isset($this->request->sortdatafield) && $this->request->sortorder) {
+            $sortField = $this->request->sortdatafield;
+            $sortOrder = $this->request->sortorder;
+
+            if ($sortField) {
+                if ($sortOrder == "desc") {
+                    $query->orderByDesc($sortField);
+                } else if ($sortOrder == "asc") {
+                    $query->orderBy($sortField);
+                }
+            }
+        }
+
         foreach ($conditions as $condition) {
             $query->where($condition['column'], $condition['operator'], $condition['value'], $condition['boolean']);
         }

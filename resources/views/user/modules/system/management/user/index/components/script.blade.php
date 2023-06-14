@@ -62,6 +62,9 @@
             root: 'Rows',
             filter: function () {
                 usersDiv.jqxGrid('updatebounddata', 'filter');
+            },
+            sort: function () {
+                usersDiv.jqxGrid('updatebounddata');
             }
         };
         var dataAdapter = new $.jqx.dataAdapter(source);
