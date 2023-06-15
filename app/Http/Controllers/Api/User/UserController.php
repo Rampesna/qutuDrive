@@ -62,6 +62,10 @@ class UserController extends Controller
     {
         $user = $this->userService->getByUsername($request->username);
         if ($user->isSuccess()) {
+            if ($user->getData()->DURUM != 1) {
+                return $this->httpResponse('User is not activated', 401);
+            }
+
             if ($request->password != $user->getData()->KULLANICISIFRE) {
                 return $this->httpResponse('Password is incorrect', 401);
             }
