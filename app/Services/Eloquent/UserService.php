@@ -148,7 +148,7 @@ class UserService implements IUserService
         ?int   $exceptId = null
     ): ServiceResponse
     {
-        $user = Kullanicilar::where('MAIL', $email);
+        $user = Kullanicilar::where('MAIL', $email)->where('DURUM', 1);
 
         if ($exceptId) {
             $user->where('id', '!=', $exceptId);
