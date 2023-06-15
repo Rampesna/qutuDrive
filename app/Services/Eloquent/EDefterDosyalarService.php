@@ -94,6 +94,54 @@ class EDefterDosyalarService implements IEDefterDosyalarService
         );
     }
 
+    /**
+     * @param int $companyId
+     * @param string $year
+     * @param string $month
+     * @param array $typeIds
+     *
+     * @return ServiceResponse
+     */
+    public function getByDatesAndTypeIds(
+        int    $companyId,
+        string $year,
+        string $month,
+        array  $typeIds
+    ): ServiceResponse
+    {
+        set_time_limit(86400);
+        $company = Firmalar::find($companyId);
+        if ($company) {
+            $eDefterDonem = Edefterdonemler::where('FIRMAAPIKEY', $company->APIKEY)
+                ->where('YIL', $year)
+                ->where('AY', $month)
+                ->whereIn('DEFTERTURKODU', $typeIds)
+                ->first();
+            if ($eDefterDonem) {
+                return new ServiceResponse(
+                    true,
+                    __('ServiceResponse/Eloquent/EDefterDosyalarService.getByDonemId.success'),
+                    200,
+                    Edefterdosyalar::where('DONEMLERID', $eDefterDonem->ID)->get()
+                );
+            } else {
+                return new ServiceResponse(
+                    false,
+                    __('ServiceResponse/Eloquent/EDefterDonemlerService.getEDefterDonem.notFound'),
+                    404,
+                    null
+                );
+            }
+        } else {
+            return new ServiceResponse(
+                false,
+                __('ServiceResponse/Eloquent/EDefterDonemlerService.getEDefterDonem.companyNotFound'),
+                404,
+                null
+            );
+        }
+    }
+
     /*
      * return ServiceResponse
      * */

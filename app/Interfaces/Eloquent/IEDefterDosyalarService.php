@@ -17,6 +17,21 @@ interface IEDefterDosyalarService
 
     /**
      * @param int $companyId
+     * @param string $year
+     * @param string $month
+     * @param array $typeIds
+     *
+     * @return ServiceResponse
+     */
+    public function getByDatesAndTypeIds(
+        int    $companyId,
+        string $year,
+        string $month,
+        array  $typeIds
+    ): ServiceResponse;
+
+    /**
+     * @param int $companyId
      *
      * return ServiceResponse
      * */

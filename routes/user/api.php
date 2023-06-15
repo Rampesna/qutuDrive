@@ -214,8 +214,10 @@ Route::middleware([
 
     Route::prefix('edefterdosyalar')->group(function () {
         Route::get('getByDonemId', [\App\Http\Controllers\Api\User\EDefterDosyalarController::class, 'getByDonemId'])->name('user.api.edefterdosyalar.getByDonemId');
+        Route::get('getByDatesAndTypeIds', [\App\Http\Controllers\Api\User\EDefterDosyalarController::class, 'getByDatesAndTypeIds'])->name('user.api.edefterdosyalar.getByDatesAndTypeIds');
         Route::get('getUsage', [\App\Http\Controllers\Api\User\EDefterDosyalarController::class, 'getUsage'])->name('user.api.edefterdosyalar.getUsage');
         Route::post('singleELedgerUpload', [\App\Http\Controllers\Api\User\EDefterDosyalarController::class, 'singleELedgerUpload'])->name('user.api.edefterdosyalar.singleELedgerUpload');
+        Route::get('downloadSingleFile', [\App\Http\Controllers\Api\User\EDefterDosyalarController::class, 'downloadSingleFile'])->name('user.api.edefterdosyalar.downloadSingleFile');
     });
 
     Route::prefix('backupdosyalar')->group(function () {
