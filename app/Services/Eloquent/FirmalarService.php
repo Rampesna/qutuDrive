@@ -302,6 +302,8 @@ class FirmalarService implements IFirmalarService
                 'DURUM' => 1,
                 'APIKEY' => Str::uuid()->toString(),
             ];
+
+
         }
 
         Firmalar::insert($companies);
