@@ -126,7 +126,8 @@ class UserController extends Controller
                             $request->email,
                             $request->taxNumber,
                             1,
-                            $newCompany->getData()->ID
+                            $newCompany->getData()->ID,
+                            0
                         );
 
                         if ($newUser->isSuccess()) {

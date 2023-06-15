@@ -429,6 +429,7 @@ class UserService implements IUserService
      * @param string|null $taxNumber
      * @param string $userType
      * @param int|null $selectedCompanyId
+     * @param bool|null $status
      *
      * @return ServiceResponse
      */
@@ -441,7 +442,8 @@ class UserService implements IUserService
         string  $email,
         ?string $taxNumber,
         string  $userType,
-        ?int    $selectedCompanyId
+        ?int    $selectedCompanyId,
+        ?bool   $status
     ): ServiceResponse
     {
         $user = new Kullanicilar;
@@ -453,7 +455,7 @@ class UserService implements IUserService
         $user->TELEFON = $phone;
         $user->MAIL = $email;
         $user->TCNO = $taxNumber;
-        $user->DURUM = 1;
+        $user->DURUM = $status ?? 0;
         $user->KULLANICITIPI = $userType;
         $user->KAYITTARIHI = date('Y-m-d H:i:s');
         if ($selectedCompanyId) $user->selected_company_id = $selectedCompanyId;

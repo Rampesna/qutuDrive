@@ -61,6 +61,7 @@
                 <i class="fa fa-spinner fa-spin"></i>
             </div>
             `);
+            toastr.info('Veriler Alınırken Lütfen Bekleyin, Bu İşlem Biraz Uzun Sürebilir...');
             $.ajax({
                 type: 'get',
                 url: '{{ route('user.api.edefterdonemler.getEDefterDonem') }}',

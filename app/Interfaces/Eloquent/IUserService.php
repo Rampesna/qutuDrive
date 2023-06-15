@@ -121,6 +121,7 @@ interface IUserService extends IEloquentService
      * @param string|null $taxNumber
      * @param string $userType
      * @param int|null $selectedCompanyId
+     * @param bool|null $status
      *
      * @return ServiceResponse
      */
@@ -133,7 +134,8 @@ interface IUserService extends IEloquentService
         string  $email,
         ?string $taxNumber,
         string  $userType,
-        ?int    $selectedCompanyId
+        ?int    $selectedCompanyId,
+        ?bool   $status
     ): ServiceResponse;
 
     /**
