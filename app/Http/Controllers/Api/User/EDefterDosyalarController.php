@@ -29,6 +29,7 @@ class EDefterDosyalarController extends Controller
      */
     public function getByDonemId(GetByDonemIdRequest $request)
     {
+        set_time_limit(86400);
         $response = $this->eDefterDosyalarService->getByDonemId(
             $request->donemId
         );

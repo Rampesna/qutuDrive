@@ -75,6 +75,9 @@
                     typeIds: parseInt(typeId) === 0 ? [1, 2, 5, 6] : [typeId],
                 },
                 success: function (response) {
+                    console.log('==================== getEDefterDonem Success =====================');
+                    console.log(response);
+                    console.log('==========================================================');
                     filesRowBody.show();
                     $.ajax({
                         type: 'get',
@@ -87,6 +90,9 @@
                             donemId: response.response.ID
                         },
                         success: function (response) {
+                            console.log('==================== edefterdosyalar Success =====================');
+                            console.log(response);
+                            console.log('==========================================================');
                             console.log(response);
                             filesRow.empty();
                             $.each(response.response, function (i, edefterdosya) {
@@ -106,7 +112,10 @@
                             });
                         },
                         error: function (error) {
+                            console.log('==================== edefterdosyalar Success =====================');
                             console.log(error);
+                            console.log('==========================================================');
+                            // console.log(error);
                             if (parseInt(error.status) === 422) {
                                 $.each(error.responseJSON.response, function (i, error) {
                                     toastr.error(error[0]);
@@ -118,8 +127,11 @@
                     });
                 },
                 error: function (error) {
-                    filesRowBody.hide();
+                    console.log('==================== getEDefterDonem Error =====================');
                     console.log(error);
+                    console.log('==========================================================');
+                    filesRowBody.hide();
+                    // console.log(error);
                     if (parseInt(error.status) === 422) {
                         $.each(error.responseJSON.response, function (i, error) {
                             toastr.error(error[0]);

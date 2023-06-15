@@ -182,7 +182,13 @@ class UserService implements IUserService
         int $id
     ): ServiceResponse
     {
-        $user = Kullanicilar::find($id);
+        $user = Kullanicilar::with([
+            'permissions' => function ($permissions) {
+                return $permissions->select([
+                    'id',
+                ]);
+            },
+        ])->find($id);
         if ($user) {
             return new ServiceResponse(
                 true,

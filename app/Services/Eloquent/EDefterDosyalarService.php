@@ -85,6 +85,7 @@ class EDefterDosyalarService implements IEDefterDosyalarService
         string $donemId
     ): ServiceResponse
     {
+        set_time_limit(86400);
         return new ServiceResponse(
             true,
             __('ServiceResponse/Eloquent/EDefterDosyalarService.getByDonemId.success'),

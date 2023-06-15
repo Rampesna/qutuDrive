@@ -26,6 +26,7 @@ class EDefterDonemlerController extends Controller
      */
     public function getEDefterDonem(GetEDefterDonemRequest $request)
     {
+        set_time_limit(86400);
         $response = $this->eDefterDonemlerService->getEDefterDonem(
             $request->companyId,
             $request->year,

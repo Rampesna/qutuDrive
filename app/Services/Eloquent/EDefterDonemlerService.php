@@ -86,6 +86,7 @@ class EDefterDonemlerService implements IEDefterDonemlerService
         array  $typeIds
     ): ServiceResponse
     {
+        set_time_limit(86400);
         $company = Firmalar::find($companyId);
         if ($company) {
             $eDefterDonem = Edefterdonemler::where('FIRMAAPIKEY', $company->APIKEY)

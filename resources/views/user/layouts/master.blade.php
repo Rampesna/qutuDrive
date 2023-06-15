@@ -76,6 +76,9 @@
     var authUserToken = localStorage.getItem('authUserToken');
     var authUserSelectedCompanyId = parseInt(localStorage.getItem('authUserSelectedCompanyId'));
     var authUserType = localStorage.getItem('authUserType');
+    var authUserPermissions = localStorage.getItem('authUserPermissions').split(',');
+
+    console.log(authUserPermissions);
 
     function checkLogin() {
         if (
@@ -91,6 +94,11 @@
         } else {
             $('.showIfOnlyManager').hide();
         }
+
+        $('.sidebarMenuItem').hide();
+        $.each(authUserPermissions, function (i, authUserPermission) {
+            $(`#menuPermission${authUserPermission}`).show();
+        });
 
         $('#authUserNameSpan').html(localStorage.getItem('authUserName'));
         $('#loggedUserNameFirstWordSpan').html(localStorage.getItem('authUserName').charAt(0).toUpperCase());

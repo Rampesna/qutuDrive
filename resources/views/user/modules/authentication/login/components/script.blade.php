@@ -64,6 +64,10 @@
                             localStorage.setItem('authUserToken', `Bearer ${response.response.token}`);
                             localStorage.setItem('authUserSelectedCompanyId', profileResponse.response.selected_company_id);
                             localStorage.setItem('authUserType', profileResponse.response.KULLANICITIPI);
+                            localStorage.setItem('authUserType', profileResponse.response.KULLANICITIPI);
+                            localStorage.setItem('authUserPermissions', profileResponse.response.permissions.map(function (permission) {
+                                return permission.id;
+                            }));
 
                             window.location.href = '{{ route('user.web.dashboard.index') }}';
                         },
