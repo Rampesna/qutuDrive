@@ -36,7 +36,7 @@ class EDefterDosyalarService implements IEDefterDosyalarService
         string $id
     ): ServiceResponse
     {
-        $eDefterDosyalar = Edefterdosyalar::where('ID', $id)->where('DURUM', 1)->first();
+        $eDefterDosyalar = Edefterdosyalar::where('ID', $id)->first();
         if ($eDefterDosyalar) {
             return new ServiceResponse(
                 true,
