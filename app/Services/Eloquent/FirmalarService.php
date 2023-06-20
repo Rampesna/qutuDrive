@@ -251,7 +251,7 @@ class FirmalarService implements IFirmalarService
         $company->MAIL = $email;
         $company->BAYIKODU = $dealerCode;
         $company->DURUM = 1;
-        $company->EDEFTERKAYNAKTURU = $eLedgerSourceType;
+        $company->EDEFTERKAYNAKTURU = 1;
         $company->KAYITTARIHI = date('Y-m-d H:i:s');
         $company->save();
 
@@ -300,6 +300,7 @@ class FirmalarService implements IFirmalarService
                 'VERGIDAIRESI' => $companyFromFile[6],
                 'ADRES' => $companyFromFile[7],
                 'DURUM' => 1,
+                'EDEFTERKAYNAKTURU' => 1,
                 'APIKEY' => Str::uuid()->toString(),
             ];
 
