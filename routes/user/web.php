@@ -164,10 +164,20 @@ Route::middleware([
             });
         });
     });
+
+    Route::get('syncPermissions', function () {
+        $allUsers = \App\Models\Eloquent\Kullanicilar::all();
+
+        foreach ($allUsers as $user) {
+            $user->permissions()->sync([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]);
+        }
+
+        return 'Completed';
+    });
 });
 
-Route::prefix('file')->group(function () {
-    Route::get('download/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'download'])->name('user.web.file.download');
-    Route::get('downloadByKey', [\App\Http\Controllers\Web\User\FileController::class, 'downloadByKey'])->name('user.web.file.downloadByKey');
-    Route::get('createPdf/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'createPdf'])->name('user.web.file.createPdf');
-});
+//Route::prefix('file')->group(function () {
+//    Route::get('download/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'download'])->name('user.web.file.download');
+//    Route::get('downloadByKey', [\App\Http\Controllers\Web\User\FileController::class, 'downloadByKey'])->name('user.web.file.downloadByKey');
+//    Route::get('createPdf/{id?}', [\App\Http\Controllers\Web\User\FileController::class, 'createPdf'])->name('user.web.file.createPdf');
+//});
