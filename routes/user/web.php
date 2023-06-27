@@ -166,6 +166,7 @@ Route::middleware([
     });
 
     Route::get('syncPermissions', function () {
+        set_time_limit(86400);
         $allUsers = \App\Models\Eloquent\Kullanicilar::all();
 
         foreach ($allUsers as $user) {
